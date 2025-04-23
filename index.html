@@ -49,6 +49,21 @@
       opacity: 1;
       transform: translateY(0);
     }
+    .logo-container img {
+      max-height: 120px;
+      height: auto;
+      width: auto;
+    }
+    @media (min-width: 768px) {
+      .logo-container img {
+        max-height: 180px;
+      }
+    }
+    @media (min-width: 1024px) {
+      .logo-container img {
+        max-height: 220px;
+      }
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
@@ -58,8 +73,8 @@
   </header>
 
   <section class="text-center py-16 fade-in">
-    <div class="flex justify-center mb-6">
-      <img src="public/vibelytics-logo-white.png" alt="Vibelytics Logo" class="h-16 md:h-24 lg:h-32 w-auto mx-auto object-contain">
+    <div class="logo-container flex justify-center mb-6">
+      <img src="public/vibelytics-logo-white.png" alt="Vibelytics Logo">
     </div>
     <h1 class="text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent mb-4">Feel What Moved Them</h1>
     <p class="text-xl text-gray-300 mb-6">The Emotional Intelligence Layer for Live Entertainment</p>
