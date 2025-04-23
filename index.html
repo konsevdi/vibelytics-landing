@@ -32,6 +32,8 @@
       background: #0f0f1a;
       color: white;
       overflow-x: hidden;
+      margin: 0;
+      padding: 0;
     }
     .particles-bg {
       position: fixed;
@@ -64,21 +66,55 @@
         max-height: 220px;
       }
     }
+    .hero-section {
+      text-align: center;
+      padding: 100px 20px 60px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-section h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-top: 20px;
+      background: linear-gradient(to right, #e100ff, #7f00ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-section p {
+      font-size: 1.25rem;
+      color: #ccc;
+      margin: 20px 0;
+    }
+    .cta-button {
+      background: linear-gradient(to right, #e100ff, #7f00ff);
+      padding: 12px 30px;
+      border-radius: 9999px;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .cta-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(225, 0, 255, 0.6);
+    }
   </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body>
   <div class="particles-bg" id="particles-js"></div>
   <header class="flex justify-end items-center px-8 py-4">
-    <button onclick="openSignup()" class="bg-gradient-to-r from-purple-600 to-pink-500 px-5 py-2 rounded-lg text-white font-bold hover:scale-105 transition">Join the List</button>
+    <button onclick="openSignup()" class="cta-button">Join the List</button>
   </header>
 
-  <section class="text-center py-16 fade-in">
-    <div class="logo-container flex justify-center mb-6">
+  <section class="hero-section fade-in">
+    <div class="logo-container mb-6">
       <img src="public/vibelytics-logo-white.png" alt="Vibelytics Logo">
     </div>
-    <h1 class="text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent mb-4">Feel What Moved Them</h1>
-    <p class="text-xl text-gray-300 mb-6">The Emotional Intelligence Layer for Live Entertainment</p>
-    <button onclick="openSignup()" class="bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 rounded-full text-white font-bold hover:scale-105 transition">Join the List</button>
+    <h1>Feel What Moved Them</h1>
+    <p>The Emotional Intelligence Layer for Live Entertainment</p>
+    <button onclick="openSignup()" class="cta-button">Join the List</button>
   </section>
 
   <section class="py-20 bg-black/30 fade-in">
