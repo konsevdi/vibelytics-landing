@@ -40,24 +40,33 @@
       height: 100%;
       z-index: -1;
     }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease-out, transform 1s ease-out;
+    }
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body class="flex flex-col min-h-screen">
   <div class="particles-bg" id="particles-js"></div>
-  <header class="flex justify-between items-center px-8 py-4">
-    <div class="flex items-center">
-      <img src="public/vibelytics-logo.png" alt="Vibelytics Logo" class="h-10 w-auto object-contain max-w-[160px]" style="max-height: 48px;">
-    </div>
+  <header class="flex justify-end items-center px-8 py-4">
     <button onclick="openSignup()" class="bg-gradient-to-r from-purple-600 to-pink-500 px-5 py-2 rounded-lg text-white font-bold hover:scale-105 transition">Join the List</button>
   </header>
 
-  <section class="text-center py-20">
+  <section class="text-center py-16 fade-in">
+    <div class="flex justify-center mb-6">
+      <img src="public/vibelytics-logo-white.png" alt="Vibelytics Logo" class="h-24 w-auto object-contain max-w-[180px]">
+    </div>
     <h1 class="text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent mb-4">Feel What Moved Them</h1>
     <p class="text-xl text-gray-300 mb-6">The Emotional Intelligence Layer for Live Entertainment</p>
     <button onclick="openSignup()" class="bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 rounded-full text-white font-bold hover:scale-105 transition">Join the List</button>
   </section>
 
-  <section class="py-20 bg-black/30">
+  <section class="py-20 bg-black/30 fade-in">
     <h2 class="text-center text-3xl font-bold mb-10">The Magic Behind the Moments</h2>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
       <div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition">
@@ -87,6 +96,17 @@
     function openSignup() {
       window.open('https://signup.vibelytics.ai', '_blank');
     }
+    document.addEventListener('DOMContentLoaded', () => {
+      const faders = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, { threshold: 0.1 });
+      faders.forEach(fader => observer.observe(fader));
+    });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
   <script>
