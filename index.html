@@ -1,115 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vibelytics – Feel What Moved Them</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.3.2/dist/tailwind.min.css" rel="stylesheet">
-  <style>
-    @font-face {
-      font-family: 'Rethink Sans';
-      src: url("public/fonts/RethinkSans-Regular.woff2") format("woff2"),
-           url("public/fonts/RethinkSans-Regular.woff") format("woff");
-      font-weight: 400;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'Rethink Sans';
-      src: url("public/fonts/RethinkSans-SemiBold.woff2") format("woff2"),
-           url("public/fonts/RethinkSans-SemiBold.woff") format("woff");
-      font-weight: 600;
-      font-style: normal;
-    }
-    @font-face {
-      font-family: 'Rethink Sans';
-      src: url("public/fonts/RethinkSans-Bold.woff2") format("woff2"),
-           url("public/fonts/RethinkSans-Bold.woff") format("woff");
-      font-weight: 700;
-      font-style: normal;
-    }
-    body {
-      font-family: 'Rethink Sans', sans-serif;
-      background: #0f0f1a;
-      color: white;
-      overflow-x: hidden;
-      margin: 0;
-      padding: 0;
-    }
-    .particles-bg {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease-out, transform 1s ease-out;
-    }
-    .fade-in.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .logo-container img {
-      max-height: 120px;
-      height: auto;
-      width: auto;
-    }
-    @media (min-width: 768px) {
-      .logo-container img {
-        max-height: 180px;
-      }
-    }
-    @media (min-width: 1024px) {
-      .logo-container img {
-        max-height: 220px;
-      }
-    }
-    .hero-section {
-      text-align: center;
-      padding: 100px 20px 60px;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    .hero-section h1 {
-      font-size: 3rem;
-      font-weight: 700;
-      margin-top: 20px;
-      background: linear-gradient(to right, #e100ff, #7f00ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .hero-section p {
-      font-size: 1.25rem;
-      color: #ccc;
-      margin: 20px 0;
-    }
-    .cta-button {
-      background: linear-gradient(to right, #e100ff, #7f00ff);
-      padding: 12px 30px;
-      border-radius: 9999px;
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .cta-button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px rgba(225, 0, 255, 0.6);
-    }
-  </style>
+  <link rel="stylesheet" href="public/style.css">
 </head>
 <body>
   <div class="particles-bg" id="particles-js"></div>
-  <header class="flex justify-end items-center px-8 py-4">
+  <header class="header">
     <button onclick="openSignup()" class="cta-button">Join the List</button>
   </header>
 
-  <section class="hero-section fade-in">
-    <div class="logo-container mb-6">
+  <section class="hero fade-in">
+    <div class="logo-container">
       <img src="public/vibelytics-logo-white.png" alt="Vibelytics Logo">
     </div>
     <h1>Feel What Moved Them</h1>
@@ -117,28 +21,28 @@
     <button onclick="openSignup()" class="cta-button">Join the List</button>
   </section>
 
-  <section class="py-20 bg-black/30 fade-in">
-    <h2 class="text-center text-3xl font-bold mb-10">The Magic Behind the Moments</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
-      <div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold text-purple-400 mb-3">Capture the Energy</h3>
-        <p>Our AI sees what matters — the raw, unfiltered magic of live crowds in motion.</p>
+  <section class="why-now fade-in">
+    <h2>Why Now</h2>
+    <div class="why-now-grid">
+      <div class="why-card">
+        <h3>Emotion Without Surveillance</h3>
+        <p>No phones. No surveys. No facial recognition. Audience-first, privacy-safe analytics.</p>
       </div>
-      <div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold text-purple-400 mb-3">Feel the Pulse</h3>
-        <p>Privacy-first emotion detection reveals the collective heartbeat of your audience.</p>
+      <div class="why-card">
+        <h3>Artist-Aligned Insights</h3>
+        <p>Emotion data matched to setlists, encore moments, and show flow—finally measurable.</p>
       </div>
-      <div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold text-purple-400 mb-3">Unlock the Story</h3>
-        <p>Transform emotional insights into unforgettable experiences that resonate.</p>
+      <div class="why-card">
+        <h3>The Cultural Feedback Loop</h3>
+        <p>Transform real crowd energy into stories, sponsorship wins, and creative feedback.</p>
       </div>
     </div>
   </section>
 
-  <footer class="text-center py-10 text-gray-500 mt-auto">
-    <div class="flex justify-center gap-6 mb-4">
-      <a href="https://twitter.com/vibelyticsai" target="_blank" class="hover:text-purple-400">Twitter</a>
-      <a href="https://tiktok.com/@vibelyticsai" target="_blank" class="hover:text-purple-400">TikTok</a>
+  <footer class="footer">
+    <div class="socials">
+      <a href="https://twitter.com/vibelyticsai" target="_blank">Twitter</a>
+      <a href="https://tiktok.com/@vibelyticsai" target="_blank">TikTok</a>
     </div>
     <p>&copy; 2025 Vibelytics. All rights reserved.</p>
   </footer>
