@@ -1,105 +1,89 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.5">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vibelytics – Feel What Moved Them</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.2.4/dist/tailwind.min.css">
+  <style>
+    @font-face {
+      font-family: 'Rethink Sans';
+      src: url("/public/fonts/RethinkSans-Regular.woff2") format("woff2"),
+           url("/public/fonts/RethinkSans-Regular.woff") format("woff");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Rethink Sans';
+      src: url("/public/fonts/RethinkSans-Bold.woff2") format("woff2"),
+           url("/public/fonts/RethinkSans-Bold.woff") format("woff");
+      font-weight: 700;
+      font-style: bold;
+    }
+    body {
+      font-family: 'Rethink Sans', sans-serif;
+      background: #0f0f1a;
+      color: white;
+      overflow-x: hidden;
+    }
+    .particles-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
   </style>
 </head>
-<body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Vibelytics – Feel What Moved Them&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.2.4/dist/tailwind.min.css"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@font-face {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Rethink Sans';</p>
-<p class="p1"><span class="Apple-converted-space">      </span>src: url("/public/fonts/RethinkSans-Regular.woff2") format("woff2"),</p>
-<p class="p1"><span class="Apple-converted-space">           </span>url("/public/fonts/RethinkSans-Regular.woff") format("woff");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 400;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-style: normal;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>@font-face {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Rethink Sans';</p>
-<p class="p1"><span class="Apple-converted-space">      </span>src: url("/public/fonts/RethinkSans-Bold.woff2") format("woff2"),</p>
-<p class="p1"><span class="Apple-converted-space">           </span>url("/public/fonts/RethinkSans-Bold.woff") format("woff");</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-weight: 700;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-style: bold;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: 'Rethink Sans', sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background: #0f0f1a;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>color: white;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>overflow-x: hidden;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>.particles-bg {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>top: 0; left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>width: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 100%;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>z-index: -1;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body class="flex flex-col min-h-screen"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="particles-bg" id="particles-js"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;header class="flex justify-between items-center px-8 py-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div&gt;&lt;img src="/public/vibelytics-logo.png" alt="Vibelytics Logo" class="h-12"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="openSignup()" class="bg-gradient-to-r from-purple-600 to-pink-500 px-5 py-2 rounded-lg text-white font-bold hover:scale-105 transition"&gt;Join the List&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="text-center py-20"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1 class="text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent mb-4"&gt;Feel What Moved Them&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="text-xl text-gray-300 mb-6"&gt;The Emotional Intelligence Layer for Live Entertainment&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button onclick="openSignup()" class="bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 rounded-full text-white font-bold hover:scale-105 transition"&gt;Join the List&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;section class="py-20 bg-black/30"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;h2 class="text-center text-3xl font-bold mb-10"&gt;The Magic Behind the Moments&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3 class="text-xl font-bold text-purple-400 mb-3"&gt;Capture the Energy&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Our AI sees what matters — the raw, unfiltered magic of live crowds in motion.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3 class="text-xl font-bold text-purple-400 mb-3"&gt;Feel the Pulse&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Privacy-first emotion detection reveals the collective heartbeat of your audience.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h3 class="text-xl font-bold text-purple-400 mb-3"&gt;Unlock the Story&lt;/h3&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;p&gt;Transform emotional insights into unforgettable experiences that resonate.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer class="text-center py-10 text-gray-500 mt-auto"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="flex justify-center gap-6 mb-4"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://twitter.com/vibelyticsai" target="_blank" class="hover:text-purple-400"&gt;Twitter&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;a href="https://tiktok.com/@vibelyticsai" target="_blank" class="hover:text-purple-400"&gt;TikTok&lt;/a&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;&amp;copy; 2025 Vibelytics. All rights reserved.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>function openSignup() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>window.open('https://signup.vibelytics.ai', '_blank');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"&gt;&lt;/script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>particlesJS.load('particles-js', 'particles.json', function() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>console.log('particles.js config loaded');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+<body class="flex flex-col min-h-screen">
+  <div class="particles-bg" id="particles-js"></div>
+  <header class="flex justify-between items-center px-8 py-4">
+    <div><img src="/public/vibelytics-logo.png" alt="Vibelytics Logo" class="h-12"></div>
+    <button onclick="openSignup()" class="bg-gradient-to-r from-purple-600 to-pink-500 px-5 py-2 rounded-lg text-white font-bold hover:scale-105 transition">Join the List</button>
+  </header>
+
+  <section class="text-center py-20">
+    <h1 class="text-5xl font-bold bg-gradient-to-r from-pink-500 to-purple-600 bg-clip-text text-transparent mb-4">Feel What Moved Them</h1>
+    <p class="text-xl text-gray-300 mb-6">The Emotional Intelligence Layer for Live Entertainment</p>
+    <button onclick="openSignup()" class="bg-gradient-to-r from-pink-500 to-purple-600 px-6 py-3 rounded-full text-white font-bold hover:scale-105 transition">Join the List</button>
+  </section>
+
+  <section class="py-20 bg-black/30">
+    <h2 class="text-center text-3xl font-bold mb-10">The Magic Behind the Moments</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto px-6">
+      <div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-purple-400 mb-3">Capture the Energy</h3>
+        <p>Our AI sees what matters — the raw, unfiltered magic of live crowds in motion.</p>
+      </div>
+      <div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-purple-400 mb-3">Feel the Pulse</h3>
+        <p>Privacy-first emotion detection reveals the collective heartbeat of your audience.</p>
+      </div>
+      <div class="p-6 bg-black/50 rounded-lg hover:scale-105 hover:shadow-lg transition">
+        <h3 class="text-xl font-bold text-purple-400 mb-3">Unlock the Story</h3>
+        <p>Transform emotional insights into unforgettable experiences that resonate.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center py-10 text-gray-500 mt-auto">
+    <div class="flex justify-center gap-6 mb-4">
+      <a href="https://twitter.com/vibelyticsai" target="_blank" class="hover:text-purple-400">Twitter</a>
+      <a href="https://tiktok.com/@vibelyticsai" target="_blank" class="hover:text-purple-400">TikTok</a>
+    </div>
+    <p>&copy; 2025 Vibelytics. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function openSignup() {
+      window.open('https://signup.vibelytics.ai', '_blank');
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    particlesJS.load('particles-js', 'particles.json', function() {
+      console.log('particles.js config loaded');
+    });
+  </script>
 </body>
 </html>
