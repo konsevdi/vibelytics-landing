@@ -1,16 +1,23 @@
-// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./index.html"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}"
+  ],
   theme: {
     extend: {
       colors: {
-        'vibe-purple': '#7f00ff',
-        'vibe-pink': '#e100ff',
+        'primary-bg': '#0F0F1A',
+        'primary-text': '#FFFFFF',
+        'secondary-text': '#CCCCCC',
+        'accent': '#F0F',
+        'gradient-start': '#E100FF',
+        'gradient-end': '#7F00FF'
       },
       fontFamily: {
-        rethink: ['Rethink Sans', 'sans-serif'],
-      },
-    },
+        'rethink': ['"Rethink Sans"', 'sans-serif']
+      }
+    }
   },
-  plugins: [],
-}
+  plugins: []
+};
