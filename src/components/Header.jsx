@@ -14,7 +14,7 @@ export default function Header() {
             transition={{ duration: 0.6 }}
           >
             <img 
-              src="public/vibelytics-logo.png"
+              src="/public/vibelytics-logo.png"
               alt="Vibelytics"
               className="h-12 md:h-16"
             />
