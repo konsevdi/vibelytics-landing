@@ -3,36 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vibelytics - a16z Speedrun SR007</title>
-  <meta name="description" content="Vibelytics is the AI launch copilot for live culture, built as a static a16z Speedrun SR007 submission." />
+  <title>Vibelytics - AI Launch Copilot for Live Culture</title>
+  <meta name="description" content="Vibelytics helps live culture teams decide which events to launch, where to launch them, how to price them, and which sponsor story to carry." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='10' y1='8' x2='54' y2='56'%3E%3Cstop stop-color='%231ee7ff'/%3E%3Cstop offset='.48' stop-color='%23b26cff'/%3E%3Cstop offset='1' stop-color='%23ff8b4f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Crect x='12' y='12' width='40' height='40' rx='12' fill='%23050711' fill-opacity='.86' stroke='white' stroke-opacity='.28'/%3E%3Ctext x='31' y='43' font-family='Arial,sans-serif' font-size='31' font-weight='900' text-anchor='middle' fill='white' transform='rotate(-9 32 32)'%3EV%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
-      --bg: #050711;
-      --ink: #f8fafc;
-      --muted: #b7c2d4;
-      --soft: #8794aa;
-      --panel: rgba(9, 14, 28, .78);
-      --line: rgba(185, 202, 232, .18);
+      --bg: #04060d;
+      --ink: #f8fbff;
+      --muted: #c4cedc;
+      --soft: #8996aa;
+      --line: rgba(219, 231, 255, .16);
+      --surface: rgba(7, 11, 22, .72);
       --cyan: #1ee7ff;
-      --violet: #b26cff;
-      --coral: #ff7a64;
+      --violet: #a36aff;
+      --ember: #ff8b5c;
       --mint: #3cf2b5;
-      --shadow: 0 28px 90px rgba(0, 0, 0, .48);
       --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     * { box-sizing: border-box; }
 
+    html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      min-height: 100vh;
       color: var(--ink);
       font-family: var(--font);
-      background:
-        radial-gradient(circle at 18% 8%, rgba(30, 231, 255, .16), transparent 28%),
-        radial-gradient(circle at 86% 16%, rgba(255, 122, 100, .14), transparent 26%),
-        linear-gradient(180deg, #050711 0%, #080b16 54%, #03050b 100%);
+      background: var(--bg);
       overflow-x: hidden;
     }
 
@@ -40,31 +37,41 @@
       content: "";
       position: fixed;
       inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(30, 231, 255, .18), transparent 28%),
+        radial-gradient(circle at 88% 16%, rgba(255, 139, 92, .18), transparent 30%),
+        linear-gradient(180deg, #050712 0%, #070914 45%, #03040a 100%);
+    }
+
+    body:after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
       pointer-events: none;
-      opacity: .11;
+      opacity: .12;
       background-image:
-        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
-      background-size: 64px 64px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,.8), transparent 78%);
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.85), transparent 76%);
     }
 
     a { color: inherit; text-decoration: none; }
 
-    .shell {
-      position: relative;
-      z-index: 1;
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-      padding: 24px 0 28px;
-    }
-
     .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      margin-bottom: 34px;
+      padding: 22px clamp(18px, 4vw, 56px);
+      background: linear-gradient(180deg, rgba(4, 6, 13, .82), rgba(4, 6, 13, 0));
     }
 
     .brand {
@@ -72,12 +79,12 @@
       align-items: center;
       gap: 12px;
       font-size: 21px;
-      font-weight: 850;
+      font-weight: 880;
     }
 
     .logo {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 13px;
       background: conic-gradient(from 140deg, var(--cyan), var(--violet), #f472b6, #fb923c, var(--cyan));
       box-shadow: 0 0 34px rgba(30, 231, 255, .38);
@@ -91,9 +98,9 @@
       position: absolute;
       inset: 7px;
       z-index: 1;
-      border: 1px solid rgba(255,255,255,.24);
+      border: 1px solid rgba(255,255,255,.25);
       border-radius: 9px;
-      background: rgba(5, 7, 17, .84);
+      background: rgba(5, 7, 17, .85);
     }
 
     .logo:before {
@@ -111,343 +118,543 @@
       transform: rotate(-9deg) translateX(-1px);
     }
 
-    .nav-actions {
+    .nav-links {
       display: flex;
       align-items: center;
       gap: 10px;
-      color: var(--muted);
+      color: rgba(248, 251, 255, .76);
       font-size: 14px;
+      font-weight: 720;
     }
 
-    .nav-actions a,
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 46px;
-      border-radius: 14px;
-      padding: 12px 16px;
-      font-weight: 820;
-    }
-
-    .nav-actions a {
+    .nav-links a {
       border: 1px solid rgba(255,255,255,.1);
-      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+      padding: 10px 13px;
+      background: rgba(255,255,255,.045);
+      backdrop-filter: blur(16px);
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      border-color: rgba(30,231,255,.55);
+      background: rgba(30,231,255,.1);
+      transform: translateY(-1px);
+      outline: none;
     }
 
     .hero {
+      min-height: 100svh;
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
-      gap: 22px;
-      align-items: stretch;
-      min-height: calc(100vh - 112px);
-    }
-
-    .hero-copy,
-    .decision-panel,
-    .note-band {
-      border: 1px solid var(--line);
-      background: linear-gradient(145deg, rgba(11, 17, 32, .9), rgba(5, 8, 18, .74));
-      box-shadow: var(--shadow);
-    }
-
-    .hero-copy {
-      border-radius: 30px;
-      padding: clamp(26px, 5vw, 54px);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow: hidden;
+      align-items: end;
       position: relative;
-      min-height: 620px;
+      overflow: hidden;
+      padding: 116px clamp(18px, 5vw, 72px) 44px;
     }
 
-    .eyebrow {
-      display: inline-flex;
-      width: fit-content;
-      border: 1px solid rgba(60,242,181,.28);
-      border-radius: 999px;
-      padding: 9px 12px;
+    .hero:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: url("assets/festival-network.png") center / cover;
+      filter: saturate(1.1) contrast(1.05);
+      transform: scale(1.03);
+      animation: imageSettle 1200ms ease-out both;
+    }
+
+    .hero:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(4,6,13,.92) 0%, rgba(4,6,13,.74) 38%, rgba(4,6,13,.25) 70%, rgba(4,6,13,.72) 100%),
+        linear-gradient(180deg, rgba(4,6,13,.56) 0%, rgba(4,6,13,.12) 42%, rgba(4,6,13,.96) 100%);
+    }
+
+    .hero-inner {
+      width: min(1200px, 100%);
+      display: grid;
+      grid-template-columns: minmax(0, 740px) minmax(280px, 380px);
+      gap: clamp(28px, 7vw, 92px);
+      align-items: end;
+    }
+
+    .kicker {
+      margin: 0 0 16px;
       color: #b9fbe6;
-      background: rgba(60,242,181,.08);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    h1 {
-      margin: 26px 0 16px;
-      font-size: clamp(58px, 9vw, 112px);
-      line-height: .92;
-      letter-spacing: 0;
-      background: linear-gradient(92deg, #fff 0%, #dffcff 35%, #d7bdff 70%, #ffd9b7 100%);
-      -webkit-background-clip: text;
-      color: transparent;
-    }
-
-    .headline {
-      max-width: 760px;
-      margin: 0 0 18px;
-      font-size: clamp(34px, 4.8vw, 60px);
-      line-height: 1.04;
-      letter-spacing: 0;
+      font-size: 14px;
       font-weight: 860;
     }
 
-    .copy {
-      max-width: 760px;
+    h1 {
       margin: 0;
-      color: #d9e2ef;
-      font-size: clamp(18px, 2vw, 22px);
+      font-size: clamp(76px, 12vw, 156px);
+      line-height: .86;
+      letter-spacing: 0;
+      background: linear-gradient(92deg, #fff 0%, #e2fbff 35%, #dcc7ff 72%, #ffd5b7 100%);
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: rise .7s ease-out both;
+    }
+
+    .headline {
+      max-width: 780px;
+      margin: 24px 0 0;
+      font-size: clamp(34px, 5vw, 68px);
+      line-height: 1.02;
+      font-weight: 880;
+      animation: rise .7s .08s ease-out both;
+    }
+
+    .copy {
+      max-width: 700px;
+      margin: 22px 0 0;
+      color: #dce5f1;
+      font-size: clamp(18px, 2vw, 23px);
       line-height: 1.42;
+      animation: rise .7s .16s ease-out both;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 32px;
+      margin-top: 34px;
+      animation: rise .7s .24s ease-out both;
     }
 
     .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      border-radius: 14px;
+      padding: 14px 18px;
       color: #031019;
       background: linear-gradient(92deg, var(--cyan), var(--violet));
-      box-shadow: 0 16px 42px rgba(30, 231, 255, .17);
+      font-weight: 880;
+      transition: transform .18s ease, filter .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-2px);
+      filter: saturate(1.16);
+      outline: none;
     }
 
     .btn.secondary {
       color: var(--ink);
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.055);
-      box-shadow: none;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.07);
+      backdrop-filter: blur(16px);
+    }
+
+    .signal {
+      border-left: 1px solid rgba(255,255,255,.22);
+      padding-left: 22px;
+      color: rgba(248, 251, 255, .82);
+      animation: rise .7s .34s ease-out both;
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: 12px;
+      font-size: 18px;
+      color: #fff;
+    }
+
+    .signal span {
+      display: block;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .section {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: clamp(64px, 9vw, 118px) 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 520px) minmax(280px, 1fr);
+      gap: clamp(24px, 8vw, 96px);
+      align-items: end;
+      margin-bottom: 34px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: clamp(38px, 6vw, 76px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .section-head p,
+    .narrative p {
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(17px, 1.8vw, 21px);
+      line-height: 1.48;
+    }
+
+    .product-strip {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .media {
+      min-height: 560px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      background: #07101e;
+    }
+
+    .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.1) contrast(1.04);
+    }
+
+    .media:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 38%, rgba(4,6,13,.84));
+    }
+
+    .decision-stack {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 10px 0;
+      display: grid;
+      align-content: center;
+    }
+
+    .decision-row {
+      display: grid;
+      grid-template-columns: 108px 1fr;
+      gap: 18px;
+      padding: 22px 0;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .decision-row:last-child { border-bottom: 0; }
+
+    .decision-row strong {
+      color: #fff;
+      font-size: 17px;
+    }
+
+    .decision-row span {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
     }
 
     .workflow {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 44px;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
     }
 
-    .step {
-      min-height: 124px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(255,255,255,.045);
+    .flow-step {
+      min-height: 210px;
+      padding: 22px 16px;
+      border-right: 1px solid rgba(255,255,255,.1);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+      transition: background .18s ease, transform .18s ease;
     }
 
-    .step strong {
+    .flow-step:last-child { border-right: 0; }
+
+    .flow-step:hover {
+      background: linear-gradient(180deg, rgba(30,231,255,.1), rgba(255,255,255,.02));
+      transform: translateY(-4px);
+    }
+
+    .flow-step b {
       display: block;
-      margin-bottom: 9px;
-      color: #fff;
-      font-size: 24px;
+      margin-bottom: 20px;
+      color: var(--cyan);
+      font-size: 13px;
+      letter-spacing: .06em;
+      text-transform: uppercase;
     }
 
-    .step span {
+    .flow-step strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 21px;
+      line-height: 1.05;
+    }
+
+    .flow-step span {
       color: var(--muted);
       font-size: 14px;
-      line-height: 1.35;
+      line-height: 1.36;
     }
 
-    .side {
+    .narrative {
       display: grid;
-      gap: 16px;
-      align-content: stretch;
+      grid-template-columns: minmax(0, .82fr) minmax(360px, 1.18fr);
+      gap: clamp(28px, 7vw, 86px);
+      align-items: center;
     }
 
-    .decision-panel {
-      border-radius: 28px;
-      padding: 22px;
-      min-height: 430px;
+    .narrative img {
+      width: 100%;
+      min-height: 420px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+    }
+
+    .narrative h2 {
+      margin-bottom: 22px;
+    }
+
+    .final {
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto 34px;
+      padding: clamp(44px, 7vw, 82px) 0;
+      border-top: 1px solid var(--line);
       display: flex;
-      flex-direction: column;
       justify-content: space-between;
-      overflow: hidden;
-      position: relative;
+      gap: 28px;
+      align-items: center;
     }
 
-    .decision-panel:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(90deg, rgba(5,7,17,.5), rgba(5,7,17,.18)),
-        url("assets/festival-network.png") center / cover;
-      opacity: .42;
-      pointer-events: none;
-    }
-
-    .decision-panel > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .decision-panel h2 {
+    .final h2 {
       margin: 0;
-      font-size: 28px;
-      line-height: 1.04;
+      font-size: clamp(34px, 5vw, 64px);
+      line-height: 1;
       letter-spacing: 0;
     }
 
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .metric {
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 16px;
-      padding: 14px;
-      background: rgba(5, 8, 18, .68);
-      backdrop-filter: blur(14px);
-    }
-
-    .metric strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 23px;
-    }
-
-    .metric span {
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.28;
-    }
-
-    .note-band {
-      border-radius: 22px;
-      padding: 20px;
-      color: #d7e1ee;
-      font-size: 15px;
-      line-height: 1.44;
-    }
-
-    .note-band strong {
-      display: block;
-      margin-bottom: 8px;
-      color: #fff;
-      font-size: 16px;
-    }
-
     footer {
-      margin-top: 24px;
+      width: min(1200px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 0 0 28px;
       color: var(--soft);
-      text-align: center;
       font-size: 14px;
     }
 
-    @media (max-width: 900px) {
-      .hero {
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes imageSettle {
+      from { transform: scale(1.08); filter: saturate(1.2) contrast(1.08); }
+      to { transform: scale(1.03); filter: saturate(1.1) contrast(1.05); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .section-head,
+      .product-strip,
+      .narrative {
         grid-template-columns: 1fr;
-        min-height: auto;
       }
 
-      .hero-copy {
-        min-height: auto;
+      .signal {
+        max-width: 560px;
+      }
+
+      .workflow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-step:nth-child(2n) {
+        border-right: 0;
+      }
+
+      .final {
+        align-items: flex-start;
+        flex-direction: column;
       }
     }
 
     @media (max-width: 680px) {
-      .shell {
-        width: min(100% - 28px, 1180px);
-        padding-top: 16px;
-      }
-
       .nav {
+        position: absolute;
         align-items: flex-start;
         flex-direction: column;
-        margin-bottom: 18px;
+        padding: 18px 14px;
       }
 
-      .nav-actions {
-        width: 100%;
+      .nav-links {
         flex-wrap: wrap;
       }
 
-      .nav-actions a {
-        flex: 1 1 auto;
+      .nav-links a {
+        padding: 9px 11px;
+      }
+
+      .hero {
+        min-height: 920px;
+        padding: 168px 14px 30px;
       }
 
       h1 {
-        font-size: 54px;
+        font-size: 68px;
       }
 
       .headline {
-        font-size: 34px;
+        font-size: 38px;
       }
 
       .copy {
         font-size: 18px;
       }
 
-      .workflow,
-      .metric-grid {
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .section,
+      .final,
+      footer {
+        width: min(100% - 28px, 1200px);
+      }
+
+      .media {
+        min-height: 380px;
+      }
+
+      .decision-row {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .workflow {
         grid-template-columns: 1fr;
       }
 
-      .decision-panel {
-        min-height: 390px;
+      .flow-step,
+      .flow-step:nth-child(2n) {
+        min-height: 160px;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+
+      .flow-step:last-child {
+        border-bottom: 0;
+      }
+
+      .narrative img {
+        min-height: 300px;
       }
     }
   </style>
 </head>
 <body>
-  <main class="shell">
-    <nav class="nav">
-      <a class="brand" href="/" aria-label="Vibelytics home">
-        <span class="logo" aria-hidden="true"></span>
-        <span>Vibelytics</span>
-      </a>
-      <div class="nav-actions" aria-label="Submission links">
-        <a href="/pilot">Pilot</a>
-        <a href="docs/SR007_SUMMARY.md">SR007 summary</a>
-      </div>
-    </nav>
+  <nav class="nav">
+    <a class="brand" href="/" aria-label="Vibelytics home">
+      <span class="logo" aria-hidden="true"></span>
+      <span>Vibelytics</span>
+    </a>
+    <div class="nav-links" aria-label="Primary navigation">
+      <a href="#product">Product</a>
+      <a href="#workflow">Workflow</a>
+      <a href="/pilot">Open pilot</a>
+    </div>
+  </nav>
 
+  <main>
     <section class="hero">
-      <div class="hero-copy">
+      <div class="hero-inner">
         <div>
-          <span class="eyebrow">Static a16z Speedrun SR007 submission</span>
+          <p class="kicker">AI launch copilot for live culture</p>
           <h1>Vibelytics</h1>
-          <p class="headline">The AI launch copilot for live culture</p>
-          <p class="copy">Decide which events to launch - where, at what price, with what sponsor and story - before capital is committed.</p>
+          <p class="headline">Know what to launch before you commit the capital.</p>
+          <p class="copy">Vibelytics turns an artist, city, venue, date, and sponsor brief into a launch decision, pricing plan, and story your team can actually use.</p>
           <div class="hero-actions">
             <a class="btn" href="/pilot">Open pilot</a>
-            <a class="btn secondary" href="docs/SR007_SUMMARY.md">View SR007 summary</a>
+            <a class="btn secondary" href="#workflow">See workflow</a>
           </div>
         </div>
-
-        <div class="workflow" aria-label="Launch copilot workflow">
-          <div class="step"><strong>Input</strong><span>Artist, city, venue capacity, target date, and sponsor category.</span></div>
-          <div class="step"><strong>Decide</strong><span>Demand score, pricing and capacity plan, sponsor fit, and launch recommendation.</span></div>
-          <div class="step"><strong>Launch</strong><span>Ready-to-use story and copy for the first announcement.</span></div>
-        </div>
+        <aside class="signal" aria-label="Vibelytics positioning">
+          <strong>Decision layer first.</strong>
+          <span>Built for promoters, venues, creators, and brand partners who need a sharper launch call before deposits, guarantees, media spend, and sponsor packages are locked.</span>
+        </aside>
       </div>
-
-      <aside class="side" aria-label="Submission preview">
-        <div class="decision-panel">
-          <div>
-            <span class="eyebrow">Demo decision layer</span>
-            <h2>From launch brief to go / adjust / do not launch.</h2>
-          </div>
-          <div class="metric-grid">
-            <div class="metric"><strong>90</strong><span>Demand score for the strongest city bet.</span></div>
-            <div class="metric"><strong>1,200</strong><span>Capacity plan matched to venue economics.</span></div>
-            <div class="metric"><strong>EUR26-78</strong><span>Pricing band before spend is committed.</span></div>
-            <div class="metric"><strong>Travel</strong><span>Sponsor fit aligned to the launch story.</span></div>
-          </div>
-        </div>
-
-        <div class="note-band">
-          <strong>Scope</strong>
-          This is a static SR007 web submission with local assets and synthetic demo data only. SceneQuest is a future activation module after the launch decision layer.
-        </div>
-      </aside>
     </section>
 
-    <footer>Static Vibelytics SR007 submission - no backend, no external services, demo data only.</footer>
+    <section class="section" id="product">
+      <div class="section-head">
+        <h2>From instinct to launch plan.</h2>
+        <p>Vibelytics is not a monitoring surface. It is a pre-launch copilot for choosing the right room, price, sponsor fit, and opening narrative.</p>
+      </div>
+      <div class="product-strip">
+        <div class="media">
+          <img src="assets/taste-map.png" alt="City demand graph for planning a live culture launch" />
+        </div>
+        <div class="decision-stack" aria-label="Vibelytics decision outputs">
+          <div class="decision-row"><strong>Demand</strong><span>Score the launch strength of an artist in a city before announcing.</span></div>
+          <div class="decision-row"><strong>Capacity</strong><span>Match the room size to expected pull, risk, and venue economics.</span></div>
+          <div class="decision-row"><strong>Pricing</strong><span>Shape a band for early, general, premium, and bundled ticket moments.</span></div>
+          <div class="decision-row"><strong>Sponsor</strong><span>Find the brand category that naturally fits the city, artist, and launch story.</span></div>
+          <div class="decision-row"><strong>Copy</strong><span>Turn the decision into language for the first announcement.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="section-head">
+        <h2>The launch call in six moves.</h2>
+        <p>Simple inputs, opinionated outputs. The pilot shows how Vibelytics moves from brief to recommendation with a fast, focused decision flow.</p>
+      </div>
+      <div class="workflow" aria-label="Launch workflow">
+        <div class="flow-step"><b>01</b><strong>Artist</strong><span>Start with the act and the format your team wants to test.</span></div>
+        <div class="flow-step"><b>02</b><strong>Market</strong><span>Choose the city, date window, and realistic venue capacity.</span></div>
+        <div class="flow-step"><b>03</b><strong>Demand</strong><span>Read the pre-launch signal as a score, not a vague hunch.</span></div>
+        <div class="flow-step"><b>04</b><strong>Economics</strong><span>Shape capacity and price before guarantees and spend harden.</span></div>
+        <div class="flow-step"><b>05</b><strong>Sponsor</strong><span>Match the launch to a partner category that belongs in the story.</span></div>
+        <div class="flow-step"><b>06</b><strong>Decision</strong><span>Go, adjust, or hold, with launch copy ready for the first drop.</span></div>
+      </div>
+    </section>
+
+    <section class="section narrative">
+      <div>
+        <h2>Culture launches need a sharper first yes.</h2>
+        <p>The expensive mistake is committing to the wrong city, room, price, sponsor package, or announcement angle too early. Vibelytics gives teams a decision surface for that moment.</p>
+      </div>
+      <img src="assets/backstage.png" alt="Backstage view before a live event launch" />
+    </section>
+
+    <section class="final">
+      <h2>Open the pilot. Make the call.</h2>
+      <a class="btn" href="/pilot">Launch Vibelytics pilot</a>
+    </section>
   </main>
+
+  <footer>Vibelytics - AI launch copilot for live culture.</footer>
 </body>
 </html>
