@@ -417,7 +417,42 @@
     }
 
     .section {
-      margin-top: 28px;
+      margin-top: 18px;
+    }
+
+    .pilot-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 18px;
+      align-items: end;
+      margin: 8px 0 14px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 20px;
+      background: rgba(8, 13, 25, .58);
+      box-shadow: 0 18px 60px rgba(0,0,0,.26);
+    }
+
+    .pilot-header h1 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .pilot-header p {
+      max-width: 800px;
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.42;
+    }
+
+    .pilot-badges {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 8px;
     }
 
     .section-head {
@@ -756,7 +791,7 @@
     }
 
     #price-band {
-      font-size: 24px;
+      font-size: 22px;
       white-space: nowrap;
       word-break: normal;
     }
@@ -1114,6 +1149,15 @@
         flex-direction: column;
       }
 
+      .pilot-header {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .pilot-badges {
+        justify-content: flex-start;
+      }
+
       .insight-plane {
         min-height: 330px;
       }
@@ -1136,57 +1180,25 @@
         <span>Vibelytics</span>
       </a>
       <div class="nav-actions" aria-label="Page sections">
-        <a href="/pilot">Pilot</a>
-        <a href="#pilot">Decision layer</a>
-        <a href="#footer">SR007</a>
+        <a href="/">Home</a>
+        <a href="#pilot">Pilot</a>
+        <a href="#footer">Info</a>
       </div>
     </nav>
 
-    <section id="top" class="hero">
-      <div class="hero-copy">
-        <div>
-          <span class="kicker">Static pilot for SR007 reviewers</span>
-          <h1><span class="hero-title">Vibelytics</span></h1>
-          <h2>The AI launch copilot for live culture</h2>
-          <p class="subhead">Turn an artist, city, venue, date, and sponsor brief into a launch decision before budget is committed.</p>
-          <div class="hero-actions">
-            <a class="btn" href="#pilot">Open the pilot</a>
-            <a class="btn secondary" href="#scenequest">SceneQuest later</a>
-          </div>
-        </div>
-        <div class="proof-strip" aria-label="Vibelytics workflow summary">
-          <div class="proof"><strong>01</strong><span>Collect the launch brief: artist, city, capacity, date, and sponsor category.</span></div>
-          <div class="proof"><strong>02</strong><span>Score demand, venue fit, price tolerance, sponsor fit, and execution risk.</span></div>
-          <div class="proof"><strong>03</strong><span>Return Go, Adjust, or Do Not Launch with a usable plan and launch copy.</span></div>
-        </div>
+    <header class="pilot-header">
+      <div>
+        <h1>Launch decision pilot</h1>
+        <p>Input an artist, city, venue, date, and sponsor brief. Vibelytics returns a demand score, capacity and pricing plan, sponsor fit, launch recommendation, sequence, and usable launch copy.</p>
       </div>
-
-      <div class="visual-stage" aria-label="Launch decision preview">
-        <img src="../assets/festival-network.png" alt="Festival stage and cultural network visualization" />
-        <div class="decision-card">
-          <div class="decision-top">
-            <h3>Lisbon launch plan</h3>
-            <span class="recommendation">Go</span>
-          </div>
-          <div class="decision-grid">
-            <div class="decision-metric"><strong>90</strong><span>Demand score</span></div>
-            <div class="decision-metric"><strong>1,200</strong><span>Capacity fit</span></div>
-            <div class="decision-metric"><strong>EUR26-78</strong><span>Pricing band</span></div>
-            <div class="decision-metric"><strong>Travel</strong><span>Sponsor fit</span></div>
-          </div>
-        </div>
+      <div class="pilot-badges" aria-label="Pilot status">
+        <span class="pill">Static SR007 pilot</span>
+        <span class="pill">No backend</span>
+        <span class="pill">Demo data</span>
       </div>
-    </section>
+    </header>
 
     <section id="pilot" class="section">
-      <div class="section-head">
-        <div>
-          <h2>Launch decision pilot</h2>
-          <p>This static SR007 pilot simulates the product wedge: input a launch brief, generate a decision, then inspect the rationale, sequence, and copy the team can actually use.</p>
-        </div>
-        <span class="pill">No backend - demo data</span>
-      </div>
-
       <div class="pilot-surface" id="pilot-surface">
         <aside class="brief-panel">
           <div class="panel-title">
@@ -1333,16 +1345,6 @@
       </div>
     </section>
 
-    <section id="scenequest" class="scenequest">
-      <div class="scenequest-media">
-        <img src="../assets/backstage.png" alt="Backstage activation environment" />
-      </div>
-      <div>
-        <h2>SceneQuest later</h2>
-        <p>SceneQuest is a future activation module after the launch decision layer: once Vibelytics selects the right event shape, SceneQuest can turn it into fan quests and sponsor missions.</p>
-      </div>
-    </section>
-
     <footer id="footer" class="footer">
       <div class="footer-grid">
         <div class="footer-brand">
@@ -1357,7 +1359,7 @@
           <h2>Product</h2>
           <a href="/">Home</a>
           <a href="/pilot">Pilot</a>
-          <a href="#scenequest">SceneQuest later</a>
+          <a href="#pilot">Decision surface</a>
         </div>
         <div>
           <h2>Company</h2>
