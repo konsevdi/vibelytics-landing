@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vibelytics - AI Launch Copilot for Live Culture</title>
   <meta name="description" content="Vibelytics helps live culture teams decide which events to launch, where to launch them, how to price them, and which sponsor story to carry." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#050711" />
+  <link rel="canonical" href="https://vibelytics-landing.vercel.app/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vibelytics-landing.vercel.app/" />
+  <meta property="og:title" content="Vibelytics - AI Launch Copilot for Live Culture" />
+  <meta property="og:description" content="Vibelytics turns an artist, city, venue, date, and sponsor brief into a launch decision, pricing plan, and story your team can use." />
+  <meta property="og:image" content="https://vibelytics-landing.vercel.app/assets/festival-network.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vibelytics - AI Launch Copilot for Live Culture" />
+  <meta name="twitter:description" content="Know what to launch before you commit the capital." />
+  <meta name="twitter:image" content="https://vibelytics-landing.vercel.app/assets/festival-network.png" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='10' y1='8' x2='54' y2='56'%3E%3Cstop stop-color='%231ee7ff'/%3E%3Cstop offset='.48' stop-color='%23b26cff'/%3E%3Cstop offset='1' stop-color='%23ff8b4f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Crect x='12' y='12' width='40' height='40' rx='12' fill='%23050711' fill-opacity='.86' stroke='white' stroke-opacity='.28'/%3E%3Ctext x='31' y='43' font-family='Arial,sans-serif' font-size='31' font-weight='900' text-anchor='middle' fill='white' transform='rotate(-9 32 32)'%3EV%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
@@ -444,12 +456,78 @@
       letter-spacing: 0;
     }
 
-    footer {
+    .site-footer {
       width: min(1200px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 0 0 28px;
+      padding: 32px 0 30px;
+      border-top: 1px solid var(--line);
       color: var(--soft);
       font-size: 14px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(240px, 1.2fr) repeat(3, minmax(130px, .55fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer-brand {
+      display: grid;
+      gap: 14px;
+      max-width: 430px;
+    }
+
+    .footer-brand p,
+    .footer-col p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .footer-col h2 {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .footer-col a,
+    .footer-bottom a {
+      display: block;
+      width: fit-content;
+      margin: 9px 0 0;
+      color: var(--muted);
+      transition: color .18s ease;
+    }
+
+    .footer-col a:hover,
+    .footer-col a:focus-visible,
+    .footer-bottom a:hover,
+    .footer-bottom a:focus-visible {
+      color: var(--ink);
+      outline: none;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.09);
+    }
+
+    .footer-legal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-bottom a {
+      margin: 0;
     }
 
     @keyframes rise {
@@ -540,8 +618,12 @@
 
       .section,
       .final,
-      footer {
+      .site-footer {
         width: min(100% - 28px, 1200px);
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
       }
 
       .media {
@@ -655,6 +737,74 @@
     </section>
   </main>
 
-  <footer>Vibelytics - AI launch copilot for live culture.</footer>
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="brand" href="/" aria-label="Vibelytics home">
+          <span class="logo" aria-hidden="true"></span>
+          <span>Vibelytics</span>
+        </a>
+        <p>AI launch copilot for live culture. Vibelytics helps teams decide where, when, and how to launch before capital is committed.</p>
+        <p><a href="mailto:yes@vibelytics.ai">yes@vibelytics.ai</a></p>
+      </div>
+      <div class="footer-col">
+        <h2>Product</h2>
+        <a href="#product">Positioning</a>
+        <a href="#workflow">Workflow</a>
+        <a href="/pilot">Pilot</a>
+      </div>
+      <div class="footer-col">
+        <h2>Company</h2>
+        <a href="mailto:yes@vibelytics.ai">Contact</a>
+        <a href="/llms.txt">LLMs.txt</a>
+        <a href="/sitemap.xml">Sitemap</a>
+      </div>
+      <div class="footer-col">
+        <h2>Legal</h2>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/.well-known/security.txt">Security contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Vibelytics. All rights reserved.</span>
+      <div class="footer-legal">
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="mailto:yes@vibelytics.ai">yes@vibelytics.ai</a>
+      </div>
+    </div>
+  </footer>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://vibelytics-landing.vercel.app/#organization",
+          "name": "Vibelytics",
+          "url": "https://vibelytics-landing.vercel.app/",
+          "email": "yes@vibelytics.ai",
+          "description": "Vibelytics is an AI launch copilot for live culture."
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://vibelytics-landing.vercel.app/#website",
+          "url": "https://vibelytics-landing.vercel.app/",
+          "name": "Vibelytics",
+          "publisher": { "@id": "https://vibelytics-landing.vercel.app/#organization" }
+        },
+        {
+          "@type": "SoftwareApplication",
+          "@id": "https://vibelytics-landing.vercel.app/#product",
+          "name": "Vibelytics",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "url": "https://vibelytics-landing.vercel.app/",
+          "description": "AI launch copilot for live culture teams deciding which events to launch, where to launch, how to price, and which sponsor story to carry."
+        }
+      ]
+    }
+  </script>
 </body>
 </html>

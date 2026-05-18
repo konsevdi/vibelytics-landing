@@ -1,0 +1,4 @@
+Contact: mailto:yes@vibelytics.ai
+Preferred-Languages: en
+Canonical: https://vibelytics-landing.vercel.app/.well-known/security.txt
+Expires: 2027-05-18T00:00:00Z

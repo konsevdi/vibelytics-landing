@@ -4,7 +4,7 @@
   "private": true,
   "description": "Static Vibelytics a16z Speedrun SR007 landing page and clickable pilot.",
   "scripts": {
-    "build": "rm -rf dist && mkdir -p dist && cp index.html dist/index.html && cp -R assets pilot docs dist/",
+    "build": "rm -rf dist && mkdir -p dist && cp index.html robots.txt sitemap.xml llms.txt humans.txt dist/ && cp -R assets pilot docs privacy terms .well-known dist/",
     "start": "python -m http.server 3000"
   },
   "dependencies": {},

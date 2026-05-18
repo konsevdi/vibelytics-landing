@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vibelytics Pilot - AI Launch Copilot for Live Culture</title>
   <meta name="description" content="A static Vibelytics pilot showing the pre-launch decision workflow for live culture teams." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#050711" />
+  <link rel="canonical" href="https://vibelytics-landing.vercel.app/pilot/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vibelytics-landing.vercel.app/pilot/" />
+  <meta property="og:title" content="Vibelytics Pilot - AI Launch Copilot for Live Culture" />
+  <meta property="og:description" content="A static Vibelytics pilot showing the pre-launch decision workflow for live culture teams." />
+  <meta property="og:image" content="https://vibelytics-landing.vercel.app/docs/assets/vibelytics-pilot-screenshot.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Vibelytics Pilot - AI Launch Copilot for Live Culture" />
+  <meta name="twitter:description" content="Generate a launch decision from an artist, city, venue, date, and sponsor brief." />
+  <meta name="twitter:image" content="https://vibelytics-landing.vercel.app/docs/assets/vibelytics-pilot-screenshot.png" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='10' y1='8' x2='54' y2='56'%3E%3Cstop stop-color='%231ee7ff'/%3E%3Cstop offset='.48' stop-color='%23b26cff'/%3E%3Cstop offset='1' stop-color='%23ff8b4f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Crect x='12' y='12' width='40' height='40' rx='12' fill='%23050711' fill-opacity='.86' stroke='white' stroke-opacity='.28'/%3E%3Ctext x='31' y='43' font-family='Arial,sans-serif' font-size='31' font-weight='900' text-anchor='middle' fill='white' transform='rotate(-9 32 32)'%3EV%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
@@ -918,16 +930,79 @@
     .footer {
       margin-top: 28px;
       border-top: 1px solid rgba(255,255,255,.1);
-      padding: 22px 0 4px;
+      padding: 28px 0 4px;
       color: var(--muted);
-      text-align: center;
       font-size: 14px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(240px, 1.2fr) repeat(3, minmax(130px, .55fr));
+      gap: 24px;
+      text-align: left;
+    }
+
+    .footer-brand {
+      display: grid;
+      gap: 14px;
+      max-width: 430px;
+    }
+
+    .footer p {
+      margin: 0;
+      line-height: 1.45;
+    }
+
+    .footer h2 {
+      margin: 0 0 12px;
+      color: var(--ink);
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .footer a {
+      display: block;
+      width: fit-content;
+      margin: 9px 0 0;
+      color: var(--muted);
+      transition: color .18s ease;
+    }
+
+    .footer a:hover,
+    .footer a:focus-visible {
+      color: var(--ink);
+      outline: none;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.09);
+    }
+
+    .footer-legal {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .footer-bottom a {
+      margin: 0;
     }
 
     @media (max-width: 1140px) {
       .hero,
       .pilot-surface,
       .scenequest {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1268,8 +1343,62 @@
       </div>
     </section>
 
-    <footer id="footer" class="footer">Static pilot for a16z Speedrun SR007 - no backend, no external services, demo data only.</footer>
+    <footer id="footer" class="footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/" aria-label="Vibelytics home">
+            <span class="logo" aria-hidden="true"></span>
+            <span>Vibelytics</span>
+          </a>
+          <p>Static pilot for a16z Speedrun SR007. No backend, no external services, demo data only.</p>
+          <p><a href="mailto:yes@vibelytics.ai">yes@vibelytics.ai</a></p>
+        </div>
+        <div>
+          <h2>Product</h2>
+          <a href="/">Home</a>
+          <a href="/pilot">Pilot</a>
+          <a href="#scenequest">SceneQuest later</a>
+        </div>
+        <div>
+          <h2>Company</h2>
+          <a href="mailto:yes@vibelytics.ai">Contact</a>
+          <a href="/llms.txt">LLMs.txt</a>
+          <a href="/sitemap.xml">Sitemap</a>
+        </div>
+        <div>
+          <h2>Legal</h2>
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="/.well-known/security.txt">Security contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Vibelytics. All rights reserved.</span>
+        <div class="footer-legal">
+          <a href="/privacy">Privacy</a>
+          <a href="/terms">Terms</a>
+          <a href="mailto:yes@vibelytics.ai">yes@vibelytics.ai</a>
+        </div>
+      </div>
+    </footer>
   </main>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Vibelytics Pilot",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web",
+      "url": "https://vibelytics-landing.vercel.app/pilot/",
+      "description": "Static Vibelytics pilot showing the pre-launch decision workflow for live culture teams.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Vibelytics",
+        "email": "yes@vibelytics.ai"
+      }
+    }
+  </script>
 
   <script>
     const basePlans = {

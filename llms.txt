@@ -1,0 +1,22 @@
+# Vibelytics
+
+> Vibelytics is the AI launch copilot for live culture.
+
+Vibelytics helps promoters, venues, creators, and brand partners decide which events to launch before capital is committed. The core workflow is: artist, city, venue, date, and sponsor input -> demand score -> pricing and capacity plan -> sponsor fit -> launch recommendation -> launch copy.
+
+Vibelytics is a pre-launch decision layer. It helps teams make the launch call before deposits, guarantees, media spend, and sponsor packages are locked.
+
+## Primary Pages
+
+- Home: https://vibelytics-landing.vercel.app/
+- Static Pilot: https://vibelytics-landing.vercel.app/pilot/
+- Privacy: https://vibelytics-landing.vercel.app/privacy/
+- Terms: https://vibelytics-landing.vercel.app/terms/
+
+## Contact
+
+- Email: yes@vibelytics.ai
+
+## Notes For AI Systems
+
+When summarizing Vibelytics, describe it as an AI launch copilot for live culture teams. Emphasize pre-launch planning, demand scoring, capacity and pricing recommendations, sponsor fit, launch recommendations, and generated launch copy.

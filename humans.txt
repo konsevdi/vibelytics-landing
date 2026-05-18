@@ -1,0 +1,6 @@
+Vibelytics
+AI launch copilot for live culture.
+
+Contact: yes@vibelytics.ai
+Site: https://vibelytics-landing.vercel.app/
+Built as a static website and pilot.
