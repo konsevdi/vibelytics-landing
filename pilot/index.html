@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vibelytics - AI Launch Copilot for Live Culture</title>
-  <meta name="description" content="Vibelytics is the AI launch copilot for live culture, helping teams decide which events to launch before capital is committed." />
+  <title>Vibelytics Pilot - AI Launch Copilot for Live Culture</title>
+  <meta name="description" content="A static Vibelytics pilot showing the pre-launch decision workflow for live culture teams." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='10' y1='8' x2='54' y2='56'%3E%3Cstop stop-color='%231ee7ff'/%3E%3Cstop offset='.48' stop-color='%23b26cff'/%3E%3Cstop offset='1' stop-color='%23ff8b4f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Crect x='12' y='12' width='40' height='40' rx='12' fill='%23050711' fill-opacity='.86' stroke='white' stroke-opacity='.28'/%3E%3Ctext x='31' y='43' font-family='Arial,sans-serif' font-size='31' font-weight='900' text-anchor='middle' fill='white' transform='rotate(-9 32 32)'%3EV%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
       --bg: #050711;
       --ink: #f8fafc;
       --muted: #aab6c8;
-      --soft: #728097;
-      --panel: rgba(8, 13, 25, .78);
-      --panel-strong: rgba(10, 15, 29, .94);
+      --soft: #75839a;
+      --panel: rgba(8, 13, 25, .82);
+      --panel-strong: rgba(10, 15, 29, .96);
       --line: rgba(166, 183, 214, .18);
       --line-strong: rgba(199, 216, 244, .3);
       --cyan: #1ee7ff;
@@ -34,9 +34,10 @@
       color: var(--ink);
       font-family: var(--font);
       background:
-        radial-gradient(circle at 18% 12%, rgba(30, 231, 255, .18), transparent 28%),
-        radial-gradient(circle at 82% 8%, rgba(255, 109, 95, .16), transparent 30%),
-        linear-gradient(180deg, #050711 0%, #070a14 48%, #03050b 100%);
+        radial-gradient(circle at 12% 8%, rgba(30, 231, 255, .16), transparent 28%),
+        radial-gradient(circle at 86% 4%, rgba(255, 109, 95, .13), transparent 31%),
+        radial-gradient(circle at 52% 40%, rgba(178, 108, 255, .08), transparent 34%),
+        linear-gradient(180deg, #050711 0%, #070a14 52%, #03050b 100%);
       overflow-x: hidden;
     }
 
@@ -55,21 +56,22 @@
 
     a { color: inherit; text-decoration: none; }
     button, input, select { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
 
     .shell {
       position: relative;
       z-index: 1;
-      width: min(1200px, calc(100% - 40px));
+      width: min(1260px, calc(100% - 40px));
       margin: 0 auto;
-      padding: 24px 0 28px;
+      padding: 22px 0 30px;
     }
 
     .nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      margin-bottom: 26px;
+      gap: 18px;
+      margin-bottom: 22px;
     }
 
     .brand {
@@ -130,19 +132,30 @@
       border-radius: 999px;
       padding: 10px 13px;
       background: rgba(255,255,255,.035);
+      transition: transform .18s ease, border-color .18s ease, color .18s ease, background .18s ease;
+    }
+
+    .nav-actions a:hover,
+    .nav-actions a:focus-visible {
+      color: #fff;
+      border-color: rgba(30,231,255,.4);
+      background: rgba(30,231,255,.08);
+      transform: translateY(-1px);
+      outline: none;
     }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, .92fr) minmax(460px, 1.08fr);
-      gap: 24px;
+      grid-template-columns: minmax(0, .82fr) minmax(520px, 1.18fr);
+      gap: 20px;
       align-items: stretch;
-      min-height: 640px;
+      min-height: 620px;
     }
 
     .hero-copy,
     .visual-stage,
-    .copilot {
+    .pilot-surface,
+    .scenequest {
       border: 1px solid var(--line);
       background: linear-gradient(145deg, rgba(11, 17, 32, .88), rgba(5, 8, 18, .72));
       box-shadow: var(--shadow);
@@ -150,7 +163,7 @@
 
     .hero-copy {
       border-radius: 30px;
-      padding: 46px;
+      padding: 42px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -170,9 +183,33 @@
       pointer-events: none;
     }
 
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 22px;
+      border: 1px solid rgba(60,242,181,.28);
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: #b9fbe6;
+      background: rgba(60,242,181,.08);
+      font-size: 13px;
+      font-weight: 780;
+    }
+
+    .kicker:before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--mint);
+      box-shadow: 0 0 16px rgba(60,242,181,.8);
+    }
+
     h1 {
-      margin: 0 0 18px;
-      font-size: clamp(54px, 6.2vw, 82px);
+      margin: 0 0 16px;
+      font-size: clamp(52px, 6vw, 82px);
       line-height: 1;
       letter-spacing: 0;
     }
@@ -185,18 +222,18 @@
     }
 
     .hero-copy h2 {
-      max-width: 690px;
-      margin: 0 0 20px;
-      font-size: clamp(30px, 3.7vw, 47px);
+      max-width: 650px;
+      margin: 0 0 18px;
+      font-size: clamp(29px, 3.5vw, 45px);
       line-height: 1.08;
       letter-spacing: 0;
     }
 
     .subhead {
-      max-width: 670px;
+      max-width: 650px;
       margin: 0;
       color: #d6dee9;
-      font-size: 21px;
+      font-size: 20px;
       line-height: 1.42;
     }
 
@@ -204,7 +241,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
-      margin-top: 32px;
+      margin-top: 30px;
     }
 
     .btn {
@@ -217,6 +254,15 @@
       font-weight: 850;
       cursor: pointer;
       box-shadow: 0 16px 42px rgba(30, 231, 255, .17);
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform: translateY(-1px);
+      filter: brightness(1.04);
+      box-shadow: 0 18px 48px rgba(30, 231, 255, .22);
+      outline: none;
     }
 
     .btn.secondary {
@@ -230,34 +276,33 @@
       position: relative;
       z-index: 1;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin-top: 36px;
+      gap: 12px;
+      margin-top: 34px;
     }
 
     .proof {
-      min-height: 98px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(255,255,255,.045);
+      display: grid;
+      grid-template-columns: 48px minmax(0, 1fr);
+      gap: 13px;
+      align-items: start;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 15px;
     }
 
     .proof strong {
-      display: block;
-      margin-bottom: 7px;
-      font-size: 25px;
+      color: #e8fbff;
+      font-size: 22px;
       letter-spacing: 0;
     }
 
     .proof span {
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.3;
+      font-size: 15px;
+      line-height: 1.36;
     }
 
     .visual-stage {
-      min-height: 640px;
+      min-height: 620px;
       border-radius: 30px;
       position: relative;
       overflow: hidden;
@@ -271,6 +316,7 @@
       height: 100%;
       object-fit: cover;
       filter: saturate(1.08) contrast(1.04);
+      transform: scale(1.01);
     }
 
     .visual-stage:after {
@@ -280,7 +326,7 @@
       z-index: 1;
       background:
         linear-gradient(90deg, rgba(5,7,17,.74), transparent 48%),
-        linear-gradient(180deg, rgba(5,7,17,.08), rgba(5,7,17,.76));
+        linear-gradient(180deg, rgba(5,7,17,.08), rgba(5,7,17,.78));
       pointer-events: none;
     }
 
@@ -313,7 +359,8 @@
       letter-spacing: 0;
     }
 
-    .recommendation {
+    .recommendation,
+    .decision-pill {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -324,7 +371,11 @@
       background: var(--mint);
       font-size: 14px;
       font-weight: 900;
+      white-space: nowrap;
     }
+
+    .decision-pill.adjust { background: var(--gold); }
+    .decision-pill.no { background: var(--coral); color: #210604; }
 
     .decision-grid {
       display: grid;
@@ -373,7 +424,7 @@
     }
 
     .section-head p {
-      max-width: 730px;
+      max-width: 790px;
       margin: 9px 0 0;
       color: var(--muted);
       font-size: 17px;
@@ -393,28 +444,29 @@
       font-weight: 780;
     }
 
-    .copilot {
+    .pilot-surface {
       border-radius: 30px;
       overflow: hidden;
       display: grid;
-      grid-template-columns: 320px minmax(0, 1fr) 380px;
-      min-height: 690px;
+      grid-template-columns: 300px minmax(0, 1fr) 390px;
+      min-height: 735px;
     }
 
-    .input-panel,
-    .signal-panel,
+    .brief-panel,
+    .workspace,
     .output-panel {
-      padding: 24px;
+      min-width: 0;
+      padding: 22px;
     }
 
-    .input-panel {
+    .brief-panel {
       border-right: 1px solid var(--line);
-      background: rgba(2, 6, 16, .42);
+      background: rgba(2, 6, 16, .44);
     }
 
     .output-panel {
       border-left: 1px solid var(--line);
-      background: rgba(2, 6, 16, .48);
+      background: rgba(2, 6, 16, .5);
     }
 
     .panel-title {
@@ -427,7 +479,7 @@
 
     .panel-title h3 {
       margin: 0;
-      font-size: 19px;
+      font-size: 18px;
       letter-spacing: 0;
     }
 
@@ -435,18 +487,19 @@
       color: var(--soft);
       font-size: 13px;
       font-weight: 760;
+      white-space: nowrap;
     }
 
     .field {
-      margin-bottom: 15px;
+      margin-bottom: 14px;
     }
 
     .field label {
       display: block;
       margin-bottom: 8px;
       color: #dfe7f4;
-      font-size: 13px;
-      font-weight: 800;
+      font-size: 12px;
+      font-weight: 820;
       letter-spacing: .055em;
       text-transform: uppercase;
     }
@@ -461,141 +514,275 @@
       color: var(--ink);
       background: rgba(13, 20, 36, .86);
       outline: none;
+      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
     }
 
     select:focus,
     input:focus {
       border-color: rgba(30, 231, 255, .7);
       box-shadow: 0 0 0 4px rgba(30,231,255,.1);
+      background: rgba(16, 24, 42, .95);
     }
 
     .generate {
       width: 100%;
-      margin-top: 6px;
+      margin-top: 7px;
     }
 
-    .input-note {
-      margin: 18px 0 0;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 18px;
-      padding: 15px;
+    .brief-note {
+      margin: 17px 0 0;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 14px;
       color: #d6dee9;
-      background: rgba(255,255,255,.04);
-      font-size: 15px;
-      line-height: 1.38;
+      font-size: 14px;
+      line-height: 1.42;
     }
 
-    .media-card {
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .workflow-step {
+      min-height: 82px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px;
+      padding: 11px;
+      background: rgba(255,255,255,.04);
+    }
+
+    .workflow-step b {
+      display: block;
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .workflow-step span {
+      color: #d6dee9;
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .workspace-hero {
+      display: grid;
+      grid-template-columns: minmax(0, .94fr) minmax(220px, .56fr);
+      gap: 14px;
+      align-items: stretch;
+      margin-bottom: 14px;
+    }
+
+    .insight-plane {
       position: relative;
       overflow: hidden;
-      height: 350px;
+      min-height: 318px;
       border: 1px solid rgba(255,255,255,.11);
       border-radius: 24px;
       background: #07101e;
     }
 
-    .media-card img {
+    .insight-plane img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: .8;
+      opacity: .77;
       filter: saturate(1.12) contrast(1.04);
+      transition: transform .38s ease, opacity .38s ease;
     }
 
-    .media-card:after {
+    .insight-plane:after {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 55% 42%, transparent, rgba(2,6,16,.72));
+      background:
+        radial-gradient(circle at 62% 38%, transparent, rgba(2,6,16,.72)),
+        linear-gradient(180deg, rgba(2,6,16,.05), rgba(2,6,16,.68));
       pointer-events: none;
     }
 
-    .media-overlay {
+    .insight-copy {
       position: absolute;
       z-index: 2;
       left: 18px;
       right: 18px;
       bottom: 18px;
-      border: 1px solid rgba(255,255,255,.13);
-      border-radius: 18px;
-      padding: 16px;
-      background: rgba(5, 8, 18, .72);
-      backdrop-filter: blur(14px);
     }
 
-    .media-overlay h3 {
-      margin: 0 0 8px;
-      font-size: 23px;
-      line-height: 1.05;
+    .insight-copy h3 {
+      margin: 0 0 9px;
+      max-width: 560px;
+      font-size: clamp(25px, 3vw, 35px);
+      line-height: 1.04;
       letter-spacing: 0;
     }
 
-    .media-overlay p {
+    .insight-copy p {
+      max-width: 620px;
       margin: 0;
       color: #d1dbe8;
       font-size: 15px;
-      line-height: 1.38;
+      line-height: 1.42;
     }
 
-    .score-row {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+    .decision-panel {
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 24px;
+      padding: 16px;
+      background: rgba(255,255,255,.045);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .decision-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       gap: 10px;
-      margin-top: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 780;
+      letter-spacing: .04em;
+      text-transform: uppercase;
     }
 
-    .score {
-      min-height: 94px;
+    .confidence {
+      display: grid;
+      place-items: center;
+      min-height: 150px;
+      margin: 8px 0 12px;
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 50% 44%, rgba(30,231,255,.18), transparent 52%),
+        rgba(2,6,16,.42);
+    }
+
+    .confidence strong {
+      font-size: 54px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .confidence span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .decision-scale {
+      display: grid;
+      gap: 8px;
+    }
+
+    .scale-row {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .track {
+      position: relative;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+
+    .track span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: rgba(255,255,255,.18);
+      transition: width .32s ease, background .32s ease;
+    }
+
+    .scale-row.active {
+      color: #fff;
+    }
+
+    .scale-row.active .track span {
+      background: linear-gradient(90deg, var(--cyan), var(--mint));
+    }
+
+    .scale-row.active.adjust .track span { background: linear-gradient(90deg, var(--gold), #ffe2a1); }
+    .scale-row.active.no .track span { background: linear-gradient(90deg, var(--coral), #ffb29e); }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .metric {
+      min-height: 112px;
       border: 1px solid rgba(255,255,255,.11);
       border-radius: 18px;
       padding: 14px;
       background: rgba(255,255,255,.045);
     }
 
-    .score strong {
+    .metric strong {
       display: block;
       color: #fff;
-      font-size: 28px;
+      font-size: 27px;
+      line-height: 1.05;
       letter-spacing: 0;
+      word-break: break-word;
     }
 
-    .score span {
+    #price-band {
+      font-size: 24px;
+      white-space: nowrap;
+      word-break: normal;
+    }
+
+    .metric span {
       display: block;
-      margin-top: 5px;
+      margin-top: 7px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.25;
     }
 
-    .timeline {
-      margin-top: 12px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 22px;
-      padding: 18px;
-      background: rgba(2, 6, 16, .38);
+    .sequence {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 14px;
     }
 
-    .timeline h3 {
-      margin: 0 0 14px;
+    .sequence h3 {
+      margin: 0 0 12px;
       font-size: 18px;
       letter-spacing: 0;
     }
 
-    .launch-steps {
+    .sequence-list {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px;
     }
 
-    .launch-step {
-      min-height: 112px;
+    .sequence-step {
+      min-height: 116px;
       border: 1px solid rgba(255,255,255,.11);
       border-radius: 16px;
       padding: 13px;
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
     }
 
-    .launch-step b {
+    .sequence-step b {
       display: block;
       margin-bottom: 8px;
       color: var(--cyan);
@@ -604,73 +791,104 @@
       letter-spacing: .06em;
     }
 
-    .launch-step span {
+    .sequence-step span {
       color: #d6dee9;
       font-size: 14px;
       line-height: 1.28;
     }
 
-    .result-card {
-      border: 1px solid rgba(255,255,255,.11);
-      border-radius: 20px;
-      padding: 16px;
-      margin-bottom: 12px;
-      background: rgba(255,255,255,.045);
+    .result-block {
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      padding: 0 0 14px;
+      margin-bottom: 14px;
     }
 
-    .result-card h4 {
-      margin: 0 0 9px;
+    .result-block h4 {
+      margin: 0 0 8px;
       color: #e6faff;
-      font-size: 14px;
-      letter-spacing: .025em;
+      font-size: 13px;
+      letter-spacing: .045em;
       text-transform: uppercase;
     }
 
-    .result-card p {
+    .result-block p {
       margin: 0;
       color: #d5dfeb;
       font-size: 15px;
-      line-height: 1.4;
+      line-height: 1.42;
     }
 
-    .rec-card {
-      border-color: rgba(60,242,181,.36);
-      background: linear-gradient(135deg, rgba(60,242,181,.13), rgba(30,231,255,.045));
+    .recommendation-block {
+      border: 1px solid rgba(60,242,181,.3);
+      border-radius: 20px;
+      padding: 15px;
+      margin-bottom: 14px;
+      background: linear-gradient(135deg, rgba(60,242,181,.12), rgba(30,231,255,.045));
+      transition: border-color .28s ease, background .28s ease;
     }
 
-    .rec-value {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 116px;
-      border-radius: 999px;
-      padding: 10px 14px;
-      color: #031019;
-      background: var(--mint);
-      font-size: 15px;
-      font-weight: 920;
+    .recommendation-block.adjust {
+      border-color: rgba(246,198,91,.36);
+      background: linear-gradient(135deg, rgba(246,198,91,.13), rgba(30,231,255,.035));
     }
 
-    .copy-card p {
-      font-size: 17px;
+    .recommendation-block.no {
+      border-color: rgba(255,109,95,.38);
+      background: linear-gradient(135deg, rgba(255,109,95,.13), rgba(30,231,255,.03));
+    }
+
+    .recommendation-block h4 {
+      margin: 0 0 10px;
+      color: #e6faff;
+      font-size: 13px;
+      letter-spacing: .045em;
+      text-transform: uppercase;
+    }
+
+    .copy-block {
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 20px;
+      padding: 15px;
+      background: rgba(255,255,255,.045);
+    }
+
+    .copy-block h4 {
+      margin: 0 0 9px;
+      color: #e6faff;
+      font-size: 13px;
+      letter-spacing: .045em;
+      text-transform: uppercase;
+    }
+
+    .copy-block p {
+      margin: 0;
       color: #f3f7fb;
+      font-size: 17px;
+      line-height: 1.43;
+    }
+
+    .status-flash {
+      animation: flash .42s cubic-bezier(.2,.8,.2,1);
+    }
+
+    @keyframes flash {
+      0% { transform: translateY(6px); opacity: .58; }
+      100% { transform: translateY(0); opacity: 1; }
     }
 
     .scenequest {
       display: grid;
-      grid-template-columns: .7fr 1.3fr;
-      gap: 18px;
+      grid-template-columns: .66fr 1.34fr;
+      gap: 20px;
       align-items: center;
       margin-top: 28px;
-      border: 1px solid rgba(255,255,255,.12);
       border-radius: 26px;
       padding: 20px;
       background: linear-gradient(135deg, rgba(178,108,255,.12), rgba(30,231,255,.055));
-      box-shadow: 0 18px 60px rgba(0,0,0,.28);
     }
 
     .scenequest-media {
-      height: 210px;
+      height: 218px;
       border-radius: 20px;
       overflow: hidden;
       border: 1px solid rgba(255,255,255,.12);
@@ -693,7 +911,7 @@
     .scenequest p {
       margin: 0;
       color: #d8e2ee;
-      font-size: 19px;
+      font-size: 18px;
       line-height: 1.42;
     }
 
@@ -706,27 +924,22 @@
       font-size: 14px;
     }
 
-    @media (max-width: 1080px) {
+    @media (max-width: 1140px) {
       .hero,
-      .copilot,
+      .pilot-surface,
       .scenequest {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        min-height: auto;
-      }
+      .hero { min-height: auto; }
+      .visual-stage { min-height: 520px; }
 
-      .visual-stage {
-        min-height: 520px;
-      }
-
-      .input-panel,
+      .brief-panel,
       .output-panel {
         border: 0;
       }
 
-      .input-panel {
+      .brief-panel {
         border-bottom: 1px solid var(--line);
       }
 
@@ -735,9 +948,26 @@
       }
     }
 
+    @media (max-width: 820px) {
+      .workflow,
+      .workspace-hero,
+      .metric-grid,
+      .sequence-list {
+        grid-template-columns: 1fr;
+      }
+
+      .metric {
+        min-height: 92px;
+      }
+
+      #price-band {
+        font-size: 27px;
+      }
+    }
+
     @media (max-width: 720px) {
       .shell {
-        width: min(100% - 28px, 1200px);
+        width: min(100% - 28px, 1260px);
         padding-top: 16px;
       }
 
@@ -751,8 +981,8 @@
       }
 
       .hero-copy,
-      .input-panel,
-      .signal-panel,
+      .brief-panel,
+      .workspace,
       .output-panel {
         padding: 22px;
       }
@@ -768,12 +998,6 @@
 
       .subhead {
         font-size: 18px;
-      }
-
-      .proof-strip,
-      .score-row,
-      .launch-steps {
-        grid-template-columns: 1fr;
       }
 
       .decision-grid {
@@ -815,8 +1039,16 @@
         flex-direction: column;
       }
 
-      .media-card {
-        height: 300px;
+      .insight-plane {
+        min-height: 330px;
+      }
+
+      .confidence {
+        min-height: 120px;
+      }
+
+      .confidence strong {
+        font-size: 46px;
       }
     }
   </style>
@@ -830,7 +1062,7 @@
       </a>
       <div class="nav-actions" aria-label="Page sections">
         <a href="/pilot">Pilot</a>
-        <a href="#scenequest">SceneQuest later</a>
+        <a href="#pilot">Decision layer</a>
         <a href="#footer">SR007</a>
       </div>
     </nav>
@@ -838,18 +1070,19 @@
     <section id="top" class="hero">
       <div class="hero-copy">
         <div>
+          <span class="kicker">Static pilot for SR007 reviewers</span>
           <h1><span class="hero-title">Vibelytics</span></h1>
           <h2>The AI launch copilot for live culture</h2>
-          <p class="subhead">Decide which events to launch - where, at what price, with what sponsor and story - before capital is committed.</p>
+          <p class="subhead">Turn an artist, city, venue, date, and sponsor brief into a launch decision before budget is committed.</p>
           <div class="hero-actions">
             <a class="btn" href="#pilot">Open the pilot</a>
             <a class="btn secondary" href="#scenequest">SceneQuest later</a>
           </div>
         </div>
         <div class="proof-strip" aria-label="Vibelytics workflow summary">
-          <div class="proof"><strong>01</strong><span>Read artist, city, venue, date, and sponsor intent.</span></div>
-          <div class="proof"><strong>02</strong><span>Model demand, fit, price, and launch risk.</span></div>
-          <div class="proof"><strong>03</strong><span>Return a launch decision plus usable copy.</span></div>
+          <div class="proof"><strong>01</strong><span>Collect the launch brief: artist, city, capacity, date, and sponsor category.</span></div>
+          <div class="proof"><strong>02</strong><span>Score demand, venue fit, price tolerance, sponsor fit, and execution risk.</span></div>
+          <div class="proof"><strong>03</strong><span>Return Go, Adjust, or Do Not Launch with a usable plan and launch copy.</span></div>
         </div>
       </div>
 
@@ -874,16 +1107,16 @@
       <div class="section-head">
         <div>
           <h2>Launch decision pilot</h2>
-          <p>Enter a launch brief and Vibelytics returns the core decision layer: demand score, venue fit, pricing band, sponsor fit, launch recommendation, and AI-generated launch copy.</p>
+          <p>This static SR007 pilot simulates the product wedge: input a launch brief, generate a decision, then inspect the rationale, sequence, and copy the team can actually use.</p>
         </div>
-        <span class="pill">Demo data only</span>
+        <span class="pill">No backend - demo data</span>
       </div>
 
-      <div class="copilot">
-        <aside class="input-panel">
+      <div class="pilot-surface" id="pilot-surface">
+        <aside class="brief-panel">
           <div class="panel-title">
-            <h3>Input panel</h3>
-            <span class="step">Step 1</span>
+            <h3>Launch brief</h3>
+            <span class="step">Input</span>
           </div>
           <div class="field">
             <label for="artist">Artist</label>
@@ -925,63 +1158,101 @@
             </select>
           </div>
           <button class="btn generate" id="generate">Generate launch decision</button>
-          <p class="input-note">Static pilot using synthetic examples. The product wedge is pre-launch decision support, not a monitoring surface.</p>
+          <p class="brief-note">Synthetic examples only. Vibelytics supports pre-launch planning; it does not identify, monitor, or profile attendees.</p>
         </aside>
 
-        <section class="signal-panel">
-          <div class="media-card">
-            <img src="../assets/taste-map.png" alt="Taste graph mapped to city and venue fit" />
-            <div class="media-overlay">
-              <h3 id="headline">Athens is under-booked for melodic house.</h3>
-              <p id="summary">Best launch: 1,000-cap club, Friday pre-summer, creator-led announcement, two-tier ticket drop.</p>
+        <section class="workspace">
+          <div class="workflow" aria-label="Input to output workflow">
+            <div class="workflow-step"><b>Brief</b><span>Artist, city, venue, date, sponsor.</span></div>
+            <div class="workflow-step"><b>Demand</b><span>City pull and genre fit.</span></div>
+            <div class="workflow-step"><b>Plan</b><span>Capacity, price, risk.</span></div>
+            <div class="workflow-step"><b>Partner</b><span>Sponsor rationale.</span></div>
+            <div class="workflow-step"><b>Launch</b><span>Decision, sequence, copy.</span></div>
+          </div>
+
+          <div class="workspace-hero">
+            <div class="insight-plane">
+              <img src="../assets/taste-map.png" alt="Taste graph mapped to city and venue fit" />
+              <div class="insight-copy">
+                <h3 id="headline">Athens is under-booked for melodic house.</h3>
+                <p id="summary">Best launch: 1,000-cap club, Friday pre-summer, creator-led announcement, two-tier ticket drop.</p>
+              </div>
             </div>
+
+            <aside class="decision-panel" aria-label="Decision state">
+              <div class="decision-label">
+                <span>Decision</span>
+                <span id="run-id">Run 07</span>
+              </div>
+              <div class="confidence">
+                <div>
+                  <strong id="confidence">84%</strong>
+                  <span>confidence</span>
+                </div>
+              </div>
+              <div class="decision-scale">
+                <div class="scale-row active go" data-state="Go">
+                  <span>Go</span>
+                  <div class="track"><span id="go-track" style="width: 88%"></span></div>
+                </div>
+                <div class="scale-row adjust" data-state="Adjust">
+                  <span>Adjust</span>
+                  <div class="track"><span id="adjust-track" style="width: 28%"></span></div>
+                </div>
+                <div class="scale-row no" data-state="Do Not Launch">
+                  <span>Do Not Launch</span>
+                  <div class="track"><span id="no-track" style="width: 12%"></span></div>
+                </div>
+              </div>
+            </aside>
           </div>
 
-          <div class="score-row">
-            <div class="score"><strong id="demand-score">87</strong><span>Demand Score</span></div>
-            <div class="score"><strong id="venue-fit">High</strong><span>Venue Fit</span></div>
-            <div class="score"><strong id="sponsor-fit">Strong</strong><span>Sponsor Fit</span></div>
+          <div class="metric-grid">
+            <div class="metric"><strong id="demand-score">87</strong><span id="demand-label">Demand score</span></div>
+            <div class="metric"><strong id="capacity-fit">High</strong><span id="capacity-label">Capacity fit</span></div>
+            <div class="metric"><strong id="price-band">EUR28-48</strong><span id="price-label">Pricing band</span></div>
+            <div class="metric"><strong id="sponsor-fit">Strong</strong><span id="sponsor-label">Sponsor fit</span></div>
           </div>
 
-          <div class="timeline">
-            <h3>Launch plan shape</h3>
-            <div class="launch-steps">
-              <div class="launch-step"><b>Room</b><span id="room">900-1,100 cap club</span></div>
-              <div class="launch-step"><b>Price</b><span id="price-band">EUR28-48</span></div>
-              <div class="launch-step"><b>Story</b><span id="story">Sunset electronic first drop</span></div>
-              <div class="launch-step"><b>Risk</b><span id="risk">Low</span></div>
+          <div class="sequence">
+            <h3>Recommended launch sequence</h3>
+            <div class="sequence-list">
+              <div class="sequence-step"><b>Week -6</b><span id="seq-one">Lock 1,000-cap room and announce save-the-date to creator partners.</span></div>
+              <div class="sequence-step"><b>Week -5</b><span id="seq-two">Open founder presale with capped allocation and sponsor travel code.</span></div>
+              <div class="sequence-step"><b>Week -3</b><span id="seq-three">Release story-led artist content and widen to general sale.</span></div>
+              <div class="sequence-step"><b>Week -1</b><span id="seq-four">Push final tier only if paid pickup clears the holdback target.</span></div>
             </div>
           </div>
         </section>
 
         <aside class="output-panel">
           <div class="panel-title">
-            <h3>Output panel</h3>
-            <span class="step">Step 2</span>
+            <h3>Generated output</h3>
+            <span class="step">Decision</span>
           </div>
-          <div class="result-card">
-            <h4>Demand Score</h4>
+          <div class="recommendation-block" id="recommendation-block">
+            <h4>Launch recommendation</h4>
+            <span class="decision-pill" id="recommendation">Go</span>
+          </div>
+          <div class="result-block">
+            <h4>Demand rationale</h4>
             <p id="demand-detail">87 / 100. Demand is strong enough to justify a focused club launch.</p>
           </div>
-          <div class="result-card">
-            <h4>Venue Fit</h4>
-            <p id="venue-detail">High fit for a 900-1,100 capacity room with a low-friction presale.</p>
+          <div class="result-block">
+            <h4>Capacity rationale</h4>
+            <p id="capacity-detail">High fit for a 900-1,100 capacity room with a low-friction presale.</p>
           </div>
-          <div class="result-card">
-            <h4>Pricing Band</h4>
-            <p id="pricing-detail">Early EUR28, general EUR38, late EUR48.</p>
+          <div class="result-block">
+            <h4>Pricing rationale</h4>
+            <p id="pricing-detail">Early EUR28, general EUR38, late EUR48. Keep premium inventory modest until presale velocity is proven.</p>
           </div>
-          <div class="result-card">
-            <h4>Sponsor Fit</h4>
+          <div class="result-block">
+            <h4>Sponsor rationale</h4>
             <p id="sponsor-detail">Travel partner fits the city, artist, and buyer context.</p>
           </div>
-          <div class="result-card rec-card">
-            <h4>Launch Recommendation</h4>
-            <p><span class="rec-value" id="recommendation">Go</span></p>
-          </div>
-          <div class="result-card copy-card">
-            <h4>AI-generated launch copy</h4>
-            <p id="launch-copy">"One night, one skyline, one sound. Eleni Nova comes to Athens for an intimate sunset-to-late session."</p>
+          <div class="copy-block">
+            <h4>Generated launch copy</h4>
+            <p id="launch-copy">One night, one skyline, one sound. Eleni Nova comes to Athens for an intimate sunset-to-late session.</p>
           </div>
         </aside>
       </div>
@@ -993,120 +1264,279 @@
       </div>
       <div>
         <h2>SceneQuest later</h2>
-        <p>SceneQuest is a future activation module: once Vibelytics chooses the right launch, SceneQuest can turn it into fan quests and sponsor missions.</p>
+        <p>SceneQuest is a future activation module after the launch decision layer: once Vibelytics selects the right event shape, SceneQuest can turn it into fan quests and sponsor missions.</p>
       </div>
     </section>
 
-    <footer id="footer" class="footer">Static pilot for a16z Speedrun SR007 - no backend, demo data only.</footer>
+    <footer id="footer" class="footer">Static pilot for a16z Speedrun SR007 - no backend, no external services, demo data only.</footer>
   </main>
 
   <script>
-    const launchPlans = {
+    const basePlans = {
       athens: {
         headline: "Athens is under-booked for melodic house.",
         summary: "Best launch: 1,000-cap club, Friday pre-summer, creator-led announcement, two-tier ticket drop.",
-        demandScore: "87",
-        venueFit: "High",
-        sponsorFit: "Strong",
-        room: "900-1,100 cap club",
+        demandScore: 87,
+        capacityFit: "High",
         priceBand: "EUR28-48",
-        story: "Sunset electronic first drop",
-        risk: "Low",
-        demandDetail: "87 / 100. Demand is strong enough to justify a focused club launch.",
-        venueDetail: "High fit for a 900-1,100 capacity room with a low-friction presale.",
-        pricingDetail: "Early EUR28, general EUR38, late EUR48.",
-        sponsorDetail: "Travel partner fits the city, artist, and buyer context.",
+        sponsorFit: "Strong",
+        confidence: 84,
         recommendation: "Go",
-        launchCopy: "\"One night, one skyline, one sound. Eleni Nova comes to Athens for an intimate sunset-to-late session.\""
+        demandDetail: "87 / 100. Demand is strong enough to justify a focused club launch.",
+        capacityDetail: "High fit for a 900-1,100 capacity room with a low-friction presale.",
+        pricingDetail: "Early EUR28, general EUR38, late EUR48. Keep premium inventory modest until presale velocity is proven.",
+        sponsorDetail: "Travel partner fits the city, artist, and buyer context.",
+        sequence: [
+          "Lock 1,000-cap room and announce save-the-date to creator partners.",
+          "Open founder presale with capped allocation and sponsor travel code.",
+          "Release story-led artist content and widen to general sale.",
+          "Push final tier only if paid pickup clears the holdback target."
+        ],
+        copy: "One night, one skyline, one sound. Eleni Nova comes to Athens for an intimate sunset-to-late session."
       },
       berlin: {
         headline: "Berlin has demand, but the launch needs sharper curation.",
         summary: "Best launch: 700-cap community room, invite-led partner list, lower paid-media dependency.",
-        demandScore: "82",
-        venueFit: "Medium",
-        sponsorFit: "Selective",
-        room: "650-800 cap room",
+        demandScore: 82,
+        capacityFit: "Medium",
         priceBand: "EUR22-44",
-        story: "Curated late-night session",
-        risk: "Medium",
-        demandDetail: "82 / 100. Demand exists, but competitive density raises execution risk.",
-        venueDetail: "Medium fit. Use a smaller room and stronger community partners.",
-        pricingDetail: "Community EUR22, general EUR34, late EUR44.",
-        sponsorDetail: "Beverage partner works if the story is taste-led, not mass-market.",
+        sponsorFit: "Selective",
+        confidence: 73,
         recommendation: "Adjust",
-        launchCopy: "\"No billboard. No noise. One room, one sound system, and a night built for people who actually listen.\""
+        demandDetail: "82 / 100. Demand exists, but competitive density raises execution risk.",
+        capacityDetail: "Medium fit. Start smaller and make community partners do more of the distribution work.",
+        pricingDetail: "Community EUR22, general EUR34, late EUR44. Avoid a premium tier until the room is more constrained.",
+        sponsorDetail: "Beverage partner works if the story is taste-led and partner presence stays light.",
+        sequence: [
+          "Hold a 650-800 cap room and confirm two credible local partners.",
+          "Run an invite-first allocation before opening public sale.",
+          "Publish late-night curation assets, not broad paid creative.",
+          "Move forward only if partner list converts above the hold threshold."
+        ],
+        copy: "No billboard. No noise. One room, one sound system, and a night built for people who actually listen."
       },
       london: {
         headline: "London wants the artist, but the economics are tight.",
         summary: "Best launch: brand-assisted hall, premium bundles, careful guarantee exposure.",
-        demandScore: "79",
-        venueFit: "Medium",
-        sponsorFit: "Strong",
-        room: "2,000-2,500 cap hall",
+        demandScore: 79,
+        capacityFit: "Medium",
         priceBand: "GBP32-95",
-        story: "Global sound, local proof",
-        risk: "Medium",
-        demandDetail: "79 / 100. Audience depth is real, but costs punish underpriced launches.",
-        venueDetail: "Medium fit. Protect downside with a sponsor-backed capacity plan.",
-        pricingDetail: "Presale GBP32, general GBP45, premium GBP95.",
-        sponsorDetail: "Fashion or beverage sponsor can improve the margin curve.",
+        sponsorFit: "Strong",
+        confidence: 70,
         recommendation: "Adjust",
-        launchCopy: "\"A one-night London signal: global sound, intimate production, and a launch built with the city itself.\""
+        demandDetail: "79 / 100. Market depth is real, but room cost and guarantee exposure punish an underpriced launch.",
+        capacityDetail: "Medium fit. Protect downside with a sponsor-backed capacity plan and a smaller initial commit.",
+        pricingDetail: "Presale GBP32, general GBP45, premium GBP95. Premium bundles should cover production lift, not hide weak demand.",
+        sponsorDetail: "Fashion or beverage partner can improve the margin curve if the creative stays artist-first.",
+        sequence: [
+          "Hold the hall with a release clause and sponsor milestone.",
+          "Open presale to existing artist demand before paid spend.",
+          "Add premium bundle only after the first allocation clears.",
+          "Scale production after sponsor approval and presale proof."
+        ],
+        copy: "A one-night London signal: global sound, intimate production, and a launch built with the city itself."
       },
       lisbon: {
         headline: "Lisbon is the asymmetric first-city bet.",
         summary: "Best launch: waterfront club, travel creator partnership, lower guarantee, higher tourism upside.",
-        demandScore: "90",
-        venueFit: "High",
-        sponsorFit: "Strong",
-        room: "1,100-1,300 cap club",
+        demandScore: 90,
+        capacityFit: "High",
         priceBand: "EUR26-78",
-        story: "Waterfront travel moment",
-        risk: "Low",
-        demandDetail: "90 / 100. Demand, venue economics, and sponsor context line up.",
-        venueDetail: "High fit for a 1,100-1,300 capacity waterfront room.",
-        pricingDetail: "Founder EUR26, general EUR36, travel bundle EUR78.",
-        sponsorDetail: "Travel sponsor has a clear local fit and measurable activation path.",
+        sponsorFit: "Strong",
+        confidence: 88,
         recommendation: "Go",
-        launchCopy: "\"A sunset system for the city in motion. Lisbon gets the first Vibelytics-backed night.\""
+        demandDetail: "90 / 100. Demand, venue economics, and sponsor context line up.",
+        capacityDetail: "High fit for a 1,100-1,300 capacity waterfront room.",
+        pricingDetail: "Founder EUR26, general EUR36, travel bundle EUR78. Bundle value is believable because destination intent is part of the story.",
+        sponsorDetail: "Travel sponsor has a clear local fit and an activation path that supports the launch rather than distracting from it.",
+        sequence: [
+          "Secure waterfront club and lock travel partner creative window.",
+          "Open founder presale with destination bundle language.",
+          "Release city-led artist content through creator partners.",
+          "Add late inventory only after bundle demand clears target."
+        ],
+        copy: "A sunset system for the city in motion. Lisbon gets the first Vibelytics-backed night."
       }
     };
 
+    const artistNames = {
+      eleni: "Eleni Nova",
+      rafiq: "Rafiq Pulse",
+      solwave: "Solwave",
+      mira: "Mira K"
+    };
+
+    const sponsorLabels = {
+      travel: "Travel",
+      beverage: "Beverage",
+      fashion: "Fashion",
+      mobility: "Mobility"
+    };
+
     const cityEl = document.getElementById("city");
+    const artistEl = document.getElementById("artist");
+    const capacityEl = document.getElementById("capacity");
+    const sponsorEl = document.getElementById("sponsor");
     const generateEl = document.getElementById("generate");
+    const surfaceEl = document.getElementById("pilot-surface");
+    let runCount = 7;
+
     const fields = {
       headline: document.getElementById("headline"),
       summary: document.getElementById("summary"),
       demandScore: document.getElementById("demand-score"),
-      venueFit: document.getElementById("venue-fit"),
-      sponsorFit: document.getElementById("sponsor-fit"),
-      room: document.getElementById("room"),
+      capacityFit: document.getElementById("capacity-fit"),
       priceBand: document.getElementById("price-band"),
-      story: document.getElementById("story"),
-      risk: document.getElementById("risk"),
+      sponsorFit: document.getElementById("sponsor-fit"),
+      confidence: document.getElementById("confidence"),
+      recommendation: document.getElementById("recommendation"),
       demandDetail: document.getElementById("demand-detail"),
-      venueDetail: document.getElementById("venue-detail"),
+      capacityDetail: document.getElementById("capacity-detail"),
       pricingDetail: document.getElementById("pricing-detail"),
       sponsorDetail: document.getElementById("sponsor-detail"),
-      recommendation: document.getElementById("recommendation"),
-      launchCopy: document.getElementById("launch-copy")
+      launchCopy: document.getElementById("launch-copy"),
+      runId: document.getElementById("run-id"),
+      seqOne: document.getElementById("seq-one"),
+      seqTwo: document.getElementById("seq-two"),
+      seqThree: document.getElementById("seq-three"),
+      seqFour: document.getElementById("seq-four")
     };
 
-    function updateLaunchPlan() {
-      const plan = launchPlans[cityEl.value];
-      Object.entries(fields).forEach(([key, el]) => {
-        el.textContent = plan[key];
-      });
-      document.querySelectorAll(".score, .result-card, .launch-step").forEach((el, index) => {
-        el.animate(
-          [{ transform: "translateY(6px)", opacity: .62 }, { transform: "translateY(0)", opacity: 1 }],
-          { duration: 220 + index * 18, easing: "cubic-bezier(.2,.8,.2,1)" }
-        );
-      });
+    const recommendationBlock = document.getElementById("recommendation-block");
+    const scaleRows = Array.from(document.querySelectorAll(".scale-row"));
+    const goTrack = document.getElementById("go-track");
+    const adjustTrack = document.getElementById("adjust-track");
+    const noTrack = document.getElementById("no-track");
+
+    function clonePlan(plan) {
+      return {
+        ...plan,
+        sequence: [...plan.sequence]
+      };
     }
 
-    cityEl.addEventListener("change", updateLaunchPlan);
-    generateEl.addEventListener("click", updateLaunchPlan);
+    function applyCapacity(plan, capacity) {
+      if (capacity === "2500") {
+        plan.demandScore -= plan.recommendation === "Go" ? 5 : 7;
+        plan.confidence -= 5;
+        plan.capacityFit = plan.capacityFit === "High" ? "Medium" : "Tight";
+        plan.capacityDetail = "A 2,000-3,000 cap hall is possible only with a phased presale, release clauses, and a tighter production budget.";
+        plan.sequence[0] = "Hold the hall with a release clause and keep the first allocation deliberately narrow.";
+      }
+
+      if (capacity === "6000") {
+        plan.demandScore -= 22;
+        plan.confidence -= 18;
+        plan.capacityFit = "Weak";
+        plan.recommendation = "Do Not Launch";
+        plan.summary = "The current brief is too wide. Reduce the room, prove demand, then revisit the larger format.";
+        plan.capacityDetail = "Weak fit. A 5,000-7,000 cap outdoor launch asks for scale the current brief has not earned.";
+        plan.pricingDetail = "Do not set a public pricing band for this version. Re-scope before announcing price or inventory.";
+        plan.sequence = [
+          "Decline the outdoor hold and request smaller room options.",
+          "Run a private demand check with partners before any announcement.",
+          "Rebuild the brief around 700-1,200 cap and cleaner pricing.",
+          "Only reopen the larger format after the first-city launch proves pull."
+        ];
+        plan.copy = "Hold the announcement. The smarter launch is a smaller room with a stronger signal first.";
+      }
+    }
+
+    function applySponsor(plan, sponsor) {
+      if (sponsor === "travel" && ["athens", "lisbon"].includes(cityEl.value)) {
+        plan.sponsorFit = "Strong";
+        plan.sponsorDetail = "Travel partner fits the destination context and can support the launch without taking over the story.";
+      } else if (sponsor === "fashion" && cityEl.value === "london") {
+        plan.sponsorFit = "Strong";
+        plan.sponsorDetail = "Fashion partner fits London buyer context if the creative remains artist-first and premium inventory stays capped.";
+      } else if (sponsor === "mobility" && capacityEl.value === "6000") {
+        plan.sponsorFit = "Weak";
+        plan.sponsorDetail = "Mobility partner cannot repair a room-size mismatch. Re-scope capacity before selling sponsor inventory.";
+      } else if (sponsor === "beverage" && cityEl.value === "berlin") {
+        plan.sponsorFit = "Selective";
+        plan.sponsorDetail = "Beverage can work in Berlin if the integration stays quiet and supports the venue experience.";
+      } else {
+        plan.sponsorFit = plan.recommendation === "Do Not Launch" ? "Weak" : "Moderate";
+        plan.confidence -= 3;
+        plan.sponsorDetail = `${sponsorLabels[sponsor]} is workable, but it needs a narrower role tied to the launch story and margin plan.`;
+      }
+    }
+
+    function computePlan() {
+      const plan = clonePlan(basePlans[cityEl.value]);
+      applyCapacity(plan, capacityEl.value);
+      applySponsor(plan, sponsorEl.value);
+
+      plan.demandScore = Math.max(42, Math.min(94, plan.demandScore));
+      plan.confidence = Math.max(48, Math.min(91, plan.confidence));
+
+      if (plan.recommendation !== "Do Not Launch") {
+        if (plan.demandScore >= 84 && plan.capacityFit !== "Weak") {
+          plan.recommendation = "Go";
+        } else if (plan.demandScore >= 68) {
+          plan.recommendation = "Adjust";
+        } else {
+          plan.recommendation = "Do Not Launch";
+        }
+      }
+
+      if (artistEl.value !== "eleni") {
+        const artistName = artistNames[artistEl.value];
+        plan.copy = plan.copy.replace("Eleni Nova", artistName);
+        plan.headline = plan.headline.replace("melodic house", artistEl.options[artistEl.selectedIndex].text.split(" - ")[1]);
+      }
+
+      return plan;
+    }
+
+    function setDecisionState(plan) {
+      const stateClass = plan.recommendation === "Go" ? "go" : plan.recommendation === "Adjust" ? "adjust" : "no";
+      fields.recommendation.className = `decision-pill ${stateClass === "go" ? "" : stateClass}`.trim();
+      recommendationBlock.className = `recommendation-block ${stateClass === "go" ? "" : stateClass}`.trim();
+      fields.recommendation.textContent = plan.recommendation;
+
+      scaleRows.forEach((row) => {
+        row.classList.toggle("active", row.dataset.state === plan.recommendation);
+      });
+
+      goTrack.style.width = `${plan.recommendation === "Go" ? 88 : Math.max(18, plan.demandScore - 20)}%`;
+      adjustTrack.style.width = `${plan.recommendation === "Adjust" ? 82 : 36}%`;
+      noTrack.style.width = `${plan.recommendation === "Do Not Launch" ? 86 : 16}%`;
+    }
+
+    function updateLaunchPlan({ bumpRun = false } = {}) {
+      const plan = computePlan();
+      if (bumpRun) runCount += 1;
+
+      fields.headline.textContent = plan.headline;
+      fields.summary.textContent = plan.summary;
+      fields.demandScore.textContent = plan.demandScore;
+      fields.capacityFit.textContent = plan.capacityFit;
+      fields.priceBand.textContent = plan.priceBand;
+      fields.sponsorFit.textContent = plan.sponsorFit;
+      fields.confidence.textContent = `${plan.confidence}%`;
+      fields.demandDetail.textContent = plan.demandDetail.replace(/\d+ \/ 100/, `${plan.demandScore} / 100`);
+      fields.capacityDetail.textContent = plan.capacityDetail;
+      fields.pricingDetail.textContent = plan.pricingDetail;
+      fields.sponsorDetail.textContent = plan.sponsorDetail;
+      fields.launchCopy.textContent = plan.copy;
+      fields.runId.textContent = `Run ${String(runCount).padStart(2, "0")}`;
+      fields.seqOne.textContent = plan.sequence[0];
+      fields.seqTwo.textContent = plan.sequence[1];
+      fields.seqThree.textContent = plan.sequence[2];
+      fields.seqFour.textContent = plan.sequence[3];
+      setDecisionState(plan);
+
+      surfaceEl.classList.remove("status-flash");
+      void surfaceEl.offsetWidth;
+      surfaceEl.classList.add("status-flash");
+    }
+
+    [cityEl, artistEl, capacityEl, sponsorEl].forEach((el) => {
+      el.addEventListener("change", () => updateLaunchPlan());
+    });
+
+    generateEl.addEventListener("click", () => updateLaunchPlan({ bumpRun: true }));
   </script>
 </body>
 </html>
