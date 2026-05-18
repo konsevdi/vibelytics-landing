@@ -1,15 +1,453 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vibelytics-logo.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vibelytics - Emotional Intelligence for Live Entertainment</title>
-    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap" rel="stylesheet">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vibelytics - a16z Speedrun SR007</title>
+  <meta name="description" content="Vibelytics is the AI launch copilot for live culture, built as a static a16z Speedrun SR007 submission." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='10' y1='8' x2='54' y2='56'%3E%3Cstop stop-color='%231ee7ff'/%3E%3Cstop offset='.48' stop-color='%23b26cff'/%3E%3Cstop offset='1' stop-color='%23ff8b4f'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='url(%23g)'/%3E%3Crect x='12' y='12' width='40' height='40' rx='12' fill='%23050711' fill-opacity='.86' stroke='white' stroke-opacity='.28'/%3E%3Ctext x='31' y='43' font-family='Arial,sans-serif' font-size='31' font-weight='900' text-anchor='middle' fill='white' transform='rotate(-9 32 32)'%3EV%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --bg: #050711;
+      --ink: #f8fafc;
+      --muted: #b7c2d4;
+      --soft: #8794aa;
+      --panel: rgba(9, 14, 28, .78);
+      --line: rgba(185, 202, 232, .18);
+      --cyan: #1ee7ff;
+      --violet: #b26cff;
+      --coral: #ff7a64;
+      --mint: #3cf2b5;
+      --shadow: 0 28px 90px rgba(0, 0, 0, .48);
+      --font: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--font);
+      background:
+        radial-gradient(circle at 18% 8%, rgba(30, 231, 255, .16), transparent 28%),
+        radial-gradient(circle at 86% 16%, rgba(255, 122, 100, .14), transparent 26%),
+        linear-gradient(180deg, #050711 0%, #080b16 54%, #03050b 100%);
+      overflow-x: hidden;
+    }
+
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .11;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 64px 64px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,.8), transparent 78%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .shell {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 24px 0 28px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 21px;
+      font-weight: 850;
+    }
+
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 13px;
+      background: conic-gradient(from 140deg, var(--cyan), var(--violet), #f472b6, #fb923c, var(--cyan));
+      box-shadow: 0 0 34px rgba(30, 231, 255, .38);
+      position: relative;
+      overflow: hidden;
+      flex: 0 0 auto;
+    }
+
+    .logo:after {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      z-index: 1;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 9px;
+      background: rgba(5, 7, 17, .84);
+    }
+
+    .logo:before {
+      content: "V";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 24px;
+      font-weight: 950;
+      letter-spacing: 0;
+      text-shadow: 0 0 18px rgba(255,255,255,.5);
+      transform: rotate(-9deg) translateX(-1px);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-actions a,
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      border-radius: 14px;
+      padding: 12px 16px;
+      font-weight: 820;
+    }
+
+    .nav-actions a {
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.04);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 480px);
+      gap: 22px;
+      align-items: stretch;
+      min-height: calc(100vh - 112px);
+    }
+
+    .hero-copy,
+    .decision-panel,
+    .note-band {
+      border: 1px solid var(--line);
+      background: linear-gradient(145deg, rgba(11, 17, 32, .9), rgba(5, 8, 18, .74));
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      border-radius: 30px;
+      padding: clamp(26px, 5vw, 54px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+      min-height: 620px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      border: 1px solid rgba(60,242,181,.28);
+      border-radius: 999px;
+      padding: 9px 12px;
+      color: #b9fbe6;
+      background: rgba(60,242,181,.08);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 26px 0 16px;
+      font-size: clamp(58px, 9vw, 112px);
+      line-height: .92;
+      letter-spacing: 0;
+      background: linear-gradient(92deg, #fff 0%, #dffcff 35%, #d7bdff 70%, #ffd9b7 100%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .headline {
+      max-width: 760px;
+      margin: 0 0 18px;
+      font-size: clamp(34px, 4.8vw, 60px);
+      line-height: 1.04;
+      letter-spacing: 0;
+      font-weight: 860;
+    }
+
+    .copy {
+      max-width: 760px;
+      margin: 0;
+      color: #d9e2ef;
+      font-size: clamp(18px, 2vw, 22px);
+      line-height: 1.42;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      color: #031019;
+      background: linear-gradient(92deg, var(--cyan), var(--violet));
+      box-shadow: 0 16px 42px rgba(30, 231, 255, .17);
+    }
+
+    .btn.secondary {
+      color: var(--ink);
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055);
+      box-shadow: none;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 44px;
+    }
+
+    .step {
+      min-height: 124px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px;
+      padding: 16px;
+      background: rgba(255,255,255,.045);
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 9px;
+      color: #fff;
+      font-size: 24px;
+    }
+
+    .step span {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .side {
+      display: grid;
+      gap: 16px;
+      align-content: stretch;
+    }
+
+    .decision-panel {
+      border-radius: 28px;
+      padding: 22px;
+      min-height: 430px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .decision-panel:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(5,7,17,.5), rgba(5,7,17,.18)),
+        url("assets/festival-network.png") center / cover;
+      opacity: .42;
+      pointer-events: none;
+    }
+
+    .decision-panel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .decision-panel h2 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .metric {
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px;
+      padding: 14px;
+      background: rgba(5, 8, 18, .68);
+      backdrop-filter: blur(14px);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 23px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.28;
+    }
+
+    .note-band {
+      border-radius: 22px;
+      padding: 20px;
+      color: #d7e1ee;
+      font-size: 15px;
+      line-height: 1.44;
+    }
+
+    .note-band strong {
+      display: block;
+      margin-bottom: 8px;
+      color: #fff;
+      font-size: 16px;
+    }
+
+    footer {
+      margin-top: 24px;
+      color: var(--soft);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-copy {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .shell {
+        width: min(100% - 28px, 1180px);
+        padding-top: 16px;
+      }
+
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        margin-bottom: 18px;
+      }
+
+      .nav-actions {
+        width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .nav-actions a {
+        flex: 1 1 auto;
+      }
+
+      h1 {
+        font-size: 54px;
+      }
+
+      .headline {
+        font-size: 34px;
+      }
+
+      .copy {
+        font-size: 18px;
+      }
+
+      .workflow,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .decision-panel {
+        min-height: 390px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <nav class="nav">
+      <a class="brand" href="/" aria-label="Vibelytics home">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Vibelytics</span>
+      </a>
+      <div class="nav-actions" aria-label="Submission links">
+        <a href="/pilot">Pilot</a>
+        <a href="docs/SR007_SUMMARY.md">SR007 summary</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <div>
+          <span class="eyebrow">Static a16z Speedrun SR007 submission</span>
+          <h1>Vibelytics</h1>
+          <p class="headline">The AI launch copilot for live culture</p>
+          <p class="copy">Decide which events to launch - where, at what price, with what sponsor and story - before capital is committed.</p>
+          <div class="hero-actions">
+            <a class="btn" href="/pilot">Open pilot</a>
+            <a class="btn secondary" href="docs/SR007_SUMMARY.md">View SR007 summary</a>
+          </div>
+        </div>
+
+        <div class="workflow" aria-label="Launch copilot workflow">
+          <div class="step"><strong>Input</strong><span>Artist, city, venue capacity, target date, and sponsor category.</span></div>
+          <div class="step"><strong>Decide</strong><span>Demand score, pricing and capacity plan, sponsor fit, and launch recommendation.</span></div>
+          <div class="step"><strong>Launch</strong><span>Ready-to-use story and copy for the first announcement.</span></div>
+        </div>
+      </div>
+
+      <aside class="side" aria-label="Submission preview">
+        <div class="decision-panel">
+          <div>
+            <span class="eyebrow">Demo decision layer</span>
+            <h2>From launch brief to go / adjust / do not launch.</h2>
+          </div>
+          <div class="metric-grid">
+            <div class="metric"><strong>90</strong><span>Demand score for the strongest city bet.</span></div>
+            <div class="metric"><strong>1,200</strong><span>Capacity plan matched to venue economics.</span></div>
+            <div class="metric"><strong>EUR26-78</strong><span>Pricing band before spend is committed.</span></div>
+            <div class="metric"><strong>Travel</strong><span>Sponsor fit aligned to the launch story.</span></div>
+          </div>
+        </div>
+
+        <div class="note-band">
+          <strong>Scope</strong>
+          This is a static SR007 web submission with local assets and synthetic demo data only. SceneQuest is a future activation module after the launch decision layer.
+        </div>
+      </aside>
+    </section>
+
+    <footer>Static Vibelytics SR007 submission - no backend, no external services, demo data only.</footer>
+  </main>
+</body>
 </html>
