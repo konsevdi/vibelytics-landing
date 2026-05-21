@@ -1,10 +1,10 @@
 {
-  "name": "vibelytics-sr007-static",
+  "name": "vibelytics-static",
   "version": "1.0.0",
   "private": true,
-  "description": "Static Vibelytics a16z Speedrun SR007 landing page and clickable pilot.",
+  "description": "Static Vibelytics landing page and launch decision pilot.",
   "scripts": {
-    "build": "rm -rf dist && mkdir -p dist && cp index.html robots.txt sitemap.xml llms.txt humans.txt favicon.png apple-touch-icon.png og-image.png twitter-image.png dist/ && cp -R assets brand pilot docs privacy terms .well-known dist/",
+    "build": "rm -rf dist && mkdir -p dist && cp index.html robots.txt sitemap.xml llms.txt humans.txt favicon.png apple-touch-icon.png og-image.png twitter-image.png dist/ && cp -R assets brand pilot privacy terms .well-known dist/",
     "start": "python -m http.server 3000"
   },
   "dependencies": {},

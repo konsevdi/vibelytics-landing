@@ -871,6 +871,13 @@
       line-height: 1.42;
     }
 
+    .result-block.highlight {
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255,255,255,.04);
+    }
+
     .recommendation-block {
       border: 1px solid rgba(60,242,181,.3);
       border-radius: 20px;
@@ -918,6 +925,14 @@
       color: #f3f7fb;
       font-size: 17px;
       line-height: 1.43;
+    }
+
+    .email-brief {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 14px;
+      text-align: center;
     }
 
     .status-flash {
@@ -1195,12 +1210,12 @@
     <header class="pilot-header">
       <div>
         <h1>Launch decision pilot</h1>
-        <p>Input an artist, city, venue, date, and sponsor brief. Vibelytics returns a demand score, capacity and pricing plan, sponsor fit, launch recommendation, sequence, and usable launch copy.</p>
+        <p>Input an artist, city, venue, date, sponsor, and launch goal. Vibelytics returns demand, capacity, pricing, downside risk, sponsor fit, recommendation, sequence, assumptions, and usable launch copy.</p>
       </div>
       <div class="pilot-badges" aria-label="Pilot status">
-        <span class="pill">Static SR007 pilot</span>
-        <span class="pill">No backend</span>
-        <span class="pill">Demo data</span>
+        <span class="pill">Operator preview</span>
+        <span class="pill">Synthetic scenarios</span>
+        <span class="pill">Pre-launch decisions</span>
       </div>
     </header>
 
@@ -1250,8 +1265,17 @@
               <option value="mobility">Mobility</option>
             </select>
           </div>
+          <div class="field">
+            <label for="goal">Launch goal</label>
+            <select id="goal">
+              <option value="prove">Prove demand safely</option>
+              <option value="margin">Maximize margin</option>
+              <option value="sponsor">Win a sponsor story</option>
+              <option value="scale">Scale the format</option>
+            </select>
+          </div>
           <button class="btn generate" id="generate">Generate launch decision</button>
-          <p class="brief-note">Synthetic examples only. Vibelytics supports pre-launch planning; it does not identify, monitor, or profile attendees.</p>
+          <p class="brief-note">Synthetic examples only. Vibelytics supports pre-launch planning with no attendee identity or live tracking.</p>
         </aside>
 
         <section class="workspace">
@@ -1260,7 +1284,7 @@
             <div class="workflow-step"><b>Demand</b><span>City pull and genre fit.</span></div>
             <div class="workflow-step"><b>Plan</b><span>Capacity, price, risk.</span></div>
             <div class="workflow-step"><b>Partner</b><span>Sponsor rationale.</span></div>
-            <div class="workflow-step"><b>Launch</b><span>Decision, sequence, copy.</span></div>
+            <div class="workflow-step"><b>Launch</b><span>Decision, adjustments, copy.</span></div>
           </div>
 
           <div class="workspace-hero">
@@ -1343,9 +1367,22 @@
             <h4>Sponsor rationale</h4>
             <p id="sponsor-detail">Travel partner fits the city, artist, and buyer context.</p>
           </div>
+          <div class="result-block highlight">
+            <h4>Downside risk</h4>
+            <p id="downside-risk">Main risk is underpricing a room that can clear if presale velocity is real.</p>
+          </div>
+          <div class="result-block">
+            <h4>What to adjust</h4>
+            <p id="adjustment-detail">Keep capacity disciplined, cap premium inventory, and make the first announcement creator-led.</p>
+          </div>
+          <div class="result-block">
+            <h4>Assumptions</h4>
+            <p id="assumptions">Synthetic local comps, genre pull, sponsor fit, and venue economics are used for this preview.</p>
+          </div>
           <div class="copy-block">
             <h4>Generated launch copy</h4>
             <p id="launch-copy">One night, one skyline, one sound. Eleni Nova comes to Athens for an intimate sunset-to-late session.</p>
+            <a class="btn email-brief" id="mail-brief" href="mailto:yes@vibelytics.ai">Send this launch brief</a>
           </div>
         </aside>
       </div>
@@ -1358,7 +1395,7 @@
             <span class="logo" aria-hidden="true"></span>
             <span>Vibelytics</span>
           </a>
-          <p>Static pilot for a16z Speedrun SR007. No backend, no external services, demo data only.</p>
+          <p>Operator preview for pre-launch decisions. Synthetic examples only; no backend, no external services, no attendee tracking.</p>
           <p><a href="mailto:yes@vibelytics.ai">yes@vibelytics.ai</a></p>
         </div>
         <div>
@@ -1398,8 +1435,8 @@
       "name": "Vibelytics Pilot",
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web",
-      "url": "https://vibelytics-landing.vercel.app/pilot/",
-      "description": "Static Vibelytics pilot showing the pre-launch decision workflow for live culture teams.",
+      "url": "https://www.vibelytics.ai/pilot/",
+      "description": "Vibelytics pilot showing the pre-launch decision workflow for promoters and midsize venues.",
       "publisher": {
         "@type": "Organization",
         "name": "Vibelytics",
@@ -1411,7 +1448,9 @@
   <script>
     const basePlans = {
       athens: {
-        headline: "Athens is under-booked for melodic house.",
+        cityName: "Athens",
+        currency: "EUR",
+        headline: "Athens is under-booked for this sound.",
         summary: "Best launch: 1,000-cap club, Friday pre-summer, creator-led announcement, two-tier ticket drop.",
         demandScore: 87,
         capacityFit: "High",
@@ -1419,19 +1458,24 @@
         sponsorFit: "Strong",
         confidence: 84,
         recommendation: "Go",
-        demandDetail: "87 / 100. Demand is strong enough to justify a focused club launch.",
+        demandDetail: "Demand is strong enough to justify a focused club launch with controlled inventory.",
         capacityDetail: "High fit for a 900-1,100 capacity room with a low-friction presale.",
         pricingDetail: "Early EUR28, general EUR38, late EUR48. Keep premium inventory modest until presale velocity is proven.",
         sponsorDetail: "Travel partner fits the city, artist, and buyer context.",
+        downsideRisk: "Main risk is underpricing a room that can clear if presale velocity is real.",
+        adjustmentDetail: "Keep capacity disciplined, cap premium inventory, and make the first announcement creator-led.",
+        assumptions: "Synthetic local comps, genre pull, venue economics, and sponsor fit are used for this preview.",
         sequence: [
           "Lock 1,000-cap room and announce save-the-date to creator partners.",
           "Open founder presale with capped allocation and sponsor travel code.",
           "Release story-led artist content and widen to general sale.",
           "Push final tier only if paid pickup clears the holdback target."
         ],
-        copy: "One night, one skyline, one sound. Eleni Nova comes to Athens for an intimate sunset-to-late session."
+        copy: "One night, one skyline, one sound. {artist} comes to Athens for an intimate sunset-to-late session."
       },
       berlin: {
+        cityName: "Berlin",
+        currency: "EUR",
         headline: "Berlin has demand, but the launch needs sharper curation.",
         summary: "Best launch: 700-cap community room, invite-led partner list, lower paid-media dependency.",
         demandScore: 82,
@@ -1440,19 +1484,24 @@
         sponsorFit: "Selective",
         confidence: 73,
         recommendation: "Adjust",
-        demandDetail: "82 / 100. Demand exists, but competitive density raises execution risk.",
+        demandDetail: "Demand exists, but competitive density raises execution risk.",
         capacityDetail: "Medium fit. Start smaller and make community partners do more of the distribution work.",
         pricingDetail: "Community EUR22, general EUR34, late EUR44. Avoid a premium tier until the room is more constrained.",
         sponsorDetail: "Beverage partner works if the story is taste-led and partner presence stays light.",
+        downsideRisk: "Main risk is spending like a broad launch in a market that rewards narrow credibility.",
+        adjustmentDetail: "Reduce paid media, use a smaller room, and require partner-list conversion before scaling.",
+        assumptions: "Synthetic competitive-density, venue, and partner-conversion signals are used for this preview.",
         sequence: [
           "Hold a 650-800 cap room and confirm two credible local partners.",
           "Run an invite-first allocation before opening public sale.",
           "Publish late-night curation assets, not broad paid creative.",
           "Move forward only if partner list converts above the hold threshold."
         ],
-        copy: "No billboard. No noise. One room, one sound system, and a night built for people who actually listen."
+        copy: "No billboard. No noise. {artist} takes one room, one sound system, and a night built for people who actually listen."
       },
       london: {
+        cityName: "London",
+        currency: "GBP",
         headline: "London wants the artist, but the economics are tight.",
         summary: "Best launch: brand-assisted hall, premium bundles, careful guarantee exposure.",
         demandScore: 79,
@@ -1461,19 +1510,24 @@
         sponsorFit: "Strong",
         confidence: 70,
         recommendation: "Adjust",
-        demandDetail: "79 / 100. Market depth is real, but room cost and guarantee exposure punish an underpriced launch.",
+        demandDetail: "Market depth is real, but room cost and guarantee exposure punish an underpriced launch.",
         capacityDetail: "Medium fit. Protect downside with a sponsor-backed capacity plan and a smaller initial commit.",
         pricingDetail: "Presale GBP32, general GBP45, premium GBP95. Premium bundles should cover production lift, not hide weak demand.",
         sponsorDetail: "Fashion or beverage partner can improve the margin curve if the creative stays artist-first.",
+        downsideRisk: "Main risk is guarantee exposure before the first allocation proves willingness to pay.",
+        adjustmentDetail: "Add release clauses, stage inventory, and make premium bundles earn the production lift.",
+        assumptions: "Synthetic room-cost, price-realization, and sponsor-margin signals are used for this preview.",
         sequence: [
           "Hold the hall with a release clause and sponsor milestone.",
           "Open presale to existing artist demand before paid spend.",
           "Add premium bundle only after the first allocation clears.",
           "Scale production after sponsor approval and presale proof."
         ],
-        copy: "A one-night London signal: global sound, intimate production, and a launch built with the city itself."
+        copy: "A one-night London signal: {artist}, intimate production, and a launch built with the city itself."
       },
       lisbon: {
+        cityName: "Lisbon",
+        currency: "EUR",
         headline: "Lisbon is the asymmetric first-city bet.",
         summary: "Best launch: waterfront club, travel creator partnership, lower guarantee, higher tourism upside.",
         demandScore: 90,
@@ -1482,25 +1536,28 @@
         sponsorFit: "Strong",
         confidence: 88,
         recommendation: "Go",
-        demandDetail: "90 / 100. Demand, venue economics, and sponsor context line up.",
+        demandDetail: "Demand, venue economics, and sponsor context line up.",
         capacityDetail: "High fit for a 1,100-1,300 capacity waterfront room.",
         pricingDetail: "Founder EUR26, general EUR36, travel bundle EUR78. Bundle value is believable because destination intent is part of the story.",
         sponsorDetail: "Travel sponsor has a clear local fit and an activation path that supports the launch rather than distracting from it.",
+        downsideRisk: "Main risk is letting the destination story outrun the actual room economics.",
+        adjustmentDetail: "Keep the first room constrained, make travel support optional, and use presale velocity as the scale gate.",
+        assumptions: "Synthetic tourism intent, venue economics, and creator-distribution signals are used for this preview.",
         sequence: [
           "Secure waterfront club and lock travel partner creative window.",
           "Open founder presale with destination bundle language.",
           "Release city-led artist content through creator partners.",
           "Add late inventory only after bundle demand clears target."
         ],
-        copy: "A sunset system for the city in motion. Lisbon gets the first Vibelytics-backed night."
+        copy: "A sunset system for the city in motion. {artist} gives Lisbon the first signal."
       }
     };
 
-    const artistNames = {
-      eleni: "Eleni Nova",
-      rafiq: "Rafiq Pulse",
-      solwave: "Solwave",
-      mira: "Mira K"
+    const artists = {
+      eleni: { name: "Eleni Nova", genre: "melodic house", demandShift: 4, priceShift: 0 },
+      rafiq: { name: "Rafiq Pulse", genre: "afro electronic", demandShift: 1, priceShift: -2 },
+      solwave: { name: "Solwave", genre: "indie dance live", demandShift: -3, priceShift: -4 },
+      mira: { name: "Mira K", genre: "techno-pop DJ", demandShift: -1, priceShift: 2 }
     };
 
     const sponsorLabels = {
@@ -1510,10 +1567,19 @@
       mobility: "Mobility"
     };
 
+    const goalLabels = {
+      prove: "Prove demand safely",
+      margin: "Maximize margin",
+      sponsor: "Win a sponsor story",
+      scale: "Scale the format"
+    };
+
     const cityEl = document.getElementById("city");
     const artistEl = document.getElementById("artist");
     const capacityEl = document.getElementById("capacity");
+    const targetDateEl = document.getElementById("target-date");
     const sponsorEl = document.getElementById("sponsor");
+    const goalEl = document.getElementById("goal");
     const generateEl = document.getElementById("generate");
     const surfaceEl = document.getElementById("pilot-surface");
     let runCount = 7;
@@ -1531,7 +1597,11 @@
       capacityDetail: document.getElementById("capacity-detail"),
       pricingDetail: document.getElementById("pricing-detail"),
       sponsorDetail: document.getElementById("sponsor-detail"),
+      downsideRisk: document.getElementById("downside-risk"),
+      adjustmentDetail: document.getElementById("adjustment-detail"),
+      assumptions: document.getElementById("assumptions"),
       launchCopy: document.getElementById("launch-copy"),
+      mailBrief: document.getElementById("mail-brief"),
       runId: document.getElementById("run-id"),
       seqOne: document.getElementById("seq-one"),
       seqTwo: document.getElementById("seq-two"),
@@ -1552,12 +1622,55 @@
       };
     }
 
+    function formatPriceBand(currency, low, mid, high) {
+      return `${currency}${low}-${high}`;
+    }
+
+    function derivePriceBand(plan, priceShift = 0) {
+      const match = plan.priceBand.match(/^([A-Z]+)(\d+)-(\d+)/);
+      if (!match) return plan.priceBand;
+      const currency = match[1];
+      const low = Number(match[2]) + priceShift;
+      const high = Number(match[3]) + priceShift * 2;
+      const mid = Math.round((low + high) / 2);
+      plan.priceBand = formatPriceBand(currency, Math.max(18, low), mid, Math.max(32, high));
+    }
+
+    function applyArtist(plan, artistKey) {
+      const artist = artists[artistKey];
+      plan.demandScore += artist.demandShift;
+      plan.confidence += Math.round(artist.demandShift / 2);
+      derivePriceBand(plan, artist.priceShift);
+      plan.headline = plan.headline.replace("this sound", artist.genre).replace("the artist", artist.name);
+      plan.copy = plan.copy.replace("{artist}", artist.name);
+      plan.assumptions += ` Artist format is treated as ${artist.genre}.`;
+    }
+
+    function applyDate(plan) {
+      const selectedDate = new Date(`${targetDateEl.value}T00:00:00`);
+      if (Number.isNaN(selectedDate.getTime())) return;
+      const month = selectedDate.getMonth();
+      const day = selectedDate.getDay();
+
+      if ([5, 6, 7].includes(month)) {
+        plan.demandScore += plan.cityName === "Lisbon" || plan.cityName === "Athens" ? 4 : -2;
+        plan.downsideRisk += " Seasonal demand helps destination cities but increases outdoor and travel dependency.";
+      }
+
+      if (day === 0 || day === 1 || day === 2) {
+        plan.demandScore -= 5;
+        plan.confidence -= 4;
+        plan.adjustmentDetail += " Move the launch closer to Thursday-Saturday unless the venue economics are unusually favorable.";
+      }
+    }
+
     function applyCapacity(plan, capacity) {
       if (capacity === "2500") {
         plan.demandScore -= plan.recommendation === "Go" ? 5 : 7;
         plan.confidence -= 5;
         plan.capacityFit = plan.capacityFit === "High" ? "Medium" : "Tight";
         plan.capacityDetail = "A 2,000-3,000 cap hall is possible only with a phased presale, release clauses, and a tighter production budget.";
+        plan.downsideRisk = "Main risk is committing hall economics before presale proves enough real buyer depth.";
         plan.sequence[0] = "Hold the hall with a release clause and keep the first allocation deliberately narrow.";
       }
 
@@ -1569,6 +1682,9 @@
         plan.summary = "The current brief is too wide. Reduce the room, prove demand, then revisit the larger format.";
         plan.capacityDetail = "Weak fit. A 5,000-7,000 cap outdoor launch asks for scale the current brief has not earned.";
         plan.pricingDetail = "Do not set a public pricing band for this version. Re-scope before announcing price or inventory.";
+        plan.downsideRisk = "Primary downside is a public miss: weak sell-through, sunk production cost, and damaged promoter credibility.";
+        plan.adjustmentDetail = "Cut the room back to 700-1,200 cap, run a private demand check, and defer sponsor promises until the smaller launch clears.";
+        plan.assumptions += " Large-format demand is not proven in this preview.";
         plan.sequence = [
           "Decline the outdoor hold and request smaller room options.",
           "Run a private demand check with partners before any announcement.",
@@ -1599,10 +1715,41 @@
       }
     }
 
+    function applyGoal(plan) {
+      if (goalEl.value === "prove") {
+        plan.confidence += 3;
+        plan.adjustmentDetail = `Bias toward a smaller committed room, staged inventory, and a go/no-go gate after first allocation. ${plan.adjustmentDetail}`;
+      }
+
+      if (goalEl.value === "margin") {
+        plan.confidence -= 2;
+        plan.pricingDetail += " Margin goal: hold a small premium tier and avoid discounting before the second allocation.";
+        plan.downsideRisk += " Margin pressure can hide weak demand if premium inventory is too large.";
+      }
+
+      if (goalEl.value === "sponsor") {
+        plan.sponsorFit = plan.sponsorFit === "Weak" ? "Selective" : "Strong";
+        plan.sponsorDetail += " The launch story should include one measurable partner role before public sale.";
+        plan.sequence[1] = "Package sponsor proof around presale intent, audience fit, and venue context before opening wider sale.";
+      }
+
+      if (goalEl.value === "scale") {
+        plan.demandScore -= 6;
+        plan.confidence -= 6;
+        plan.downsideRisk += " Scale goal raises the penalty for overestimating sell-through.";
+        plan.adjustmentDetail += " Treat scale as an unlock after the first allocation, not the default opening move.";
+      }
+
+      plan.assumptions += ` Launch goal is "${goalLabels[goalEl.value]}."`;
+    }
+
     function computePlan() {
       const plan = clonePlan(basePlans[cityEl.value]);
+      applyArtist(plan, artistEl.value);
+      applyDate(plan);
       applyCapacity(plan, capacityEl.value);
       applySponsor(plan, sponsorEl.value);
+      applyGoal(plan);
 
       plan.demandScore = Math.max(42, Math.min(94, plan.demandScore));
       plan.confidence = Math.max(48, Math.min(91, plan.confidence));
@@ -1615,12 +1762,6 @@
         } else {
           plan.recommendation = "Do Not Launch";
         }
-      }
-
-      if (artistEl.value !== "eleni") {
-        const artistName = artistNames[artistEl.value];
-        plan.copy = plan.copy.replace("Eleni Nova", artistName);
-        plan.headline = plan.headline.replace("melodic house", artistEl.options[artistEl.selectedIndex].text.split(" - ")[1]);
       }
 
       return plan;
@@ -1656,7 +1797,11 @@
       fields.capacityDetail.textContent = plan.capacityDetail;
       fields.pricingDetail.textContent = plan.pricingDetail;
       fields.sponsorDetail.textContent = plan.sponsorDetail;
+      fields.downsideRisk.textContent = plan.downsideRisk;
+      fields.adjustmentDetail.textContent = plan.adjustmentDetail;
+      fields.assumptions.textContent = plan.assumptions;
       fields.launchCopy.textContent = plan.copy;
+      fields.mailBrief.href = buildMailto(plan);
       fields.runId.textContent = `Run ${String(runCount).padStart(2, "0")}`;
       fields.seqOne.textContent = plan.sequence[0];
       fields.seqTwo.textContent = plan.sequence[1];
@@ -1669,11 +1814,37 @@
       surfaceEl.classList.add("status-flash");
     }
 
-    [cityEl, artistEl, capacityEl, sponsorEl].forEach((el) => {
+    function buildMailto(plan) {
+      const subject = `Vibelytics launch brief: ${artists[artistEl.value].name} in ${plan.cityName}`;
+      const body = [
+        "Hi Vibelytics,",
+        "",
+        "I want to discuss this launch brief:",
+        `Artist: ${artists[artistEl.value].name}`,
+        `City: ${plan.cityName}`,
+        `Venue capacity: ${capacityEl.options[capacityEl.selectedIndex].text}`,
+        `Target date: ${targetDateEl.value}`,
+        `Sponsor category: ${sponsorLabels[sponsorEl.value]}`,
+        `Launch goal: ${goalLabels[goalEl.value]}`,
+        "",
+        `Recommendation: ${plan.recommendation}`,
+        `Confidence: ${plan.confidence}%`,
+        `Demand score: ${plan.demandScore}/100`,
+        `Pricing band: ${plan.priceBand}`,
+        `Downside risk: ${plan.downsideRisk}`,
+        "",
+        "Can you help me pressure-test the launch?"
+      ].join("\n");
+
+      return `mailto:yes@vibelytics.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    [cityEl, artistEl, capacityEl, targetDateEl, sponsorEl, goalEl].forEach((el) => {
       el.addEventListener("change", () => updateLaunchPlan());
     });
 
     generateEl.addEventListener("click", () => updateLaunchPlan({ bumpRun: true }));
+    updateLaunchPlan();
   </script>
 </body>
 </html>

@@ -8,10 +8,10 @@ Vibelytics is a pre-launch decision layer. It helps teams make the launch call b
 
 ## Primary Pages
 
-- Home: https://vibelytics-landing.vercel.app/
-- Static Pilot: https://vibelytics-landing.vercel.app/pilot/
-- Privacy: https://vibelytics-landing.vercel.app/privacy/
-- Terms: https://vibelytics-landing.vercel.app/terms/
+- Home: https://www.vibelytics.ai/
+- Pilot: https://www.vibelytics.ai/pilot/
+- Privacy: https://www.vibelytics.ai/privacy/
+- Terms: https://www.vibelytics.ai/terms/
 
 ## Contact
 

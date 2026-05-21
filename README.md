@@ -1,14 +1,14 @@
-# Vibelytics SR007
+# Vibelytics
 
 Vibelytics is the AI launch copilot for live culture.
 
-This repository now contains the static a16z Speedrun SR007 web submission:
+This repository contains the public static website and buyer-facing launch decision pilot:
 
-- `/` - polished landing page
-- `/pilot` - clickable launch-copilot pilot
+- `/` - landing page
+- `/pilot` - clickable launch decision pilot for promoters and midsize venues
 - `assets/` - local visual assets
-- `docs/` - SR007 summary, deployment summary, and screenshots
-- `archive/previous-build-2026-05-18.tar.gz` - archived copy of the previous Vite build
+- `brand/` - social, favicon, and upload-ready brand assets
+- `privacy/` and `terms/` - public legal pages
 
 The site is static-only. It does not require a backend, API routes, external services, Vercel AI Gateway, or runtime credentials.
 
