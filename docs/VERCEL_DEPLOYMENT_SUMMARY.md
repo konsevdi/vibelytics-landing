@@ -2,9 +2,9 @@
 
 ## What changed
 
-- Replaced the root page with a clean Vibelytics SR007 landing page at `/`.
+- Replaced the root page with a clean Vibelytics landing page at `/`.
 - Moved the interactive launch-copilot pilot to `/pilot`.
-- Reused the existing CSS rounded-square gradient `V` logo direction.
+- Established the rounded-square Vibelytics mark direction and later replaced the route logo with `brand/vibelytics-mark.svg`.
 - Kept the site static-only: local HTML, CSS, JavaScript, and image assets; no backend, API routes, package installs, or external service dependencies.
 - Preserved the dark premium pilot interface and launch-copilot workflow:
   - artist / city / venue / date / sponsor input
@@ -32,8 +32,8 @@
 
 ## Available checks
 
-- `package.json` only defines `start`.
-- No build script is present.
+- `package.json` defines `start` and `build`.
+- Build copies the static site into `dist/`.
 - No lint script is present.
 - Static page copy scan passed for the served HTML pages.
 
@@ -51,7 +51,7 @@
 
 ## Remaining manual steps
 
-1. Confirm in Vercel that the existing a16z application project is connected to `konsevdi/vibelytics-landing`.
+1. Confirm in Vercel that the existing Vibelytics project is connected to `konsevdi/vibelytics-landing`.
 2. If it is the correct project, deploy this static site to that project.
 3. If using the Vercel CLI, link explicitly to the confirmed project before deploying:
 

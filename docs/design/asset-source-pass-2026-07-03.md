@@ -4,7 +4,7 @@ Date: 2026-07-03
 Scope: Public PNG brand, social, campaign, product, favicon, and screenshot assets
 Status: Source gate still open; production brand signoff blocked
 
-Follow-up status: The P0 route-used image replacements were implemented later on 2026-07-03 with `scripts/generate-route-assets.py`. Use `docs/design/roadmap.md` and `docs/design/asset-provenance.json` for the current next action.
+Follow-up status: The P0 route-used image replacements were implemented later on 2026-07-03 with `scripts/generate-route-assets.py`. The canonical SVG mark and raster derivatives were also implemented later on 2026-07-03 with `brand/vibelytics-mark.svg` and `scripts/generate-brand-assets.py`. Use `docs/design/roadmap.md` and `docs/design/asset-provenance.json` for the current next action.
 
 ## What Was Inspected
 
