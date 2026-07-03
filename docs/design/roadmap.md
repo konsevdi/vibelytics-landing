@@ -6,7 +6,7 @@ Last updated: 2026-07-03
 
 Vibelytics has a static public landing page and clickable pilot for an AI launch copilot for live culture. The current identity is coherent enough to preserve and evolve: dark live-culture visuals, a rounded-square gradient V mark, bold system typography, and product surfaces centered on go / adjust / no-go launch decisions.
 
-The repo did not previously include a durable design roadmap or approved brand kit. This roadmap is now the coordination point for future design-to-code passes.
+The repo now includes a durable design roadmap and an approved strategy brand kit. This roadmap is the coordination point for future design-to-code passes.
 
 ## Decisions Recorded
 
@@ -15,11 +15,15 @@ The repo did not previously include a durable design roadmap or approved brand k
 - `/pilot` may include subtle SR007/static pilot context.
 - Static-only constraints remain in force: no backend, no API routes, no external runtime services, no new dependencies unless separately approved.
 - The current PNG/CSS mark can be preserved as evidence, but it is not sufficient as canonical editable identity source.
-- No brand implementation should proceed until one territory from `docs/brand/branding-pass-2026-07-03.md` is approved.
+- Signal Desk is approved as the product identity backbone.
+- Culture Graph is preserved as a campaign imagery layer, not the product identity backbone.
+- First Yes is preserved as a launch campaign layer, not the product identity backbone.
+- No production brand implementation should proceed until asset provenance and canonical SVG source gates are resolved.
 
 ## Artifacts
 
 - `docs/brand/branding-pass-2026-07-03.md`: three strategic brand territories, recommendation, blockers, and implementation checklist.
+- `docs/brand/brand-kit.md`: approved Signal Desk brand kit, rejected options, rationale, implementation checklist, and assets to preserve.
 - `docs/design/asset-provenance.json`: public asset provenance register with current rights/source gaps.
 - `docs/assets/vibelytics-landing-screenshot.png`: current landing screenshot evidence.
 - `docs/assets/vibelytics-pilot-screenshot.png`: current pilot screenshot evidence.
@@ -28,20 +32,17 @@ The repo did not previously include a durable design roadmap or approved brand k
 
 P0: Asset provenance is incomplete for public PNG brand and campaign assets. Resolve source, usage rights, allowed uses, attribution, and open rights questions before production brand signoff.
 
-P1: No source-controlled vector logo exists. Create `brand/vibelytics-mark.svg` only after territory approval.
+P1: No source-controlled vector logo exists. Create `brand/vibelytics-mark.svg` only after asset provenance is resolved or replacement assets are selected.
 
-P1: No approved brand kit exists. Create `docs/brand/brand-kit.md` only after the user approves a territory.
-
-P1: Shared design tokens are duplicated across `index.html` and `pilot/index.html`. Consolidate token decisions after brand kit approval, not before.
+P1: Shared design tokens are duplicated across `index.html` and `pilot/index.html`. Consolidate token decisions after asset provenance and canonical SVG gates are resolved.
 
 ## Recommended Path
 
-1. Approve a brand territory from `docs/brand/branding-pass-2026-07-03.md`.
-2. Resolve or replace assets listed as `needs_provenance` in `docs/design/asset-provenance.json`.
-3. Create canonical SVG/vector identity source and export raster derivatives.
-4. Write `docs/brand/brand-kit.md` with selected kit, rejected options, rationale, implementation checklist, and assets to preserve.
-5. Apply approved tokens to `/` and `/pilot` without changing route strategy.
-6. Refresh screenshots and run build, route, copy, viewport, and interaction checks.
+1. Resolve or replace assets listed as `needs_provenance` in `docs/design/asset-provenance.json`.
+2. Create canonical SVG/vector identity source and export raster derivatives.
+3. Normalize shared color, typography, spacing, semantic, radius, and elevation tokens from `docs/brand/brand-kit.md`.
+4. Apply approved tokens to `/` and `/pilot` without changing route strategy.
+5. Refresh screenshots and run build, route, copy, viewport, and interaction checks.
 
 ## Verification Commands
 
@@ -55,12 +56,22 @@ find brand assets -maxdepth 2 -type f -print
 sips -g pixelWidth -g pixelHeight brand/*.png assets/*.png docs/assets/*.png
 ```
 
+Commands run for the 2026-07-03 brand-kit approval step:
+
+```bash
+git status --short --branch
+sed -n '1,280p' docs/brand/branding-pass-2026-07-03.md
+sed -n '1,260p' docs/design/roadmap.md
+sed -n '1,260p' docs/design/asset-provenance.json
+rg -n "SR007|Signal Desk|brand-kit|asset provenance|vibelytics-mark.svg|static-only|no backend|AI launch copilot" README.md index.html pilot/index.html docs/brand/branding-pass-2026-07-03.md docs/design/roadmap.md docs/design/asset-provenance.json
+node -e 'JSON.parse(require("fs").readFileSync("docs/design/asset-provenance.json","utf8")); console.log("asset-provenance.json ok")'
+```
+
 ## Next Action For Future Codex Thread
 
-Ask the user to choose one of the three territories:
+Run a focused asset-source pass:
 
-- Signal Desk
-- Culture Graph
-- First Yes
-
-If approved, run the approval output step from the branding pass and create `docs/brand/brand-kit.md`. If not approved, keep strategy work in docs only and do not change production UI or assets.
+1. Resolve provenance for the current public PNG brand and campaign assets, or mark them for replacement.
+2. Keep `docs/design/asset-provenance.json` current.
+3. After provenance is resolved, create `brand/vibelytics-mark.svg` as the deterministic source logo and export raster derivatives.
+4. Do not change production UI, favicons, screenshots, or social images until source assets are approved.

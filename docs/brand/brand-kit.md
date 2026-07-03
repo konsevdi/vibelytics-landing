@@ -1,0 +1,387 @@
+# Vibelytics Brand Kit
+
+Status: Approved strategy kit, implementation gated
+Approved territory: Signal Desk
+Approval date: 2026-07-03
+Source pass: `docs/brand/branding-pass-2026-07-03.md`
+
+## Production Readiness
+
+This brand kit records the approved Vibelytics identity direction. It is not a final production asset signoff.
+
+Two gates remain open:
+
+- P0: Public PNG asset provenance is incomplete. See `docs/design/asset-provenance.json`.
+- P1: The canonical editable logo source does not exist yet. Create and approve `brand/vibelytics-mark.svg` before exporting replacement favicons, social assets, or campaign materials.
+
+No production UI, logo, screenshot, favicon, or social asset changes were made when this kit was created.
+
+## Brand Position
+
+Vibelytics is the AI launch copilot for live culture.
+
+It helps promoters, midsize venues, creators, and brand partners decide what to launch before room holds, guarantees, inventory, media spend, and sponsor packages harden.
+
+The brand should be understood as a pre-launch decision surface, not audience monitoring, crowd analytics, emotion detection, heatmaps, or a generic dashboard.
+
+## Approved Territory: Signal Desk
+
+Signal Desk is the product identity backbone.
+
+It makes Vibelytics feel like a serious operator tool for launch decisions while preserving enough live-culture charge to avoid looking like generic B2B software.
+
+Core tension:
+
+- Calm authority versus cultural electricity.
+- Commercial discipline versus creative momentum.
+- Fast decision-making versus reckless hype.
+
+Audience:
+
+- Primary buyer: promoter, venue owner/operator, or launch lead with capital/reputation at risk.
+- Primary user: operator or producer entering launch briefs and using the decision output.
+- Secondary stakeholders: creator teams, brand partners, investors, and venue marketing teams.
+
+Category alternatives:
+
+- Gut instinct and local promoter knowledge.
+- Spreadsheets and static comps.
+- Agency decks and taste memos.
+- Generic analytics dashboards.
+- Social listening tools that do not turn signal into launch decisions.
+
+Positioning statement:
+
+For live-culture teams deciding whether and how to launch an event, Vibelytics turns an artist, city, venue, date, sponsor, and goal into a go / adjust / no-go launch decision with capacity, pricing, risk, sequence, and launch copy.
+
+## Messaging Hierarchy
+
+Primary line:
+
+AI launch copilot for live culture.
+
+Primary promise:
+
+Know what to launch before you commit the capital.
+
+Product explanation:
+
+Vibelytics turns a launch brief into a decision: demand, room fit, pricing, sponsor fit, downside risk, recommendation, launch sequence, and announcement copy.
+
+Proof language:
+
+- Static pilot is clickable and route-contained at `/pilot`.
+- Pilot uses synthetic scenarios only.
+- No backend, no API routes, no external services.
+- No attendee identity, live tracking, heatmaps, or emotion detection.
+
+Avoid:
+
+- "Unlock insights"
+- "Real-time audience intelligence"
+- "Emotion detection"
+- "Heatmap"
+- "Crowd monitoring"
+- "All-in-one dashboard"
+- Claims that imply live surveillance or unavailable backend functionality.
+
+## Voice And Microcopy
+
+Voice should be short, operator-facing, and decision-grade.
+
+Use:
+
+- "Make the call."
+- "Hold the room."
+- "Re-scope capacity."
+- "Open founder presale."
+- "Do not launch this version."
+- "Pressure-test the launch."
+- "Go / Adjust / Hold"
+
+Do not use:
+
+- Generic SaaS optimism.
+- AI magic language.
+- Hype that hides risk.
+- Vague culture language without a launch decision.
+
+## Logo Direction
+
+Approved concept:
+
+Preserve the rounded-square V mark direction, then rebuild it as deterministic vector source.
+
+Construction logic:
+
+- Outer rounded-square container with energetic gradient.
+- Inner dark inset panel for contrast and small-size legibility.
+- White angled V built from simple geometric shapes, optically corrected so it feels decisive rather than playful.
+- The V may suggest a check-shaped signal, but it should not become a generic checkmark.
+
+Source asset strategy:
+
+- Current PNGs are preserved as evidence and temporary assets.
+- Future implementation should create `brand/vibelytics-mark.svg`.
+- Raster derivatives should be exported from the approved SVG only.
+- Do not describe any generated raster mark as canonical editable source.
+
+Required future exports after source approval:
+
+- `favicon.png`
+- `apple-touch-icon.png`
+- `brand/vibelytics-mark.png`
+- `brand/vibelytics-x-avatar.png`
+- `brand/vibelytics-og-image.png`
+- `brand/vibelytics-x-header.png`
+- `og-image.png`
+- `twitter-image.png`
+
+## Wordmark
+
+Approved direction:
+
+Heavy, direct grotesk wordmark with tight optical spacing. The wordmark should feel like a product company serving operators, not a nightlife flyer.
+
+Current implementation:
+
+System UI sans is acceptable for static simplicity until a local, licensed font decision is approved.
+
+Future font direction:
+
+If a local webfont is approved, choose a sturdy grotesk or geometric grotesk with strong numerals and clean UI legibility. Do not add external font services.
+
+## Lockups
+
+Core lockups:
+
+- Horizontal: mark plus "Vibelytics" for navigation and social headers.
+- Mark-only: favicon, app icon, avatar, small spaces.
+- Monochrome: legal, security, low-color contexts.
+
+Usage notes:
+
+- Place the mark on calm dark or light fields, not directly over high-noise event imagery.
+- Use a dark plate if the mark sits on a photo.
+- Keep campaign phrases separate from the core logo.
+- Do not use "First Yes" or decision stripes as a replacement for the Vibelytics identity.
+
+## Color System
+
+Primary:
+
+- Deep stage: `#04060D`
+- Signal cyan: `#1EE7FF`
+- Decision mint: `#3CF2B5`
+- Ink: `#F8FBFF`
+
+Secondary:
+
+- Violet: `#A36AFF`
+- Ember: `#FF8B5C`
+- Production blue: `#5796FF`
+
+Neutral:
+
+- Muted text: `#C4CEDC`
+- Steel: `#8996AA`
+- Haze: `#75839A`
+- Panel dark: `#07101E`
+- Line: `rgba(219, 231, 255, .16)`
+
+Semantic:
+
+- Go: `#3CF2B5`
+- Adjust: `#F6C65B`
+- No-go: `#FF6D5F`
+- Info: `#5796FF`
+
+Color rules:
+
+- Use bright semantic colors only with explicit text labels.
+- Do not rely on color alone to communicate decision state.
+- Keep gradients as identity accents or primary actions, not as every surface.
+- Avoid drifting into an all-cyan/all-violet neon system.
+
+## Typography Scale Intent
+
+The current system-font approach is approved for now because the site is static and dependency-light.
+
+Scale intent:
+
+- Hero display: 76-156px on marketing surfaces.
+- Section headline: 38-76px.
+- Product panel title: 16-24px.
+- Body: 15-21px depending on surface.
+- Control labels: 11-12px uppercase, only when spacing supports it.
+
+Rules:
+
+- Product UI type should be compact and scannable.
+- Marketing type can be large, but not inside dense controls.
+- Do not scale font size with viewport width in a way that causes cramped UI controls.
+
+## Product UI Token Direction
+
+Approved token families:
+
+- Background: deep stage, darker product shell.
+- Panel: layered dark panels with restrained borders.
+- Text: ink, muted, soft.
+- Action: cyan-to-violet gradient only for primary CTA.
+- Decision: mint, gold, coral with labels.
+- Radius: moderate rounded squares and panels; avoid bubbly softness.
+- Elevation: dark shadow for app surfaces; no decorative card stacks.
+
+Implementation note:
+
+`index.html` and `pilot/index.html` currently duplicate token decisions. Consolidation is approved as a future implementation task after SVG logo and provenance gates are addressed.
+
+## Imagery And Illustration
+
+Approved direction:
+
+Use imagery that suggests pre-launch planning, room economics, city pull, backstage readiness, and decision surfaces.
+
+Allowed:
+
+- Stage and venue imagery.
+- Backstage or pre-show moments.
+- City maps and launch signal diagrams.
+- Product screenshots and decision surfaces.
+- Annotated product diagrams.
+
+Avoid:
+
+- Faces or crowds used as biometric/emotion signals.
+- Heatmap-like audience surveillance.
+- Generic dashboard screenshots.
+- Decorative abstract gradients without product or launch context.
+
+Campaign imagery may use Culture Graph motifs only as a campaign layer. Product UI should remain Signal Desk.
+
+## Motion And Interaction
+
+Tone:
+
+Fast confidence, not spectacle.
+
+Approved patterns:
+
+- 150-250ms state changes.
+- Subtle rise on marketing entrance.
+- Small decision flash when outputs update.
+- No confetti, no looping decorative animations, no distracting glow motion.
+
+## Campaign Layer
+
+Signal Desk is the product identity. Culture Graph and First Yes can support campaigns.
+
+Approved campaign use:
+
+- Culture Graph: city pull, genre fit, route lines, node maps.
+- First Yes: launch campaign phrases, semantic decision stripes, social/deck hooks.
+
+Boundaries:
+
+- Campaign devices cannot replace the core logo.
+- Campaign imagery cannot imply live monitoring.
+- SR007 context belongs on `/pilot`, docs, deck, or campaign material, not the pure `/` brand surface.
+
+## Marketing Materials
+
+Founder/investor deck:
+
+- Usage: cover, product proof slide, close slide.
+- CTA: "Open the pilot."
+- Measurement intent: deck-to-pilot clickthrough or demo opens.
+- Rationale: product proof matters more than broad brand storytelling for this stage.
+
+Venue operator one-pager:
+
+- Usage: PDF or email attachment after intro.
+- CTA: "Send a launch brief."
+- Measurement intent: qualified replies to `yes@vibelytics.ai`.
+- Rationale: maps the brand to an operator workflow and buying moment.
+
+Social launch graphic:
+
+- Usage: LinkedIn/X post or profile header.
+- CTA: "Go / adjust / no-go before spend."
+- Measurement intent: profile visits, pilot opens, email starts.
+- Rationale: turns the product category into a memorable decision promise.
+
+## Real-World Extensions
+
+Approved ideas after source assets exist:
+
+- Staff pass or lanyard with V mark and "Launch Desk".
+- Venue sticker with "Go / Adjust / Hold" semantic stripes.
+- Launch planning notebook with first-page decision grid.
+- Event operator checklist card for room, price, sponsor, copy.
+
+These are exploratory extensions, not required assets.
+
+## Assets To Preserve
+
+Preserve as evidence until replaced by approved exports:
+
+- `brand/vibelytics-mark.png`
+- `brand/vibelytics-og-image.png`
+- `brand/vibelytics-x-avatar.png`
+- `brand/vibelytics-x-header.png`
+- `favicon.png`
+- `apple-touch-icon.png`
+- `og-image.png`
+- `twitter-image.png`
+
+Preserve as current product/campaign evidence pending provenance:
+
+- `assets/festival-network.png`
+- `assets/taste-map.png`
+- `assets/backstage.png`
+- `assets/control-room.png`
+- `assets/app_screen_mock.png`
+- `docs/assets/vibelytics-landing-screenshot.png`
+- `docs/assets/vibelytics-pilot-screenshot.png`
+
+## Rejected Options
+
+Culture Graph:
+
+- Rejected as the product identity backbone because it can overemphasize network/culture visuals and increase the risk that Vibelytics is mistaken for live audience monitoring or social listening.
+- Preserved as a campaign imagery layer for city pull, genre fit, and route-line storytelling.
+
+First Yes:
+
+- Rejected as the product identity backbone because it is more campaign platform than durable product system.
+- Preserved as a launch campaign layer for social, deck, and sales materials once core identity assets are stable.
+
+Create-from-scratch identity:
+
+- Rejected because the existing mark, dark live-culture palette, product screenshots, and launch-copilot positioning are already coherent enough to evolve.
+
+## Implementation Checklist
+
+Do not start until asset provenance is resolved or replacement assets are chosen.
+
+1. Resolve `docs/design/asset-provenance.json` open questions or replace unknown assets.
+2. Create deterministic `brand/vibelytics-mark.svg`.
+3. Export raster logo derivatives from the approved SVG.
+4. Normalize shared color, typography, spacing, semantic, radius, and elevation tokens.
+5. Apply approved tokens to `/` and `/pilot` without changing route strategy.
+6. Refresh social images and screenshots only after source identity is approved.
+7. Run:
+   - `npm run build`
+   - local route checks for `/`, `/pilot`, `/privacy`, `/terms`, `/robots.txt`, `/sitemap.xml`, `/llms.txt`
+   - copy scan confirming `/` has no SR007 or Speedrun references
+   - copy scan confirming `/pilot` includes subtle SR007/static pilot context
+   - desktop and mobile viewport checks
+   - pilot interaction check
+
+## Next Action
+
+Run a focused asset-source pass:
+
+1. Resolve provenance for current PNG brand/campaign assets, or mark them for replacement.
+2. Only after that, create the deterministic SVG logo source and exports.
