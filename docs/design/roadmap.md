@@ -6,7 +6,7 @@ Last updated: 2026-07-03
 
 Vibelytics has a static public landing page and clickable pilot for an AI launch copilot for live culture. The current identity is coherent enough to preserve and evolve: dark live-culture visuals, a rounded-square gradient V mark, bold system typography, and product surfaces centered on go / adjust / no-go launch decisions.
 
-The repo now includes a durable design roadmap, an approved strategy brand kit, and a focused asset-source pass. This roadmap is the coordination point for future design-to-code passes.
+The repo now includes a durable design roadmap, an approved strategy brand kit, a focused asset-source pass, and first-party replacements for the three route-used P0 images. This roadmap is the coordination point for future design-to-code passes.
 
 ## Decisions Recorded
 
@@ -20,7 +20,8 @@ The repo now includes a durable design roadmap, an approved strategy brand kit, 
 - First Yes is preserved as a launch campaign layer, not the product identity backbone.
 - No production brand implementation should proceed until asset provenance and canonical SVG source gates are resolved.
 - The 2026-07-03 asset-source pass found no current PNG approved as canonical production brand source.
-- Route-used campaign/product imagery with unknown source rights is now the first blocker before SVG/export work.
+- Route-used campaign/product imagery was replaced with deterministic first-party PNGs generated from repo source.
+- The remaining blocker before production brand signoff is the canonical SVG mark plus exported favicon, social, and screenshot derivatives.
 
 ## Artifacts
 
@@ -28,27 +29,29 @@ The repo now includes a durable design roadmap, an approved strategy brand kit, 
 - `docs/brand/brand-kit.md`: approved Signal Desk brand kit, rejected options, rationale, implementation checklist, and assets to preserve.
 - `docs/design/asset-provenance.json`: public asset provenance register with per-asset source decisions, approval states, and replacement recommendations.
 - `docs/design/asset-source-pass-2026-07-03.md`: focused source pass summary, replacement list, blockers, verification commands, and next action.
+- `scripts/generate-route-assets.py`: deterministic source generator for `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png`.
 - `docs/assets/vibelytics-landing-screenshot.png`: current landing screenshot evidence.
 - `docs/assets/vibelytics-pilot-screenshot.png`: current pilot screenshot evidence.
 
 ## P0 / P1 Blockers
 
-P0: Route-used campaign/product imagery has unresolved source and rights. Replace or document rights for `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png` before production brand signoff.
+P0: Resolved for route-used campaign/product imagery. `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png` are now first-party deterministic assets generated from `scripts/generate-route-assets.py`.
 
-P1: No source-controlled vector logo exists. Create `brand/vibelytics-mark.svg` only after the P0 image replacement/source direction is accepted.
+P1: No source-controlled vector logo exists. Create `brand/vibelytics-mark.svg` before replacing brand mark, favicon, app icon, avatar, social, or screenshot derivatives.
 
 P1: Current favicon/social PNGs are temporary derivatives with unknown source lineage. Re-export them only after approved source assets exist.
+
+P1: Current screenshots are internal evidence only. Refresh them after approved source assets and route visuals are accepted.
 
 P1: Shared design tokens are duplicated across `index.html` and `pilot/index.html`. Consolidate token decisions after asset provenance and canonical SVG gates are resolved.
 
 ## Recommended Path
 
-1. Replace or document rights for route-used P0 assets: `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png`.
-2. Accept the replacement/source direction for logo and campaign derivatives.
-3. Create canonical SVG/vector identity source and export raster derivatives.
-4. Normalize shared color, typography, spacing, semantic, radius, and elevation tokens from `docs/brand/brand-kit.md`.
-5. Apply approved tokens to `/` and `/pilot` without changing route strategy.
-6. Refresh screenshots and run build, route, copy, viewport, and interaction checks.
+1. Create canonical SVG/vector identity source for the Vibelytics mark.
+2. Export raster logo, favicon, app icon, avatar, social, and screenshot derivatives from approved source assets.
+3. Normalize shared color, typography, spacing, semantic, radius, and elevation tokens from `docs/brand/brand-kit.md`.
+4. Apply approved tokens to `/` and `/pilot` without changing route strategy.
+5. Refresh screenshots and run build, route, copy, viewport, and interaction checks.
 
 ## Verification Commands
 
@@ -87,11 +90,22 @@ git log --oneline --name-status -- brand assets docs/assets favicon.png apple-to
 node -e 'JSON.parse(require("fs").readFileSync("docs/design/asset-provenance.json","utf8")); console.log("asset-provenance.json ok")'
 ```
 
+Commands run for the 2026-07-03 route-asset replacement pass:
+
+```bash
+python3 scripts/generate-route-assets.py
+sips -g pixelWidth -g pixelHeight assets/festival-network.png assets/taste-map.png assets/backstage.png
+file assets/festival-network.png assets/taste-map.png assets/backstage.png
+node -e 'JSON.parse(require("fs").readFileSync("docs/design/asset-provenance.json","utf8")); console.log("asset-provenance.json ok")'
+rg -n "SR007|Speedrun|a16z" index.html
+npm run build
+```
+
 ## Next Action For Future Codex Thread
 
-Run the replacement-source implementation pass:
+Run the canonical identity source pass:
 
-1. Replace or document rights for `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png`.
+1. Create `brand/vibelytics-mark.svg` as the deterministic source logo.
 2. Keep `docs/design/asset-provenance.json` current.
-3. After the P0 source/replacement direction is accepted, create `brand/vibelytics-mark.svg` as the deterministic source logo and export raster derivatives.
-4. Refresh favicons, social images, and screenshots only after source assets are approved.
+3. Export favicon, app icon, brand mark, avatar, social images, and screenshots only after source assets are approved.
+4. Do not claim production-ready brand signoff until identity exports, social images, and screenshots are refreshed from approved sources.

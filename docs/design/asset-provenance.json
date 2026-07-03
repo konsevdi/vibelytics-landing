@@ -1,16 +1,16 @@
 {
-  "version": 2,
+  "version": 3,
   "date": "2026-07-03",
-  "status": "blocked_until_replacements_or_rights_confirmed",
+  "status": "p0_route_imagery_resolved_p1_identity_exports_blocked",
   "scope": "Current Vibelytics public PNG brand, social, product, campaign, favicon, and screenshot assets in the static landing repo.",
   "policy": "Public, external, generated, third-party, or licensed brand assets must have source, usage rights, allowed uses, attribution, replacement decision, and open rights questions recorded before the brand system can be called production-ready.",
-  "overallDecision": "No current PNG asset is approved as canonical production brand source. Preserve current PNGs only as temporary implementation assets or internal evidence until documented replacements are created.",
+  "overallDecision": "The three P0 route-used campaign/product PNGs are now first-party deterministic assets generated from repo source. No current PNG is approved as canonical logo, favicon, social, or production brand source.",
   "canonicalSourceGate": {
     "status": "open",
     "requiredBeforeProductionBrandSignoff": [
       "Create and approve deterministic brand/vibelytics-mark.svg.",
       "Export favicon, app icon, avatar, social, and brand PNG derivatives only from approved source assets.",
-      "Replace or document rights for public campaign images currently used by / and /pilot."
+      "Refresh screenshots after route-used image replacements are accepted."
     ],
     "doNotCreateYet": "Do not create brand/vibelytics-mark.svg until replacement direction is accepted or provenance is resolved enough to proceed."
   },
@@ -226,20 +226,19 @@
         "docs/brand/branding-pass-2026-07-03.md",
         "docs/design/asset-provenance.json"
       ],
-      "source": "Repo-local PNG added in commit 6ef78b5. Appears generated or composited; exact source unknown.",
-      "sourceStatus": "still_unknown",
-      "rightsStatus": "still_unknown",
-      "usageRights": "Unknown",
-      "allowedUses": "Current temporary landing-page implementation only. Do not expand to new public social, deck, or brand-system usage.",
-      "attribution": "Unknown",
-      "decision": "Replace or document rights before production brand signoff because it is used on `/`.",
-      "approvalState": "should_be_replaced",
-      "replacementRecommendation": "Replace with documented first-party, licensed, or generated stage/venue image that supports pre-launch planning without implying audience surveillance.",
-      "priority": "P0",
+      "source": "First-party deterministic replacement generated from scripts/generate-route-assets.py on 2026-07-03. The composition is an abstract stage and launch-signal network; it uses no photos, external assets, people, venue likeness, or third-party sources.",
+      "sourceStatus": "confirmed_first_party_deterministic",
+      "rightsStatus": "confirmed_repo_owned_no_third_party_inputs",
+      "usageRights": "Repo-owned deterministic output. Approved for current Vibelytics route use and internal docs.",
+      "allowedUses": "Current `/` hero implementation, internal docs, and future Vibelytics campaign drafts. Re-export from the generator before resizing or adapting.",
+      "attribution": "None required.",
+      "decision": "Replacement implemented. Preserve as the current route-used hero image source until a broader visual system pass replaces or extends it.",
+      "approvalState": "confirmed_for_current_route_use",
+      "replacementRecommendation": "No source-rights replacement needed. Future visual refinements should update scripts/generate-route-assets.py and regenerate this PNG.",
+      "priority": "resolved_p0",
       "openQuestions": [
-        "Was the base event image generated, licensed, or sourced publicly?",
-        "Are network overlays generated or manually composited?",
-        "Can it be used in public website/social/deck contexts?"
+        "Visual direction can still be refined in a later design pass.",
+        "Do not use this as a substitute for canonical logo, favicon, or social preview source assets."
       ]
     },
     {
@@ -253,20 +252,19 @@
         "docs/brand/branding-pass-2026-07-03.md",
         "docs/design/asset-provenance.json"
       ],
-      "source": "Repo-local PNG added in commit 6ef78b5. Appears generated or composited; exact source unknown.",
-      "sourceStatus": "still_unknown",
-      "rightsStatus": "still_unknown",
-      "usageRights": "Unknown",
-      "allowedUses": "Current temporary landing and pilot implementation only. Do not expand to new public social, deck, or brand-system usage.",
-      "attribution": "Unknown",
-      "decision": "Replace or document rights before production brand signoff because it is used on `/` and `/pilot`.",
-      "approvalState": "should_be_replaced",
-      "replacementRecommendation": "Replace with a documented first-party product/city-fit diagram or approved Culture Graph campaign asset; avoid visuals that read as live audience tracking.",
-      "priority": "P0",
+      "source": "First-party deterministic replacement generated from scripts/generate-route-assets.py on 2026-07-03. The composition is an abstract city-fit/product signal diagram; it uses no maps, photos, external assets, people, venue likeness, or third-party sources.",
+      "sourceStatus": "confirmed_first_party_deterministic",
+      "rightsStatus": "confirmed_repo_owned_no_third_party_inputs",
+      "usageRights": "Repo-owned deterministic output. Approved for current Vibelytics route use and internal docs.",
+      "allowedUses": "Current `/` product section, current `/pilot` workspace image, internal docs, and future Vibelytics product/campaign drafts. Re-export from the generator before resizing or adapting.",
+      "attribution": "None required.",
+      "decision": "Replacement implemented. Preserve as the current route-used product/city-fit image source until a broader visual system pass replaces or extends it.",
+      "approvalState": "confirmed_for_current_route_use",
+      "replacementRecommendation": "No source-rights replacement needed. Future visual refinements should update scripts/generate-route-assets.py and regenerate this PNG.",
+      "priority": "resolved_p0",
       "openQuestions": [
-        "Was the map/city imagery generated or sourced?",
-        "Can it be used publicly without attribution?",
-        "Does the visual risk implying live audience tracking?"
+        "Visual direction can still be refined in a later design pass.",
+        "Continue to avoid live audience tracking, heatmap, or surveillance metaphors in surrounding copy and future variants."
       ]
     },
     {
@@ -279,20 +277,19 @@
         "docs/brand/branding-pass-2026-07-03.md",
         "docs/design/asset-provenance.json"
       ],
-      "source": "Repo-local PNG added in commit 6ef78b5. Appears generated or composited; exact source unknown.",
-      "sourceStatus": "still_unknown",
-      "rightsStatus": "still_unknown",
-      "usageRights": "Unknown",
-      "allowedUses": "Current temporary landing-page implementation only. Do not expand to new public social, deck, or brand-system usage.",
-      "attribution": "Unknown",
-      "decision": "Replace or document rights before production brand signoff because it is used on `/`.",
-      "approvalState": "should_be_replaced",
-      "replacementRecommendation": "Replace with documented first-party, licensed, or generated backstage/pre-show imagery with no unresolved venue or likeness rights.",
-      "priority": "P0",
+      "source": "First-party deterministic replacement generated from scripts/generate-route-assets.py on 2026-07-03. The composition is an abstract backstage/pre-show decision surface; it uses no photos, external assets, people, venue likeness, or third-party sources.",
+      "sourceStatus": "confirmed_first_party_deterministic",
+      "rightsStatus": "confirmed_repo_owned_no_third_party_inputs",
+      "usageRights": "Repo-owned deterministic output. Approved for current Vibelytics route use and internal docs.",
+      "allowedUses": "Current `/` narrative section, internal docs, and future Vibelytics campaign drafts. Re-export from the generator before resizing or adapting.",
+      "attribution": "None required.",
+      "decision": "Replacement implemented. Preserve as the current route-used backstage/pre-show image source until a broader visual system pass replaces or extends it.",
+      "approvalState": "confirmed_for_current_route_use",
+      "replacementRecommendation": "No source-rights replacement needed. Future visual refinements should update scripts/generate-route-assets.py and regenerate this PNG.",
+      "priority": "resolved_p0",
       "openQuestions": [
-        "Was this image generated, licensed, or photographed?",
-        "Are venue/person likeness rights clear?",
-        "Can it be publicly reused without attribution?"
+        "Visual direction can still be refined in a later design pass.",
+        "Do not use this as a substitute for canonical social preview or deck imagery until those exports are designed."
       ]
     },
     {
@@ -399,7 +396,11 @@
     }
   ],
   "summaryByDecision": {
-    "confirmed": [],
+    "confirmed_for_current_route_use": [
+      "assets/festival-network.png",
+      "assets/taste-map.png",
+      "assets/backstage.png"
+    ],
     "still_unknown": [
       "brand/vibelytics-mark.png"
     ],
@@ -414,15 +415,12 @@
       "favicon.png",
       "apple-touch-icon.png",
       "og-image.png",
-      "twitter-image.png",
-      "assets/festival-network.png",
-      "assets/taste-map.png",
-      "assets/backstage.png"
+      "twitter-image.png"
     ],
     "remove_from_future_brand_implementation": [
       "assets/control-room.png",
       "assets/app_screen_mock.png"
     ]
   },
-  "nextAction": "A future Codex thread should replace the P0 route-used imagery or document rights, then create the canonical SVG mark and export derivative PNGs. Do not claim production-ready brand signoff until the P0/P1 source gates are closed."
+  "nextAction": "A future Codex thread should create the canonical SVG mark and export derivative favicon, app icon, brand, social, and screenshot assets from approved sources. Do not claim production-ready brand signoff until the P1 identity/export gates are closed."
 }

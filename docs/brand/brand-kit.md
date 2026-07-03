@@ -9,12 +9,13 @@ Source pass: `docs/brand/branding-pass-2026-07-03.md`
 
 This brand kit records the approved Vibelytics identity direction. It is not a final production asset signoff.
 
-Two gates remain open:
+One source gate is resolved and two gates remain open:
 
-- P0: Public PNG asset provenance is incomplete. See `docs/design/asset-provenance.json`.
+- P0: Route-used campaign/product imagery has been replaced with first-party deterministic assets. See `docs/design/asset-provenance.json` and `scripts/generate-route-assets.py`.
 - P1: The canonical editable logo source does not exist yet. Create and approve `brand/vibelytics-mark.svg` before exporting replacement favicons, social assets, or campaign materials.
+- P1: Current favicons, social assets, and screenshots still need to be refreshed from approved source assets.
 
-No production UI, logo, screenshot, favicon, or social asset changes were made when this kit was created.
+No logo, screenshot, favicon, or social asset changes were made when this kit was created.
 
 ## Brand Position
 
