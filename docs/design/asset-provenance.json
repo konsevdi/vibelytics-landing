@@ -1,165 +1,428 @@
 {
-  "version": 1,
+  "version": 2,
   "date": "2026-07-03",
-  "status": "blocked_until_rights_confirmed",
-  "scope": "Current public brand, social, product, and screenshot assets in the Vibelytics static landing repo.",
-  "policy": "Public, external, generated, third-party, or licensed brand assets must have source, usage rights, allowed uses, attribution, and open rights questions recorded before the brand system can be called production-ready.",
+  "status": "blocked_until_replacements_or_rights_confirmed",
+  "scope": "Current Vibelytics public PNG brand, social, product, campaign, favicon, and screenshot assets in the static landing repo.",
+  "policy": "Public, external, generated, third-party, or licensed brand assets must have source, usage rights, allowed uses, attribution, replacement decision, and open rights questions recorded before the brand system can be called production-ready.",
+  "overallDecision": "No current PNG asset is approved as canonical production brand source. Preserve current PNGs only as temporary implementation assets or internal evidence until documented replacements are created.",
+  "canonicalSourceGate": {
+    "status": "open",
+    "requiredBeforeProductionBrandSignoff": [
+      "Create and approve deterministic brand/vibelytics-mark.svg.",
+      "Export favicon, app icon, avatar, social, and brand PNG derivatives only from approved source assets.",
+      "Replace or document rights for public campaign images currently used by / and /pilot."
+    ],
+    "doNotCreateYet": "Do not create brand/vibelytics-mark.svg until replacement direction is accepted or provenance is resolved enough to proceed."
+  },
   "assets": [
     {
       "path": "brand/vibelytics-mark.png",
       "type": "brand mark raster",
       "dimensions": "400x400",
-      "source": "Repo-local PNG. Exact generation/source file unknown.",
+      "currentReferences": [
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit b7c4853. Exact generation/source file unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Currently used as repo brand evidence only until rights/source are confirmed.",
+      "allowedUses": "Temporary repo asset and internal brand evidence only. Do not expand to new public, deck, social, or merchandise usage.",
       "attribution": "Unknown",
+      "decision": "Preserve the rounded-square V mark concept as evidence, but replace this raster with approved SVG-derived exports.",
+      "approvalState": "internal_evidence_only",
+      "replacementRecommendation": "Create deterministic brand/vibelytics-mark.svg after the asset-source gate is accepted; export future mark PNGs from that SVG.",
+      "priority": "P1",
       "openQuestions": [
         "Was this generated, hand-designed, or exported from a source file?",
-        "Is there an editable SVG/vector source?",
-        "Can it be used publicly across website, social, deck, and merchandise?"
-      ],
-      "approvalState": "needs_provenance"
+        "Is there an editable SVG/vector source outside the repo?",
+        "Can the current raster be used publicly across website, social, deck, and merchandise?"
+      ]
     },
     {
       "path": "brand/vibelytics-og-image.png",
       "type": "social preview raster",
       "dimensions": "1200x630",
-      "source": "Repo-local PNG composed from brand mark, text, and event imagery. Exact source and rights unknown.",
+      "currentReferences": [
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit b7c4853 and modified in commit 27fe263. Appears composed from brand mark, text, and event imagery. Exact source and rights unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Currently referenced as social preview evidence only until rights/source are confirmed.",
+      "allowedUses": "Internal evidence only until source and embedded image rights are documented.",
       "attribution": "Unknown",
+      "decision": "Replace before future social or brand implementation.",
+      "approvalState": "should_be_replaced",
+      "replacementRecommendation": "Rebuild from the approved SVG mark plus first-party or documented campaign imagery; keep public copy pure Vibelytics and avoid SR007/Speedrun language on public social previews.",
+      "priority": "P1",
       "openQuestions": [
-        "What is the provenance of the festival image embedded in the composition?",
+        "What is the provenance of the event image embedded in the composition?",
         "What tool or source file produced this asset?",
         "Is public social distribution approved?"
-      ],
-      "approvalState": "needs_provenance"
+      ]
     },
     {
       "path": "brand/vibelytics-x-avatar.png",
       "type": "social avatar raster",
       "dimensions": "400x400",
-      "source": "Repo-local PNG. Exact generation/source file unknown.",
+      "currentReferences": [
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit b7c4853. Exact generation/source file unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Currently brand evidence only until rights/source are confirmed.",
+      "allowedUses": "Internal evidence only until source and social usage rights are documented.",
       "attribution": "Unknown",
+      "decision": "Replace with SVG-derived avatar export before future social implementation.",
+      "approvalState": "should_be_replaced",
+      "replacementRecommendation": "Export from approved mark source with documented background/grid treatment.",
+      "priority": "P1",
       "openQuestions": [
         "Was this exported from the same source as the mark?",
         "Is X/social profile usage approved?"
-      ],
-      "approvalState": "needs_provenance"
+      ]
     },
     {
       "path": "brand/vibelytics-x-header.png",
       "type": "social header raster",
       "dimensions": "1500x500",
-      "source": "Repo-local PNG. Exact generation/source file unknown.",
+      "currentReferences": [
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit b7c4853 and modified in commit 27fe263. Exact generation/source file unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Currently brand evidence only until rights/source are confirmed.",
+      "allowedUses": "Internal campaign evidence only until embedded image and composition rights are documented.",
       "attribution": "Unknown",
+      "decision": "Replace before future social header use.",
+      "approvalState": "should_be_replaced",
+      "replacementRecommendation": "Rebuild as a Signal Desk social header from approved mark source and documented imagery or first-party product graphics.",
+      "priority": "P1",
       "openQuestions": [
         "What imagery or generated outputs are embedded?",
+        "What source file produced the composition?",
         "Is X/social header usage approved?"
+      ]
+    },
+    {
+      "path": "favicon.png",
+      "type": "deployed favicon raster",
+      "dimensions": "64x64",
+      "currentReferences": [
+        "index.html",
+        "pilot/index.html",
+        "package.json",
+        "docs/brand/brand-kit.md"
       ],
-      "approvalState": "needs_provenance"
+      "source": "Repo-local PNG added in commit b7c4853. Likely derivative of brand/vibelytics-mark.png; exact source unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
+      "usageRights": "Unknown",
+      "allowedUses": "Current deployed temporary favicon only. Do not treat as approved production export.",
+      "attribution": "Unknown",
+      "decision": "Replace after canonical SVG mark is approved.",
+      "approvalState": "temporary_current_public_asset",
+      "replacementRecommendation": "Export from approved brand/vibelytics-mark.svg with small-size simplification and document export settings.",
+      "priority": "P1",
+      "openQuestions": [
+        "Was this generated directly from the current mark PNG?",
+        "Are current mark rights approved for deployed favicon use?"
+      ]
+    },
+    {
+      "path": "apple-touch-icon.png",
+      "type": "deployed app icon raster",
+      "dimensions": "180x180",
+      "currentReferences": [
+        "index.html",
+        "pilot/index.html",
+        "package.json",
+        "docs/brand/brand-kit.md"
+      ],
+      "source": "Repo-local PNG added in commit b7c4853. Likely derivative of brand/vibelytics-mark.png; exact source unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
+      "usageRights": "Unknown",
+      "allowedUses": "Current deployed temporary app icon only. Do not treat as approved production export.",
+      "attribution": "Unknown",
+      "decision": "Replace after canonical SVG mark is approved.",
+      "approvalState": "temporary_current_public_asset",
+      "replacementRecommendation": "Export from approved brand/vibelytics-mark.svg and document export settings.",
+      "priority": "P1",
+      "openQuestions": [
+        "Was this generated directly from the current mark PNG?",
+        "Are current mark rights approved for deployed app icon use?"
+      ]
+    },
+    {
+      "path": "og-image.png",
+      "type": "deployed Open Graph image",
+      "dimensions": "1200x630",
+      "currentReferences": [
+        "index.html",
+        "pilot/index.html",
+        "package.json",
+        "docs/brand/brand-kit.md"
+      ],
+      "source": "Repo-local PNG added in commit b7c4853 and modified in commit 27fe263. Exact source and embedded imagery rights unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
+      "usageRights": "Unknown",
+      "allowedUses": "Current deployed temporary social preview only. Do not reuse for new campaigns.",
+      "attribution": "Unknown",
+      "decision": "Replace before production brand signoff.",
+      "approvalState": "should_be_replaced",
+      "replacementRecommendation": "Rebuild from approved mark source plus documented product/campaign imagery. Keep `/` social metadata pure Vibelytics with no SR007 or Speedrun references.",
+      "priority": "P1",
+      "openQuestions": [
+        "What source file produced this composition?",
+        "What image assets are embedded?",
+        "Are all embedded sources approved for public social sharing?"
+      ]
+    },
+    {
+      "path": "twitter-image.png",
+      "type": "deployed Twitter/X social image",
+      "dimensions": "1200x630",
+      "currentReferences": [
+        "index.html",
+        "pilot/index.html",
+        "package.json",
+        "docs/brand/brand-kit.md"
+      ],
+      "source": "Repo-local PNG added in commit b7c4853 and modified in commit 27fe263. Exact source and embedded imagery rights unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
+      "usageRights": "Unknown",
+      "allowedUses": "Current deployed temporary social preview only. Do not reuse for new campaigns.",
+      "attribution": "Unknown",
+      "decision": "Replace before production brand signoff.",
+      "approvalState": "should_be_replaced",
+      "replacementRecommendation": "Rebuild from approved mark source plus documented product/campaign imagery. Keep `/` social metadata pure Vibelytics with no SR007 or Speedrun references.",
+      "priority": "P1",
+      "openQuestions": [
+        "What source file produced this composition?",
+        "What image assets are embedded?",
+        "Are all embedded sources approved for public social sharing?"
+      ]
     },
     {
       "path": "assets/festival-network.png",
       "type": "campaign / landing imagery",
       "dimensions": "1672x941",
-      "source": "Repo-local PNG. Appears generated or composited; exact source unknown.",
+      "currentReferences": [
+        "index.html",
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit 6ef78b5. Appears generated or composited; exact source unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Currently used on `/` and social compositions; should be confirmed or replaced before production brand signoff.",
+      "allowedUses": "Current temporary landing-page implementation only. Do not expand to new public social, deck, or brand-system usage.",
       "attribution": "Unknown",
+      "decision": "Replace or document rights before production brand signoff because it is used on `/`.",
+      "approvalState": "should_be_replaced",
+      "replacementRecommendation": "Replace with documented first-party, licensed, or generated stage/venue image that supports pre-launch planning without implying audience surveillance.",
+      "priority": "P0",
       "openQuestions": [
         "Was the base event image generated, licensed, or sourced publicly?",
         "Are network overlays generated or manually composited?",
         "Can it be used in public website/social/deck contexts?"
-      ],
-      "approvalState": "needs_provenance"
+      ]
     },
     {
       "path": "assets/taste-map.png",
       "type": "product / campaign imagery",
       "dimensions": "1672x941",
-      "source": "Repo-local PNG. Appears generated or composited; exact source unknown.",
+      "currentReferences": [
+        "index.html",
+        "pilot/index.html",
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit 6ef78b5. Appears generated or composited; exact source unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Currently used in `/` and `/pilot`; should be confirmed or replaced before production brand signoff.",
+      "allowedUses": "Current temporary landing and pilot implementation only. Do not expand to new public social, deck, or brand-system usage.",
       "attribution": "Unknown",
+      "decision": "Replace or document rights before production brand signoff because it is used on `/` and `/pilot`.",
+      "approvalState": "should_be_replaced",
+      "replacementRecommendation": "Replace with a documented first-party product/city-fit diagram or approved Culture Graph campaign asset; avoid visuals that read as live audience tracking.",
+      "priority": "P0",
       "openQuestions": [
         "Was the map/city imagery generated or sourced?",
         "Can it be used publicly without attribution?",
         "Does the visual risk implying live audience tracking?"
-      ],
-      "approvalState": "needs_provenance"
+      ]
     },
     {
       "path": "assets/backstage.png",
       "type": "campaign imagery",
       "dimensions": "1672x941",
-      "source": "Repo-local PNG. Appears generated or composited; exact source unknown.",
+      "currentReferences": [
+        "index.html",
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit 6ef78b5. Appears generated or composited; exact source unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Currently used on `/`; should be confirmed or replaced before production brand signoff.",
+      "allowedUses": "Current temporary landing-page implementation only. Do not expand to new public social, deck, or brand-system usage.",
       "attribution": "Unknown",
+      "decision": "Replace or document rights before production brand signoff because it is used on `/`.",
+      "approvalState": "should_be_replaced",
+      "replacementRecommendation": "Replace with documented first-party, licensed, or generated backstage/pre-show imagery with no unresolved venue or likeness rights.",
+      "priority": "P0",
       "openQuestions": [
         "Was this image generated, licensed, or photographed?",
-        "Are venue/person likeness rights clear?"
-      ],
-      "approvalState": "needs_provenance"
+        "Are venue/person likeness rights clear?",
+        "Can it be publicly reused without attribution?"
+      ]
     },
     {
       "path": "assets/control-room.png",
       "type": "campaign imagery",
       "dimensions": "1672x941",
-      "source": "Repo-local PNG. Exact source unknown.",
+      "currentReferences": [
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit 6ef78b5. Exact source unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Repo evidence only unless used in current route; confirm before expanding usage.",
+      "allowedUses": "Internal evidence only. It is not referenced by current routes.",
       "attribution": "Unknown",
+      "decision": "Remove from future brand implementation unless provenance is resolved; it can remain in the repo as historical evidence for now.",
+      "approvalState": "remove_from_future_implementation",
+      "replacementRecommendation": "If a control-room visual is needed, create or license a fresh Signal Desk image with documented rights.",
+      "priority": "P2",
       "openQuestions": [
         "Was this image generated, licensed, or photographed?",
-        "Does this asset fit the preferred brand territory?"
-      ],
-      "approvalState": "needs_provenance"
+        "Does this asset fit the approved Signal Desk territory better than current route imagery?",
+        "Can it be publicly reused without attribution?"
+      ]
     },
     {
       "path": "assets/app_screen_mock.png",
       "type": "product mockup imagery",
       "dimensions": "1680x1000",
-      "source": "Repo-local PNG. Exact source unknown.",
+      "currentReferences": [
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/asset-provenance.json"
+      ],
+      "source": "Repo-local PNG added in commit 6ef78b5. Exact source unknown.",
+      "sourceStatus": "still_unknown",
+      "rightsStatus": "still_unknown",
       "usageRights": "Unknown",
-      "allowedUses": "Repo evidence only unless used in current route; confirm before expanding usage.",
+      "allowedUses": "Internal evidence only. It is not referenced by current routes.",
       "attribution": "Unknown",
+      "decision": "Remove from future brand implementation and replace with current route screenshots or source-controlled first-party product mockups.",
+      "approvalState": "remove_from_future_implementation",
+      "replacementRecommendation": "Use current `/pilot` screenshots after asset provenance is resolved, or create a documented static product mockup from repo-owned UI.",
+      "priority": "P2",
       "openQuestions": [
         "Was this generated from an earlier UI?",
-        "Should it be preserved or replaced by current `/pilot` screenshots?"
-      ],
-      "approvalState": "needs_provenance"
+        "Does it still represent the current pilot accurately?",
+        "Can it be publicly reused without attribution?"
+      ]
     },
     {
       "path": "docs/assets/vibelytics-landing-screenshot.png",
       "type": "verification screenshot",
       "dimensions": "1440x3804",
-      "source": "Captured from repo implementation.",
-      "usageRights": "Derivative of repo-local implementation and assets; inherits open asset provenance questions.",
-      "allowedUses": "Internal docs and submission evidence pending upstream asset-rights confirmation.",
-      "attribution": "Not required for screenshot itself.",
-      "openQuestions": [
-        "Screenshot contains assets whose provenance is still unknown."
+      "currentReferences": [
+        "README.md",
+        "docs/VERCEL_DEPLOYMENT_SUMMARY.md",
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/roadmap.md",
+        "docs/design/asset-provenance.json"
       ],
-      "approvalState": "conditional"
+      "source": "Captured from repo implementation; originally added in commit 6ef78b5 and modified in commit 4c7b9b9.",
+      "sourceStatus": "confirmed_as_repo_screenshot",
+      "rightsStatus": "inherits_unknown_embedded_asset_rights",
+      "usageRights": "Derivative of repo-local implementation and current assets; inherits open asset provenance questions.",
+      "allowedUses": "Internal docs and historical evidence only pending upstream asset-rights confirmation.",
+      "attribution": "Not required for screenshot itself.",
+      "decision": "Safe only as internal evidence. Regenerate after public assets are replaced.",
+      "approvalState": "safe_internal_evidence_only",
+      "replacementRecommendation": "Capture fresh screenshots after the landing page is updated with documented assets.",
+      "priority": "P1",
+      "openQuestions": [
+        "Screenshot contains current route assets whose provenance is still unknown."
+      ]
     },
     {
       "path": "docs/assets/vibelytics-pilot-screenshot.png",
       "type": "verification screenshot",
       "dimensions": "1440x960",
-      "source": "Captured from repo implementation.",
-      "usageRights": "Derivative of repo-local implementation and assets; inherits open asset provenance questions.",
-      "allowedUses": "Internal docs and submission evidence pending upstream asset-rights confirmation.",
-      "attribution": "Not required for screenshot itself.",
-      "openQuestions": [
-        "Screenshot contains assets whose provenance is still unknown."
+      "currentReferences": [
+        "README.md",
+        "docs/VERCEL_DEPLOYMENT_SUMMARY.md",
+        "docs/brand/brand-kit.md",
+        "docs/brand/branding-pass-2026-07-03.md",
+        "docs/design/roadmap.md",
+        "docs/design/asset-provenance.json"
       ],
-      "approvalState": "conditional"
+      "source": "Captured from repo implementation; originally added in commit 6ef78b5 and modified in commits 9e187ad, 927a649, and b0ee83c.",
+      "sourceStatus": "confirmed_as_repo_screenshot",
+      "rightsStatus": "inherits_unknown_embedded_asset_rights",
+      "usageRights": "Derivative of repo-local implementation and current assets; inherits open asset provenance questions.",
+      "allowedUses": "Internal docs and historical evidence only pending upstream asset-rights confirmation.",
+      "attribution": "Not required for screenshot itself.",
+      "decision": "Safe only as internal evidence. Regenerate after public assets are replaced.",
+      "approvalState": "safe_internal_evidence_only",
+      "replacementRecommendation": "Capture fresh screenshots after the pilot is updated with documented assets.",
+      "priority": "P1",
+      "openQuestions": [
+        "Screenshot contains current route assets whose provenance is still unknown."
+      ]
     }
-  ]
+  ],
+  "summaryByDecision": {
+    "confirmed": [],
+    "still_unknown": [
+      "brand/vibelytics-mark.png"
+    ],
+    "safe_only_as_internal_evidence": [
+      "docs/assets/vibelytics-landing-screenshot.png",
+      "docs/assets/vibelytics-pilot-screenshot.png"
+    ],
+    "should_be_replaced": [
+      "brand/vibelytics-og-image.png",
+      "brand/vibelytics-x-avatar.png",
+      "brand/vibelytics-x-header.png",
+      "favicon.png",
+      "apple-touch-icon.png",
+      "og-image.png",
+      "twitter-image.png",
+      "assets/festival-network.png",
+      "assets/taste-map.png",
+      "assets/backstage.png"
+    ],
+    "remove_from_future_brand_implementation": [
+      "assets/control-room.png",
+      "assets/app_screen_mock.png"
+    ]
+  },
+  "nextAction": "A future Codex thread should replace the P0 route-used imagery or document rights, then create the canonical SVG mark and export derivative PNGs. Do not claim production-ready brand signoff until the P0/P1 source gates are closed."
 }
