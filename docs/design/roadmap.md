@@ -1,12 +1,14 @@
 # Vibelytics Design Roadmap
 
-Last updated: 2026-07-03
+Last updated: 2026-07-04
 
 ## Current State
 
 Vibelytics has a static public landing page and clickable pilot for an AI launch copilot for live culture. The current identity now has repo-owned source assets: route imagery, canonical SVG mark, raster derivatives, social images, refreshed screenshots, final visual QA, and shared route tokens.
 
 The repo now includes a durable design roadmap, an approved strategy brand kit, a focused asset-source pass, first-party route imagery, and canonical identity exports. This roadmap is the coordination point for future design-to-code passes.
+
+Production deployment verification passed on 2026-07-04 for commit `bccf62c` at `https://vibelytics-landing.vercel.app`. Live `/` and `/pilot` matched local `main`, production assets resolved, desktop/mobile browser QA passed, and the pilot interaction smoke test passed. This is deployment verification evidence, not production brand signoff by itself.
 
 ## Decisions Recorded
 
@@ -25,6 +27,7 @@ The repo now includes a durable design roadmap, an approved strategy brand kit, 
 - Favicon, app icon, brand, avatar, social, and screenshot derivatives were refreshed from repo-owned source/export paths.
 - Final visual QA passed across `/`, `/pilot`, favicon/app icon/social crops, desktop/mobile viewports, and the pilot interaction smoke test.
 - Shared color, semantic, typography, radius, elevation, and motion primitives now live in `styles/tokens.css` and are consumed by `index.html` and `pilot/index.html`.
+- Production verification passed for the current static deployment; production brand signoff remains a separate explicit decision.
 
 ## Artifacts
 
@@ -53,12 +56,15 @@ P1: Resolved for current static routes. Shared color, typography, radius, elevat
 
 P1: Resolved for current static routes. Final visual QA found no blocking crop, layout, copy, asset-load, or pilot interaction issues.
 
+P1: Resolved for current production deployment. Production QA found no deployment, asset-resolution, copy purity, static-only, viewport, or pilot interaction blockers.
+
 ## Recommended Path
 
 1. Preserve the current static route strategy: `/` stays pure Vibelytics and `/pilot` may carry subtle SR007/static pilot context.
 2. Keep shared tokens in `styles/tokens.css`; add new route-specific CSS only when it is layout or component behavior, not a duplicate brand primitive.
 3. Keep asset export scripts and provenance register current if future visual QA changes any source assets.
 4. Move to production brand signoff review or deployment monitoring with screenshots from the final QA pass as evidence.
+5. Use the 2026-07-04 production verification pass as deployment evidence for the next brand signoff review; do not infer signoff from deployment verification alone.
 
 ## Verification Commands
 
@@ -140,10 +146,45 @@ Final QA notes:
 - Pilot interaction smoke test passed after selecting Mira K / London / 2,000-3,000 cap hall / Fashion and generating a decision: output changed to Adjust, Run 08, 68% confidence, demand score 69, GBP34-99 pricing, and an updated mailto launch brief.
 - Favicon, app icon, OG image, and X header were visually reviewed for obvious crop issues; no asset source/export changes were made, so `docs/design/asset-provenance.json` was not changed.
 
+Commands run for the 2026-07-04 production deployment verification:
+
+```bash
+git status --short --branch
+git log -1 --oneline
+curl -sS -D - https://vibelytics-landing.vercel.app/ -o /tmp/vibelytics-prod-home.html
+curl -sS -D - https://vibelytics-landing.vercel.app/pilot -o /tmp/vibelytics-prod-pilot.html
+shasum -a 256 index.html pilot/index.html /tmp/vibelytics-prod-home.html /tmp/vibelytics-prod-pilot.html
+cmp -s index.html /tmp/vibelytics-prod-home.html
+cmp -s pilot/index.html /tmp/vibelytics-prod-pilot.html
+curl -sS -I https://vibelytics-landing.vercel.app/favicon.png
+curl -sS -I https://vibelytics-landing.vercel.app/apple-touch-icon.png
+curl -sS -I https://vibelytics-landing.vercel.app/og-image.png
+curl -sS -I https://vibelytics-landing.vercel.app/twitter-image.png
+curl -sS -I https://www.vibelytics.ai/favicon.png
+curl -sS -I https://www.vibelytics.ai/apple-touch-icon.png
+curl -sS -I https://www.vibelytics.ai/og-image.png
+curl -sS -I https://www.vibelytics.ai/twitter-image.png
+node /private/tmp/vibelytics-prod-qa.mjs
+rg -n "SR007|Speedrun|a16z|Andreessen" /tmp/vibelytics-prod-home.html /tmp/vibelytics-prod-pilot.html
+rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment" /tmp/vibelytics-prod-home.html /tmp/vibelytics-prod-pilot.html index.html pilot/index.html
+```
+
+Production verification notes:
+
+- `git log -1 --oneline` returned `bccf62c Consolidate Vibelytics tokens and final QA`.
+- Live `/` and `/pilot` returned HTTP 200 from Vercel, and their SHA-256 hashes matched `index.html` and `pilot/index.html` from local `main`.
+- Production favicon, app icon, OG image, and Twitter image URLs resolved with HTTP 200 and `image/png` content types on both `vibelytics-landing.vercel.app` and canonical `www.vibelytics.ai` asset URLs.
+- Playwright production QA passed for `/` and `/pilot` at 1440x960 and 390x844: status 200, Vibelytics content present, no console warnings/errors, no horizontal overflow, no broken images, and no unexpected third-party requests.
+- `/` remained pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
+- `/pilot` retained only the approved subtle SR007/static pilot context: `SR007 static pilot`, `SR007 static demo context`, and the footer static pilot note. No Speedrun, a16z, or Andreessen references were found.
+- No backend/API/external-service behavior was found in the local source or fetched production HTML.
+- Production pilot interaction smoke test passed after selecting Mira K / London / 2,000-3,000 cap hall / Fashion and generating a decision: output changed to Adjust, demand score 69, confidence 68%, London GBP pricing, and an updated mailto launch brief.
+
 ## Next Action For Future Codex Thread
 
-Move to production brand signoff review or deployment monitoring:
+Move to production brand signoff review and lightweight deployment monitoring:
 
 1. Use the final visual QA screenshots and token consolidation as current evidence.
 2. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
 3. Keep `/` pure Vibelytics and `/pilot` limited to subtle SR007/static pilot context.
+4. Treat production brand signoff as the next explicit decision; do not assume it from deployment verification alone.
