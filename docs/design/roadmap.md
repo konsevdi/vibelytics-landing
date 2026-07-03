@@ -4,7 +4,7 @@ Last updated: 2026-07-03
 
 ## Current State
 
-Vibelytics has a static public landing page and clickable pilot for an AI launch copilot for live culture. The current identity now has repo-owned source assets: route imagery, canonical SVG mark, raster derivatives, social images, and refreshed screenshots.
+Vibelytics has a static public landing page and clickable pilot for an AI launch copilot for live culture. The current identity now has repo-owned source assets: route imagery, canonical SVG mark, raster derivatives, social images, refreshed screenshots, final visual QA, and shared route tokens.
 
 The repo now includes a durable design roadmap, an approved strategy brand kit, a focused asset-source pass, first-party route imagery, and canonical identity exports. This roadmap is the coordination point for future design-to-code passes.
 
@@ -23,6 +23,8 @@ The repo now includes a durable design roadmap, an approved strategy brand kit, 
 - Route-used campaign/product imagery was replaced with deterministic first-party PNGs generated from repo source.
 - The canonical SVG mark now exists at `brand/vibelytics-mark.svg`.
 - Favicon, app icon, brand, avatar, social, and screenshot derivatives were refreshed from repo-owned source/export paths.
+- Final visual QA passed across `/`, `/pilot`, favicon/app icon/social crops, desktop/mobile viewports, and the pilot interaction smoke test.
+- Shared color, semantic, typography, radius, elevation, and motion primitives now live in `styles/tokens.css` and are consumed by `index.html` and `pilot/index.html`.
 
 ## Artifacts
 
@@ -47,17 +49,16 @@ P1: Resolved for current favicon/social PNG source lineage. Continue to regenera
 
 P1: Resolved for current screenshot source lineage. Screenshots were refreshed with Playwright after source assets and route logo updates.
 
-P1: Shared design tokens are duplicated across `index.html` and `pilot/index.html`. Consolidate token decisions after asset provenance and canonical SVG gates are resolved.
+P1: Resolved for current static routes. Shared color, typography, radius, elevation, semantic, and motion token decisions are consolidated in `styles/tokens.css`, with route-specific layout CSS kept in `index.html` and `pilot/index.html`.
 
-P1: Final visual QA remains open across `/`, `/pilot`, favicons, social crops, and screenshots.
+P1: Resolved for current static routes. Final visual QA found no blocking crop, layout, copy, asset-load, or pilot interaction issues.
 
 ## Recommended Path
 
-1. Run final visual QA across `/`, `/pilot`, favicons, social crops, and screenshots.
-2. Normalize shared color, typography, spacing, semantic, radius, and elevation tokens from `docs/brand/brand-kit.md`.
-3. Apply approved tokens to `/` and `/pilot` without changing route strategy.
-4. Re-run build, route, copy, viewport, screenshot, and interaction checks.
-5. Keep asset export scripts and provenance register current if visual QA changes any source assets.
+1. Preserve the current static route strategy: `/` stays pure Vibelytics and `/pilot` may carry subtle SR007/static pilot context.
+2. Keep shared tokens in `styles/tokens.css`; add new route-specific CSS only when it is layout or component behavior, not a duplicate brand primitive.
+3. Keep asset export scripts and provenance register current if future visual QA changes any source assets.
+4. Move to production brand signoff review or deployment monitoring with screenshots from the final QA pass as evidence.
 
 ## Verification Commands
 
@@ -120,11 +121,29 @@ rg -n "SR007|Speedrun" index.html
 npm run build
 ```
 
+Commands run for the 2026-07-03 final visual QA and token consolidation pass:
+
+```bash
+npm run build
+rg -n "a16z|Andreessen|Speedrun|SR007" . -g '!node_modules' -g '!dist' -g '!archive'
+rg -n "SR007|Speedrun|a16z|Andreessen" index.html
+rg -n "SR007 static pilot|Synthetic scenarios|No backend|SR007 static demo context|no external services|no attendee tracking|Speedrun|a16z|Andreessen" pilot/index.html
+node -e 'JSON.parse(require("fs").readFileSync("docs/design/asset-provenance.json","utf8")); console.log("asset-provenance.json ok")'
+python -m http.server 4173
+node /private/tmp/vibelytics-qa.mjs
+```
+
+Final QA notes:
+
+- Browser plugin QA first exposed stale local service-worker interference on `127.0.0.1:3000` and `localhost:4173`; clean Playwright QA was run with service workers blocked.
+- Clean Playwright checks passed for `/` and `/pilot/` at 1440x960 and 390x844: status 200, meaningful Vibelytics content, no console warnings/errors, no framework overlay, no horizontal overflow, and no broken route images.
+- Pilot interaction smoke test passed after selecting Mira K / London / 2,000-3,000 cap hall / Fashion and generating a decision: output changed to Adjust, Run 08, 68% confidence, demand score 69, GBP34-99 pricing, and an updated mailto launch brief.
+- Favicon, app icon, OG image, and X header were visually reviewed for obvious crop issues; no asset source/export changes were made, so `docs/design/asset-provenance.json` was not changed.
+
 ## Next Action For Future Codex Thread
 
-Run final visual QA and shared token consolidation:
+Move to production brand signoff review or deployment monitoring:
 
-1. Inspect `/`, `/pilot`, favicons, social images, and screenshots across desktop/mobile.
-2. Keep `docs/design/asset-provenance.json` current.
-3. Consolidate duplicated tokens across `index.html` and `pilot/index.html`.
-4. Do not claim production-ready brand signoff until visual QA and token consolidation are complete.
+1. Use the final visual QA screenshots and token consolidation as current evidence.
+2. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
+3. Keep `/` pure Vibelytics and `/pilot` limited to subtle SR007/static pilot context.
