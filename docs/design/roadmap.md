@@ -18,6 +18,8 @@ Production monitoring passed on 2026-07-05 for commit `9532f2c`. Live `/` and `/
 
 Post-signoff documentation consistency audit passed on 2026-07-05. Historical pass docs now include supersession notes where old blocker language could mislead future work.
 
+Docs-only production monitoring recheck passed on 2026-07-05 for commit `b8bcd50`. Production `/` and `/pilot` returned 200, live route HTML matched local route files, deployed favicon/app/OG/Twitter images resolved, `/` remained pure Vibelytics, `/pilot` retained only approved subtle SR007 static-pilot context, no backend/API/external-service behavior was found, the production pilot interaction smoke test passed, and build/JSON validation passed.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -36,6 +38,7 @@ Post-signoff documentation consistency audit passed on 2026-07-05. Historical pa
 - Final visual QA passed across `/`, `/pilot`, favicon/app icon/social crops, desktop/mobile viewports, and the pilot interaction smoke test.
 - Shared color, semantic, typography, radius, elevation, and motion primitives now live in `styles/tokens.css` and are consumed by `index.html` and `pilot/index.html`.
 - Production verification passed for the current static deployment.
+- Docs-only production monitoring recheck passed after the historical signoff clarification commit.
 
 ## Artifacts
 
@@ -73,6 +76,8 @@ P1: Resolved for current production deployment. Production QA found no deploymen
 P1: Resolved for current production brand scope. Final production brand review found no P0/P1 blockers. `assets/control-room.png` and `assets/app_screen_mock.png` remain accepted P2 archive risks: internal evidence only, not approved for future public implementation unless provenance is resolved.
 
 P1: Resolved for current production monitoring. The 2026-07-05 monitoring pass found no production route, asset-resolution, copy-boundary, static-only, viewport, or pilot interaction regressions.
+
+P1: Resolved for docs-only production monitoring after commit `b8bcd50`. The 2026-07-05 recheck found no production route, asset-resolution, copy-boundary, static-only, pilot interaction, build, or JSON validation regressions.
 
 ## Recommended Path
 
@@ -195,6 +200,35 @@ Production verification notes:
 - `/pilot` retained only the approved subtle SR007/static pilot context: `SR007 static pilot`, `SR007 static demo context`, and the footer static pilot note. No Speedrun, a16z, or Andreessen references were found.
 - No backend/API/external-service behavior was found in the local source or fetched production HTML.
 - Production pilot interaction smoke test passed after selecting Mira K / London / 2,000-3,000 cap hall / Fashion and generating a decision: output changed to Adjust, demand score 69, confidence 68%, London GBP pricing, and an updated mailto launch brief.
+
+Commands run for the 2026-07-05 docs-only production monitoring recheck:
+
+```bash
+curl -sS -L -w '%{http_code} %{url_effective}\n' https://vibelytics-landing.vercel.app/ -o /tmp/vibelytics-prod-home.html
+curl -sS -L -w '%{http_code} %{url_effective}\n' https://vibelytics-landing.vercel.app/pilot -o /tmp/vibelytics-prod-pilot.html
+curl -sS -I https://vibelytics-landing.vercel.app/favicon.png
+curl -sS -I https://vibelytics-landing.vercel.app/apple-touch-icon.png
+curl -sS -I https://vibelytics-landing.vercel.app/og-image.png
+curl -sS -I https://vibelytics-landing.vercel.app/twitter-image.png
+shasum -a 256 index.html pilot/index.html /tmp/vibelytics-prod-home.html /tmp/vibelytics-prod-pilot.html
+cmp -s index.html /tmp/vibelytics-prod-home.html
+cmp -s pilot/index.html /tmp/vibelytics-prod-pilot.html
+rg -n "SR007|Speedrun|a16z|Andreessen|fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment" /tmp/vibelytics-prod-home.html /tmp/vibelytics-prod-pilot.html index.html pilot/index.html
+node -e "const { chromium } = require('playwright'); /* production pilot interaction smoke */"
+npm run build
+node -e "for (const f of ['docs/design/production-readiness.json','docs/design/asset-provenance.json']) { JSON.parse(require('fs').readFileSync(f,'utf8')); console.log(f+' ok'); }"
+```
+
+Docs-only production monitoring notes:
+
+- `git log -1 --oneline` before the recheck was `b8bcd50 Clarify historical signoff docs`.
+- Live `/` and `/pilot` returned HTTP 200 from Vercel, and their SHA-256 hashes matched `index.html` and `pilot/index.html`.
+- Production favicon, app icon, OG image, and Twitter image URLs resolved with HTTP 200 and `image/png` content types.
+- `/` remained pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
+- `/pilot` retained only the approved subtle SR007/static pilot context: `SR007 static pilot`, `SR007 static demo context`, and the footer static pilot note.
+- No backend/API/external-service behavior was found in the local route files or fetched production HTML.
+- Production pilot interaction smoke test passed after selecting Mira K / London / 2,000-3,000 cap hall / Fashion and generating a decision: output changed to Adjust, Run 08, demand score 69, confidence 68%, GBP34-99 pricing, and an updated mailto launch brief.
+- `npm run build` passed, and `docs/design/production-readiness.json` plus `docs/design/asset-provenance.json` parsed as valid JSON.
 
 Commands run for the 2026-07-05 production brand signoff review:
 
