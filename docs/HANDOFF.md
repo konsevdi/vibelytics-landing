@@ -3,7 +3,7 @@
 Last updated: 2026-07-05
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 growth/conversion iteration passed local QA; production verification follows the push.
+Current status: Static V2 growth/conversion iteration passed local and production QA.
 
 ## Production Status
 
@@ -14,6 +14,7 @@ Current status: Static V2 growth/conversion iteration passed local QA; productio
 - No Hostinger website ID, Horizons edit URL, or Hostinger deployment config is present in this repo. If Hostinger is intended to be a separate live surface, obtain the Hostinger website ID/edit URL before updating it.
 - Production brand signoff passed for the current static public scope.
 - Latest production monitoring passed after commit `79e745b`.
+- Growth/conversion production monitoring passed after commit `93dd793`.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.

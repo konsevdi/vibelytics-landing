@@ -1,10 +1,10 @@
 {
   "version": 2,
   "date": "2026-07-05",
-  "status": "pass_static_v2_growth_conversion_local_qa_pending_production",
+  "status": "pass_static_v2_growth_conversion_production_monitoring_current",
   "lastMonitoringPass": "2026-07-05",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Static V2 growth/conversion iteration passed local QA and is pending production verification after push. The iteration adds a launch brief checklist on /, clearer CTA paths into /pilot and email brief, and an intake-ready generated launch brief artifact while preserving pure Vibelytics route policy and static-only behavior.",
+  "decision": "Production monitoring passed for the Vibelytics Static V2 growth/conversion public route scope. The iteration adds a launch brief checklist on /, clearer CTA paths into /pilot and email brief, and an intake-ready generated launch brief artifact while preserving pure Vibelytics route policy and static-only behavior.",
   "scope": [
     "/",
     "/pilot",
@@ -38,22 +38,25 @@
     "staticV2LocalImplementation": "pass",
     "staticV2ProductionMonitoring": "pass",
     "growthConversionLocalQa": "pass",
-    "growthConversionProductionMonitoring": "pending_after_push"
+    "growthConversionProductionMonitoring": "pass"
   },
   "monitoringHistory": [
     {
       "date": "2026-07-05",
-      "status": "local_pass_pending_production",
-      "productionCommit": "pending",
-      "summary": "Static V2 growth/conversion iteration implemented locally. / now includes a launch brief checklist and clearer CTA path to /pilot. /pilot includes a direct email-brief anchor, stronger input-panel guidance, a What to send Vibelytics output block, and copied/downloaded/emailed launch briefs now read as intake artifacts with scenario, generated decision, rationale, sequence, next inputs, requested follow-up, preview boundary, and share link. Local build, JSON validation, forbidden-term scan, static-only scan, and the Mira K / London / 2,000-3,000 cap hall / Fashion pilot smoke test passed.",
+      "status": "pass",
+      "productionCommit": "93dd793",
+      "summary": "Static V2 growth/conversion production monitoring passed. / now includes a launch brief checklist and clearer CTA path to /pilot. /pilot includes a direct email-brief anchor, stronger input-panel guidance, a What to send Vibelytics output block, and copied/downloaded/emailed launch briefs now read as intake artifacts with scenario, generated decision, rationale, sequence, next inputs, requested follow-up, preview boundary, and share link. Canonical and Vercel / and /pilot matched local route files byte-for-byte. Local and production pilot smokes passed for Mira K / London / 2,000-3,000 cap hall / Fashion.",
       "checks": {
+        "routeStatus": "pass",
+        "routeContentMatchesMain": "pass",
         "build": "pass",
         "jsonValidation": "pass",
         "rootPurity": "pass",
         "pilotPurity": "pass",
         "staticOnlyBehavior": "pass",
+        "assetResolution": "pass",
         "pilotInteractionSmoke": "pass",
-        "productionMonitoring": "pending_after_push"
+        "productionMonitoring": "pass"
       }
     },
     {

@@ -26,7 +26,7 @@ Live-site discovery and verification passed on 2026-07-05 for commit `27b202e`. 
 
 Static V2 product/marketing implementation passed local and production QA on 2026-07-05 for commit `79e745b`. The scope keeps the site static-only while sharpening `/` around promoter/venue conversion and upgrading `/pilot` into a richer launch-brief generator with budget, timeline, ticketing, risk, copy/download/share/email actions, and URL-restorable scenarios. Canonical `https://www.vibelytics.ai/` and `/pilot/` returned 200 and matched local route files byte-for-byte.
 
-Static V2 growth/conversion iteration was implemented on 2026-07-05. The scope keeps the static-only constraint and sharpens qualified inbound conversion by adding a launch brief checklist on `/`, strengthening the CTA path into `/pilot`, adding a direct email-brief path inside `/pilot`, and upgrading the generated brief into an intake artifact with scenario, decision, rationale, launch sequence, next inputs, requested follow-up, preview boundary, and share link. Local build, JSON validation, forbidden-term scan, static-only scan, and the Mira K / London / 2,000-3,000 cap hall / Fashion pilot smoke test passed.
+Static V2 growth/conversion iteration passed local and production QA on 2026-07-05 for commit `93dd793`. The scope keeps the static-only constraint and sharpens qualified inbound conversion by adding a launch brief checklist on `/`, strengthening the CTA path into `/pilot`, adding a direct email-brief path inside `/pilot`, and upgrading the generated brief into an intake artifact with scenario, decision, rationale, launch sequence, next inputs, requested follow-up, preview boundary, and share link. Canonical `https://www.vibelytics.ai/` and `/pilot/` returned 200 and matched local route files byte-for-byte.
 
 ## Decisions Recorded
 
@@ -98,7 +98,7 @@ P1: Resolved for live-site discovery after commit `27b202e`. The 2026-07-05 chec
 
 P1: Resolved for Static V2 production monitoring after commit `79e745b`. The 2026-07-05 check found canonical `/` and `/pilot/` live, static-only, pure Vibelytics, matching local route files, and passing the upgraded pilot interaction smoke test.
 
-P1: Resolved locally for the Static V2 growth/conversion iteration. The 2026-07-05 check found the new launch brief checklist and email-brief journey static-only, pure Vibelytics, and passing build, JSON validation, route-boundary scans, static-only scans, and the upgraded pilot interaction smoke test.
+P1: Resolved for the Static V2 growth/conversion iteration after commit `93dd793`. The 2026-07-05 check found the new launch brief checklist and email-brief journey live, static-only, pure Vibelytics, matching local route files, and passing build, JSON validation, route-boundary scans, static-only scans, asset checks, and the upgraded pilot interaction smoke test.
 
 ## Recommended Path
 
