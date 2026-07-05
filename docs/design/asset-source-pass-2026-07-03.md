@@ -4,6 +4,8 @@ Date: 2026-07-03
 Scope: Public PNG brand, social, campaign, product, favicon, and screenshot assets
 Status: Source gate still open; production brand signoff blocked
 
+Supersession note, 2026-07-05: This file is historical evidence from the initial asset-source audit. The blockers recorded here were later resolved for the current public scope by first-party route imagery, the canonical SVG mark, deterministic brand/social exports, final visual QA, production brand signoff, and production monitoring. Use `docs/HANDOFF.md`, `docs/design/production-readiness.json`, `docs/design/asset-provenance.json`, and `docs/design/roadmap.md` for current status before acting on this pass.
+
 Follow-up status: The P0 route-used image replacements were implemented later on 2026-07-03 with `scripts/generate-route-assets.py`. The canonical SVG mark and raster derivatives were also implemented later on 2026-07-03 with `brand/vibelytics-mark.svg` and `scripts/generate-brand-assets.py`. Use `docs/design/roadmap.md` and `docs/design/asset-provenance.json` for the current next action.
 
 ## What Was Inspected

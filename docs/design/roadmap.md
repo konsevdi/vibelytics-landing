@@ -16,6 +16,8 @@ Production monitoring passed on 2026-07-05 for commit `9532f2c`. Live `/` and `/
 
 `docs/HANDOFF.md` now provides the concise post-signoff operating handoff for future Vibelytics threads.
 
+Post-signoff documentation consistency audit passed on 2026-07-05. Historical pass docs now include supersession notes where old blocker language could mislead future work.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -45,6 +47,7 @@ Production monitoring passed on 2026-07-05 for commit `9532f2c`. Live `/` and `/
 - `docs/design/final-review.md`: final production brand review, evidence, accepted risks, and PASS decision for the current static scope.
 - `docs/design/production-readiness.json`: structured production readiness decision for the current static brand scope.
 - `docs/HANDOFF.md`: concise post-signoff handoff with production status, brand boundaries, route rules, source-of-truth files, accepted risks, and re-run checks.
+- Historical pass docs with supersession notes: `docs/brand/branding-pass-2026-07-03.md`, `docs/design/asset-source-pass-2026-07-03.md`, and `docs/design/identity-source-pass-2026-07-03.md`.
 - `scripts/generate-route-assets.py`: deterministic source generator for `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png`.
 - `brand/vibelytics-mark.svg`: canonical editable Vibelytics mark source.
 - `scripts/generate-brand-assets.py`: deterministic export generator for mark, favicon, app icon, avatar, and social PNG derivatives.
@@ -270,6 +273,24 @@ Post-signoff handoff notes:
 - Added `docs/HANDOFF.md` as the concise operational handoff package.
 - No production route, product copy, implementation, or asset changes were made.
 - The handoff preserves the approved route boundaries, static-only constraints, source-of-truth files, accepted P2 archive risks, and checks to re-run after future changes.
+
+Commands run for the 2026-07-05 post-signoff documentation consistency audit:
+
+```bash
+git status --short --branch
+rg -n "production brand signoff pending|signoff pending|final visual QA.*open|visual QA.*open|token consolidation.*open|source gate still open|Source gate still open|production brand signoff blocked|brand signoff blocked|source/provenance|provenance.*pending|pending provenance|still not final production brand signoff|not final production brand signoff|Do not claim production-ready|does not by itself claim|remainingBeforeProductionBrandSignoff|visual signoff pending|source_assets_established_visual_signoff_pending|implementation QA gated" docs README.md
+rg -n "open|blocked|pending|not final|Do not claim|remain|remaining|signoff" docs/brand docs/design docs/HANDOFF.md README.md
+npm run build
+node -e 'for (const f of ["docs/design/asset-provenance.json","docs/design/production-readiness.json"]) { JSON.parse(require("fs").readFileSync(f,"utf8")); console.log(f+" ok") }'
+rg -n "SR007|Speedrun|a16z|Andreessen" index.html pilot/index.html
+rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment" index.html pilot/index.html
+```
+
+Post-signoff documentation consistency notes:
+
+- Added supersession notes to historical pass docs that still carry old blocker/open-gate language.
+- Current source-of-truth docs remain `docs/HANDOFF.md`, `docs/design/production-readiness.json`, `docs/design/final-review.md`, `docs/design/roadmap.md`, `docs/design/asset-provenance.json`, and `docs/brand/brand-kit.md`.
+- No production route, product copy, implementation, token, or asset files were changed.
 
 ## Next Action For Future Codex Thread
 

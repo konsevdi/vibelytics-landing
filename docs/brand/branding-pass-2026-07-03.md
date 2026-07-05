@@ -5,6 +5,8 @@ Pass: `design-to-code-workflow:branding-pass`
 Mode: Evolve existing identity, not replace
 Status: Awaiting direction approval before implementation
 
+Supersession note, 2026-07-05: This file is historical evidence from the initial branding pass. Direction 1, Signal Desk, was later approved as the product identity backbone; source/provenance blockers were resolved for the current public scope; final visual QA, production brand signoff, and production monitoring passed. Use `docs/HANDOFF.md`, `docs/brand/brand-kit.md`, `docs/design/production-readiness.json`, and `docs/design/roadmap.md` for current status before acting on this pass.
+
 ## Scope
 
 This pass audits the current Vibelytics landing site and pilot identity, records three brand territories for approval, and updates the design operating system. No UI, logo, copy, or asset implementation changes were made.
