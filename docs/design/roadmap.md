@@ -22,11 +22,15 @@ Docs-only production monitoring recheck passed on 2026-07-05 for commit `b8bcd50
 
 Public pilot copy cleanup was requested on 2026-07-05 after SR007 wording was identified as a Speedrun leftover. Current route policy is now pure Vibelytics on both `/` and `/pilot`; public SR007, Speedrun, a16z, and Andreessen references are not approved on either route.
 
+Live-site discovery and verification passed on 2026-07-05 for commit `27b202e`. Canonical `https://www.vibelytics.ai` and `https://vibelytics-landing.vercel.app` both returned 200 for `/` and `/pilot`; fetched HTML matched local route files byte-for-byte; `/pilot` contained the new Vibelytics preview copy with no SR007, Speedrun, a16z, or Andreessen references; and no backend/API/external-service behavior was found. DNS/header checks showed `www.vibelytics.ai` serving through Vercel and the apex redirecting to `www`; no Hostinger website ID, Horizons edit URL, or Hostinger deployment config was discoverable from the repo.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
 - `/` should remain pure Vibelytics branding with no SR007 references.
 - `/pilot` should also remain pure Vibelytics branding with no SR007, Speedrun, a16z, or Andreessen references.
+- Canonical public production is `https://www.vibelytics.ai`; the Vercel deployment URL is `https://vibelytics-landing.vercel.app`.
+- If a separate Hostinger surface exists, it requires a Hostinger website ID or edit URL before it can be verified or updated.
 - Static-only constraints remain in force: no backend, no API routes, no external runtime services, no new dependencies unless separately approved.
 - The current PNG/CSS mark can be preserved as evidence, but it is not sufficient as canonical editable identity source.
 - Signal Desk is approved as the product identity backbone.
@@ -42,6 +46,7 @@ Public pilot copy cleanup was requested on 2026-07-05 after SR007 wording was id
 - Production verification passed for the current static deployment.
 - Docs-only production monitoring recheck passed after the historical signoff clarification commit.
 - Public pilot copy cleanup removes SR007 wording from `/pilot`; use Vibelytics-native preview language instead.
+- Canonical live-site verification confirms `www.vibelytics.ai` currently serves the same Vercel-backed static HTML as the deployment URL.
 
 ## Artifacts
 
@@ -82,13 +87,16 @@ P1: Resolved for current production monitoring. The 2026-07-05 monitoring pass f
 
 P1: Resolved for docs-only production monitoring after commit `b8bcd50`. The 2026-07-05 recheck found no production route, asset-resolution, copy-boundary, static-only, pilot interaction, build, or JSON validation regressions.
 
+P1: Resolved for live-site discovery after commit `27b202e`. The 2026-07-05 check found canonical `www.vibelytics.ai` serving the Vercel-backed route HTML with no Hostinger project identifier available in the repo.
+
 ## Recommended Path
 
 1. Preserve the current static route strategy: `/` and `/pilot` stay pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 2. Keep shared tokens in `styles/tokens.css`; add new route-specific CSS only when it is layout or component behavior, not a duplicate brand primitive.
 3. Keep asset export scripts and provenance register current if future visual QA changes any source assets.
-4. Move to lightweight production monitoring and preservation.
-5. Re-run production QA after any route, token, or asset change, and keep asset provenance current before expanding public brand surfaces.
+4. Monitor canonical `https://www.vibelytics.ai` first, with `https://vibelytics-landing.vercel.app` as the deployment URL.
+5. If Hostinger is intended to host a separate live surface, get its website ID/edit URL before making claims about that deployment.
+6. Re-run production QA after any route, token, or asset change, and keep asset provenance current before expanding public brand surfaces.
 
 ## Verification Commands
 
@@ -329,6 +337,41 @@ Post-signoff documentation consistency notes:
 - Current source-of-truth docs remain `docs/HANDOFF.md`, `docs/design/production-readiness.json`, `docs/design/final-review.md`, `docs/design/roadmap.md`, `docs/design/asset-provenance.json`, and `docs/brand/brand-kit.md`.
 - No production route, product copy, implementation, token, or asset files were changed.
 
+Commands run for the 2026-07-05 live-site discovery and verification pass:
+
+```bash
+git status --short --branch
+git log -1 --oneline
+rg -n "Hostinger|hostinger|Horizons|horizons|vibelytics\.ai|vibelytics-landing|vercel|Vercel|domain|DNS|CNAME|A record|nameserver" . -g '!node_modules' -g '!dist' -g '!archive'
+git config --get remote.origin.url
+find . -maxdepth 3 -iname '*hostinger*' -o -iname '*horizons*' -o -iname '.htaccess' -o -iname 'CNAME'
+curl -sS -L -w '%{http_code} %{url_effective}\n' https://vibelytics-landing.vercel.app/pilot -o /tmp/vibelytics-vercel-pilot.html
+curl -sS -L -w '%{http_code} %{url_effective}\n' https://www.vibelytics.ai/pilot/ -o /tmp/vibelytics-canonical-pilot.html
+curl -sS -I https://www.vibelytics.ai/
+curl -sS -I https://vibelytics.ai/
+dig +short www.vibelytics.ai
+dig +short vibelytics.ai
+curl -sS -L -w '%{http_code} %{url_effective}\n' https://www.vibelytics.ai/ -o /tmp/vibelytics-canonical-home.html
+curl -sS -L -w '%{http_code} %{url_effective}\n' https://vibelytics-landing.vercel.app/ -o /tmp/vibelytics-vercel-home.html
+curl -sS -I https://www.vibelytics.ai/og-image.png
+curl -sS -I https://www.vibelytics.ai/twitter-image.png
+curl -sS -I --resolve vibelytics.ai:443:66.33.60.130 https://vibelytics.ai/
+rg -n "SR007|Speedrun|speedrun|a16z|Andreessen|fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment" /tmp/vibelytics-canonical-home.html /tmp/vibelytics-canonical-pilot.html /tmp/vibelytics-vercel-home.html /tmp/vibelytics-vercel-pilot.html index.html pilot/index.html
+shasum -a 256 index.html pilot/index.html /tmp/vibelytics-canonical-home.html /tmp/vibelytics-canonical-pilot.html /tmp/vibelytics-vercel-home.html /tmp/vibelytics-vercel-pilot.html
+npm run build
+node -e 'for (const f of ["docs/design/asset-provenance.json","docs/design/production-readiness.json"]) { JSON.parse(require("fs").readFileSync(f,"utf8")); console.log(f+" ok") }'
+```
+
+Live-site discovery and verification notes:
+
+- `git log -1 --oneline` returned `27b202e Remove SR007 wording from pilot`.
+- Canonical `https://www.vibelytics.ai/` and `https://www.vibelytics.ai/pilot/` returned HTTP 200 and matched local `index.html` and `pilot/index.html` by SHA-256.
+- Vercel deployment `https://vibelytics-landing.vercel.app/` and `/pilot` also returned HTTP 200 and matched the same local route files.
+- Canonical `/pilot` contains `Vibelytics preview` and `Preview context only`; no SR007, Speedrun, a16z, or Andreessen references were found in local or fetched route HTML.
+- No backend/API/external-service behavior was found in local or fetched route HTML.
+- `www.vibelytics.ai` resolves to `cname.vercel-dns.com`, and the apex redirects to `https://www.vibelytics.ai/` with Vercel headers.
+- The repo contains no Hostinger website ID, Horizons edit URL, `.htaccess`, `CNAME`, or Hostinger deployment config. The Hostinger app cannot update a separate Hostinger surface without the website ID/edit URL.
+
 ## Next Action For Future Codex Thread
 
 Move to lightweight production monitoring and preservation:
@@ -336,4 +379,6 @@ Move to lightweight production monitoring and preservation:
 1. Re-run production QA after any route, token, or asset change.
 2. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
 3. Keep `/` and `/pilot` pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
-4. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.
+4. Monitor canonical `https://www.vibelytics.ai` first and the Vercel deployment URL second.
+5. If Hostinger is intended as a separate live site, get the Hostinger website ID/edit URL before attempting updates.
+6. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.

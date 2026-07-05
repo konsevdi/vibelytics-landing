@@ -1,14 +1,17 @@
 # Vibelytics Post-Signoff Handoff
 
 Last updated: 2026-07-05
-Production: `https://vibelytics-landing.vercel.app`
+Canonical production: `https://www.vibelytics.ai`
+Vercel deployment URL: `https://vibelytics-landing.vercel.app`
 Current status: production brand signoff passed; latest lightweight production monitoring passed; legacy SR007 public pilot wording has been removed from current route policy.
 
 ## Production Status
 
 - `/` and `/pilot` are live static routes.
+- `https://www.vibelytics.ai` currently resolves through Vercel and matches the Vercel deployment URL.
+- No Hostinger website ID, Horizons edit URL, or Hostinger deployment config is present in this repo. If Hostinger is intended to be a separate live surface, obtain the Hostinger website ID/edit URL before updating it.
 - Production brand signoff passed for the current static public scope.
-- Latest production monitoring passed after commit `fdb534b`.
+- Latest production monitoring passed after commit `27b202e`.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.
@@ -58,15 +61,19 @@ rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase
 For production monitoring, also re-run:
 
 ```bash
-curl -sS -D /tmp/vibelytics-monitor-home.headers https://vibelytics-landing.vercel.app/ -o /tmp/vibelytics-monitor-home.html
-curl -sS -D /tmp/vibelytics-monitor-pilot.headers https://vibelytics-landing.vercel.app/pilot -o /tmp/vibelytics-monitor-pilot.html
-shasum -a 256 index.html pilot/index.html /tmp/vibelytics-monitor-home.html /tmp/vibelytics-monitor-pilot.html
-cmp -s index.html /tmp/vibelytics-monitor-home.html
-cmp -s pilot/index.html /tmp/vibelytics-monitor-pilot.html
+curl -sS -D /tmp/vibelytics-canonical-home.headers https://www.vibelytics.ai/ -o /tmp/vibelytics-canonical-home.html
+curl -sS -D /tmp/vibelytics-canonical-pilot.headers https://www.vibelytics.ai/pilot/ -o /tmp/vibelytics-canonical-pilot.html
+curl -sS -D /tmp/vibelytics-vercel-home.headers https://vibelytics-landing.vercel.app/ -o /tmp/vibelytics-vercel-home.html
+curl -sS -D /tmp/vibelytics-vercel-pilot.headers https://vibelytics-landing.vercel.app/pilot -o /tmp/vibelytics-vercel-pilot.html
+shasum -a 256 index.html pilot/index.html /tmp/vibelytics-canonical-home.html /tmp/vibelytics-canonical-pilot.html /tmp/vibelytics-vercel-home.html /tmp/vibelytics-vercel-pilot.html
+cmp -s index.html /tmp/vibelytics-canonical-home.html
+cmp -s pilot/index.html /tmp/vibelytics-canonical-pilot.html
 curl -sS -I https://vibelytics-landing.vercel.app/favicon.png
 curl -sS -I https://vibelytics-landing.vercel.app/apple-touch-icon.png
 curl -sS -I https://vibelytics-landing.vercel.app/og-image.png
 curl -sS -I https://vibelytics-landing.vercel.app/twitter-image.png
+curl -sS -I https://www.vibelytics.ai/og-image.png
+curl -sS -I https://www.vibelytics.ai/twitter-image.png
 node /private/tmp/vibelytics-brand-signoff-qa.mjs
 ```
 
