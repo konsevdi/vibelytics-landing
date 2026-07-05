@@ -12,6 +12,8 @@ Production deployment verification passed on 2026-07-04 for commit `bccf62c` at 
 
 Production brand signoff passed on 2026-07-05 for the current static public scope. The decision covers `/`, `/pilot`, the canonical mark, deployed favicon/app/social images, current first-party route imagery, and shared tokens. It excludes future use of archived unknown-provenance imagery unless provenance is resolved.
 
+Production monitoring passed on 2026-07-05 for commit `9532f2c`. Live `/` and `/pilot` matched local route files, production assets resolved, desktop/mobile browser QA passed, the pilot interaction smoke test passed, and no static-only, route-boundary, or brand-preservation blockers were found.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -63,6 +65,8 @@ P1: Resolved for current static routes. Final visual QA found no blocking crop, 
 P1: Resolved for current production deployment. Production QA found no deployment, asset-resolution, copy purity, static-only, viewport, or pilot interaction blockers.
 
 P1: Resolved for current production brand scope. Final production brand review found no P0/P1 blockers. `assets/control-room.png` and `assets/app_screen_mock.png` remain accepted P2 archive risks: internal evidence only, not approved for future public implementation unless provenance is resolved.
+
+P1: Resolved for current production monitoring. The 2026-07-05 monitoring pass found no production route, asset-resolution, copy-boundary, static-only, viewport, or pilot interaction regressions.
 
 ## Recommended Path
 
@@ -208,6 +212,40 @@ Production brand signoff notes:
 - No site, product copy, route, token, or asset implementation changes were made during signoff.
 - Updated signoff artifacts: `docs/design/final-review.md`, `docs/design/production-readiness.json`, `docs/design/asset-provenance.json`, `docs/brand/brand-kit.md`, and this roadmap.
 - Accepted P2 archive risk: `assets/control-room.png` and `assets/app_screen_mock.png` remain internal evidence only and are not approved for future public brand implementation unless provenance is resolved.
+
+Commands run for the 2026-07-05 lightweight production monitoring pass:
+
+```bash
+git status --short --branch
+git log -1 --oneline
+curl -sS -D /tmp/vibelytics-monitor-home.headers https://vibelytics-landing.vercel.app/ -o /tmp/vibelytics-monitor-home.html
+curl -sS -D /tmp/vibelytics-monitor-pilot.headers https://vibelytics-landing.vercel.app/pilot -o /tmp/vibelytics-monitor-pilot.html
+curl -sS -I https://vibelytics-landing.vercel.app/favicon.png
+curl -sS -I https://vibelytics-landing.vercel.app/apple-touch-icon.png
+curl -sS -I https://vibelytics-landing.vercel.app/og-image.png
+curl -sS -I https://vibelytics-landing.vercel.app/twitter-image.png
+curl -sS -I https://www.vibelytics.ai/og-image.png
+curl -sS -I https://www.vibelytics.ai/twitter-image.png
+shasum -a 256 index.html pilot/index.html /tmp/vibelytics-monitor-home.html /tmp/vibelytics-monitor-pilot.html
+cmp -s index.html /tmp/vibelytics-monitor-home.html
+cmp -s pilot/index.html /tmp/vibelytics-monitor-pilot.html
+rg -n "SR007|Speedrun|a16z|Andreessen" /tmp/vibelytics-monitor-home.html /tmp/vibelytics-monitor-pilot.html
+rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment" /tmp/vibelytics-monitor-home.html /tmp/vibelytics-monitor-pilot.html index.html pilot/index.html
+node /private/tmp/vibelytics-brand-signoff-qa.mjs
+node -e 'for (const f of ["docs/design/asset-provenance.json","docs/design/production-readiness.json"]) { JSON.parse(require("fs").readFileSync(f,"utf8")); console.log(f+" ok") }'
+npm run build
+```
+
+Production monitoring notes:
+
+- `git log -1 --oneline` returned `9532f2c Record production brand signoff`.
+- Live `/` and `/pilot` returned HTTP 200 and matched local `index.html` and `pilot/index.html` by SHA-256 and `cmp`.
+- Vercel-hosted favicon, app icon, OG image, and Twitter image URLs resolved with HTTP 200 and `image/png` content types; canonical `www.vibelytics.ai` OG and Twitter image URLs also resolved.
+- `/` remained pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
+- `/pilot` retained only the approved SR007 static-pilot references and no Speedrun, a16z, or Andreessen references.
+- No backend/API/external-service behavior was found in local or production route HTML.
+- Production Playwright QA passed for `/` and `/pilot` at desktop and mobile viewports, and the pilot interaction smoke test returned Adjust, demand 69, confidence 68%.
+- No site, product copy, route, token, or asset implementation changes were made during monitoring.
 
 ## Next Action For Future Codex Thread
 
