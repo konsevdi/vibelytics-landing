@@ -20,11 +20,13 @@ Post-signoff documentation consistency audit passed on 2026-07-05. Historical pa
 
 Docs-only production monitoring recheck passed on 2026-07-05 for commit `b8bcd50`. Production `/` and `/pilot` returned 200, live route HTML matched local route files, deployed favicon/app/OG/Twitter images resolved, `/` remained pure Vibelytics, `/pilot` retained only approved subtle SR007 static-pilot context, no backend/API/external-service behavior was found, the production pilot interaction smoke test passed, and build/JSON validation passed.
 
+Public pilot copy cleanup was requested on 2026-07-05 after SR007 wording was identified as a Speedrun leftover. Current route policy is now pure Vibelytics on both `/` and `/pilot`; public SR007, Speedrun, a16z, and Andreessen references are not approved on either route.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
 - `/` should remain pure Vibelytics branding with no SR007 references.
-- `/pilot` may include subtle SR007/static pilot context.
+- `/pilot` should also remain pure Vibelytics branding with no SR007, Speedrun, a16z, or Andreessen references.
 - Static-only constraints remain in force: no backend, no API routes, no external runtime services, no new dependencies unless separately approved.
 - The current PNG/CSS mark can be preserved as evidence, but it is not sufficient as canonical editable identity source.
 - Signal Desk is approved as the product identity backbone.
@@ -39,6 +41,7 @@ Docs-only production monitoring recheck passed on 2026-07-05 for commit `b8bcd50
 - Shared color, semantic, typography, radius, elevation, and motion primitives now live in `styles/tokens.css` and are consumed by `index.html` and `pilot/index.html`.
 - Production verification passed for the current static deployment.
 - Docs-only production monitoring recheck passed after the historical signoff clarification commit.
+- Public pilot copy cleanup removes SR007 wording from `/pilot`; use Vibelytics-native preview language instead.
 
 ## Artifacts
 
@@ -81,7 +84,7 @@ P1: Resolved for docs-only production monitoring after commit `b8bcd50`. The 202
 
 ## Recommended Path
 
-1. Preserve the current static route strategy: `/` stays pure Vibelytics and `/pilot` may carry subtle SR007/static pilot context.
+1. Preserve the current static route strategy: `/` and `/pilot` stay pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 2. Keep shared tokens in `styles/tokens.css`; add new route-specific CSS only when it is layout or component behavior, not a duplicate brand primitive.
 3. Keep asset export scripts and provenance register current if future visual QA changes any source assets.
 4. Move to lightweight production monitoring and preservation.
@@ -332,5 +335,5 @@ Move to lightweight production monitoring and preservation:
 
 1. Re-run production QA after any route, token, or asset change.
 2. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
-3. Keep `/` pure Vibelytics and `/pilot` limited to subtle SR007/static pilot context.
+3. Keep `/` and `/pilot` pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 4. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.

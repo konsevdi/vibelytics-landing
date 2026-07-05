@@ -117,7 +117,7 @@ Resolved gates:
 - Shared route tokens are consolidated.
 - Production deployment and browser QA passed.
 - `/` remains pure Vibelytics.
-- `/pilot` keeps only subtle SR007/static pilot context.
+- `/pilot` now stays pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 - No backend/API/external-service behavior was introduced.
 
 ## Accepted P2 / P3 Risks
@@ -143,5 +143,5 @@ Move to lightweight production monitoring and preservation:
 
 1. Re-run production QA after any route, token, or asset change.
 2. Keep `docs/design/asset-provenance.json` current if assets change.
-3. Keep `/` pure Vibelytics and `/pilot` limited to subtle SR007/static pilot context.
+3. Keep `/` and `/pilot` pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 4. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.

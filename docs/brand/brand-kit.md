@@ -24,7 +24,7 @@ Signoff evidence:
 - Production deployment verification passed for `https://vibelytics-landing.vercel.app`.
 - Fresh production brand QA passed on 2026-07-05 at desktop and mobile viewports.
 - `/` remains pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
-- `/pilot` keeps only subtle SR007/static pilot context.
+- `/pilot` also remains pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 - No backend/API/external-service behavior was introduced.
 
 Accepted non-blocking risk:
@@ -301,7 +301,7 @@ Boundaries:
 
 - Campaign devices cannot replace the core logo.
 - Campaign imagery cannot imply live monitoring.
-- SR007 context belongs on `/pilot`, docs, deck, or campaign material, not the pure `/` brand surface.
+- SR007 context belongs only in internal/historical docs, deck, or campaign material, not public `/` or `/pilot` brand surfaces.
 
 ## Marketing Materials
 
@@ -383,7 +383,7 @@ Create-from-scratch identity:
 
 Production signoff is complete for the current static scope. Continue with monitoring and preservation.
 
-1. Keep `/` pure Vibelytics and `/pilot` limited to subtle SR007/static pilot context.
+1. Keep `/` and `/pilot` pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 2. Keep shared color, typography, spacing, semantic, radius, and elevation tokens in `styles/tokens.css`.
 3. Preserve the current route strategy and static-only constraints.
 4. Keep `brand/vibelytics-mark.svg`, `scripts/generate-brand-assets.py`, and `scripts/generate-route-assets.py` as source/export records for future asset changes.
@@ -391,7 +391,7 @@ Production signoff is complete for the current static scope. Continue with monit
    - `npm run build`
    - local route checks for `/`, `/pilot`, `/privacy`, `/terms`, `/robots.txt`, `/sitemap.xml`, `/llms.txt`
    - copy scan confirming `/` has no SR007 or Speedrun references
-   - copy scan confirming `/pilot` includes subtle SR007/static pilot context
+   - copy scan confirming `/pilot` has no SR007, Speedrun, a16z, or Andreessen references
    - desktop and mobile viewport checks
    - pilot interaction check
 

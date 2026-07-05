@@ -2,7 +2,7 @@
 
 Last updated: 2026-07-05
 Production: `https://vibelytics-landing.vercel.app`
-Current status: production brand signoff passed; latest lightweight production monitoring passed.
+Current status: production brand signoff passed; latest lightweight production monitoring passed; legacy SR007 public pilot wording has been removed from current route policy.
 
 ## Production Status
 
@@ -23,11 +23,8 @@ Current status: production brand signoff passed; latest lightweight production m
 ## Route Rules
 
 - `/` must remain pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
-- `/pilot` may include only subtle SR007/static pilot context.
-- Current approved `/pilot` SR007 references are:
-  - `SR007 static pilot`
-  - `SR007 static demo context`
-  - the footer static pilot note
+- `/pilot` must also remain pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
+- Use Vibelytics-native preview language on `/pilot`, such as `Vibelytics preview`, `Preview context only`, and static/no-backend disclosures.
 - Keep both routes static-only.
 
 ## Source Of Truth

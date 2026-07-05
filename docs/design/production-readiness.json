@@ -4,7 +4,7 @@
   "status": "pass_current_static_brand_scope_monitoring_current",
   "lastMonitoringPass": "2026-07-05",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Production brand signoff passed for the current Vibelytics static public routes and deployed brand/social assets.",
+  "decision": "Production brand signoff passed for the current Vibelytics static public routes and deployed brand/social assets. Current route policy keeps both / and /pilot pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.",
   "scope": [
     "/",
     "/pilot",
@@ -30,7 +30,7 @@
     "productionDesktopMobileQa": "pass",
     "pilotInteractionSmoke": "pass",
     "rootPurity": "pass",
-    "pilotContextBoundary": "pass",
+    "pilotContextBoundary": "superseded_by_pure_vibelytics_pilot_policy",
     "staticOnlyBehavior": "pass",
     "assetResolution": "pass",
     "build": "pass",
