@@ -3,11 +3,12 @@
 Last updated: 2026-07-05
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: production brand signoff passed; latest lightweight production monitoring passed; legacy SR007 public pilot wording has been removed from current route policy.
+Current status: Static V2 product/marketing implementation passed local QA; production brand signoff and latest lightweight production monitoring passed for the previous static scope, and production monitoring must be re-run after deploy.
 
 ## Production Status
 
 - `/` and `/pilot` are live static routes.
+- Static V2 adds stronger promoter/venue positioning on `/` and a richer static launch-brief generator on `/pilot`.
 - `https://www.vibelytics.ai` currently resolves through Vercel and matches the Vercel deployment URL.
 - No Hostinger website ID, Horizons edit URL, or Hostinger deployment config is present in this repo. If Hostinger is intended to be a separate live surface, obtain the Hostinger website ID/edit URL before updating it.
 - Production brand signoff passed for the current static public scope.
@@ -28,6 +29,7 @@ Current status: production brand signoff passed; latest lightweight production m
 - `/` must remain pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 - `/pilot` must also remain pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 - Use Vibelytics-native preview language on `/pilot`, such as `Vibelytics preview`, `Preview context only`, and static/no-backend disclosures.
+- Preserve the Static V2 conversion motion: generate a launch brief, then copy, download, share, or email it to Vibelytics for pressure-testing.
 - Keep both routes static-only.
 
 ## Source Of Truth
@@ -57,6 +59,12 @@ node -e 'for (const f of ["docs/design/asset-provenance.json","docs/design/produ
 rg -n "SR007|Speedrun|a16z|Andreessen" index.html pilot/index.html
 rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment" index.html pilot/index.html
 ```
+
+For Static V2 pilot QA, also check:
+
+- changing artist, city, capacity, budget, date, timeline, sponsor, ticketing, goal, and risk updates the generated decision
+- `Copy brief`, `Download brief`, `Copy share link`, and `Email brief` all use the same generated launch brief
+- a copied share URL restores the selected scenario via query parameters
 
 For production monitoring, also re-run:
 

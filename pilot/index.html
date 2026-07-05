@@ -488,6 +488,28 @@
       margin-top: 4px;
     }
 
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .action-grid .btn {
+      min-height: 44px;
+      padding: 10px 12px;
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .action-status {
+      min-height: 18px;
+      margin: 9px 0 0;
+      color: #b9fbe6;
+      font-size: 12.5px;
+      line-height: 1.35;
+    }
+
     .brief-note {
       margin: 13px 0 0;
       border-top: 1px solid rgba(255,255,255,.1);
@@ -990,7 +1012,7 @@
 
       .brief-panel {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 10px 12px;
         align-items: end;
       }
@@ -1130,6 +1152,10 @@
         grid-template-columns: 1fr;
       }
 
+      .action-grid {
+        grid-template-columns: 1fr;
+      }
+
       .insight-plane {
         min-height: 250px;
       }
@@ -1204,8 +1230,24 @@
             </select>
           </div>
           <div class="field">
+            <label for="budget">Marketing budget</label>
+            <select id="budget">
+              <option value="moderate">Moderate launch spend</option>
+              <option value="lean">Lean creator-led spend</option>
+              <option value="aggressive">Aggressive paid push</option>
+            </select>
+          </div>
+          <div class="field">
             <label for="target-date">Target date</label>
             <input id="target-date" type="date" value="2026-07-24" />
+          </div>
+          <div class="field">
+            <label for="timeline">Launch timeline</label>
+            <select id="timeline">
+              <option value="standard">Six-week launch</option>
+              <option value="tight">Three-week sprint</option>
+              <option value="long">Ten-week runway</option>
+            </select>
           </div>
           <div class="field">
             <label for="sponsor">Sponsor category</label>
@@ -1217,12 +1259,29 @@
             </select>
           </div>
           <div class="field">
+            <label for="ticketing">Ticketing posture</label>
+            <select id="ticketing">
+              <option value="staged">Staged inventory</option>
+              <option value="presale">Presale first</option>
+              <option value="premium">Premium bundles</option>
+              <option value="community">Community allocation</option>
+            </select>
+          </div>
+          <div class="field">
             <label for="goal">Launch goal</label>
             <select id="goal">
               <option value="prove">Prove demand safely</option>
               <option value="margin">Maximize margin</option>
               <option value="sponsor">Win a sponsor story</option>
               <option value="scale">Scale the format</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="risk">Risk tolerance</label>
+            <select id="risk">
+              <option value="balanced">Balanced risk</option>
+              <option value="conservative">Conservative downside</option>
+              <option value="bold">Bold upside bet</option>
             </select>
           </div>
           <button class="btn generate" id="generate">Generate launch decision</button>
@@ -1333,7 +1392,13 @@
           <div class="copy-block">
             <h4>Generated launch copy</h4>
             <p id="launch-copy">One night, one skyline, one sound. Eleni Nova comes to Athens for an intimate sunset-to-late session.</p>
-            <a class="btn email-brief" id="mail-brief" href="mailto:yes@vibelytics.ai">Send this launch brief</a>
+            <div class="action-grid" aria-label="Launch brief actions">
+              <button class="btn secondary" id="copy-brief" type="button">Copy brief</button>
+              <button class="btn secondary" id="download-brief" type="button">Download brief</button>
+              <button class="btn secondary" id="share-brief" type="button">Copy share link</button>
+              <a class="btn email-brief" id="mail-brief" href="mailto:yes@vibelytics.ai">Email brief</a>
+            </div>
+            <p class="action-status" id="action-status" aria-live="polite"></p>
           </div>
         </aside>
       </div>
@@ -1525,15 +1590,50 @@
       scale: "Scale the format"
     };
 
+    const budgetLabels = {
+      lean: "Lean creator-led spend",
+      moderate: "Moderate launch spend",
+      aggressive: "Aggressive paid push"
+    };
+
+    const riskLabels = {
+      conservative: "Conservative downside",
+      balanced: "Balanced risk",
+      bold: "Bold upside bet"
+    };
+
+    const ticketingLabels = {
+      presale: "Presale first",
+      staged: "Staged inventory",
+      premium: "Premium bundles",
+      community: "Community allocation"
+    };
+
+    const timelineLabels = {
+      tight: "Three-week sprint",
+      standard: "Six-week launch",
+      long: "Ten-week runway"
+    };
+
     const cityEl = document.getElementById("city");
     const artistEl = document.getElementById("artist");
     const capacityEl = document.getElementById("capacity");
+    const budgetEl = document.getElementById("budget");
     const targetDateEl = document.getElementById("target-date");
+    const timelineEl = document.getElementById("timeline");
     const sponsorEl = document.getElementById("sponsor");
+    const ticketingEl = document.getElementById("ticketing");
     const goalEl = document.getElementById("goal");
+    const riskEl = document.getElementById("risk");
     const generateEl = document.getElementById("generate");
+    const copyBriefEl = document.getElementById("copy-brief");
+    const downloadBriefEl = document.getElementById("download-brief");
+    const shareBriefEl = document.getElementById("share-brief");
+    const actionStatusEl = document.getElementById("action-status");
     const surfaceEl = document.getElementById("pilot-surface");
     let runCount = 7;
+    let currentPlan = null;
+    let currentBriefText = "";
 
     const fields = {
       headline: document.getElementById("headline"),
@@ -1613,6 +1713,82 @@
         plan.confidence -= 4;
         plan.adjustmentDetail += " Move the launch closer to Thursday-Saturday unless the venue economics are unusually favorable.";
       }
+    }
+
+    function applyBudget(plan) {
+      if (budgetEl.value === "lean") {
+        plan.confidence += 2;
+        plan.downsideRisk += " Lean spend lowers downside but makes partner-list and creator conversion more important.";
+        plan.adjustmentDetail += " Keep paid media light until the first allocation proves intent.";
+        plan.sequence[1] = "Open a creator-led presale before committing paid media.";
+      }
+
+      if (budgetEl.value === "aggressive") {
+        plan.confidence -= 4;
+        plan.demandScore -= 3;
+        plan.downsideRisk += " Aggressive paid spend can create false confidence before real buyer depth is proven.";
+        plan.adjustmentDetail += " Stage the paid push behind a presale threshold and cap inefficient inventory.";
+      }
+
+      plan.assumptions += ` Marketing posture is "${budgetLabels[budgetEl.value]}."`;
+    }
+
+    function applyTimeline(plan) {
+      if (timelineEl.value === "tight") {
+        plan.confidence -= 5;
+        plan.demandScore -= 3;
+        plan.downsideRisk += " A three-week sprint compresses creative testing and sponsor approvals.";
+        plan.sequence[0] = "Confirm the room and creative package within 72 hours.";
+        plan.sequence[1] = "Open presale immediately to existing demand before widening reach.";
+      }
+
+      if (timelineEl.value === "long") {
+        plan.confidence += 3;
+        plan.adjustmentDetail += " Use the longer runway for two proof gates: partner-list intent and first allocation conversion.";
+        plan.sequence[0] = "Hold the room early and set two demand proof gates before public announcement.";
+      }
+
+      plan.assumptions += ` Launch timeline is "${timelineLabels[timelineEl.value]}."`;
+    }
+
+    function applyTicketing(plan) {
+      if (ticketingEl.value === "presale") {
+        plan.confidence += 2;
+        plan.pricingDetail += " Presale-first posture: use the first allocation as the go/no-go gate before broad paid reach.";
+        plan.sequence[1] = "Open presale to the warmest demand pool before public sale.";
+      }
+
+      if (ticketingEl.value === "premium") {
+        plan.confidence -= plan.cityName === "London" ? 0 : 2;
+        plan.pricingDetail += " Premium bundles should be capped and justified by production value, not used to mask weak demand.";
+        plan.downsideRisk += " Premium inventory raises expectation risk if the core allocation does not move.";
+      }
+
+      if (ticketingEl.value === "community") {
+        plan.confidence += plan.cityName === "Berlin" ? 3 : 1;
+        plan.pricingDetail += " Community allocation should stay small enough to create proof without training buyers to wait.";
+        plan.sequence[1] = "Release a controlled community allocation through credible local partners.";
+      }
+
+      plan.assumptions += ` Ticketing posture is "${ticketingLabels[ticketingEl.value]}."`;
+    }
+
+    function applyRisk(plan) {
+      if (riskEl.value === "conservative") {
+        plan.confidence += 2;
+        plan.demandScore -= 2;
+        plan.adjustmentDetail = `Prefer the smaller committed room, tighter guarantees, and staged inventory. ${plan.adjustmentDetail}`;
+        if (plan.recommendation === "Go" && plan.demandScore < 88) plan.recommendation = "Adjust";
+      }
+
+      if (riskEl.value === "bold") {
+        plan.confidence -= 3;
+        plan.demandScore += 2;
+        plan.downsideRisk += " Bold upside raises reputational risk if the public launch misses.";
+        plan.adjustmentDetail += " Keep one kill switch tied to paid pickup or first allocation conversion.";
+      }
+
+      plan.assumptions += ` Risk tolerance is "${riskLabels[riskEl.value]}."`;
     }
 
     function applyCapacity(plan, capacity) {
@@ -1699,14 +1875,20 @@
       applyArtist(plan, artistEl.value);
       applyDate(plan);
       applyCapacity(plan, capacityEl.value);
+      applyBudget(plan);
+      applyTimeline(plan);
       applySponsor(plan, sponsorEl.value);
+      applyTicketing(plan);
       applyGoal(plan);
+      applyRisk(plan);
 
       plan.demandScore = Math.max(42, Math.min(94, plan.demandScore));
       plan.confidence = Math.max(48, Math.min(91, plan.confidence));
 
       if (plan.recommendation !== "Do Not Launch") {
-        if (plan.demandScore >= 84 && plan.capacityFit !== "Weak") {
+        if (riskEl.value === "conservative" && plan.demandScore < 88) {
+          plan.recommendation = "Adjust";
+        } else if (plan.demandScore >= 84 && plan.capacityFit !== "Weak") {
           plan.recommendation = "Go";
         } else if (plan.demandScore >= 68) {
           plan.recommendation = "Adjust";
@@ -1733,9 +1915,119 @@
       noTrack.style.width = `${plan.recommendation === "Do Not Launch" ? 86 : 16}%`;
     }
 
+    function getScenarioState() {
+      return {
+        artist: artistEl.value,
+        city: cityEl.value,
+        capacity: capacityEl.value,
+        budget: budgetEl.value,
+        date: targetDateEl.value,
+        timeline: timelineEl.value,
+        sponsor: sponsorEl.value,
+        ticketing: ticketingEl.value,
+        goal: goalEl.value,
+        risk: riskEl.value
+      };
+    }
+
+    function setSelectValue(el, value) {
+      if (!value) return;
+      const values = Array.from(el.options).map((option) => option.value);
+      if (values.includes(value)) el.value = value;
+    }
+
+    function applyStateFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      setSelectValue(artistEl, params.get("artist"));
+      setSelectValue(cityEl, params.get("city"));
+      setSelectValue(capacityEl, params.get("capacity"));
+      setSelectValue(budgetEl, params.get("budget"));
+      setSelectValue(timelineEl, params.get("timeline"));
+      setSelectValue(sponsorEl, params.get("sponsor"));
+      setSelectValue(ticketingEl, params.get("ticketing"));
+      setSelectValue(goalEl, params.get("goal"));
+      setSelectValue(riskEl, params.get("risk"));
+
+      const date = params.get("date");
+      if (date && /^\d{4}-\d{2}-\d{2}$/.test(date)) targetDateEl.value = date;
+    }
+
+    function buildShareUrl() {
+      const params = new URLSearchParams(getScenarioState());
+      return `${window.location.origin}${window.location.pathname}?${params.toString()}`;
+    }
+
+    function syncUrlState() {
+      window.history.replaceState(null, "", buildShareUrl());
+    }
+
+    function buildBriefText(plan) {
+      return [
+        "Vibelytics launch brief",
+        "",
+        `Artist: ${artists[artistEl.value].name}`,
+        `City: ${plan.cityName}`,
+        `Venue capacity: ${capacityEl.options[capacityEl.selectedIndex].text}`,
+        `Target date: ${targetDateEl.value}`,
+        `Marketing budget: ${budgetLabels[budgetEl.value]}`,
+        `Launch timeline: ${timelineLabels[timelineEl.value]}`,
+        `Sponsor category: ${sponsorLabels[sponsorEl.value]}`,
+        `Ticketing posture: ${ticketingLabels[ticketingEl.value]}`,
+        `Launch goal: ${goalLabels[goalEl.value]}`,
+        `Risk tolerance: ${riskLabels[riskEl.value]}`,
+        "",
+        `Recommendation: ${plan.recommendation}`,
+        `Confidence: ${plan.confidence}%`,
+        `Demand score: ${plan.demandScore}/100`,
+        `Capacity fit: ${plan.capacityFit}`,
+        `Pricing band: ${plan.priceBand}`,
+        `Sponsor fit: ${plan.sponsorFit}`,
+        "",
+        `Demand rationale: ${plan.demandDetail}`,
+        `Capacity rationale: ${plan.capacityDetail}`,
+        `Pricing rationale: ${plan.pricingDetail}`,
+        `Sponsor rationale: ${plan.sponsorDetail}`,
+        `Downside risk: ${plan.downsideRisk}`,
+        `What to adjust: ${plan.adjustmentDetail}`,
+        `Assumptions: ${plan.assumptions}`,
+        "",
+        "Recommended launch sequence:",
+        `Week -6: ${plan.sequence[0]}`,
+        `Week -5: ${plan.sequence[1]}`,
+        `Week -3: ${plan.sequence[2]}`,
+        `Week -1: ${plan.sequence[3]}`,
+        "",
+        `Generated launch copy: ${plan.copy}`,
+        "",
+        `Share link: ${buildShareUrl()}`
+      ].join("\n");
+    }
+
+    async function copyText(text, successMessage) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.setAttribute("readonly", "");
+          textArea.style.position = "fixed";
+          textArea.style.left = "-9999px";
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand("copy");
+          textArea.remove();
+        }
+        actionStatusEl.textContent = successMessage;
+      } catch (error) {
+        actionStatusEl.textContent = "Copy failed. Use the email brief action instead.";
+      }
+    }
+
     function updateLaunchPlan({ bumpRun = false } = {}) {
       const plan = computePlan();
       if (bumpRun) runCount += 1;
+      currentPlan = plan;
 
       fields.headline.textContent = plan.headline;
       fields.summary.textContent = plan.summary;
@@ -1759,6 +2051,8 @@
       fields.seqThree.textContent = plan.sequence[2];
       fields.seqFour.textContent = plan.sequence[3];
       setDecisionState(plan);
+      currentBriefText = buildBriefText(plan);
+      syncUrlState();
 
       surfaceEl.classList.remove("status-flash");
       void surfaceEl.offsetWidth;
@@ -1775,8 +2069,12 @@
         `City: ${plan.cityName}`,
         `Venue capacity: ${capacityEl.options[capacityEl.selectedIndex].text}`,
         `Target date: ${targetDateEl.value}`,
+        `Marketing budget: ${budgetLabels[budgetEl.value]}`,
+        `Launch timeline: ${timelineLabels[timelineEl.value]}`,
         `Sponsor category: ${sponsorLabels[sponsorEl.value]}`,
+        `Ticketing posture: ${ticketingLabels[ticketingEl.value]}`,
         `Launch goal: ${goalLabels[goalEl.value]}`,
+        `Risk tolerance: ${riskLabels[riskEl.value]}`,
         "",
         `Recommendation: ${plan.recommendation}`,
         `Confidence: ${plan.confidence}%`,
@@ -1784,17 +2082,44 @@
         `Pricing band: ${plan.priceBand}`,
         `Downside risk: ${plan.downsideRisk}`,
         "",
-        "Can you help me pressure-test the launch?"
+        "Can you help me pressure-test the launch?",
+        "",
+        `Share link: ${buildShareUrl()}`
       ].join("\n");
 
       return `mailto:yes@vibelytics.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     }
 
-    [cityEl, artistEl, capacityEl, targetDateEl, sponsorEl, goalEl].forEach((el) => {
-      el.addEventListener("change", () => updateLaunchPlan());
+    [cityEl, artistEl, capacityEl, budgetEl, targetDateEl, timelineEl, sponsorEl, ticketingEl, goalEl, riskEl].forEach((el) => {
+      el.addEventListener("change", () => {
+        actionStatusEl.textContent = "";
+        updateLaunchPlan();
+      });
     });
 
+    copyBriefEl.addEventListener("click", () => copyText(currentBriefText, "Launch brief copied."));
+
+    downloadBriefEl.addEventListener("click", () => {
+      const slug = `${artists[artistEl.value].name}-${cityEl.value}-launch-brief`
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-|-$/g, "");
+      const blob = new Blob([currentBriefText], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = `${slug}.txt`;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+      actionStatusEl.textContent = "Launch brief downloaded.";
+    });
+
+    shareBriefEl.addEventListener("click", () => copyText(buildShareUrl(), "Share link copied."));
+
     generateEl.addEventListener("click", () => updateLaunchPlan({ bumpRun: true }));
+    applyStateFromUrl();
     updateLaunchPlan();
   </script>
 </body>

@@ -24,6 +24,8 @@ Public pilot copy cleanup was requested on 2026-07-05 after SR007 wording was id
 
 Live-site discovery and verification passed on 2026-07-05 for commit `27b202e`. Canonical `https://www.vibelytics.ai` and `https://vibelytics-landing.vercel.app` both returned 200 for `/` and `/pilot`; fetched HTML matched local route files byte-for-byte; `/pilot` contained the new Vibelytics preview copy with no SR007, Speedrun, a16z, or Andreessen references; and no backend/API/external-service behavior was found. DNS/header checks showed `www.vibelytics.ai` serving through Vercel and the apex redirecting to `www`; no Hostinger website ID, Horizons edit URL, or Hostinger deployment config was discoverable from the repo.
 
+Static V2 product/marketing implementation passed local QA on 2026-07-05. The scope keeps the site static-only while sharpening `/` around promoter/venue conversion and upgrading `/pilot` into a richer launch-brief generator with budget, timeline, ticketing, risk, copy/download/share/email actions, and URL-restorable scenarios. Production monitoring remains required after deployment.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -47,6 +49,7 @@ Live-site discovery and verification passed on 2026-07-05 for commit `27b202e`. 
 - Docs-only production monitoring recheck passed after the historical signoff clarification commit.
 - Public pilot copy cleanup removes SR007 wording from `/pilot`; use Vibelytics-native preview language instead.
 - Canonical live-site verification confirms `www.vibelytics.ai` currently serves the same Vercel-backed static HTML as the deployment URL.
+- Static V2 conversion motion is generate a launch brief, then copy, download, share, or email it to Vibelytics for pressure-testing.
 
 ## Artifacts
 
@@ -97,6 +100,7 @@ P1: Resolved for live-site discovery after commit `27b202e`. The 2026-07-05 chec
 4. Monitor canonical `https://www.vibelytics.ai` first, with `https://vibelytics-landing.vercel.app` as the deployment URL.
 5. If Hostinger is intended to host a separate live surface, get its website ID/edit URL before making claims about that deployment.
 6. Re-run production QA after any route, token, or asset change, and keep asset provenance current before expanding public brand surfaces.
+7. After Static V2 deploys, re-run canonical production monitoring and update `docs/design/production-readiness.json` from pending to pass only if live `/` and `/pilot` match the committed route files.
 
 ## Verification Commands
 

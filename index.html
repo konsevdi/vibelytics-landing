@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vibelytics - AI Launch Copilot for Live Culture</title>
-  <meta name="description" content="Vibelytics helps promoters and midsize venues decide which events to launch, where to launch them, how to price them, and which sponsor story to carry." />
+  <meta name="description" content="Vibelytics helps promoters and midsize venues pressure-test room size, price, sponsor fit, risk, and launch sequence before they announce." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#050711" />
   <link rel="canonical" href="https://www.vibelytics.ai/" />
@@ -14,14 +14,14 @@
   <meta property="og:site_name" content="Vibelytics" />
   <meta property="og:url" content="https://www.vibelytics.ai/" />
   <meta property="og:title" content="Vibelytics - AI Launch Copilot for Live Culture" />
-  <meta property="og:description" content="Vibelytics turns an artist, city, venue, date, sponsor, and launch goal into a room, price, risk, and go/adjust/no-go recommendation." />
+  <meta property="og:description" content="Pre-launch decision intelligence for live culture: pressure-test the room, price, risk, sponsor fit, and launch sequence before you announce." />
   <meta property="og:image" content="https://www.vibelytics.ai/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Vibelytics, the AI launch copilot for live culture." />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Vibelytics - AI Launch Copilot for Live Culture" />
-  <meta name="twitter:description" content="Know what to launch before you commit the room, guarantee, inventory, and media spend." />
+  <meta name="twitter:description" content="Know if the room is right before you announce." />
   <meta name="twitter:image" content="https://www.vibelytics.ai/twitter-image.png" />
   <meta name="twitter:image:alt" content="Vibelytics, the AI launch copilot for live culture." />
   <link rel="stylesheet" href="/styles/tokens.css" />
@@ -283,6 +283,115 @@
       line-height: 1.45;
     }
 
+    .example-grid,
+    .audience-grid,
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .example-card,
+    .audience-card,
+    .trust-card {
+      min-height: 230px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+    }
+
+    .example-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .example-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--soft);
+      font-size: 13px;
+      font-weight: 760;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+    }
+
+    .example-state {
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: #031019;
+      background: var(--mint);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-transform: none;
+      white-space: nowrap;
+    }
+
+    .example-state.adjust { background: var(--gold); }
+    .example-state.no { background: var(--coral); color: #210604; }
+
+    .example-card h3,
+    .audience-card h3,
+    .trust-card h3 {
+      margin: 0 0 12px;
+      color: #fff;
+      font-size: 22px;
+      line-height: 1.05;
+      letter-spacing: 0;
+    }
+
+    .example-card p,
+    .audience-card p,
+    .trust-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .market-strip {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, 1.1fr);
+      gap: clamp(22px, 6vw, 78px);
+      align-items: start;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: clamp(28px, 5vw, 46px) 0;
+    }
+
+    .market-strip h2 {
+      margin: 0;
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: .98;
+      letter-spacing: 0;
+    }
+
+    .market-list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .market-list li {
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      padding-bottom: 14px;
+      color: #dce5f1;
+      font-size: clamp(17px, 1.7vw, 20px);
+      line-height: 1.35;
+    }
+
+    .market-list li:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
     .workflow {
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -452,6 +561,10 @@
       .hero-inner,
       .section-head,
       .product-strip,
+      .example-grid,
+      .audience-grid,
+      .trust-grid,
+      .market-strip,
       .narrative {
         grid-template-columns: 1fr;
       }
@@ -563,8 +676,9 @@
     </a>
     <div class="nav-links" aria-label="Primary navigation">
       <a href="#product">Product</a>
+      <a href="#examples">Examples</a>
       <a href="#workflow">Workflow</a>
-      <a href="/pilot">Open pilot</a>
+      <a href="/pilot">Try the pilot</a>
     </div>
   </nav>
 
@@ -574,16 +688,16 @@
         <div>
           <p class="kicker">AI launch copilot for live culture</p>
           <h1>Vibelytics</h1>
-          <p class="headline">Know what to launch before you commit the capital.</p>
-          <p class="copy">Vibelytics turns an artist, city, venue, date, sponsor, and launch goal into a room, price, risk, and go/adjust/no-go recommendation your team can actually use.</p>
+          <p class="headline">Know if the room is right before you announce.</p>
+          <p class="copy">Pre-launch decision intelligence for promoters and venues. Pressure-test the room, price, risk, sponsor fit, and launch sequence before capital, inventory, and media spend harden.</p>
           <div class="hero-actions">
-            <a class="btn" href="/pilot">Open pilot</a>
-            <a class="btn secondary" href="#workflow">See workflow</a>
+            <a class="btn" href="/pilot">Pressure-test a launch</a>
+            <a class="btn secondary" href="/pilot">Try the pilot</a>
           </div>
         </div>
         <aside class="signal" aria-label="Vibelytics positioning">
-          <strong>Decision layer first.</strong>
-          <span>Built for promoters and midsize venues who need a sharper launch call before deposits, guarantees, inventory, media spend, and sponsor packages are locked.</span>
+          <strong>Send the brief. Get the launch call.</strong>
+          <span>Built for promoters and midsize venues deciding whether to hold, resize, price, or re-scope before the announcement creates public risk.</span>
         </aside>
       </div>
     </section>
@@ -591,7 +705,7 @@
     <section class="section" id="product">
       <div class="section-head">
         <h2>From instinct to launch plan.</h2>
-        <p>Vibelytics is a pre-launch copilot for choosing the right room, price, sponsor fit, and opening narrative before capital is locked.</p>
+        <p>Vibelytics is a pre-launch decision surface for choosing the right room, price, sponsor fit, and opening narrative before capital is locked.</p>
       </div>
       <div class="product-strip">
         <div class="media">
@@ -604,6 +718,45 @@
           <div class="decision-row"><strong>Sponsor</strong><span>Find the brand category that naturally fits the city, artist, and launch story.</span></div>
           <div class="decision-row"><strong>Copy</strong><span>Turn the decision into language for the first announcement.</span></div>
         </div>
+      </div>
+    </section>
+
+    <section class="section" id="examples">
+      <div class="section-head">
+        <h2>Three launch calls, not another dashboard.</h2>
+        <p>The pilot turns a launch brief into an opinionated recommendation your team can discuss before the hold, guarantee, and first drop become expensive.</p>
+      </div>
+      <div class="example-grid" aria-label="Example Vibelytics launch decisions">
+        <article class="example-card">
+          <div class="example-meta">
+            <span>Lisbon / 1,200 cap</span>
+            <span class="example-state">Go</span>
+          </div>
+          <div>
+            <h3>Use the waterfront room.</h3>
+            <p>Destination intent, sponsor fit, and venue economics line up. Keep the first allocation tight and let presale velocity unlock the late tier.</p>
+          </div>
+        </article>
+        <article class="example-card">
+          <div class="example-meta">
+            <span>London / 2,500 cap</span>
+            <span class="example-state adjust">Adjust</span>
+          </div>
+          <div>
+            <h3>Hold the hall, reduce exposure.</h3>
+            <p>Demand is real, but room cost punishes an underpriced launch. Add release clauses, staged inventory, and a sponsor milestone.</p>
+          </div>
+        </article>
+        <article class="example-card">
+          <div class="example-meta">
+            <span>Berlin / 6,000 cap</span>
+            <span class="example-state no">Do Not Launch</span>
+          </div>
+          <div>
+            <h3>Do not announce this version.</h3>
+            <p>The outdoor format asks for scale the brief has not earned. Re-scope to a smaller room and prove partner-list conversion first.</p>
+          </div>
+        </article>
       </div>
     </section>
 
@@ -630,9 +783,63 @@
       <img src="assets/backstage.png" alt="Backstage view before a live event launch" />
     </section>
 
+    <section class="section" id="audience">
+      <div class="section-head">
+        <h2>Built for the people carrying launch risk.</h2>
+        <p>Vibelytics is for operators who have to make the call before public demand has fully revealed itself.</p>
+      </div>
+      <div class="audience-grid">
+        <article class="audience-card">
+          <h3>Promoters</h3>
+          <p>Pressure-test the artist, city, room, price, and first announcement before deposits and media spend lock the path.</p>
+        </article>
+        <article class="audience-card">
+          <h3>Venue operators</h3>
+          <p>Decide whether a proposed booking fits the room, calendar, buyer context, and downside risk before the hold becomes real.</p>
+        </article>
+        <article class="audience-card">
+          <h3>Launch leads</h3>
+          <p>Turn messy cultural signal into a briefing artifact that aligns ticketing, sponsor, creative, and production decisions.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="market-strip" aria-label="Vibelytics marketing themes">
+        <h2>Useful launch questions make better marketing.</h2>
+        <ul class="market-list">
+          <li>900-cap club or 2,500-cap hall?</li>
+          <li>When a sold-out club night should not scale yet.</li>
+          <li>How to price the first drop before demand is proven.</li>
+          <li>Sponsor fit before the deck gets expensive.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="trust">
+      <div class="section-head">
+        <h2>Pre-launch intelligence, not surveillance.</h2>
+        <p>The current site is a static preview. It supports planning decisions without claiming live tracking or hidden attendee data.</p>
+      </div>
+      <div class="trust-grid">
+        <article class="trust-card">
+          <h3>No attendee identity</h3>
+          <p>The preview does not identify individual fans, guests, buyers, or attendees.</p>
+        </article>
+        <article class="trust-card">
+          <h3>No live tracking</h3>
+          <p>There are no tracking scripts, backend calls, external services, heatmaps, or real-time crowd monitoring.</p>
+        </article>
+        <article class="trust-card">
+          <h3>No emotion detection</h3>
+          <p>Vibelytics is framed around pre-launch decisions: room, price, risk, sequence, and sponsor story.</p>
+        </article>
+      </div>
+    </section>
+
     <section class="final">
-      <h2>Open the pilot. Make the call.</h2>
-      <a class="btn" href="/pilot">Launch Vibelytics pilot</a>
+      <h2>Send the brief. Pressure-test the launch.</h2>
+      <a class="btn" href="/pilot">Generate launch brief</a>
     </section>
   </main>
 
@@ -643,12 +850,13 @@
           <span class="logo" aria-hidden="true"></span>
           <span>Vibelytics</span>
         </a>
-        <p>AI launch copilot for live culture. Vibelytics helps promoters and venues decide where, when, and how to launch before capital is committed.</p>
+        <p>Pre-launch decision intelligence for live culture. Vibelytics helps promoters and venues pressure-test the room, price, risk, sponsor fit, and launch sequence before they announce.</p>
         <p><a href="mailto:yes@vibelytics.ai">yes@vibelytics.ai</a></p>
       </div>
       <div class="footer-col">
         <h2>Product</h2>
         <a href="#product">Positioning</a>
+        <a href="#examples">Examples</a>
         <a href="#workflow">Workflow</a>
         <a href="/pilot">Pilot</a>
       </div>

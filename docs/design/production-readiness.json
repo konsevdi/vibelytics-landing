@@ -1,10 +1,10 @@
 {
   "version": 2,
   "date": "2026-07-05",
-  "status": "pass_current_static_brand_scope_monitoring_current",
+  "status": "static_v2_local_pass_pending_production_monitoring",
   "lastMonitoringPass": "2026-07-05",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Production brand signoff passed for the current Vibelytics static public routes and deployed brand/social assets. Current route policy keeps both / and /pilot pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.",
+  "decision": "Production brand signoff passed for the previous Vibelytics static public route and deployed brand/social asset scope. Static V2 implementation strengthens promoter/venue positioning and upgrades /pilot into a static launch-brief generator; production monitoring should be re-run after deployment. Current route policy keeps both / and /pilot pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.",
   "scope": [
     "/",
     "/pilot",
@@ -34,7 +34,8 @@
     "staticOnlyBehavior": "pass",
     "assetResolution": "pass",
     "build": "pass",
-    "provenanceJsonValid": "pass"
+    "provenanceJsonValid": "pass",
+    "staticV2LocalImplementation": "pass"
   },
   "monitoringHistory": [
     {
