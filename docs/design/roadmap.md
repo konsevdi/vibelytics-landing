@@ -14,6 +14,8 @@ Production brand signoff passed on 2026-07-05 for the current static public scop
 
 Production monitoring passed on 2026-07-05 for commit `9532f2c`. Live `/` and `/pilot` matched local route files, production assets resolved, desktop/mobile browser QA passed, the pilot interaction smoke test passed, and no static-only, route-boundary, or brand-preservation blockers were found.
 
+`docs/HANDOFF.md` now provides the concise post-signoff operating handoff for future Vibelytics threads.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -42,6 +44,7 @@ Production monitoring passed on 2026-07-05 for commit `9532f2c`. Live `/` and `/
 - `docs/design/identity-source-pass-2026-07-03.md`: canonical mark source, raster export, route logo, screenshot refresh, verification, and next action.
 - `docs/design/final-review.md`: final production brand review, evidence, accepted risks, and PASS decision for the current static scope.
 - `docs/design/production-readiness.json`: structured production readiness decision for the current static brand scope.
+- `docs/HANDOFF.md`: concise post-signoff handoff with production status, brand boundaries, route rules, source-of-truth files, accepted risks, and re-run checks.
 - `scripts/generate-route-assets.py`: deterministic source generator for `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png`.
 - `brand/vibelytics-mark.svg`: canonical editable Vibelytics mark source.
 - `scripts/generate-brand-assets.py`: deterministic export generator for mark, favicon, app icon, avatar, and social PNG derivatives.
@@ -246,6 +249,27 @@ Production monitoring notes:
 - No backend/API/external-service behavior was found in local or production route HTML.
 - Production Playwright QA passed for `/` and `/pilot` at desktop and mobile viewports, and the pilot interaction smoke test returned Adjust, demand 69, confidence 68%.
 - No site, product copy, route, token, or asset implementation changes were made during monitoring.
+
+Commands run for the 2026-07-05 post-signoff handoff package:
+
+```bash
+git status --short --branch
+rg --files docs README.md package.json index.html pilot/index.html styles/tokens.css brand assets
+sed -n '1,260p' docs/design/production-readiness.json
+sed -n '1,260p' docs/design/final-review.md
+sed -n '1,260p' docs/design/roadmap.md
+sed -n '1,220p' README.md
+npm run build
+node -e 'for (const f of ["docs/design/asset-provenance.json","docs/design/production-readiness.json"]) { JSON.parse(require("fs").readFileSync(f,"utf8")); console.log(f+" ok") }'
+rg -n "SR007|Speedrun|a16z|Andreessen" index.html pilot/index.html
+rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment" index.html pilot/index.html
+```
+
+Post-signoff handoff notes:
+
+- Added `docs/HANDOFF.md` as the concise operational handoff package.
+- No production route, product copy, implementation, or asset changes were made.
+- The handoff preserves the approved route boundaries, static-only constraints, source-of-truth files, accepted P2 archive risks, and checks to re-run after future changes.
 
 ## Next Action For Future Codex Thread
 
