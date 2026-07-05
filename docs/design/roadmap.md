@@ -24,7 +24,7 @@ Public pilot copy cleanup was requested on 2026-07-05 after SR007 wording was id
 
 Live-site discovery and verification passed on 2026-07-05 for commit `27b202e`. Canonical `https://www.vibelytics.ai` and `https://vibelytics-landing.vercel.app` both returned 200 for `/` and `/pilot`; fetched HTML matched local route files byte-for-byte; `/pilot` contained the new Vibelytics preview copy with no SR007, Speedrun, a16z, or Andreessen references; and no backend/API/external-service behavior was found. DNS/header checks showed `www.vibelytics.ai` serving through Vercel and the apex redirecting to `www`; no Hostinger website ID, Horizons edit URL, or Hostinger deployment config was discoverable from the repo.
 
-Static V2 product/marketing implementation passed local QA on 2026-07-05. The scope keeps the site static-only while sharpening `/` around promoter/venue conversion and upgrading `/pilot` into a richer launch-brief generator with budget, timeline, ticketing, risk, copy/download/share/email actions, and URL-restorable scenarios. Production monitoring remains required after deployment.
+Static V2 product/marketing implementation passed local and production QA on 2026-07-05 for commit `79e745b`. The scope keeps the site static-only while sharpening `/` around promoter/venue conversion and upgrading `/pilot` into a richer launch-brief generator with budget, timeline, ticketing, risk, copy/download/share/email actions, and URL-restorable scenarios. Canonical `https://www.vibelytics.ai/` and `/pilot/` returned 200 and matched local route files byte-for-byte.
 
 ## Decisions Recorded
 
@@ -50,6 +50,7 @@ Static V2 product/marketing implementation passed local QA on 2026-07-05. The sc
 - Public pilot copy cleanup removes SR007 wording from `/pilot`; use Vibelytics-native preview language instead.
 - Canonical live-site verification confirms `www.vibelytics.ai` currently serves the same Vercel-backed static HTML as the deployment URL.
 - Static V2 conversion motion is generate a launch brief, then copy, download, share, or email it to Vibelytics for pressure-testing.
+- Static V2 production monitoring passed for commit `79e745b`.
 
 ## Artifacts
 
@@ -92,6 +93,8 @@ P1: Resolved for docs-only production monitoring after commit `b8bcd50`. The 202
 
 P1: Resolved for live-site discovery after commit `27b202e`. The 2026-07-05 check found canonical `www.vibelytics.ai` serving the Vercel-backed route HTML with no Hostinger project identifier available in the repo.
 
+P1: Resolved for Static V2 production monitoring after commit `79e745b`. The 2026-07-05 check found canonical `/` and `/pilot/` live, static-only, pure Vibelytics, matching local route files, and passing the upgraded pilot interaction smoke test.
+
 ## Recommended Path
 
 1. Preserve the current static route strategy: `/` and `/pilot` stay pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
@@ -100,7 +103,7 @@ P1: Resolved for live-site discovery after commit `27b202e`. The 2026-07-05 chec
 4. Monitor canonical `https://www.vibelytics.ai` first, with `https://vibelytics-landing.vercel.app` as the deployment URL.
 5. If Hostinger is intended to host a separate live surface, get its website ID/edit URL before making claims about that deployment.
 6. Re-run production QA after any route, token, or asset change, and keep asset provenance current before expanding public brand surfaces.
-7. After Static V2 deploys, re-run canonical production monitoring and update `docs/design/production-readiness.json` from pending to pass only if live `/` and `/pilot` match the committed route files.
+7. After future route, token, or asset changes, re-run canonical production monitoring and update `docs/design/production-readiness.json` only if live `/` and `/pilot` match the committed route files.
 
 ## Verification Commands
 

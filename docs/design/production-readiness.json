@@ -1,10 +1,10 @@
 {
   "version": 2,
   "date": "2026-07-05",
-  "status": "static_v2_local_pass_pending_production_monitoring",
+  "status": "pass_static_v2_production_monitoring_current",
   "lastMonitoringPass": "2026-07-05",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Production brand signoff passed for the previous Vibelytics static public route and deployed brand/social asset scope. Static V2 implementation strengthens promoter/venue positioning and upgrades /pilot into a static launch-brief generator; production monitoring should be re-run after deployment. Current route policy keeps both / and /pilot pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.",
+  "decision": "Production monitoring passed for the Vibelytics Static V2 public route scope. Static V2 strengthens promoter/venue positioning and upgrades /pilot into a static launch-brief generator with copy, download, share, email, and URL-restorable scenarios. Current route policy keeps both / and /pilot pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.",
   "scope": [
     "/",
     "/pilot",
@@ -35,9 +35,29 @@
     "assetResolution": "pass",
     "build": "pass",
     "provenanceJsonValid": "pass",
-    "staticV2LocalImplementation": "pass"
+    "staticV2LocalImplementation": "pass",
+    "staticV2ProductionMonitoring": "pass"
   },
   "monitoringHistory": [
+    {
+      "date": "2026-07-05",
+      "status": "pass",
+      "productionCommit": "79e745b",
+      "summary": "Static V2 production monitoring passed. Canonical / and /pilot returned 200 and matched local route files byte-for-byte. The homepage contained the strengthened promoter/venue positioning, example decisions, audience section, marketing themes, and trust boundaries. The pilot exposed budget, timeline, ticketing, and risk inputs; copy/download/share/email actions worked; the share URL restored the selected scenario; forbidden legacy terms and backend/API/external-service patterns were absent; npm build and JSON validation passed.",
+      "checks": {
+        "routeStatus": "pass",
+        "routeContentMatchesMain": "pass",
+        "homeStaticV2Content": "pass",
+        "pilotBriefGenerator": "pass",
+        "copyDownloadShareEmailActions": "pass",
+        "shareUrlRestore": "pass",
+        "rootPurity": "pass",
+        "pilotPurity": "pass",
+        "staticOnlyBehavior": "pass",
+        "build": "pass",
+        "jsonValidation": "pass"
+      }
+    },
     {
       "date": "2026-07-05",
       "status": "pass",
