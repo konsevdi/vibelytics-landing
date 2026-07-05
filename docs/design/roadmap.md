@@ -1,6 +1,6 @@
 # Vibelytics Design Roadmap
 
-Last updated: 2026-07-04
+Last updated: 2026-07-05
 
 ## Current State
 
@@ -9,6 +9,8 @@ Vibelytics has a static public landing page and clickable pilot for an AI launch
 The repo now includes a durable design roadmap, an approved strategy brand kit, a focused asset-source pass, first-party route imagery, and canonical identity exports. This roadmap is the coordination point for future design-to-code passes.
 
 Production deployment verification passed on 2026-07-04 for commit `bccf62c` at `https://vibelytics-landing.vercel.app`. Live `/` and `/pilot` matched local `main`, production assets resolved, desktop/mobile browser QA passed, and the pilot interaction smoke test passed. This is deployment verification evidence, not production brand signoff by itself.
+
+Production brand signoff passed on 2026-07-05 for the current static public scope. The decision covers `/`, `/pilot`, the canonical mark, deployed favicon/app/social images, current first-party route imagery, and shared tokens. It excludes future use of archived unknown-provenance imagery unless provenance is resolved.
 
 ## Decisions Recorded
 
@@ -20,14 +22,14 @@ Production deployment verification passed on 2026-07-04 for commit `bccf62c` at 
 - Signal Desk is approved as the product identity backbone.
 - Culture Graph is preserved as a campaign imagery layer, not the product identity backbone.
 - First Yes is preserved as a launch campaign layer, not the product identity backbone.
-- No production brand signoff should be claimed until final visual QA and shared token consolidation are complete.
+- Production brand signoff passed on 2026-07-05 for the current static public route and brand/social asset scope.
 - The 2026-07-03 asset-source pass found no current PNG approved as canonical production brand source.
 - Route-used campaign/product imagery was replaced with deterministic first-party PNGs generated from repo source.
 - The canonical SVG mark now exists at `brand/vibelytics-mark.svg`.
 - Favicon, app icon, brand, avatar, social, and screenshot derivatives were refreshed from repo-owned source/export paths.
 - Final visual QA passed across `/`, `/pilot`, favicon/app icon/social crops, desktop/mobile viewports, and the pilot interaction smoke test.
 - Shared color, semantic, typography, radius, elevation, and motion primitives now live in `styles/tokens.css` and are consumed by `index.html` and `pilot/index.html`.
-- Production verification passed for the current static deployment; production brand signoff remains a separate explicit decision.
+- Production verification passed for the current static deployment.
 
 ## Artifacts
 
@@ -36,6 +38,8 @@ Production deployment verification passed on 2026-07-04 for commit `bccf62c` at 
 - `docs/design/asset-provenance.json`: public asset provenance register with per-asset source decisions, approval states, and replacement recommendations.
 - `docs/design/asset-source-pass-2026-07-03.md`: focused source pass summary, replacement list, blockers, verification commands, and next action.
 - `docs/design/identity-source-pass-2026-07-03.md`: canonical mark source, raster export, route logo, screenshot refresh, verification, and next action.
+- `docs/design/final-review.md`: final production brand review, evidence, accepted risks, and PASS decision for the current static scope.
+- `docs/design/production-readiness.json`: structured production readiness decision for the current static brand scope.
 - `scripts/generate-route-assets.py`: deterministic source generator for `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png`.
 - `brand/vibelytics-mark.svg`: canonical editable Vibelytics mark source.
 - `scripts/generate-brand-assets.py`: deterministic export generator for mark, favicon, app icon, avatar, and social PNG derivatives.
@@ -58,13 +62,15 @@ P1: Resolved for current static routes. Final visual QA found no blocking crop, 
 
 P1: Resolved for current production deployment. Production QA found no deployment, asset-resolution, copy purity, static-only, viewport, or pilot interaction blockers.
 
+P1: Resolved for current production brand scope. Final production brand review found no P0/P1 blockers. `assets/control-room.png` and `assets/app_screen_mock.png` remain accepted P2 archive risks: internal evidence only, not approved for future public implementation unless provenance is resolved.
+
 ## Recommended Path
 
 1. Preserve the current static route strategy: `/` stays pure Vibelytics and `/pilot` may carry subtle SR007/static pilot context.
 2. Keep shared tokens in `styles/tokens.css`; add new route-specific CSS only when it is layout or component behavior, not a duplicate brand primitive.
 3. Keep asset export scripts and provenance register current if future visual QA changes any source assets.
-4. Move to production brand signoff review or deployment monitoring with screenshots from the final QA pass as evidence.
-5. Use the 2026-07-04 production verification pass as deployment evidence for the next brand signoff review; do not infer signoff from deployment verification alone.
+4. Move to lightweight production monitoring and preservation.
+5. Re-run production QA after any route, token, or asset change, and keep asset provenance current before expanding public brand surfaces.
 
 ## Verification Commands
 
@@ -180,11 +186,34 @@ Production verification notes:
 - No backend/API/external-service behavior was found in the local source or fetched production HTML.
 - Production pilot interaction smoke test passed after selecting Mira K / London / 2,000-3,000 cap hall / Fashion and generating a decision: output changed to Adjust, demand score 69, confidence 68%, London GBP pricing, and an updated mailto launch brief.
 
+Commands run for the 2026-07-05 production brand signoff review:
+
+```bash
+git status --short --branch
+sed -n '1,260p' docs/design/roadmap.md
+sed -n '1,320p' docs/brand/brand-kit.md
+sed -n '1,260p' docs/design/asset-provenance.json
+rg -n "SR007|Speedrun|a16z|Andreessen|fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment" index.html pilot/index.html
+node /private/tmp/vibelytics-brand-signoff-qa.mjs
+sips -g pixelWidth -g pixelHeight brand/*.png favicon.png apple-touch-icon.png og-image.png twitter-image.png docs/assets/*.png assets/*.png
+node -e 'JSON.parse(require("fs").readFileSync("docs/design/asset-provenance.json","utf8")); console.log("asset-provenance.json ok")'
+npm run build
+curl -sS -I https://vibelytics-landing.vercel.app/og-image.png
+```
+
+Production brand signoff notes:
+
+- Final decision: PASS for the current static public brand scope.
+- Fresh production Playwright QA passed for `/` and `/pilot` at desktop and mobile viewports, with the pilot interaction smoke test returning Adjust, demand 69, confidence 68%.
+- No site, product copy, route, token, or asset implementation changes were made during signoff.
+- Updated signoff artifacts: `docs/design/final-review.md`, `docs/design/production-readiness.json`, `docs/design/asset-provenance.json`, `docs/brand/brand-kit.md`, and this roadmap.
+- Accepted P2 archive risk: `assets/control-room.png` and `assets/app_screen_mock.png` remain internal evidence only and are not approved for future public brand implementation unless provenance is resolved.
+
 ## Next Action For Future Codex Thread
 
-Move to production brand signoff review and lightweight deployment monitoring:
+Move to lightweight production monitoring and preservation:
 
-1. Use the final visual QA screenshots and token consolidation as current evidence.
+1. Re-run production QA after any route, token, or asset change.
 2. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
 3. Keep `/` pure Vibelytics and `/pilot` limited to subtle SR007/static pilot context.
-4. Treat production brand signoff as the next explicit decision; do not assume it from deployment verification alone.
+4. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.

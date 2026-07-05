@@ -1,13 +1,14 @@
 # Vibelytics Brand Kit
 
-Status: Approved strategy kit, source assets established, implementation QA gated
+Status: Production brand signoff passed for current static scope
 Approved territory: Signal Desk
 Approval date: 2026-07-03
 Source pass: `docs/brand/branding-pass-2026-07-03.md`
+Production signoff date: 2026-07-05
 
 ## Production Readiness
 
-This brand kit records the approved Vibelytics identity direction. It is not a final production asset signoff.
+This brand kit records the approved Vibelytics identity direction and the current production brand signoff decision.
 
 Source gates resolved on 2026-07-03:
 
@@ -15,7 +16,20 @@ Source gates resolved on 2026-07-03:
 - P1: The canonical editable logo source exists at `brand/vibelytics-mark.svg`.
 - P1: Favicons, social assets, and screenshots have been refreshed from repo-owned source/export paths.
 
-This is still not final production brand signoff. Final visual QA, social crop review, and shared token consolidation remain open.
+Production brand signoff passed on 2026-07-05 for the current static public routes, canonical mark, favicon/app icon, social images, first-party route imagery, and shared route tokens.
+
+Signoff evidence:
+
+- Final visual QA passed across `/`, `/pilot`, favicon/app icon/social crops, desktop/mobile viewports, and pilot interaction.
+- Production deployment verification passed for `https://vibelytics-landing.vercel.app`.
+- Fresh production brand QA passed on 2026-07-05 at desktop and mobile viewports.
+- `/` remains pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
+- `/pilot` keeps only subtle SR007/static pilot context.
+- No backend/API/external-service behavior was introduced.
+
+Accepted non-blocking risk:
+
+- `assets/control-room.png` and `assets/app_screen_mock.png` still have unknown provenance, but they are not referenced by current public routes and remain internal evidence only. Do not use them in future public brand implementation unless provenance is resolved.
 
 ## Brand Position
 
@@ -236,7 +250,7 @@ Approved token families:
 
 Implementation note:
 
-`index.html` and `pilot/index.html` currently duplicate token decisions. Consolidation is approved as a future implementation task after SVG logo and provenance gates are addressed.
+Shared token decisions now live in `styles/tokens.css` and are consumed by `index.html` and `pilot/index.html`. Keep route-specific CSS limited to layout and component behavior.
 
 ## Imagery And Illustration
 
@@ -336,15 +350,18 @@ Preserve as evidence until replaced by approved exports:
 - `og-image.png`
 - `twitter-image.png`
 
-Preserve as current product/campaign evidence pending provenance:
+Preserve as current product/campaign evidence:
 
 - `assets/festival-network.png`
 - `assets/taste-map.png`
 - `assets/backstage.png`
-- `assets/control-room.png`
-- `assets/app_screen_mock.png`
 - `docs/assets/vibelytics-landing-screenshot.png`
 - `docs/assets/vibelytics-pilot-screenshot.png`
+
+Preserve as internal evidence only; do not use in future public implementation unless provenance is resolved:
+
+- `assets/control-room.png`
+- `assets/app_screen_mock.png`
 
 ## Rejected Options
 
@@ -364,11 +381,11 @@ Create-from-scratch identity:
 
 ## Implementation Checklist
 
-Source assets are established. Continue with implementation QA and shared token work.
+Production signoff is complete for the current static scope. Continue with monitoring and preservation.
 
-1. Run final visual QA across `/`, `/pilot`, favicons, social images, and screenshots.
-2. Normalize shared color, typography, spacing, semantic, radius, and elevation tokens.
-3. Apply approved tokens to `/` and `/pilot` without changing route strategy.
+1. Keep `/` pure Vibelytics and `/pilot` limited to subtle SR007/static pilot context.
+2. Keep shared color, typography, spacing, semantic, radius, and elevation tokens in `styles/tokens.css`.
+3. Preserve the current route strategy and static-only constraints.
 4. Keep `brand/vibelytics-mark.svg`, `scripts/generate-brand-assets.py`, and `scripts/generate-route-assets.py` as source/export records for future asset changes.
 5. Run:
    - `npm run build`
@@ -380,7 +397,8 @@ Source assets are established. Continue with implementation QA and shared token 
 
 ## Next Action
 
-Run final visual QA and shared token consolidation:
+Move to lightweight production monitoring and preservation:
 
-1. Review the refreshed source assets and social crops.
-2. Consolidate duplicated route tokens after visual QA passes.
+1. Re-run production QA after any route, token, or asset change.
+2. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
+3. Do not expand archived unknown-provenance imagery into public surfaces.

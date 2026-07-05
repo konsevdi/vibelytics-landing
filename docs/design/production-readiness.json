@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "date": "2026-07-05",
+  "status": "pass_current_static_brand_scope",
+  "productionUrl": "https://vibelytics-landing.vercel.app",
+  "decision": "Production brand signoff passed for the current Vibelytics static public routes and deployed brand/social assets.",
+  "scope": [
+    "/",
+    "/pilot",
+    "brand/vibelytics-mark.svg",
+    "favicon.png",
+    "apple-touch-icon.png",
+    "og-image.png",
+    "twitter-image.png",
+    "assets/festival-network.png",
+    "assets/taste-map.png",
+    "assets/backstage.png",
+    "styles/tokens.css"
+  ],
+  "evidence": [
+    "docs/design/final-review.md",
+    "docs/design/roadmap.md",
+    "docs/design/asset-provenance.json",
+    "docs/brand/brand-kit.md",
+    "docs/assets/vibelytics-landing-screenshot.png",
+    "docs/assets/vibelytics-pilot-screenshot.png"
+  ],
+  "checks": {
+    "productionDesktopMobileQa": "pass",
+    "pilotInteractionSmoke": "pass",
+    "rootPurity": "pass",
+    "pilotContextBoundary": "pass",
+    "staticOnlyBehavior": "pass",
+    "assetResolution": "pass",
+    "build": "pass",
+    "provenanceJsonValid": "pass"
+  },
+  "acceptedRisks": [
+    {
+      "asset": "assets/control-room.png",
+      "risk": "Unknown provenance.",
+      "decision": "Internal evidence only; do not use in future public brand implementation unless provenance is resolved.",
+      "priority": "P2"
+    },
+    {
+      "asset": "assets/app_screen_mock.png",
+      "risk": "Unknown provenance.",
+      "decision": "Internal evidence only; do not use in future public brand implementation unless provenance is resolved.",
+      "priority": "P2"
+    }
+  ],
+  "nextAction": "Move to lightweight production monitoring and preservation. Re-run production QA after any route, token, or asset change."
+}

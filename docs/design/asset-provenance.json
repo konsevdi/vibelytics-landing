@@ -1,10 +1,10 @@
 {
-  "version": 4,
-  "date": "2026-07-03",
-  "status": "source_assets_established_visual_signoff_pending",
+  "version": 5,
+  "date": "2026-07-05",
+  "status": "production_brand_signoff_passed_current_scope",
   "scope": "Current Vibelytics public PNG brand, social, product, campaign, favicon, and screenshot assets in the static landing repo.",
   "policy": "Public, external, generated, third-party, or licensed brand assets must have source, usage rights, allowed uses, attribution, replacement decision, and open rights questions recorded before the brand system can be called production-ready.",
-  "overallDecision": "Route-used campaign/product images, canonical SVG mark, favicon, app icon, social images, and verification screenshots now have repo-owned source paths. This closes the source/provenance gate, but does not by itself claim final production brand signoff.",
+  "overallDecision": "Route-used campaign/product images, canonical SVG mark, favicon, app icon, social images, and verification screenshots have repo-owned source paths. Production brand signoff passed on 2026-07-05 for the current static public routes and deployed brand/social assets. Unused unknown-provenance images remain internal evidence only and are excluded from future public brand implementation unless provenance is resolved.",
   "canonicalSourceGate": {
     "status": "closed_for_current_brand_exports",
     "completed": [
@@ -12,10 +12,10 @@
       "Exported favicon, app icon, avatar, social, and brand PNG derivatives from repo-owned source geometry.",
       "Refreshed screenshots after source asset replacement."
     ],
-    "remainingBeforeProductionBrandSignoff": [
-      "Complete final visual QA across routes and social crops.",
-      "Consolidate shared tokens across index.html and pilot/index.html.",
-      "Keep source/export scripts current for any future raster changes."
+    "currentBrandScopeRequirements": [
+      "No remaining P0/P1 blockers for the current production static route and brand/social asset scope.",
+      "Keep source/export scripts current for any future raster changes.",
+      "Do not use assets/control-room.png or assets/app_screen_mock.png in future public brand implementation unless provenance is resolved."
     ]
   },
   "assets": [
@@ -39,9 +39,7 @@
       "approvalState": "confirmed_canonical_source",
       "replacementRecommendation": "Future raster changes should update this SVG first, then regenerate PNG derivatives with scripts/generate-brand-assets.py.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on route/social visual QA and token consolidation."
-      ]
+      "openQuestions": []
     },
     {
       "path": "brand/vibelytics-mark.png",
@@ -62,9 +60,7 @@
       "approvalState": "confirmed_source_derivative",
       "replacementRecommendation": "Regenerate with scripts/generate-brand-assets.py after any future SVG geometry change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on route/social visual QA."
-      ]
+      "openQuestions": []
     },
     {
       "path": "brand/vibelytics-og-image.png",
@@ -85,9 +81,7 @@
       "approvalState": "confirmed_source_derivative",
       "replacementRecommendation": "Regenerate with scripts/generate-brand-assets.py after any future mark, copy, or social crop change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on visual QA across target social crops."
-      ]
+      "openQuestions": []
     },
     {
       "path": "brand/vibelytics-x-avatar.png",
@@ -108,9 +102,7 @@
       "approvalState": "confirmed_source_derivative",
       "replacementRecommendation": "Regenerate with scripts/generate-brand-assets.py after any future mark or avatar crop change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on visual QA in target social profile crops."
-      ]
+      "openQuestions": []
     },
     {
       "path": "brand/vibelytics-x-header.png",
@@ -131,9 +123,7 @@
       "approvalState": "confirmed_source_derivative",
       "replacementRecommendation": "Regenerate with scripts/generate-brand-assets.py after any future mark, copy, or header crop change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on visual QA in target social header crop."
-      ]
+      "openQuestions": []
     },
     {
       "path": "favicon.png",
@@ -155,9 +145,7 @@
       "approvalState": "confirmed_source_derivative",
       "replacementRecommendation": "Regenerate with scripts/generate-brand-assets.py after any future mark change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on small-size visual QA in browsers."
-      ]
+      "openQuestions": []
     },
     {
       "path": "apple-touch-icon.png",
@@ -179,9 +167,7 @@
       "approvalState": "confirmed_source_derivative",
       "replacementRecommendation": "Regenerate with scripts/generate-brand-assets.py after any future mark change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on small-size visual QA on target devices."
-      ]
+      "openQuestions": []
     },
     {
       "path": "og-image.png",
@@ -203,9 +189,7 @@
       "approvalState": "confirmed_source_derivative",
       "replacementRecommendation": "Regenerate with scripts/generate-brand-assets.py after any future social preview change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on social crop QA."
-      ]
+      "openQuestions": []
     },
     {
       "path": "twitter-image.png",
@@ -227,9 +211,7 @@
       "approvalState": "confirmed_source_derivative",
       "replacementRecommendation": "Regenerate with scripts/generate-brand-assets.py after any future social preview change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on social crop QA."
-      ]
+      "openQuestions": []
     },
     {
       "path": "assets/festival-network.png",
@@ -379,9 +361,7 @@
       "approvalState": "confirmed_current_screenshot",
       "replacementRecommendation": "Recapture with Playwright after any future route, asset, or token change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on visual QA, not screenshot source provenance."
-      ]
+      "openQuestions": []
     },
     {
       "path": "docs/assets/vibelytics-pilot-screenshot.png",
@@ -405,9 +385,7 @@
       "approvalState": "confirmed_current_screenshot",
       "replacementRecommendation": "Recapture with Playwright after any future route, asset, or token change.",
       "priority": "resolved_p1",
-      "openQuestions": [
-        "Final production brand signoff still depends on visual QA, not screenshot source provenance."
-      ]
+      "openQuestions": []
     }
   ],
   "summaryByDecision": {
@@ -438,5 +416,5 @@
       "assets/app_screen_mock.png"
     ]
   },
-  "nextAction": "A future Codex thread should run final visual QA and then consolidate shared tokens across index.html and pilot/index.html. Do not claim production-ready brand signoff until route/social visual QA and token consolidation are complete."
+  "nextAction": "Production brand signoff is passed for the current static public route and brand/social asset scope. Future work should keep the source/export scripts current, preserve route boundaries, monitor production after changes, and avoid using assets/control-room.png or assets/app_screen_mock.png publicly unless provenance is resolved."
 }
