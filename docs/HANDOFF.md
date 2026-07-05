@@ -3,12 +3,13 @@
 Last updated: 2026-07-05
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 product/marketing implementation passed local and production QA.
+Current status: Static V2 growth/conversion iteration passed local QA; production verification follows the push.
 
 ## Production Status
 
 - `/` and `/pilot` are live static routes.
 - Static V2 adds stronger promoter/venue positioning on `/` and a richer static launch-brief generator on `/pilot`.
+- The current growth iteration adds a launch brief checklist on `/`, a clearer `/pilot` email-brief path, and a more intake-ready generated brief artifact.
 - `https://www.vibelytics.ai` currently resolves through Vercel and matches the Vercel deployment URL.
 - No Hostinger website ID, Horizons edit URL, or Hostinger deployment config is present in this repo. If Hostinger is intended to be a separate live surface, obtain the Hostinger website ID/edit URL before updating it.
 - Production brand signoff passed for the current static public scope.
@@ -30,6 +31,7 @@ Current status: Static V2 product/marketing implementation passed local and prod
 - `/pilot` must also remain pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
 - Use Vibelytics-native preview language on `/pilot`, such as `Vibelytics preview`, `Preview context only`, and static/no-backend disclosures.
 - Preserve the Static V2 conversion motion: generate a launch brief, then copy, download, share, or email it to Vibelytics for pressure-testing.
+- Preserve the growth conversion motion: review what to send, generate the static launch brief, then email the intake artifact to Vibelytics.
 - Keep both routes static-only.
 
 ## Source Of Truth

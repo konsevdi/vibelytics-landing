@@ -1180,6 +1180,7 @@
       <div class="nav-actions" aria-label="Page sections">
         <a href="/">Home</a>
         <a href="#pilot">Pilot</a>
+        <a href="#send-brief">Email brief</a>
         <a href="#footer">Info</a>
       </div>
     </nav>
@@ -1285,7 +1286,7 @@
             </select>
           </div>
           <button class="btn generate" id="generate">Generate launch decision</button>
-          <p class="brief-note">Preview context only. Vibelytics supports pre-launch planning, with no attendee identity, live tracking, heatmaps, or emotion detection.</p>
+          <p class="brief-note">Generate a scenario, then use Email brief to send the intake artifact. Preview context only: no attendee identity, live tracking, heatmaps, or emotion detection.</p>
         </aside>
 
         <section class="workspace">
@@ -1389,7 +1390,11 @@
             <h4>Assumptions</h4>
             <p id="assumptions">Synthetic local comps, genre pull, sponsor fit, and venue economics are used for this preview.</p>
           </div>
-          <div class="copy-block">
+          <div class="result-block highlight">
+            <h4>What to send Vibelytics</h4>
+            <p id="intake-next">Share the real venue option, hold status, target margin, expected ticket tiers, sponsor context, and the decision deadline.</p>
+          </div>
+          <div class="copy-block" id="send-brief">
             <h4>Generated launch copy</h4>
             <p id="launch-copy">One night, one skyline, one sound. Eleni Nova comes to Athens for an intimate sunset-to-late session.</p>
             <div class="action-grid" aria-label="Launch brief actions">
@@ -1651,6 +1656,7 @@
       downsideRisk: document.getElementById("downside-risk"),
       adjustmentDetail: document.getElementById("adjustment-detail"),
       assumptions: document.getElementById("assumptions"),
+      intakeNext: document.getElementById("intake-next"),
       launchCopy: document.getElementById("launch-copy"),
       mailBrief: document.getElementById("mail-brief"),
       runId: document.getElementById("run-id"),
@@ -1961,43 +1967,74 @@
       window.history.replaceState(null, "", buildShareUrl());
     }
 
+    function getIntakeNextStep(plan) {
+      const decisionDeadline = timelineEl.value === "tight" ? "within the next 72 hours" : "before the hold or announcement window hardens";
+      if (plan.recommendation === "Do Not Launch") {
+        return `Send the real hold options, cost exposure, partner commitments, and the smallest viable room so Vibelytics can pressure-test a safer version ${decisionDeadline}.`;
+      }
+
+      if (plan.recommendation === "Adjust") {
+        return `Send the venue hold, release terms, target margin, expected ticket tiers, sponsor context, and decision deadline so Vibelytics can pressure-test the adjusted launch ${decisionDeadline}.`;
+      }
+
+      return `Send the venue hold, margin target, ticket tier plan, sponsor role, launch timeline, and any known constraints so Vibelytics can pressure-test the launch call ${decisionDeadline}.`;
+    }
+
     function buildBriefText(plan) {
+      const intakeNext = getIntakeNextStep(plan);
       return [
-        "Vibelytics launch brief",
+        "Vibelytics launch brief for review",
         "",
-        `Artist: ${artists[artistEl.value].name}`,
-        `City: ${plan.cityName}`,
-        `Venue capacity: ${capacityEl.options[capacityEl.selectedIndex].text}`,
-        `Target date: ${targetDateEl.value}`,
-        `Marketing budget: ${budgetLabels[budgetEl.value]}`,
-        `Launch timeline: ${timelineLabels[timelineEl.value]}`,
-        `Sponsor category: ${sponsorLabels[sponsorEl.value]}`,
-        `Ticketing posture: ${ticketingLabels[ticketingEl.value]}`,
-        `Launch goal: ${goalLabels[goalEl.value]}`,
-        `Risk tolerance: ${riskLabels[riskEl.value]}`,
+        "1. Scenario",
+        `- Artist: ${artists[artistEl.value].name}`,
+        `- Format: ${artists[artistEl.value].genre}`,
+        `- City: ${plan.cityName}`,
+        `- Venue capacity: ${capacityEl.options[capacityEl.selectedIndex].text}`,
+        `- Target date: ${targetDateEl.value}`,
+        `- Marketing budget: ${budgetLabels[budgetEl.value]}`,
+        `- Launch timeline: ${timelineLabels[timelineEl.value]}`,
+        `- Sponsor category: ${sponsorLabels[sponsorEl.value]}`,
+        `- Ticketing posture: ${ticketingLabels[ticketingEl.value]}`,
+        `- Launch goal: ${goalLabels[goalEl.value]}`,
+        `- Risk tolerance: ${riskLabels[riskEl.value]}`,
         "",
-        `Recommendation: ${plan.recommendation}`,
-        `Confidence: ${plan.confidence}%`,
-        `Demand score: ${plan.demandScore}/100`,
-        `Capacity fit: ${plan.capacityFit}`,
-        `Pricing band: ${plan.priceBand}`,
-        `Sponsor fit: ${plan.sponsorFit}`,
+        "2. Generated decision",
+        `- Recommendation: ${plan.recommendation}`,
+        `- Confidence: ${plan.confidence}%`,
+        `- Demand score: ${plan.demandScore}/100`,
+        `- Capacity fit: ${plan.capacityFit}`,
+        `- Pricing band: ${plan.priceBand}`,
+        `- Sponsor fit: ${plan.sponsorFit}`,
         "",
-        `Demand rationale: ${plan.demandDetail}`,
-        `Capacity rationale: ${plan.capacityDetail}`,
-        `Pricing rationale: ${plan.pricingDetail}`,
-        `Sponsor rationale: ${plan.sponsorDetail}`,
-        `Downside risk: ${plan.downsideRisk}`,
-        `What to adjust: ${plan.adjustmentDetail}`,
-        `Assumptions: ${plan.assumptions}`,
+        "3. Decision rationale",
+        `- Demand: ${plan.demandDetail}`,
+        `- Capacity: ${plan.capacityDetail}`,
+        `- Pricing: ${plan.pricingDetail}`,
+        `- Sponsor: ${plan.sponsorDetail}`,
+        `- Downside risk: ${plan.downsideRisk}`,
+        `- What to adjust: ${plan.adjustmentDetail}`,
         "",
-        "Recommended launch sequence:",
-        `Week -6: ${plan.sequence[0]}`,
-        `Week -5: ${plan.sequence[1]}`,
-        `Week -3: ${plan.sequence[2]}`,
-        `Week -1: ${plan.sequence[3]}`,
+        "4. Recommended launch sequence",
+        `- Week -6: ${plan.sequence[0]}`,
+        `- Week -5: ${plan.sequence[1]}`,
+        `- Week -3: ${plan.sequence[2]}`,
+        `- Week -1: ${plan.sequence[3]}`,
         "",
-        `Generated launch copy: ${plan.copy}`,
+        "5. Launch copy",
+        plan.copy,
+        "",
+        "6. What I can send next",
+        "- Real venue option and hold status",
+        "- Room cost, guarantee, or margin target if available",
+        "- Expected ticket tiers, inventory posture, and presale audience",
+        "- Sponsor category, role, and constraints",
+        "- Launch decision deadline and known risk constraints",
+        "",
+        "7. Requested follow-up",
+        intakeNext,
+        "",
+        "Preview boundary",
+        plan.assumptions,
         "",
         `Share link: ${buildShareUrl()}`
       ].join("\n");
@@ -2043,8 +2080,8 @@
       fields.downsideRisk.textContent = plan.downsideRisk;
       fields.adjustmentDetail.textContent = plan.adjustmentDetail;
       fields.assumptions.textContent = plan.assumptions;
+      fields.intakeNext.textContent = getIntakeNextStep(plan);
       fields.launchCopy.textContent = plan.copy;
-      fields.mailBrief.href = buildMailto(plan);
       fields.runId.textContent = `Run ${String(runCount).padStart(2, "0")}`;
       fields.seqOne.textContent = plan.sequence[0];
       fields.seqTwo.textContent = plan.sequence[1];
@@ -2052,6 +2089,7 @@
       fields.seqFour.textContent = plan.sequence[3];
       setDecisionState(plan);
       currentBriefText = buildBriefText(plan);
+      fields.mailBrief.href = buildMailto(plan);
       syncUrlState();
 
       surfaceEl.classList.remove("status-flash");
@@ -2064,27 +2102,9 @@
       const body = [
         "Hi Vibelytics,",
         "",
-        "I want to discuss this launch brief:",
-        `Artist: ${artists[artistEl.value].name}`,
-        `City: ${plan.cityName}`,
-        `Venue capacity: ${capacityEl.options[capacityEl.selectedIndex].text}`,
-        `Target date: ${targetDateEl.value}`,
-        `Marketing budget: ${budgetLabels[budgetEl.value]}`,
-        `Launch timeline: ${timelineLabels[timelineEl.value]}`,
-        `Sponsor category: ${sponsorLabels[sponsorEl.value]}`,
-        `Ticketing posture: ${ticketingLabels[ticketingEl.value]}`,
-        `Launch goal: ${goalLabels[goalEl.value]}`,
-        `Risk tolerance: ${riskLabels[riskEl.value]}`,
+        "Can you pressure-test this launch brief?",
         "",
-        `Recommendation: ${plan.recommendation}`,
-        `Confidence: ${plan.confidence}%`,
-        `Demand score: ${plan.demandScore}/100`,
-        `Pricing band: ${plan.priceBand}`,
-        `Downside risk: ${plan.downsideRisk}`,
-        "",
-        "Can you help me pressure-test the launch?",
-        "",
-        `Share link: ${buildShareUrl()}`
+        currentBriefText
       ].join("\n");
 
       return `mailto:yes@vibelytics.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

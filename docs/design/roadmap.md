@@ -26,6 +26,8 @@ Live-site discovery and verification passed on 2026-07-05 for commit `27b202e`. 
 
 Static V2 product/marketing implementation passed local and production QA on 2026-07-05 for commit `79e745b`. The scope keeps the site static-only while sharpening `/` around promoter/venue conversion and upgrading `/pilot` into a richer launch-brief generator with budget, timeline, ticketing, risk, copy/download/share/email actions, and URL-restorable scenarios. Canonical `https://www.vibelytics.ai/` and `/pilot/` returned 200 and matched local route files byte-for-byte.
 
+Static V2 growth/conversion iteration was implemented on 2026-07-05. The scope keeps the static-only constraint and sharpens qualified inbound conversion by adding a launch brief checklist on `/`, strengthening the CTA path into `/pilot`, adding a direct email-brief path inside `/pilot`, and upgrading the generated brief into an intake artifact with scenario, decision, rationale, launch sequence, next inputs, requested follow-up, preview boundary, and share link. Local build, JSON validation, forbidden-term scan, static-only scan, and the Mira K / London / 2,000-3,000 cap hall / Fashion pilot smoke test passed.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -51,6 +53,7 @@ Static V2 product/marketing implementation passed local and production QA on 202
 - Canonical live-site verification confirms `www.vibelytics.ai` currently serves the same Vercel-backed static HTML as the deployment URL.
 - Static V2 conversion motion is generate a launch brief, then copy, download, share, or email it to Vibelytics for pressure-testing.
 - Static V2 production monitoring passed for commit `79e745b`.
+- Static V2 growth conversion motion is review what to send, generate the launch brief, and email the intake artifact to Vibelytics without forms, backend, analytics, tracking, API calls, external services, auth, or credentials.
 
 ## Artifacts
 
@@ -95,6 +98,8 @@ P1: Resolved for live-site discovery after commit `27b202e`. The 2026-07-05 chec
 
 P1: Resolved for Static V2 production monitoring after commit `79e745b`. The 2026-07-05 check found canonical `/` and `/pilot/` live, static-only, pure Vibelytics, matching local route files, and passing the upgraded pilot interaction smoke test.
 
+P1: Resolved locally for the Static V2 growth/conversion iteration. The 2026-07-05 check found the new launch brief checklist and email-brief journey static-only, pure Vibelytics, and passing build, JSON validation, route-boundary scans, static-only scans, and the upgraded pilot interaction smoke test.
+
 ## Recommended Path
 
 1. Preserve the current static route strategy: `/` and `/pilot` stay pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
@@ -104,6 +109,7 @@ P1: Resolved for Static V2 production monitoring after commit `79e745b`. The 202
 5. If Hostinger is intended to host a separate live surface, get its website ID/edit URL before making claims about that deployment.
 6. Re-run production QA after any route, token, or asset change, and keep asset provenance current before expanding public brand surfaces.
 7. After future route, token, or asset changes, re-run canonical production monitoring and update `docs/design/production-readiness.json` only if live `/` and `/pilot` match the committed route files.
+8. Next conversion work should preserve the static email-brief path unless a backend, form, analytics, or CRM integration is explicitly approved.
 
 ## Verification Commands
 

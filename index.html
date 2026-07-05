@@ -285,7 +285,8 @@
 
     .example-grid,
     .audience-grid,
-    .trust-grid {
+    .trust-grid,
+    .brief-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
@@ -293,7 +294,8 @@
 
     .example-card,
     .audience-card,
-    .trust-card {
+    .trust-card,
+    .brief-card {
       min-height: 230px;
       border: 1px solid var(--line);
       border-radius: 8px;
@@ -337,7 +339,8 @@
 
     .example-card h3,
     .audience-card h3,
-    .trust-card h3 {
+    .trust-card h3,
+    .brief-card h3 {
       margin: 0 0 12px;
       color: #fff;
       font-size: 22px;
@@ -347,11 +350,50 @@
 
     .example-card p,
     .audience-card p,
-    .trust-card p {
+    .trust-card p,
+    .brief-card p {
       margin: 0;
       color: var(--muted);
       font-size: 15px;
       line-height: 1.45;
+    }
+
+    .brief-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .brief-card {
+      min-height: 246px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 18px;
+    }
+
+    .brief-card span {
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 860;
+      letter-spacing: .06em;
+    }
+
+    .brief-cta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      margin-top: 18px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+    }
+
+    .brief-cta p {
+      max-width: 720px;
+      margin: 0;
+      color: #dce5f1;
+      font-size: clamp(17px, 1.7vw, 20px);
+      line-height: 1.42;
     }
 
     .market-strip {
@@ -564,6 +606,7 @@
       .example-grid,
       .audience-grid,
       .trust-grid,
+      .brief-grid,
       .market-strip,
       .narrative {
         grid-template-columns: 1fr;
@@ -582,6 +625,11 @@
       }
 
       .final {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .brief-cta {
         align-items: flex-start;
         flex-direction: column;
       }
@@ -677,6 +725,7 @@
     <div class="nav-links" aria-label="Primary navigation">
       <a href="#product">Product</a>
       <a href="#examples">Examples</a>
+      <a href="#brief">Brief checklist</a>
       <a href="#workflow">Workflow</a>
       <a href="/pilot">Try the pilot</a>
     </div>
@@ -691,8 +740,8 @@
           <p class="headline">Know if the room is right before you announce.</p>
           <p class="copy">Pre-launch decision intelligence for promoters and venues. Pressure-test the room, price, risk, sponsor fit, and launch sequence before capital, inventory, and media spend harden.</p>
           <div class="hero-actions">
-            <a class="btn" href="/pilot">Pressure-test a launch</a>
-            <a class="btn secondary" href="/pilot">Try the pilot</a>
+            <a class="btn" href="/pilot">Build your launch brief</a>
+            <a class="btn secondary" href="#brief">See what to send</a>
           </div>
         </div>
         <aside class="signal" aria-label="Vibelytics positioning">
@@ -757,6 +806,39 @@
             <p>The outdoor format asks for scale the brief has not earned. Re-scope to a smaller room and prove partner-list conversion first.</p>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="section" id="brief">
+      <div class="section-head">
+        <h2>Send a brief we can actually pressure-test.</h2>
+        <p>The fastest path is a focused launch package: enough detail to reason about the room, price, risk, sponsor story, and first public move.</p>
+      </div>
+      <div class="brief-grid" aria-label="Launch brief checklist">
+        <article class="brief-card">
+          <span>01</span>
+          <h3>Artist and market</h3>
+          <p>Artist, format, city, target date window, and why this market should work now.</p>
+        </article>
+        <article class="brief-card">
+          <span>02</span>
+          <h3>Room and economics</h3>
+          <p>Venue option, capacity, hold status, rough guarantee or room cost, and target margin posture.</p>
+        </article>
+        <article class="brief-card">
+          <span>03</span>
+          <h3>Ticketing plan</h3>
+          <p>Expected price bands, presale audience, staged inventory idea, and any premium or bundle concept.</p>
+        </article>
+        <article class="brief-card">
+          <span>04</span>
+          <h3>Risk and partner fit</h3>
+          <p>Known constraints, sponsor category, creative angle, launch timeline, and the decision you need to make.</p>
+        </article>
+      </div>
+      <div class="brief-cta">
+        <p>Start with the static pilot, then email the generated launch brief when the scenario matches your real decision.</p>
+        <a class="btn" href="/pilot">Generate the brief</a>
       </div>
     </section>
 
@@ -857,6 +939,7 @@
         <h2>Product</h2>
         <a href="#product">Positioning</a>
         <a href="#examples">Examples</a>
+        <a href="#brief">Brief checklist</a>
         <a href="#workflow">Workflow</a>
         <a href="/pilot">Pilot</a>
       </div>
