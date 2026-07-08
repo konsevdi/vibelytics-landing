@@ -3,7 +3,7 @@
 Last updated: 2026-07-08
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 qualification iteration passed local QA; production verification follows the push.
+Current status: Static V2 qualification iteration passed local and production QA.
 
 ## Production Status
 
@@ -16,6 +16,7 @@ Current status: Static V2 qualification iteration passed local QA; production ve
 - Production brand signoff passed for the current static public scope.
 - Latest production monitoring passed after commit `79e745b`.
 - Growth/conversion production monitoring passed after commit `93dd793`.
+- Qualification production monitoring passed after commit `4c15836`.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.
