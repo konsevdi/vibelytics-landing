@@ -434,6 +434,55 @@
       padding-bottom: 0;
     }
 
+    .fit-panel {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .fit-column {
+      min-height: 420px;
+      padding: clamp(24px, 4vw, 38px);
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.015));
+    }
+
+    .fit-column:first-child {
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+
+    .fit-column strong {
+      display: block;
+      margin-bottom: 18px;
+      color: #fff;
+      font-size: clamp(25px, 3vw, 36px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    .fit-column p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .fit-list {
+      display: grid;
+      gap: 12px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .fit-list li {
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding-top: 12px;
+      color: #dce5f1;
+      font-size: 15px;
+      line-height: 1.42;
+    }
+
     .workflow {
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -608,6 +657,7 @@
       .trust-grid,
       .brief-grid,
       .market-strip,
+      .fit-panel,
       .narrative {
         grid-template-columns: 1fr;
       }
@@ -632,6 +682,11 @@
       .brief-cta {
         align-items: flex-start;
         flex-direction: column;
+      }
+
+      .fit-column:first-child {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.1);
       }
     }
 
@@ -725,6 +780,7 @@
     <div class="nav-links" aria-label="Primary navigation">
       <a href="#product">Product</a>
       <a href="#examples">Examples</a>
+      <a href="#fit">Fit</a>
       <a href="#brief">Brief checklist</a>
       <a href="#workflow">Workflow</a>
       <a href="/pilot">Try the pilot</a>
@@ -806,6 +862,33 @@
             <p>The outdoor format asks for scale the brief has not earned. Re-scope to a smaller room and prove partner-list conversion first.</p>
           </div>
         </article>
+      </div>
+    </section>
+
+    <section class="section" id="fit">
+      <div class="section-head">
+        <h2>Best for launches where the decision is still movable.</h2>
+        <p>Vibelytics is most useful before a team has publicly committed to the room, price, sponsor promise, or announcement sequence.</p>
+      </div>
+      <div class="fit-panel" aria-label="Vibelytics good-fit and not-fit launch qualification">
+        <div class="fit-column">
+          <strong>Good fit</strong>
+          <p>Use Vibelytics when the launch has real upside, real exposure, and enough unresolved choices to make pressure-testing valuable.</p>
+          <ul class="fit-list">
+            <li>Promoter or venue is choosing between room sizes, date windows, or guarantee exposure.</li>
+            <li>Ticket tiers, presale allocation, sponsor role, or creative angle can still change.</li>
+            <li>The team needs a clean go, adjust, or do-not-launch discussion before public announcement.</li>
+          </ul>
+        </div>
+        <div class="fit-column">
+          <strong>Not a fit yet</strong>
+          <p>Do not treat the static preview as a replacement for confirmed economics, buyer data, or an operator's final call.</p>
+          <ul class="fit-list">
+            <li>The event is already announced and the team only needs live campaign reporting.</li>
+            <li>The brief has no venue option, price idea, target audience, sponsor context, or decision deadline.</li>
+            <li>The goal is attendee identification, hidden tracking, heatmaps, or emotion detection.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
@@ -939,6 +1022,7 @@
         <h2>Product</h2>
         <a href="#product">Positioning</a>
         <a href="#examples">Examples</a>
+        <a href="#fit">Fit</a>
         <a href="#brief">Brief checklist</a>
         <a href="#workflow">Workflow</a>
         <a href="/pilot">Pilot</a>

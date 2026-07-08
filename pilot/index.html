@@ -1362,6 +1362,10 @@
             <h4>Launch recommendation</h4>
             <span class="decision-pill" id="recommendation">Go</span>
           </div>
+          <div class="result-block highlight">
+            <h4>When to email Vibelytics</h4>
+            <p id="email-readiness">Email this brief when the venue hold, target margin, ticket tiers, sponsor role, and decision deadline are close enough to the real launch.</p>
+          </div>
           <div class="result-block">
             <h4>Demand rationale</h4>
             <p id="demand-detail">87 / 100. Demand is strong enough to justify a focused club launch.</p>
@@ -1649,6 +1653,7 @@
       sponsorFit: document.getElementById("sponsor-fit"),
       confidence: document.getElementById("confidence"),
       recommendation: document.getElementById("recommendation"),
+      emailReadiness: document.getElementById("email-readiness"),
       demandDetail: document.getElementById("demand-detail"),
       capacityDetail: document.getElementById("capacity-detail"),
       pricingDetail: document.getElementById("pricing-detail"),
@@ -1980,8 +1985,21 @@
       return `Send the venue hold, margin target, ticket tier plan, sponsor role, launch timeline, and any known constraints so Vibelytics can pressure-test the launch call ${decisionDeadline}.`;
     }
 
+    function getEmailReadiness(plan) {
+      if (plan.recommendation === "Do Not Launch") {
+        return "Do not email this as a launch request yet. Email it as a re-scope brief only if you can include smaller room options, cost exposure, partner commitments, and the decision deadline.";
+      }
+
+      if (plan.recommendation === "Adjust") {
+        return "Email this when the adjusted path is plausible: venue release terms, target margin, ticket tiers, sponsor context, and the decision deadline should be close to real.";
+      }
+
+      return "Email this when the launch is still movable and you can share the venue hold, target margin, ticket tiers, sponsor role, known constraints, and decision deadline.";
+    }
+
     function buildBriefText(plan) {
       const intakeNext = getIntakeNextStep(plan);
+      const emailReadiness = getEmailReadiness(plan);
       return [
         "Vibelytics launch brief for review",
         "",
@@ -2005,6 +2023,7 @@
         `- Capacity fit: ${plan.capacityFit}`,
         `- Pricing band: ${plan.priceBand}`,
         `- Sponsor fit: ${plan.sponsorFit}`,
+        `- Email readiness: ${emailReadiness}`,
         "",
         "3. Decision rationale",
         `- Demand: ${plan.demandDetail}`,
@@ -2073,6 +2092,7 @@
       fields.priceBand.textContent = plan.priceBand;
       fields.sponsorFit.textContent = plan.sponsorFit;
       fields.confidence.textContent = `${plan.confidence}%`;
+      fields.emailReadiness.textContent = getEmailReadiness(plan);
       fields.demandDetail.textContent = plan.demandDetail.replace(/\d+ \/ 100/, `${plan.demandScore} / 100`);
       fields.capacityDetail.textContent = plan.capacityDetail;
       fields.pricingDetail.textContent = plan.pricingDetail;

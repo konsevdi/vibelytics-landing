@@ -1,6 +1,6 @@
 # Vibelytics Design Roadmap
 
-Last updated: 2026-07-05
+Last updated: 2026-07-08
 
 ## Current State
 
@@ -28,6 +28,8 @@ Static V2 product/marketing implementation passed local and production QA on 202
 
 Static V2 growth/conversion iteration passed local and production QA on 2026-07-05 for commit `93dd793`. The scope keeps the static-only constraint and sharpens qualified inbound conversion by adding a launch brief checklist on `/`, strengthening the CTA path into `/pilot`, adding a direct email-brief path inside `/pilot`, and upgrading the generated brief into an intake artifact with scenario, decision, rationale, launch sequence, next inputs, requested follow-up, preview boundary, and share link. Canonical `https://www.vibelytics.ai/` and `/pilot/` returned 200 and matched local route files byte-for-byte.
 
+Static V2 qualification iteration was implemented on 2026-07-08. The scope keeps the static-only constraint and improves conversion quality by adding good-fit/not-fit launch guidance on `/` and adding email-readiness guidance to `/pilot` generated output and exported briefs. Local build, JSON validation, forbidden-term scan, static-only scan, and the Mira K / London / 2,000-3,000 cap hall / Fashion pilot smoke test passed.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -54,6 +56,7 @@ Static V2 growth/conversion iteration passed local and production QA on 2026-07-
 - Static V2 conversion motion is generate a launch brief, then copy, download, share, or email it to Vibelytics for pressure-testing.
 - Static V2 production monitoring passed for commit `79e745b`.
 - Static V2 growth conversion motion is review what to send, generate the launch brief, and email the intake artifact to Vibelytics without forms, backend, analytics, tracking, API calls, external services, auth, or credentials.
+- Static V2 qualification motion is to help promoters and venues self-select before emailing: best fit is a launch decision that is still movable; not-fit contexts include live campaign reporting, incomplete briefs, attendee identification, hidden tracking, heatmaps, or emotion detection.
 
 ## Artifacts
 
@@ -100,6 +103,8 @@ P1: Resolved for Static V2 production monitoring after commit `79e745b`. The 202
 
 P1: Resolved for the Static V2 growth/conversion iteration after commit `93dd793`. The 2026-07-05 check found the new launch brief checklist and email-brief journey live, static-only, pure Vibelytics, matching local route files, and passing build, JSON validation, route-boundary scans, static-only scans, asset checks, and the upgraded pilot interaction smoke test.
 
+P1: Resolved locally for the Static V2 qualification iteration. The 2026-07-08 check found good-fit/not-fit guidance and email-readiness generated brief copy static-only, pure Vibelytics, and passing build, JSON validation, route-boundary scans, static-only scans, and the upgraded pilot interaction smoke test.
+
 ## Recommended Path
 
 1. Preserve the current static route strategy: `/` and `/pilot` stay pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
@@ -110,6 +115,7 @@ P1: Resolved for the Static V2 growth/conversion iteration after commit `93dd793
 6. Re-run production QA after any route, token, or asset change, and keep asset provenance current before expanding public brand surfaces.
 7. After future route, token, or asset changes, re-run canonical production monitoring and update `docs/design/production-readiness.json` only if live `/` and `/pilot` match the committed route files.
 8. Next conversion work should preserve the static email-brief path unless a backend, form, analytics, or CRM integration is explicitly approved.
+9. Keep future qualification copy specific to launch planning and avoid claims about live reporting, surveillance, attendee identity, or emotion detection.
 
 ## Verification Commands
 
