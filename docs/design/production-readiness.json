@@ -1,10 +1,10 @@
 {
   "version": 2,
   "date": "2026-07-13",
-  "status": "pass_static_v2_trust_local_qa_production_pending",
-  "lastMonitoringPass": "2026-07-08",
+  "status": "pass_static_v2_trust_production_monitoring_current",
+  "lastMonitoringPass": "2026-07-13",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Local QA passed for the Vibelytics Static V2 trust and decision-clarity iteration. The implementation adds how-to-read guidance on /, bounds scenario confidence and recommendations on /pilot, and carries that guidance into exported briefs while preserving pure Vibelytics route policy and static-only behavior. Production verification is pending push.",
+  "decision": "Production monitoring passed for the Vibelytics Static V2 trust and decision-clarity iteration at commit 368b265. The implementation adds how-to-read guidance on /, bounds scenario confidence and recommendations on /pilot, and carries that guidance into exported briefs while preserving pure Vibelytics route policy and static-only behavior.",
   "scope": [
     "/",
     "/pilot",
@@ -43,9 +43,28 @@
     "qualificationLocalQa": "pass",
     "qualificationProductionMonitoring": "pass",
     "trustDecisionClarityLocalQa": "pass",
-    "trustDecisionClarityProductionMonitoring": "pending"
+    "trustDecisionClarityProductionMonitoring": "pass"
   },
   "monitoringHistory": [
+    {
+      "date": "2026-07-13",
+      "status": "pass",
+      "productionCommit": "368b265",
+      "summary": "Static V2 trust and decision-clarity production monitoring passed. / now explains how to read recommendation, scenario confidence, and validation. /pilot provides recommendation-specific bounded interpretation and carries it into copied, downloaded, and emailed briefs. Canonical and Vercel / and /pilot matched the committed route files byte-for-byte. Desktop/mobile production browser QA, Adjust and Do Not Launch states, artifact export, query restoration, asset resolution, forbidden-term scans, and static-only scans passed.",
+      "checks": {
+        "routeStatus": "pass",
+        "routeContentMatchesMain": "pass",
+        "build": "pass",
+        "jsonValidation": "pass",
+        "rootPurity": "pass",
+        "pilotPurity": "pass",
+        "staticOnlyBehavior": "pass",
+        "assetResolution": "pass",
+        "pilotInteractionSmoke": "pass",
+        "artifactBoundaryConsistency": "pass",
+        "productionMonitoring": "pass"
+      }
+    },
     {
       "date": "2026-07-08",
       "status": "pass",
@@ -150,5 +169,5 @@
       "priority": "P2"
     }
   ],
-  "nextAction": "Push the Static V2 trust and decision-clarity iteration, verify canonical / and /pilot match the committed route files, repeat production browser and pilot artifact QA, then record the monitoring result."
+  "nextAction": "Move to lightweight production monitoring and preservation. Preserve bounded recommendation and scenario-confidence guidance in visible and exported pilot output, and re-run production QA after future route changes."
 }

@@ -30,7 +30,7 @@ Static V2 growth/conversion iteration passed local and production QA on 2026-07-
 
 Static V2 qualification iteration passed local and production QA on 2026-07-08 for commit `4c15836`. The scope keeps the static-only constraint and improves conversion quality by adding good-fit/not-fit launch guidance on `/` and adding email-readiness guidance to `/pilot` generated output and exported briefs. Canonical `https://www.vibelytics.ai/` and `/pilot/` returned 200 and matched local route files byte-for-byte after cache-busted deployment verification refreshed the Vercel edge.
 
-Static V2 trust/decision-clarity iteration passed local QA on 2026-07-13 and is pending production verification. The scope adds a lightweight how-to-read section on `/`, changes preview confidence to scenario confidence on `/pilot`, adds recommendation-specific interpretation for Go, Adjust, and Do Not Launch, and carries the same bounded guidance into copied, downloaded, and emailed briefs. The implementation preserves qualification, launch checklist, and email-ready intake flows with no backend, API, analytics, tracking, external services, auth, database, or credentials.
+Static V2 trust/decision-clarity iteration passed local and production QA on 2026-07-13 for commit `368b265`. The scope adds a lightweight how-to-read section on `/`, changes preview confidence to scenario confidence on `/pilot`, adds recommendation-specific interpretation for Go, Adjust, and Do Not Launch, and carries the same bounded guidance into copied, downloaded, and emailed briefs. Canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte; the implementation preserves qualification, launch checklist, and email-ready intake flows with no backend, API, analytics, tracking, external services, auth, database, or credentials.
 
 ## Decisions Recorded
 
@@ -109,7 +109,7 @@ P1: Resolved for the Static V2 growth/conversion iteration after commit `93dd793
 
 P1: Resolved for the Static V2 qualification iteration after commit `4c15836`. The 2026-07-08 check found good-fit/not-fit guidance and email-readiness generated brief copy live, static-only, pure Vibelytics, matching local route files, and passing build, JSON validation, route-boundary scans, static-only scans, asset checks, and the upgraded pilot interaction smoke test.
 
-P1: Resolved locally for the Static V2 trust/decision-clarity iteration. The 2026-07-13 check found bounded decision interpretation on `/` and `/pilot`, consistent exported brief guidance, no desktop/mobile layout or interaction regressions, and no forbidden terms or static-only violations. Production parity remains pending until after push.
+P1: Resolved for the Static V2 trust/decision-clarity iteration after commit `368b265`. The 2026-07-13 local and production checks found bounded decision interpretation on `/` and `/pilot`, consistent exported brief guidance, byte-for-byte canonical and Vercel route parity, no desktop/mobile layout or interaction regressions, and no forbidden terms or static-only violations.
 
 ## Recommended Path
 
@@ -146,6 +146,37 @@ Local verification notes:
 - The 5,000-7,000 cap scenario returned Do Not Launch with copy that explicitly avoids claiming there is no market.
 - Downloaded and emailed briefs included scenario confidence, how-to-read guidance, email readiness, preview assumptions, and the share link; query-state restoration passed.
 - No brand or route assets were changed or regenerated.
+
+## Static V2 Trust Iteration Production Verification
+
+Commands run on 2026-07-13 after pushing commit `368b265`:
+
+```bash
+curl -sS -L --fail -o /tmp/vibelytics-trust-prod-home.html 'https://www.vibelytics.ai/?verify=368b265'
+curl -sS -L --fail -o /tmp/vibelytics-trust-prod-pilot.html 'https://www.vibelytics.ai/pilot/?verify=368b265'
+curl -sS -L --fail -o /tmp/vibelytics-trust-vercel-home.html 'https://vibelytics-landing.vercel.app/?verify=368b265'
+curl -sS -L --fail -o /tmp/vibelytics-trust-vercel-pilot.html 'https://vibelytics-landing.vercel.app/pilot?verify=368b265'
+shasum -a 256 index.html pilot/index.html /tmp/vibelytics-trust-prod-home.html /tmp/vibelytics-trust-prod-pilot.html /tmp/vibelytics-trust-vercel-home.html /tmp/vibelytics-trust-vercel-pilot.html
+cmp -s index.html /tmp/vibelytics-trust-prod-home.html
+cmp -s pilot/index.html /tmp/vibelytics-trust-prod-pilot.html
+cmp -s index.html /tmp/vibelytics-trust-vercel-home.html
+cmp -s pilot/index.html /tmp/vibelytics-trust-vercel-pilot.html
+node /private/tmp/vibelytics-trust-prod-qa.mjs
+curl -sS -I --fail https://www.vibelytics.ai/favicon.png
+curl -sS -I --fail https://www.vibelytics.ai/apple-touch-icon.png
+curl -sS -I --fail https://www.vibelytics.ai/og-image.png
+curl -sS -I --fail https://www.vibelytics.ai/twitter-image.png
+rg -n "SR007|Speedrun|a16z|Andreessen" /tmp/vibelytics-trust-prod-home.html /tmp/vibelytics-trust-prod-pilot.html index.html pilot/index.html
+rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment|mixpanel|analytics" /tmp/vibelytics-trust-prod-home.html /tmp/vibelytics-trust-prod-pilot.html index.html pilot/index.html
+```
+
+Production verification notes:
+
+- Canonical and Vercel `/` and `/pilot` returned HTTP 200 and matched `index.html` and `pilot/index.html` byte-for-byte by SHA-256 and `cmp`.
+- Production desktop/mobile browser QA passed at 1440×960 and 390×844 with clean console/network behavior, no broken images, and no horizontal overflow.
+- Adjust and Do Not Launch interpretation, downloaded/email brief boundaries, and query-state restoration passed on canonical production.
+- Canonical favicon, app icon, OG image, and Twitter image returned HTTP 200 with `image/png` content types.
+- Forbidden-term and static-only scans returned no matches. No brand or route assets were changed or regenerated.
 
 ## Verification Commands
 
@@ -423,14 +454,12 @@ Live-site discovery and verification notes:
 
 ## Next Action For Future Codex Thread
 
-Complete the bounded production verification, then return to lightweight monitoring and preservation:
+Return to lightweight monitoring and preservation:
 
-1. Push the trust/decision-clarity implementation and verify canonical `/` and `/pilot` match local route files byte-for-byte.
-2. Repeat desktop/mobile route QA and the pilot Adjust/Do Not Launch artifact smoke against canonical production.
-3. Record the production result in `docs/HANDOFF.md`, `docs/design/roadmap.md`, `docs/design/production-readiness.json`, and `docs/design/ux-qa.md`.
-4. Re-run production QA after any later route, token, or asset change.
-5. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
-6. Keep `/` and `/pilot` pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
-7. Monitor canonical `https://www.vibelytics.ai` first and the Vercel deployment URL second.
-8. If Hostinger is intended as a separate live site, get the Hostinger website ID/edit URL before attempting updates.
-9. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.
+1. Re-run production QA after any later route, token, or asset change.
+2. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
+3. Keep `/` and `/pilot` pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
+4. Preserve bounded recommendation and scenario-confidence guidance in visible and exported pilot output.
+5. Monitor canonical `https://www.vibelytics.ai` first and the Vercel deployment URL second.
+6. If Hostinger is intended as a separate live site, get the Hostinger website ID/edit URL before attempting updates.
+7. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.

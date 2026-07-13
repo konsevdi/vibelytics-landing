@@ -3,7 +3,7 @@
 Last updated: 2026-07-13
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 trust/decision-clarity iteration passed local QA; production verification is pending.
+Current status: Static V2 trust/decision-clarity iteration passed local and production QA.
 
 ## Production Status
 
@@ -18,7 +18,7 @@ Current status: Static V2 trust/decision-clarity iteration passed local QA; prod
 - Latest production monitoring passed after commit `79e745b`.
 - Growth/conversion production monitoring passed after commit `93dd793`.
 - Qualification production monitoring passed after commit `4c15836`.
-- Trust/decision-clarity local QA passed on 2026-07-13; do not mark production monitoring complete until canonical route files match the pushed implementation.
+- Trust/decision-clarity production monitoring passed on 2026-07-13 for commit `368b265`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.
@@ -99,4 +99,4 @@ If the temp Playwright script is unavailable, recreate the same checks from `doc
 
 ## Next Work
 
-Push the trust/decision-clarity iteration, verify canonical `/` and `/pilot` against the committed route files, repeat the production pilot smoke, then record the monitoring result. After that, return to preservation and monitoring.
+Default next mode is preservation and monitoring. Re-run the trust-boundary, export, and route-parity checks after any future route change.
