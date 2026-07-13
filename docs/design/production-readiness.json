@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "date": "2026-07-08",
-  "status": "pass_static_v2_qualification_production_monitoring_current",
+  "date": "2026-07-13",
+  "status": "pass_static_v2_trust_local_qa_production_pending",
   "lastMonitoringPass": "2026-07-08",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Production monitoring passed for the Vibelytics Static V2 qualification public route scope. The iteration adds good-fit/not-fit launch guidance on / and email-readiness guidance in /pilot generated output and exported briefs while preserving pure Vibelytics route policy and static-only behavior.",
+  "decision": "Local QA passed for the Vibelytics Static V2 trust and decision-clarity iteration. The implementation adds how-to-read guidance on /, bounds scenario confidence and recommendations on /pilot, and carries that guidance into exported briefs while preserving pure Vibelytics route policy and static-only behavior. Production verification is pending push.",
   "scope": [
     "/",
     "/pilot",
@@ -20,6 +20,7 @@
   ],
   "evidence": [
     "docs/design/final-review.md",
+    "docs/design/ux-qa.md",
     "docs/design/roadmap.md",
     "docs/design/asset-provenance.json",
     "docs/brand/brand-kit.md",
@@ -40,7 +41,9 @@
     "growthConversionLocalQa": "pass",
     "growthConversionProductionMonitoring": "pass",
     "qualificationLocalQa": "pass",
-    "qualificationProductionMonitoring": "pass"
+    "qualificationProductionMonitoring": "pass",
+    "trustDecisionClarityLocalQa": "pass",
+    "trustDecisionClarityProductionMonitoring": "pending"
   },
   "monitoringHistory": [
     {
@@ -147,5 +150,5 @@
       "priority": "P2"
     }
   ],
-  "nextAction": "Move to lightweight production monitoring and preservation. Re-run production QA after any route, token, or asset change."
+  "nextAction": "Push the Static V2 trust and decision-clarity iteration, verify canonical / and /pilot match the committed route files, repeat production browser and pilot artifact QA, then record the monitoring result."
 }

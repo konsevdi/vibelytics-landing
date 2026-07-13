@@ -1,9 +1,9 @@
 # Vibelytics Post-Signoff Handoff
 
-Last updated: 2026-07-08
+Last updated: 2026-07-13
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 qualification iteration passed local and production QA.
+Current status: Static V2 trust/decision-clarity iteration passed local QA; production verification is pending.
 
 ## Production Status
 
@@ -11,12 +11,14 @@ Current status: Static V2 qualification iteration passed local and production QA
 - Static V2 adds stronger promoter/venue positioning on `/` and a richer static launch-brief generator on `/pilot`.
 - The current growth iteration adds a launch brief checklist on `/`, a clearer `/pilot` email-brief path, and a more intake-ready generated brief artifact.
 - The current qualification iteration adds good-fit/not-fit guidance on `/` and email-readiness guidance in generated `/pilot` briefs.
+- The current trust iteration adds how-to-read guidance on `/`, bounds scenario confidence and recommendation copy on `/pilot`, and carries the same interpretation into copied, downloaded, and emailed briefs.
 - `https://www.vibelytics.ai` currently resolves through Vercel and matches the Vercel deployment URL.
 - No Hostinger website ID, Horizons edit URL, or Hostinger deployment config is present in this repo. If Hostinger is intended to be a separate live surface, obtain the Hostinger website ID/edit URL before updating it.
 - Production brand signoff passed for the current static public scope.
 - Latest production monitoring passed after commit `79e745b`.
 - Growth/conversion production monitoring passed after commit `93dd793`.
 - Qualification production monitoring passed after commit `4c15836`.
+- Trust/decision-clarity local QA passed on 2026-07-13; do not mark production monitoring complete until canonical route files match the pushed implementation.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.
@@ -36,6 +38,7 @@ Current status: Static V2 qualification iteration passed local and production QA
 - Preserve the Static V2 conversion motion: generate a launch brief, then copy, download, share, or email it to Vibelytics for pressure-testing.
 - Preserve the growth conversion motion: review what to send, generate the static launch brief, then email the intake artifact to Vibelytics.
 - Preserve qualification guidance: Vibelytics is best for launch decisions that are still movable, not live campaign reporting, attendee identification, hidden tracking, heatmaps, or emotion detection.
+- Preserve the trust boundary: recommendations are scenario directions, preview confidence is not a sell-through probability, and synthetic assumptions must be replaced with real venue, economics, audience, partner, and deadline evidence before committing.
 - Keep both routes static-only.
 
 ## Source Of Truth
@@ -43,6 +46,7 @@ Current status: Static V2 qualification iteration passed local and production QA
 - Brand kit: `docs/brand/brand-kit.md`
 - Final review: `docs/design/final-review.md`
 - Production readiness: `docs/design/production-readiness.json`
+- UX QA: `docs/design/ux-qa.md`
 - Roadmap: `docs/design/roadmap.md`
 - Asset provenance: `docs/design/asset-provenance.json`
 - Shared tokens: `styles/tokens.css`
@@ -95,4 +99,4 @@ If the temp Playwright script is unavailable, recreate the same checks from `doc
 
 ## Next Work
 
-Default next mode is preservation and monitoring. Implement route, token, copy, or asset changes only when there is a concrete approved task, and update provenance/readiness docs before claiming a new production-ready state.
+Push the trust/decision-clarity iteration, verify canonical `/` and `/pilot` against the committed route files, repeat the production pilot smoke, then record the monitoring result. After that, return to preservation and monitoring.

@@ -1,6 +1,6 @@
 # Vibelytics Design Roadmap
 
-Last updated: 2026-07-08
+Last updated: 2026-07-13
 
 ## Current State
 
@@ -30,6 +30,8 @@ Static V2 growth/conversion iteration passed local and production QA on 2026-07-
 
 Static V2 qualification iteration passed local and production QA on 2026-07-08 for commit `4c15836`. The scope keeps the static-only constraint and improves conversion quality by adding good-fit/not-fit launch guidance on `/` and adding email-readiness guidance to `/pilot` generated output and exported briefs. Canonical `https://www.vibelytics.ai/` and `/pilot/` returned 200 and matched local route files byte-for-byte after cache-busted deployment verification refreshed the Vercel edge.
 
+Static V2 trust/decision-clarity iteration passed local QA on 2026-07-13 and is pending production verification. The scope adds a lightweight how-to-read section on `/`, changes preview confidence to scenario confidence on `/pilot`, adds recommendation-specific interpretation for Go, Adjust, and Do Not Launch, and carries the same bounded guidance into copied, downloaded, and emailed briefs. The implementation preserves qualification, launch checklist, and email-ready intake flows with no backend, API, analytics, tracking, external services, auth, database, or credentials.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -57,6 +59,7 @@ Static V2 qualification iteration passed local and production QA on 2026-07-08 f
 - Static V2 production monitoring passed for commit `79e745b`.
 - Static V2 growth conversion motion is review what to send, generate the launch brief, and email the intake artifact to Vibelytics without forms, backend, analytics, tracking, API calls, external services, auth, or credentials.
 - Static V2 qualification motion is to help promoters and venues self-select before emailing: best fit is a launch decision that is still movable; not-fit contexts include live campaign reporting, incomplete briefs, attendee identification, hidden tracking, heatmaps, or emotion detection.
+- Static V2 trust motion is to make recommendations decision-useful without presenting synthetic preview scores as observed demand, a sell-through probability, or final approval. Real venue terms, economics, audience evidence, partner commitments, and operator judgment remain required before commitment.
 
 ## Artifacts
 
@@ -68,6 +71,7 @@ Static V2 qualification iteration passed local and production QA on 2026-07-08 f
 - `docs/design/final-review.md`: final production brand review, evidence, accepted risks, and PASS decision for the current static scope.
 - `docs/design/production-readiness.json`: structured production readiness decision for the current static brand scope.
 - `docs/HANDOFF.md`: concise post-signoff handoff with production status, brand boundaries, route rules, source-of-truth files, accepted risks, and re-run checks.
+- `docs/design/ux-qa.md`: local UX production-gate evidence for the trust/decision-clarity iteration, including viewport, state, accessibility, fidelity, and blocker status.
 - Historical pass docs with supersession notes: `docs/brand/branding-pass-2026-07-03.md`, `docs/design/asset-source-pass-2026-07-03.md`, and `docs/design/identity-source-pass-2026-07-03.md`.
 - `scripts/generate-route-assets.py`: deterministic source generator for `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png`.
 - `brand/vibelytics-mark.svg`: canonical editable Vibelytics mark source.
@@ -105,6 +109,8 @@ P1: Resolved for the Static V2 growth/conversion iteration after commit `93dd793
 
 P1: Resolved for the Static V2 qualification iteration after commit `4c15836`. The 2026-07-08 check found good-fit/not-fit guidance and email-readiness generated brief copy live, static-only, pure Vibelytics, matching local route files, and passing build, JSON validation, route-boundary scans, static-only scans, asset checks, and the upgraded pilot interaction smoke test.
 
+P1: Resolved locally for the Static V2 trust/decision-clarity iteration. The 2026-07-13 check found bounded decision interpretation on `/` and `/pilot`, consistent exported brief guidance, no desktop/mobile layout or interaction regressions, and no forbidden terms or static-only violations. Production parity remains pending until after push.
+
 ## Recommended Path
 
 1. Preserve the current static route strategy: `/` and `/pilot` stay pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
@@ -116,6 +122,30 @@ P1: Resolved for the Static V2 qualification iteration after commit `4c15836`. T
 7. After future route, token, or asset changes, re-run canonical production monitoring and update `docs/design/production-readiness.json` only if live `/` and `/pilot` match the committed route files.
 8. Next conversion work should preserve the static email-brief path unless a backend, form, analytics, or CRM integration is explicitly approved.
 9. Keep future qualification copy specific to launch planning and avoid claims about live reporting, surveillance, attendee identity, or emotion detection.
+10. Preserve the how-to-read boundary in both the visible pilot output and every exported brief; treat scenario confidence as synthetic preview support, not a sales forecast.
+
+## Static V2 Trust Iteration Local Verification
+
+Commands run on 2026-07-13:
+
+```bash
+npm run build
+node -e 'for (const f of ["docs/design/asset-provenance.json","docs/design/production-readiness.json"]) { JSON.parse(require("fs").readFileSync(f,"utf8")); console.log(f+" ok") }'
+rg -n "SR007|Speedrun|a16z|Andreessen" index.html pilot/index.html
+rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment|mixpanel|analytics" index.html pilot/index.html
+git diff --check
+python -m http.server 4173
+node /private/tmp/vibelytics-trust-qa.mjs
+```
+
+Local verification notes:
+
+- Build, JSON validation, forbidden-term scan, static-only scan, and diff checks passed.
+- Desktop and mobile browser QA passed on `/` and `/pilot` at 1440×960 and 390×844 with no console warnings/errors, unexpected third-party requests, broken images, or horizontal overflow.
+- The Mira K / London / 2,000-3,000 cap hall / Fashion scenario returned Adjust with bounded synthetic-preview interpretation.
+- The 5,000-7,000 cap scenario returned Do Not Launch with copy that explicitly avoids claiming there is no market.
+- Downloaded and emailed briefs included scenario confidence, how-to-read guidance, email readiness, preview assumptions, and the share link; query-state restoration passed.
+- No brand or route assets were changed or regenerated.
 
 ## Verification Commands
 
@@ -393,11 +423,14 @@ Live-site discovery and verification notes:
 
 ## Next Action For Future Codex Thread
 
-Move to lightweight production monitoring and preservation:
+Complete the bounded production verification, then return to lightweight monitoring and preservation:
 
-1. Re-run production QA after any route, token, or asset change.
-2. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
-3. Keep `/` and `/pilot` pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
-4. Monitor canonical `https://www.vibelytics.ai` first and the Vercel deployment URL second.
-5. If Hostinger is intended as a separate live site, get the Hostinger website ID/edit URL before attempting updates.
-6. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.
+1. Push the trust/decision-clarity implementation and verify canonical `/` and `/pilot` match local route files byte-for-byte.
+2. Repeat desktop/mobile route QA and the pilot Adjust/Do Not Launch artifact smoke against canonical production.
+3. Record the production result in `docs/HANDOFF.md`, `docs/design/roadmap.md`, `docs/design/production-readiness.json`, and `docs/design/ux-qa.md`.
+4. Re-run production QA after any later route, token, or asset change.
+5. Keep `docs/design/asset-provenance.json` current if any future asset source/export changes are made.
+6. Keep `/` and `/pilot` pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
+7. Monitor canonical `https://www.vibelytics.ai` first and the Vercel deployment URL second.
+8. If Hostinger is intended as a separate live site, get the Hostinger website ID/edit URL before attempting updates.
+9. Do not use archived unknown-provenance imagery in public brand surfaces unless provenance is resolved.

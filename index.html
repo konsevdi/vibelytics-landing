@@ -441,6 +441,46 @@
       border-bottom: 1px solid var(--line);
     }
 
+    .read-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .read-card {
+      min-height: 286px;
+      padding: clamp(24px, 4vw, 38px);
+      border-right: 1px solid rgba(255,255,255,.1);
+      background: linear-gradient(180deg, rgba(30,231,255,.055), rgba(255,255,255,.015));
+    }
+
+    .read-card:last-child { border-right: 0; }
+
+    .read-card span {
+      display: block;
+      margin-bottom: 28px;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 860;
+      letter-spacing: .06em;
+    }
+
+    .read-card h3 {
+      margin: 0 0 12px;
+      color: #fff;
+      font-size: 24px;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .read-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.48;
+    }
+
     .fit-column {
       min-height: 420px;
       padding: clamp(24px, 4vw, 38px);
@@ -657,6 +697,7 @@
       .trust-grid,
       .brief-grid,
       .market-strip,
+      .read-grid,
       .fit-panel,
       .narrative {
         grid-template-columns: 1fr;
@@ -688,6 +729,14 @@
         border-right: 0;
         border-bottom: 1px solid rgba(255,255,255,.1);
       }
+
+      .read-card {
+        min-height: 0;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.1);
+      }
+
+      .read-card:last-child { border-bottom: 0; }
     }
 
     @media (max-width: 680px) {
@@ -861,6 +910,30 @@
             <h3>Do not announce this version.</h3>
             <p>The outdoor format asks for scale the brief has not earned. Re-scope to a smaller room and prove partner-list conversion first.</p>
           </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="read-decision">
+      <div class="section-head">
+        <h2>How to read the decision.</h2>
+        <p>The static preview is a structured way to challenge a launch brief. It does not observe live demand, predict ticket sales, or replace confirmed economics and operator judgment.</p>
+      </div>
+      <div class="read-grid" aria-label="How to interpret a Vibelytics preview decision">
+        <article class="read-card">
+          <span>01 / Direction</span>
+          <h3>Use the recommendation as a stance.</h3>
+          <p>Go, Adjust, or Do Not Launch identifies the next planning conversation for the scenario entered—not a final approval or sales forecast.</p>
+        </article>
+        <article class="read-card">
+          <span>02 / Confidence</span>
+          <h3>Read confidence inside the scenario.</h3>
+          <p>The preview score reflects how strongly its synthetic assumptions support that direction. It is not a measured probability of sell-through.</p>
+        </article>
+        <article class="read-card">
+          <span>03 / Validation</span>
+          <h3>Replace assumptions before committing.</h3>
+          <p>Pressure-test the direction with the real hold, costs, margin target, ticket plan, audience evidence, partner terms, and decision deadline.</p>
         </article>
       </div>
     </section>
