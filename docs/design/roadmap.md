@@ -32,7 +32,7 @@ Static V2 qualification iteration passed local and production QA on 2026-07-08 f
 
 Static V2 trust/decision-clarity iteration passed local and production QA on 2026-07-13 for commit `368b265`. The scope adds a lightweight how-to-read section on `/`, changes preview confidence to scenario confidence on `/pilot`, adds recommendation-specific interpretation for Go, Adjust, and Do Not Launch, and carries the same bounded guidance into copied, downloaded, and emailed briefs. Canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte; the implementation preserves qualification, launch checklist, and email-ready intake flows with no backend, API, analytics, tracking, external services, auth, database, or credentials.
 
-Static V2 validation-handoff iteration passed local QA on 2026-07-27 and is pending production deployment verification. The smallest high-impact change adds a single `What would change this decision` block after the existing pilot interpretation: Go names evidence required before commitment, Adjust names variables to change or verify, and Do Not Launch names the re-scope and evidence required before reconsideration. The same generated guidance is included in copied, downloaded, and emailed briefs. Homepage hierarchy, qualification, launch checklist, scenario-confidence boundaries, email readiness, artifact actions, query restoration, static-only behavior, and approved assets remain intact.
+Static V2 validation-handoff iteration passed local and production QA on 2026-07-27 for commit `91142e0`. The smallest high-impact change adds a single `What would change this decision` block after the existing pilot interpretation: Go names evidence required before commitment, Adjust names variables to change or verify, and Do Not Launch names the re-scope and evidence required before reconsideration. The same generated guidance is included in copied, downloaded, and emailed briefs. Homepage hierarchy, qualification, launch checklist, scenario-confidence boundaries, email readiness, artifact actions, query restoration, static-only behavior, and approved assets remain intact. Canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
 
 ## Decisions Recorded
 
@@ -114,7 +114,7 @@ P1: Resolved for the Static V2 qualification iteration after commit `4c15836`. T
 
 P1: Resolved for the Static V2 trust/decision-clarity iteration after commit `368b265`. The 2026-07-13 local and production checks found bounded decision interpretation on `/` and `/pilot`, consistent exported brief guidance, byte-for-byte canonical and Vercel route parity, no desktop/mobile layout or interaction regressions, and no forbidden terms or static-only violations.
 
-P1: Resolved for local implementation of the Static V2 validation-handoff iteration on 2026-07-27. Browser QA confirmed concise recommendation-specific validation thresholds for Go, Adjust, and Do Not Launch; shared copy/download/email brief generation; query restoration; clean desktop/mobile rendering; and a mobile navigation overflow fix. Production monitoring remains pending until the pushed route files are live and match canonical and Vercel byte-for-byte.
+P1: Resolved for the Static V2 validation-handoff iteration after commit `91142e0`. Local and production browser QA confirmed concise recommendation-specific validation thresholds for Go, Adjust, and Do Not Launch; shared copy/download/email brief generation; query restoration; clean desktop/mobile rendering; the mobile navigation overflow fix; and byte-for-byte canonical/Vercel route parity.
 
 ## Recommended Path
 
@@ -152,7 +152,35 @@ Local verification notes:
 - Artist, city, capacity, budget, date, timeline, sponsor, ticketing, goal, and risk all updated generated state and query parameters. A 6,000-cap share URL restored the selected scenario and Do Not Launch guidance.
 - The existing pilot mobile navigation was the only visual QA mismatch: it exceeded the browser-visible content width by 14 pixels. Mobile-only spacing was tightened without changing labels or hierarchy, and the route rechecked at zero overflow.
 - No homepage content, approved asset, brand source, route image, backend, API, form, analytics, tracking, external service, auth, database, or credential behavior changed.
-- Production pass is not claimed. Route parity and production browser/pilot QA must be repeated after deployment.
+- At this local checkpoint, production pass was not claimed; route parity and production browser/pilot QA were repeated separately after deployment below.
+
+## Static V2 Validation-Handoff Iteration Production Verification
+
+Commands and browser checks run on 2026-07-27 after pushing commit `91142e0`:
+
+```bash
+curl -sS -L --fail -o /tmp/vibelytics-validation-prod-home.html 'https://www.vibelytics.ai/?verify=91142e0'
+curl -sS -L --fail -o /tmp/vibelytics-validation-prod-pilot.html 'https://www.vibelytics.ai/pilot/?verify=91142e0'
+curl -sS -L --fail -o /tmp/vibelytics-validation-vercel-home.html 'https://vibelytics-landing.vercel.app/?verify=91142e0'
+curl -sS -L --fail -o /tmp/vibelytics-validation-vercel-pilot.html 'https://vibelytics-landing.vercel.app/pilot?verify=91142e0'
+shasum -a 256 index.html pilot/index.html /tmp/vibelytics-validation-prod-home.html /tmp/vibelytics-validation-prod-pilot.html /tmp/vibelytics-validation-vercel-home.html /tmp/vibelytics-validation-vercel-pilot.html
+cmp -s index.html /tmp/vibelytics-validation-prod-home.html
+cmp -s pilot/index.html /tmp/vibelytics-validation-prod-pilot.html
+cmp -s index.html /tmp/vibelytics-validation-vercel-home.html
+cmp -s pilot/index.html /tmp/vibelytics-validation-vercel-pilot.html
+rg -n "SR007|Speedrun|a16z|Andreessen" /tmp/vibelytics-validation-prod-home.html /tmp/vibelytics-validation-prod-pilot.html /tmp/vibelytics-validation-vercel-home.html /tmp/vibelytics-validation-vercel-pilot.html index.html pilot/index.html
+rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment|mixpanel|analytics" /tmp/vibelytics-validation-prod-home.html /tmp/vibelytics-validation-prod-pilot.html /tmp/vibelytics-validation-vercel-home.html /tmp/vibelytics-validation-vercel-pilot.html index.html pilot/index.html
+```
+
+Production verification notes:
+
+- Canonical and Vercel `/` and `/pilot` returned HTTP 200 and matched `index.html` and `pilot/index.html` byte-for-byte by SHA-256 and `cmp`.
+- Production browser QA passed at 1440 × 960 and 390 × 844 with meaningful route content, clean console output, no broken images after load, and no horizontal overflow.
+- Go, Adjust, and Do Not Launch returned their matching validation thresholds. The Adjust scenario remained Mira K / London / 2,000-3,000 cap / Fashion at 68% scenario confidence, demand score 69, and GBP34-99.
+- Copy and download actions returned success states. Decoded email bodies included the matching validation section, scenario confidence, bounded interpretation, email readiness, assumptions, and share link.
+- The 6,000-cap share URL restored Mira K / London / Fashion and the Do Not Launch validation guidance after a full reload.
+- Canonical favicon, app icon, OG image, and Twitter image returned HTTP 200 with `image/png` content types.
+- Forbidden-term and static-only scans returned no matches. No brand or route assets were changed or regenerated.
 
 ## Static V2 Trust Iteration Local Verification
 

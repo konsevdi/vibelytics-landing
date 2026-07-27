@@ -3,7 +3,7 @@
 Last updated: 2026-07-27
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 validation-handoff iteration passed local QA; production deployment verification is pending.
+Current status: Static V2 validation-handoff iteration passed local and production QA.
 
 ## Production Status
 
@@ -20,7 +20,7 @@ Current status: Static V2 validation-handoff iteration passed local QA; producti
 - Growth/conversion production monitoring passed after commit `93dd793`.
 - Qualification production monitoring passed after commit `4c15836`.
 - Trust/decision-clarity production monitoring passed on 2026-07-13 for commit `368b265`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
-- Validation-handoff local QA passed on 2026-07-27. Do not mark this iteration production-passed until canonical and Vercel `/` and `/pilot` match the pushed implementation and production browser/pilot QA is repeated.
+- Validation-handoff production monitoring passed on 2026-07-27 for commit `91142e0`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.
@@ -102,4 +102,4 @@ If the temp Playwright script is unavailable, recreate the same checks from `doc
 
 ## Next Work
 
-Deploy the validation-handoff implementation, then verify canonical and Vercel route parity, repeat production desktop/mobile and three-state pilot QA, record the production monitoring result, and return to preservation mode.
+Return to preservation and lightweight monitoring. Re-run validation guidance, artifact consistency, and route-parity checks after any future route change.
