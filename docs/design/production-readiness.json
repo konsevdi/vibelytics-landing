@@ -1,10 +1,10 @@
 {
-  "version": 2,
-  "date": "2026-07-13",
-  "status": "pass_static_v2_trust_production_monitoring_current",
+  "version": 3,
+  "date": "2026-07-27",
+  "status": "pass_static_v2_validation_handoff_local_qa_pending_production",
   "lastMonitoringPass": "2026-07-13",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Production monitoring passed for the Vibelytics Static V2 trust and decision-clarity iteration at commit 368b265. The implementation adds how-to-read guidance on /, bounds scenario confidence and recommendations on /pilot, and carries that guidance into exported briefs while preserving pure Vibelytics route policy and static-only behavior.",
+  "decision": "Local QA passed for the Vibelytics Static V2 validation-handoff iteration. /pilot now adds concise recommendation-specific evidence, variable, or re-scope guidance and carries the same guidance into copied, downloaded, and emailed briefs while preserving the homepage journey, scenario-confidence boundaries, conversion actions, query restoration, pure Vibelytics route policy, and static-only behavior. Production monitoring remains pending until the pushed route files are deployed and verified.",
   "scope": [
     "/",
     "/pilot",
@@ -43,7 +43,9 @@
     "qualificationLocalQa": "pass",
     "qualificationProductionMonitoring": "pass",
     "trustDecisionClarityLocalQa": "pass",
-    "trustDecisionClarityProductionMonitoring": "pass"
+    "trustDecisionClarityProductionMonitoring": "pass",
+    "validationHandoffLocalQa": "pass",
+    "validationHandoffProductionMonitoring": "pending"
   },
   "monitoringHistory": [
     {
@@ -169,5 +171,5 @@
       "priority": "P2"
     }
   ],
-  "nextAction": "Move to lightweight production monitoring and preservation. Preserve bounded recommendation and scenario-confidence guidance in visible and exported pilot output, and re-run production QA after future route changes."
+  "nextAction": "Deploy the validation-handoff implementation, verify canonical and Vercel / and /pilot against the pushed route files byte-for-byte, repeat production desktop/mobile and Go/Adjust/Do Not Launch pilot QA, record the monitoring result, then return to preservation."
 }

@@ -32,6 +32,8 @@ Static V2 qualification iteration passed local and production QA on 2026-07-08 f
 
 Static V2 trust/decision-clarity iteration passed local and production QA on 2026-07-13 for commit `368b265`. The scope adds a lightweight how-to-read section on `/`, changes preview confidence to scenario confidence on `/pilot`, adds recommendation-specific interpretation for Go, Adjust, and Do Not Launch, and carries the same bounded guidance into copied, downloaded, and emailed briefs. Canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte; the implementation preserves qualification, launch checklist, and email-ready intake flows with no backend, API, analytics, tracking, external services, auth, database, or credentials.
 
+Static V2 validation-handoff iteration passed local QA on 2026-07-27 and is pending production deployment verification. The smallest high-impact change adds a single `What would change this decision` block after the existing pilot interpretation: Go names evidence required before commitment, Adjust names variables to change or verify, and Do Not Launch names the re-scope and evidence required before reconsideration. The same generated guidance is included in copied, downloaded, and emailed briefs. Homepage hierarchy, qualification, launch checklist, scenario-confidence boundaries, email readiness, artifact actions, query restoration, static-only behavior, and approved assets remain intact.
+
 ## Decisions Recorded
 
 - Brand mode is `evolve`, not `create` or `replace`.
@@ -60,6 +62,7 @@ Static V2 trust/decision-clarity iteration passed local and production QA on 202
 - Static V2 growth conversion motion is review what to send, generate the launch brief, and email the intake artifact to Vibelytics without forms, backend, analytics, tracking, API calls, external services, auth, or credentials.
 - Static V2 qualification motion is to help promoters and venues self-select before emailing: best fit is a launch decision that is still movable; not-fit contexts include live campaign reporting, incomplete briefs, attendee identification, hidden tracking, heatmaps, or emotion detection.
 - Static V2 trust motion is to make recommendations decision-useful without presenting synthetic preview scores as observed demand, a sell-through probability, or final approval. Real venue terms, economics, audience evidence, partner commitments, and operator judgment remain required before commitment.
+- Static V2 validation-handoff motion is to make each scenario direction operational: confirm real terms and evidence before acting on Go, change or verify the named planning variables for Adjust, and re-scope the room, exposure, inventory, evidence, and partner terms before reconsidering Do Not Launch.
 
 ## Artifacts
 
@@ -71,7 +74,7 @@ Static V2 trust/decision-clarity iteration passed local and production QA on 202
 - `docs/design/final-review.md`: final production brand review, evidence, accepted risks, and PASS decision for the current static scope.
 - `docs/design/production-readiness.json`: structured production readiness decision for the current static brand scope.
 - `docs/HANDOFF.md`: concise post-signoff handoff with production status, brand boundaries, route rules, source-of-truth files, accepted risks, and re-run checks.
-- `docs/design/ux-qa.md`: local UX production-gate evidence for the trust/decision-clarity iteration, including viewport, state, accessibility, fidelity, and blocker status.
+- `docs/design/ux-qa.md`: local UX production-gate evidence for the validation-handoff iteration, including viewport, three-state guidance, artifacts, accessibility, fidelity, and blocker status.
 - Historical pass docs with supersession notes: `docs/brand/branding-pass-2026-07-03.md`, `docs/design/asset-source-pass-2026-07-03.md`, and `docs/design/identity-source-pass-2026-07-03.md`.
 - `scripts/generate-route-assets.py`: deterministic source generator for `assets/festival-network.png`, `assets/taste-map.png`, and `assets/backstage.png`.
 - `brand/vibelytics-mark.svg`: canonical editable Vibelytics mark source.
@@ -111,6 +114,8 @@ P1: Resolved for the Static V2 qualification iteration after commit `4c15836`. T
 
 P1: Resolved for the Static V2 trust/decision-clarity iteration after commit `368b265`. The 2026-07-13 local and production checks found bounded decision interpretation on `/` and `/pilot`, consistent exported brief guidance, byte-for-byte canonical and Vercel route parity, no desktop/mobile layout or interaction regressions, and no forbidden terms or static-only violations.
 
+P1: Resolved for local implementation of the Static V2 validation-handoff iteration on 2026-07-27. Browser QA confirmed concise recommendation-specific validation thresholds for Go, Adjust, and Do Not Launch; shared copy/download/email brief generation; query restoration; clean desktop/mobile rendering; and a mobile navigation overflow fix. Production monitoring remains pending until the pushed route files are live and match canonical and Vercel byte-for-byte.
+
 ## Recommended Path
 
 1. Preserve the current static route strategy: `/` and `/pilot` stay pure Vibelytics with no SR007, Speedrun, a16z, or Andreessen references.
@@ -123,6 +128,31 @@ P1: Resolved for the Static V2 trust/decision-clarity iteration after commit `36
 8. Next conversion work should preserve the static email-brief path unless a backend, form, analytics, or CRM integration is explicitly approved.
 9. Keep future qualification copy specific to launch planning and avoid claims about live reporting, surveillance, attendee identity, or emotion detection.
 10. Preserve the how-to-read boundary in both the visible pilot output and every exported brief; treat scenario confidence as synthetic preview support, not a sales forecast.
+11. Preserve the recommendation-specific validation threshold in visible and exported pilot output; keep it concise enough that the email conversion action remains adjacent and obvious.
+
+## Static V2 Validation-Handoff Iteration Local Verification
+
+Commands and browser checks run on 2026-07-27:
+
+```bash
+npm run build
+node -e 'for (const f of ["docs/design/asset-provenance.json","docs/design/production-readiness.json"]) { JSON.parse(require("fs").readFileSync(f,"utf8")); console.log(f+" ok") }'
+rg -n "SR007|Speedrun|a16z|Andreessen" index.html pilot/index.html
+rg -n "fetch\(|XMLHttpRequest|navigator\.sendBeacon|serviceWorker|/api/|supabase|firebase|posthog|segment|mixpanel|analytics" index.html pilot/index.html
+git diff --check
+python3 -m http.server 4187 --bind 127.0.0.1 --directory dist
+```
+
+Local verification notes:
+
+- Build, JSON validation, forbidden-term scan, static-only scan, diff checks, and built-route parity passed.
+- Browser QA passed on `/` and `/pilot` at 1440 × 960 and 390 × 844 with no console warnings/errors, broken images, or final horizontal overflow.
+- Go displayed the evidence required before committing; Mira K / London / 2,000-3,000 cap / Fashion returned Adjust with variables to change or verify; the 5,000-7,000 cap version returned Do Not Launch with re-scope and evidence required before reconsideration.
+- Copy and download actions reached their success states. The shared `currentBriefText` path feeds copy, Blob download, and the decoded email body; the email artifact included the matching validation section, scenario confidence, decision interpretation, email readiness, assumptions, and share link.
+- Artist, city, capacity, budget, date, timeline, sponsor, ticketing, goal, and risk all updated generated state and query parameters. A 6,000-cap share URL restored the selected scenario and Do Not Launch guidance.
+- The existing pilot mobile navigation was the only visual QA mismatch: it exceeded the browser-visible content width by 14 pixels. Mobile-only spacing was tightened without changing labels or hierarchy, and the route rechecked at zero overflow.
+- No homepage content, approved asset, brand source, route image, backend, API, form, analytics, tracking, external service, auth, database, or credential behavior changed.
+- Production pass is not claimed. Route parity and production browser/pilot QA must be repeated after deployment.
 
 ## Static V2 Trust Iteration Local Verification
 

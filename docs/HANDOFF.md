@@ -1,9 +1,9 @@
 # Vibelytics Post-Signoff Handoff
 
-Last updated: 2026-07-13
+Last updated: 2026-07-27
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 trust/decision-clarity iteration passed local and production QA.
+Current status: Static V2 validation-handoff iteration passed local QA; production deployment verification is pending.
 
 ## Production Status
 
@@ -12,6 +12,7 @@ Current status: Static V2 trust/decision-clarity iteration passed local and prod
 - The current growth iteration adds a launch brief checklist on `/`, a clearer `/pilot` email-brief path, and a more intake-ready generated brief artifact.
 - The current qualification iteration adds good-fit/not-fit guidance on `/` and email-readiness guidance in generated `/pilot` briefs.
 - The current trust iteration adds how-to-read guidance on `/`, bounds scenario confidence and recommendation copy on `/pilot`, and carries the same interpretation into copied, downloaded, and emailed briefs.
+- The current validation-handoff iteration adds one concise recommendation-specific `What would change this decision` block on `/pilot` and carries the same evidence or re-scope threshold into copied, downloaded, and emailed briefs.
 - `https://www.vibelytics.ai` currently resolves through Vercel and matches the Vercel deployment URL.
 - No Hostinger website ID, Horizons edit URL, or Hostinger deployment config is present in this repo. If Hostinger is intended to be a separate live surface, obtain the Hostinger website ID/edit URL before updating it.
 - Production brand signoff passed for the current static public scope.
@@ -19,6 +20,7 @@ Current status: Static V2 trust/decision-clarity iteration passed local and prod
 - Growth/conversion production monitoring passed after commit `93dd793`.
 - Qualification production monitoring passed after commit `4c15836`.
 - Trust/decision-clarity production monitoring passed on 2026-07-13 for commit `368b265`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
+- Validation-handoff local QA passed on 2026-07-27. Do not mark this iteration production-passed until canonical and Vercel `/` and `/pilot` match the pushed implementation and production browser/pilot QA is repeated.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.
@@ -39,6 +41,7 @@ Current status: Static V2 trust/decision-clarity iteration passed local and prod
 - Preserve the growth conversion motion: review what to send, generate the static launch brief, then email the intake artifact to Vibelytics.
 - Preserve qualification guidance: Vibelytics is best for launch decisions that are still movable, not live campaign reporting, attendee identification, hidden tracking, heatmaps, or emotion detection.
 - Preserve the trust boundary: recommendations are scenario directions, preview confidence is not a sell-through probability, and synthetic assumptions must be replaced with real venue, economics, audience, partner, and deadline evidence before committing.
+- Preserve the validation-handoff boundary: Go names the evidence required before commitment; Adjust names the variables to change or verify; Do Not Launch names the re-scope and evidence required before reconsideration.
 - Keep both routes static-only.
 
 ## Source Of Truth
@@ -99,4 +102,4 @@ If the temp Playwright script is unavailable, recreate the same checks from `doc
 
 ## Next Work
 
-Default next mode is preservation and monitoring. Re-run the trust-boundary, export, and route-parity checks after any future route change.
+Deploy the validation-handoff implementation, then verify canonical and Vercel route parity, repeat production desktop/mobile and three-state pilot QA, record the production monitoring result, and return to preservation mode.

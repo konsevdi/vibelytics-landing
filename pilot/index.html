@@ -1054,12 +1054,12 @@
       }
 
       .nav-actions {
-        gap: 6px;
+        gap: 4px;
       }
 
       .nav-actions a {
-        padding: 8px 10px;
-        font-size: 13px;
+        padding: 8px 5px;
+        font-size: 12.5px;
       }
 
       .brand {
@@ -1367,6 +1367,10 @@
             <p id="decision-reading">Use Go as a direction to validate. The synthetic scenario supports the current brief, but the score is not observed demand, a sell-through probability, or final approval.</p>
           </div>
           <div class="result-block highlight">
+            <h4>What would change this decision</h4>
+            <p id="validation-guidance">Before committing, confirm the venue hold and release terms, full room economics against the margin target, ticket tiers against real buyer evidence, sponsor commitments, and the decision deadline. Change the direction if any of those inputs no longer supports the brief.</p>
+          </div>
+          <div class="result-block highlight">
             <h4>When to email Vibelytics</h4>
             <p id="email-readiness">Email this brief when the venue hold, target margin, ticket tiers, sponsor role, and decision deadline are close enough to the real launch.</p>
           </div>
@@ -1658,6 +1662,7 @@
       confidence: document.getElementById("confidence"),
       recommendation: document.getElementById("recommendation"),
       decisionReading: document.getElementById("decision-reading"),
+      validationGuidance: document.getElementById("validation-guidance"),
       emailReadiness: document.getElementById("email-readiness"),
       demandDetail: document.getElementById("demand-detail"),
       capacityDetail: document.getElementById("capacity-detail"),
@@ -2014,10 +2019,23 @@
       return "Use Go as a direction to validate. The synthetic scenario supports the current brief, but the score is not observed demand, a sell-through probability, or final approval.";
     }
 
+    function getValidationGuidance(plan) {
+      if (plan.recommendation === "Do Not Launch") {
+        return "Reconsider only with a smaller or lower-risk room, reduced cost exposure, staged inventory, credible buyer evidence, and confirmed partner terms. Without that re-scope, keep the announcement on hold.";
+      }
+
+      if (plan.recommendation === "Adjust") {
+        return "Change or verify the room size and release terms, guarantee and margin exposure, ticket tiers and first-allocation gate, sponsor role, and launch timing. Re-run the brief after those variables are real.";
+      }
+
+      return "Before committing, confirm the venue hold and release terms, full room economics against the margin target, ticket tiers against real buyer evidence, sponsor commitments, and the decision deadline. Change the direction if any of those inputs no longer supports the brief.";
+    }
+
     function buildBriefText(plan) {
       const intakeNext = getIntakeNextStep(plan);
       const emailReadiness = getEmailReadiness(plan);
       const decisionReading = getDecisionReading(plan);
+      const validationGuidance = getValidationGuidance(plan);
       return [
         "Vibelytics launch brief for review",
         "",
@@ -2047,7 +2065,10 @@
         `- ${decisionReading}`,
         "- Preview scores are generated from synthetic assumptions. Validate the direction with real buyer evidence, venue terms, costs, partner commitments, and operator judgment before committing.",
         "",
-        "4. Decision rationale",
+        "4. What would change this decision",
+        `- ${validationGuidance}`,
+        "",
+        "5. Decision rationale",
         `- Demand: ${plan.demandDetail}`,
         `- Capacity: ${plan.capacityDetail}`,
         `- Pricing: ${plan.pricingDetail}`,
@@ -2055,23 +2076,23 @@
         `- Downside risk: ${plan.downsideRisk}`,
         `- What to adjust: ${plan.adjustmentDetail}`,
         "",
-        "5. Recommended launch sequence",
+        "6. Recommended launch sequence",
         `- Week -6: ${plan.sequence[0]}`,
         `- Week -5: ${plan.sequence[1]}`,
         `- Week -3: ${plan.sequence[2]}`,
         `- Week -1: ${plan.sequence[3]}`,
         "",
-        "6. Launch copy",
+        "7. Launch copy",
         plan.copy,
         "",
-        "7. What I can send next",
+        "8. What I can send next",
         "- Real venue option and hold status",
         "- Room cost, guarantee, or margin target if available",
         "- Expected ticket tiers, inventory posture, and presale audience",
         "- Sponsor category, role, and constraints",
         "- Launch decision deadline and known risk constraints",
         "",
-        "8. Requested follow-up",
+        "9. Requested follow-up",
         intakeNext,
         "",
         "Preview boundary",
@@ -2115,6 +2136,7 @@
       fields.sponsorFit.textContent = plan.sponsorFit;
       fields.confidence.textContent = `${plan.confidence}%`;
       fields.decisionReading.textContent = getDecisionReading(plan);
+      fields.validationGuidance.textContent = getValidationGuidance(plan);
       fields.emailReadiness.textContent = getEmailReadiness(plan);
       fields.demandDetail.textContent = plan.demandDetail.replace(/\d+ \/ 100/, `${plan.demandScore} / 100`);
       fields.capacityDetail.textContent = plan.capacityDetail;
