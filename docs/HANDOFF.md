@@ -1,9 +1,9 @@
 # Vibelytics Post-Signoff Handoff
 
-Last updated: 2026-07-27
+Last updated: 2026-07-29
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 validation-handoff iteration passed local and production QA.
+Current status: Static V2 future-relative target-date change passed current production monitoring for commit `a3c0a36`.
 
 ## Production Status
 
@@ -13,17 +13,20 @@ Current status: Static V2 validation-handoff iteration passed local and producti
 - The current qualification iteration adds good-fit/not-fit guidance on `/` and email-readiness guidance in generated `/pilot` briefs.
 - The current trust iteration adds how-to-read guidance on `/`, bounds scenario confidence and recommendation copy on `/pilot`, and carries the same interpretation into copied, downloaded, and emailed briefs.
 - The current validation-handoff iteration adds one concise recommendation-specific `What would change this decision` block on `/pilot` and carries the same evidence or re-scope threshold into copied, downloaded, and emailed briefs.
+- Fresh `/pilot` visits compute a target date six weeks ahead. Valid explicit query dates remain authoritative, and the selected date is carried into generated, share, and email artifacts.
 - `https://www.vibelytics.ai` currently resolves through Vercel and matches the Vercel deployment URL.
 - No Hostinger website ID, Horizons edit URL, or Hostinger deployment config is present in this repo. If Hostinger is intended to be a separate live surface, obtain the Hostinger website ID/edit URL before updating it.
 - Production brand signoff passed for the current static public scope.
-- Latest production monitoring passed after commit `79e745b`.
+- Current production monitoring passed on 2026-07-29 for commit `a3c0a36`; this is the only entry meant by “current monitoring.”
 - Growth/conversion production monitoring passed after commit `93dd793`.
 - Qualification production monitoring passed after commit `4c15836`.
 - Trust/decision-clarity production monitoring passed on 2026-07-13 for commit `368b265`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
 - Validation-handoff production monitoring passed on 2026-07-27 for commit `91142e0`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
+- Future-relative target-date production monitoring passed on 2026-07-29 for commit `a3c0a36`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte, fresh visits selected `2026-09-09`, and explicit `date=2026-08-15` restored unchanged at desktop and mobile sizes.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.
+- The 2026-07-05 `9532f2c` and `b8bcd50` monitoring records are historical only. Their former SR007 pilot-context allowance is `SUPERSEDED` by the pure Vibelytics policy established after `27b202e`.
 
 ## Brand Boundaries
 
@@ -42,6 +45,7 @@ Current status: Static V2 validation-handoff iteration passed local and producti
 - Preserve qualification guidance: Vibelytics is best for launch decisions that are still movable, not live campaign reporting, attendee identification, hidden tracking, heatmaps, or emotion detection.
 - Preserve the trust boundary: recommendations are scenario directions, preview confidence is not a sell-through probability, and synthetic assumptions must be replaced with real venue, economics, audience, partner, and deadline evidence before committing.
 - Preserve the validation-handoff boundary: Go names the evidence required before commitment; Adjust names the variables to change or verify; Do Not Launch names the re-scope and evidence required before reconsideration.
+- Preserve the date boundary: fresh visits use local calendar date plus 42 days; valid explicit query dates restore unchanged; visible, copied/downloaded, share, and email artifacts keep one selected date.
 - Keep both routes static-only.
 
 ## Source Of Truth
@@ -78,6 +82,10 @@ For Static V2 pilot QA, also check:
 - changing artist, city, capacity, budget, date, timeline, sponsor, ticketing, goal, and risk updates the generated decision
 - `Copy brief`, `Download brief`, `Copy share link`, and `Email brief` all use the same generated launch brief
 - a copied share URL restores the selected scenario via query parameters
+- a fresh visit defaults exactly 42 calendar days ahead
+- a valid explicit query date restores unchanged
+- the visible date, copied share URL, and encoded email body agree
+- an impossible but shape-valid query date does not clear the field once `SV2-DATE-002` is complete
 
 For production monitoring, also re-run:
 
@@ -100,6 +108,8 @@ node /private/tmp/vibelytics-brand-signoff-qa.mjs
 
 If the temp Playwright script is unavailable, recreate the same checks from `docs/design/roadmap.md`: desktop/mobile `/` and `/pilot`, no broken images, no console warnings/errors, no unexpected third-party requests, no horizontal overflow, and the Mira K / London / 2,000-3,000 cap hall / Fashion pilot smoke test.
 
-## Next Work
+## Queue Handoff
 
-Return to preservation and lightweight monitoring. Re-run validation guidance, artifact consistency, and route-parity checks after any future route change.
+Status boundaries are defined in `docs/design/roadmap.md`. Historical `VERIFIED` work is not pending; `CANDIDATE` work is not authorized or ordered; only one task may be `SELECTED`.
+
+Selected next task: `SV2-DATE-002`. Guard query restoration with real calendar-date validity so an impossible value such as `2026-99-99` preserves the computed six-week default, while valid explicit dates continue to restore unchanged and remain consistent in visible, share, and email artifacts. Do not broaden the task or disturb pure Vibelytics routes, homepage qualification and launch-brief guidance, scenario-confidence boundaries, recommendation-specific validation, email conversion, approved assets, or static-only constraints.

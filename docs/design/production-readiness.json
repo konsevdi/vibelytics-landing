@@ -1,10 +1,11 @@
 {
-  "version": 3,
-  "date": "2026-07-27",
-  "status": "pass_static_v2_validation_handoff_production_monitoring_current",
-  "lastMonitoringPass": "2026-07-27",
+  "version": 4,
+  "date": "2026-07-29",
+  "status": "pass_static_v2_future_relative_date_production_monitoring_current",
+  "lastMonitoringPass": "2026-07-29",
+  "verifiedCommit": "a3c0a36",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Production monitoring passed for the Vibelytics Static V2 validation-handoff iteration at commit 91142e0. /pilot adds concise recommendation-specific evidence, variable, or re-scope guidance and carries the same guidance into copied, downloaded, and emailed briefs while preserving the homepage journey, scenario-confidence boundaries, conversion actions, query restoration, pure Vibelytics route policy, and static-only behavior. Canonical and Vercel / and /pilot matched the committed route files byte-for-byte.",
+  "decision": "Current production monitoring passed for the Vibelytics Static V2 future-relative target-date change at shipped commit a3c0a36. Canonical and Vercel / and /pilot matched the committed route files byte-for-byte. Fresh pilot visits on 2026-07-29 selected 2026-09-09, valid explicit date=2026-08-15 restored unchanged, and the selected date remained consistent in generated email and share-link artifacts at desktop and mobile sizes. This monitoring pass is not a new global brand signoff.",
   "scope": [
     "/",
     "/pilot",
@@ -45,9 +46,45 @@
     "trustDecisionClarityLocalQa": "pass",
     "trustDecisionClarityProductionMonitoring": "pass",
     "validationHandoffLocalQa": "pass",
-    "validationHandoffProductionMonitoring": "pass"
+    "validationHandoffProductionMonitoring": "pass",
+    "futureRelativeDateProductionMonitoring": "pass",
+    "freshDateExactly42DaysAhead": "pass",
+    "validExplicitDateRestoration": "pass",
+    "shareEmailDateConsistency": "pass",
+    "canonicalVercelByteParity": "pass",
+    "invalidCalendarDateFallback": "p2_selected_follow_up"
+  },
+  "monitoringSemantics": {
+    "current": "The newest exact date and commit entry is the sole current production-monitoring checkpoint.",
+    "historical": "Older pass entries remain evidence for their tested commit and policy only.",
+    "superseded": "The SR007 pilot-context allowances recorded for 9532f2c and b8bcd50 are historical and superseded by the pure Vibelytics route policy established after 27b202e."
   },
   "monitoringHistory": [
+    {
+      "date": "2026-07-29",
+      "status": "pass",
+      "productionCommit": "a3c0a36",
+      "summary": "Static V2 future-relative target-date production monitoring passed. Canonical and Vercel / and /pilot matched the committed route files byte-for-byte. Fresh visits selected 2026-09-09, valid explicit date=2026-08-15 restored unchanged, encoded email bodies contained the selected date and a share URL with the same date, and Copy share link reached its success state. Desktop/mobile browser checks found no broken images, horizontal overflow, or console warnings/errors.",
+      "checks": {
+        "routeStatus": "pass",
+        "routeContentMatchesCommit": "pass",
+        "canonicalVercelByteParity": "pass",
+        "freshDateExactly42DaysAhead": "pass",
+        "validExplicitDateRestoration": "pass",
+        "shareEmailDateConsistency": "pass",
+        "desktopMobileQa": "pass",
+        "assetResolution": "pass",
+        "console": "pass",
+        "productionMonitoring": "pass"
+      },
+      "followUp": {
+        "id": "SV2-DATE-002",
+        "status": "selected",
+        "severity": "P2",
+        "evidence": "A shape-valid but impossible query date such as 2026-99-99 clears the native date field and produces a blank target date in the email artifact.",
+        "acceptance": "Invalid calendar dates preserve the computed six-week default; valid explicit dates restore unchanged; visible, share, and email dates agree."
+      }
+    },
     {
       "date": "2026-07-27",
       "status": "pass",
@@ -145,8 +182,9 @@
     },
     {
       "date": "2026-07-05",
-      "status": "pass",
+      "status": "historical_pass_policy_superseded",
       "productionCommit": "b8bcd50",
+      "supersededBy": "Pure Vibelytics pilot policy established after commit 27b202e.",
       "summary": "Docs-only production monitoring recheck passed after the historical signoff clarification commit. Production / and /pilot returned 200, live route HTML matched local route files, favicon/app/OG/Twitter image URLs resolved, / remained pure Vibelytics, /pilot retained only approved subtle SR007 static-pilot context, no backend/API/external-service behavior was found in route files or fetched production HTML, the production pilot interaction smoke test passed, npm build passed, and JSON validation passed.",
       "checks": {
         "routeStatus": "pass",
@@ -162,8 +200,9 @@
     },
     {
       "date": "2026-07-05",
-      "status": "pass",
+      "status": "historical_pass_policy_superseded",
       "productionCommit": "9532f2c",
+      "supersededBy": "Pure Vibelytics pilot policy established after commit 27b202e.",
       "summary": "Production monitoring passed for / and /pilot. Live route HTML matched local route files, favicon/app/OG/Twitter image URLs resolved, / remained pure Vibelytics, /pilot retained only approved SR007 static-pilot context, no backend/API/external-service behavior was found, and the pilot interaction smoke test passed.",
       "checks": {
         "routeContentMatchesMain": "pass",
@@ -192,5 +231,30 @@
       "priority": "P2"
     }
   ],
-  "nextAction": "Return to lightweight production monitoring and preservation. Preserve recommendation-specific validation guidance, bounded scenario-confidence interpretation, and artifact consistency in visible and exported pilot output."
+  "queue": {
+    "selected": {
+      "id": "SV2-DATE-002",
+      "status": "selected",
+      "scope": "Guard date query restoration with real calendar-date validity only.",
+      "acceptance": [
+        "An impossible but shape-valid query date preserves the computed six-week default.",
+        "A valid explicit date restores unchanged.",
+        "Visible, copied share URL, and encoded email body dates agree.",
+        "Pure Vibelytics routes, approved assets, homepage qualification and launch-brief guidance, scenario-confidence boundaries, recommendation-specific validation, email conversion, query restoration, and static-only behavior remain intact."
+      ]
+    },
+    "candidates": [
+      {
+        "id": "SV2-MON-001",
+        "status": "candidate",
+        "summary": "Add a dependency-free repo-owned read-only production parity helper; keep browser behavior as separately recorded evidence."
+      },
+      {
+        "id": "SV2-DATE-003",
+        "status": "candidate",
+        "summary": "Evaluate concise helper copy explaining the six-week default and query/share preservation without crowding the brief."
+      }
+    ]
+  },
+  "nextAction": "Implement exactly SV2-DATE-002. Do not start candidate work or broaden scope."
 }
