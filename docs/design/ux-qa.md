@@ -1,7 +1,7 @@
 # Vibelytics Static V2 Future-Relative Target-Date UX QA
 
 Last updated: 2026-09-22
-Status: Production UX QA remains passed for commit `1e34f3e`; `SV2-DATE-004` helper implementation passed local UX QA and awaits deployment verification.
+Status: `SV2-DATE-004` target-date helper passed canonical and Vercel production UX QA for commit `abcc39a`.
 
 ## Routes And Journey Reviewed
 
@@ -73,7 +73,7 @@ No screenshots or approved repo assets were regenerated for this logic-only reco
 
 - P0 blockers: none.
 - P1 blockers: none for local implementation.
-- Production status: current monitoring pass for commit `1e34f3e`; canonical and Vercel route HTML matched the committed files byte-for-byte.
+- Production status: current monitoring pass for commit `abcc39a`; canonical and Vercel route HTML matched the committed files byte-for-byte.
 - Local build and evidence validation: pass; product change is limited to the calendar-date guard in `pilot/index.html`.
 - Production UX QA: pass at 1440 × 960 and 390 × 844 for the future-relative default, valid explicit query restoration, share/email date consistency, asset resolution, clean console output, and zero horizontal overflow.
 - Gate distinction: this is a production-monitoring pass for the shipped date change, not a new global aesthetic or brand signoff.
@@ -98,7 +98,7 @@ Candidate evaluated:
 - Decision: `SHIP` as a recommendation only. No product code, styles, assets, or behavior changed in this evaluation.
 - Exact likely product file: `pilot/index.html`.
 
-## SV2-DATE-004 Target-Date Helper Local QA
+## SV2-DATE-004 Target-Date Helper Production QA
 
 - Implemented exactly: `Fresh briefs start six weeks ahead; shared links keep the selected date.`
 - Accessibility: `#target-date` references the visible `#target-date-help` through `aria-describedby`; the native label and control semantics remain intact.
@@ -113,4 +113,6 @@ Candidate evaluated:
 - Fresh `2026-11-03`, valid `2026-08-15`, and impossible `2026-99-99` states preserved visible, email, and embedded share-link dates.
 - `Copy share link` reached `Share link copied.`
 - No other copy, product logic, routes, assets, services, dependencies, or instrumentation changed.
-- Local decision: pass. Production status remains pending deployment and re-verification.
+- `npm run verify:production -- --token=abcc39a` confirmed canonical/Vercel byte parity for the committed routes.
+- Production browser QA repeated desktop, tablet-grid, narrow-mobile, fresh, valid, impossible, share, and email checks with the same passing results.
+- Production decision: pass for commit `abcc39a`.

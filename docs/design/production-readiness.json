@@ -1,11 +1,11 @@
 {
-  "version": 5,
-  "date": "2026-09-21",
-  "status": "pass_static_v2_calendar_date_guard_production_monitoring_current",
-  "lastMonitoringPass": "2026-09-21",
-  "verifiedCommit": "1e34f3e",
+  "version": 6,
+  "date": "2026-09-22",
+  "status": "pass_static_v2_target_date_helper_production_monitoring_current",
+  "lastMonitoringPass": "2026-09-22",
+  "verifiedCommit": "abcc39a",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Current production monitoring passed for the Vibelytics Static V2 calendar-date guard at shipped commit 1e34f3e. Canonical and Vercel / and /pilot matched the committed route files byte-for-byte. Fresh pilot visits on 2026-09-21 selected 2026-11-02, valid explicit and leap-day dates restored unchanged, impossible dates preserved the computed default, and visible, email, and embedded share-link dates remained consistent at desktop and mobile sizes. This monitoring pass is not a new global brand signoff.",
+  "decision": "Current production monitoring passed for the Vibelytics Static V2 target-date helper at shipped commit abcc39a. Canonical and Vercel / and /pilot matched the committed route files byte-for-byte. The exact helper and aria-describedby relationship were live; desktop, tablet-grid, and narrow-mobile layouts passed; and fresh, valid, impossible, share, and email date behavior remained consistent. This monitoring pass is not a new global brand signoff.",
   "scope": [
     "/",
     "/pilot",
@@ -56,7 +56,8 @@
     "calendarDateGuardLocalQa": "pass",
     "calendarDateGuardProductionMonitoring": "pass",
     "productionVerificationHelper": "pass",
-    "targetDateHelperLocalQa": "pass_local_pending_production"
+    "targetDateHelperLocalQa": "pass",
+    "targetDateHelperProductionMonitoring": "pass"
   },
   "monitoringSemantics": {
     "current": "The newest exact date and commit entry is the sole current production-monitoring checkpoint.",
@@ -64,6 +65,24 @@
     "superseded": "The SR007 pilot-context allowances recorded for 9532f2c and b8bcd50 are historical and superseded by the pure Vibelytics route policy established after 27b202e."
   },
   "monitoringHistory": [
+    {
+      "date": "2026-09-22",
+      "status": "pass",
+      "productionCommit": "abcc39a",
+      "summary": "Static V2 target-date helper production monitoring passed. Canonical and Vercel / and /pilot matched commit abcc39a byte-for-byte. The exact helper copy and aria-describedby relationship were live; 1440 × 960, 1024 × 900, and 390 × 844 layouts passed; fresh, valid, and impossible date states stayed consistent in visible, email, and embedded share-link artifacts; and no broken images, overflow, or console warnings/errors were found.",
+      "checks": {
+        "routeStatus": "pass",
+        "routeContentMatchesCommit": "pass",
+        "canonicalVercelByteParity": "pass",
+        "helperCopy": "pass",
+        "helperAccessibilityAssociation": "pass",
+        "desktopTabletMobileQa": "pass",
+        "dateArtifactConsistency": "pass",
+        "assetResolution": "pass",
+        "console": "pass",
+        "productionMonitoring": "pass"
+      }
+    },
     {
       "date": "2026-09-21",
       "status": "pass",
@@ -296,7 +315,7 @@
     },
     "verifiedHelperImplementation": {
       "id": "SV2-DATE-004",
-      "status": "verified_local_pending_production",
+      "status": "verified_production",
       "scope": "Implement exactly the approved target-date helper with an accessible described-by relationship.",
       "acceptance": [
         "Add exactly: Fresh briefs start six weeks ahead; shared links keep the selected date.",
@@ -307,5 +326,5 @@
       ]
     }
   },
-  "nextAction": "After SV2-DATE-004 is committed, pushed, and deployed, verify canonical/Vercel parity and repeat responsive helper/date-artifact checks before updating production monitoring. No implementation item is currently selected."
+  "nextAction": "Audit the strict queue against production-verified commit abcc39a before selecting further work. No implementation item is currently selected."
 }

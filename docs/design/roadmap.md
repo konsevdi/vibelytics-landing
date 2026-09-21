@@ -8,9 +8,7 @@ Vibelytics has a static public landing page and clickable pilot for an AI launch
 
 The repo now includes a durable design roadmap, an approved strategy brand kit, a focused asset-source pass, first-party route imagery, and canonical identity exports. This roadmap is the coordination point for future design-to-code passes.
 
-Current production monitoring passed on 2026-09-21 for shipped commit `1e34f3e`. Canonical `https://www.vibelytics.ai` and `https://vibelytics-landing.vercel.app` returned route HTML for `/` and `/pilot` that matched the committed files byte-for-byte. At 1440 × 960 and 390 × 844, fresh pilot visits selected `2026-11-02`, exactly 42 calendar days after the verification date; explicit `date=2026-08-15` and leap day `2028-02-29` restored unchanged; impossible `2026-99-99` and non-leap `2027-02-29` preserved the computed default; visible, email, and embedded share-link dates agreed; `Copy share link` reached its success state; and no broken images, horizontal overflow, or browser console warnings/errors were found. This is the current production-monitoring checkpoint, not a new global brand signoff.
-
-`SV2-DATE-004` passed local implementation QA on 2026-09-22. The approved helper is visibly subordinate, associated with the native date input through `aria-describedby`, and preserves aligned controls at 1440 × 960, 1024 × 900, and 390 × 844. Fresh, valid, and impossible dates remained consistent in visible, share, and email artifacts. Production success is not claimed for this unshipped change.
+Current production monitoring passed on 2026-09-22 for shipped commit `abcc39a`. Canonical `https://www.vibelytics.ai` and `https://vibelytics-landing.vercel.app` returned route HTML for `/` and `/pilot` that matched the committed files byte-for-byte. The approved target-date helper and `aria-describedby` relationship were live; desktop, tablet-grid, and narrow-mobile layouts passed; fresh visits selected `2026-11-03`; valid `2026-08-15` restored unchanged; impossible `2026-99-99` preserved the computed default; visible, email, and embedded share-link dates agreed; `Copy share link` reached its success state; and no broken images, horizontal overflow, or browser console warnings/errors were found. This is the current production-monitoring checkpoint, not a new global brand signoff.
 
 Production deployment verification passed on 2026-07-04 for commit `bccf62c` at `https://vibelytics-landing.vercel.app`. Live `/` and `/pilot` matched local `main`, production assets resolved, desktop/mobile browser QA passed, and the pilot interaction smoke test passed. This is deployment verification evidence, not production brand signoff by itself.
 
@@ -57,7 +55,7 @@ Static V2 validation-handoff iteration passed local and production QA on 2026-07
 - Favicon, app icon, brand, avatar, social, and screenshot derivatives were refreshed from repo-owned source/export paths.
 - Final visual QA passed across `/`, `/pilot`, favicon/app icon/social crops, desktop/mobile viewports, and the pilot interaction smoke test.
 - Shared color, semantic, typography, radius, elevation, and motion primitives now live in `styles/tokens.css` and are consumed by `index.html` and `pilot/index.html`.
-- Historical production verification passed for earlier static deployments; the 2026-09-21 `1e34f3e` checkpoint is current.
+- Historical production verification passed for earlier static deployments; the 2026-09-22 `abcc39a` checkpoint is current.
 - Historical docs-only production monitoring recheck passed after the signoff clarification commit; its former SR007 allowance is superseded.
 - Public pilot copy cleanup removes SR007 wording from `/pilot`; use Vibelytics-native preview language instead.
 - Canonical live-site verification confirms `www.vibelytics.ai` currently serves the same Vercel-backed static HTML as the deployment URL.
@@ -158,7 +156,7 @@ Only `SELECTED` and `READY` participate in queue order. A bounded implementation
 | `SV2-DATE-002` | `VERIFIED` | Canonical and Vercel production QA on 2026-09-21 confirmed commit `1e34f3e` byte parity, impossible-date fallback, valid-date restoration, and visible/email/share consistency. | Complete; do not reopen unless a later route change regresses parity or browser behavior. |
 | `SV2-MON-001` | `VERIFIED` | `npm run verify:production -- --token=1e34f3e-helper` passed end to end on 2026-09-21: both JSON artifacts parsed and canonical/Vercel `/` and `/pilot` matched local route bytes with purity/static-only scans clean. | Complete locally; keep browser behavior as a separate manual production check. |
 | `SV2-DATE-003` | `VERIFIED` | Evaluation on 2026-09-22 found one 72-character helper candidate remains approximately two short lines at 1440 × 960 and 390 × 844, clarifies the silent default, and keeps query mechanics implicit. | `SHIP` recommendation only; no product change landed. A later implementation selection may add the described-by hint in `pilot/index.html`. |
-| `SV2-DATE-004` | `VERIFIED` | Local QA on 2026-09-22 confirmed exact helper copy, `aria-describedby`, two-line desktop/mobile wrapping, aligned tablet-grid controls, and unchanged fresh/valid/invalid artifact behavior. | Complete locally; commit, push, deploy, and repeat parity/browser checks before claiming production success. |
+| `SV2-DATE-004` | `VERIFIED` | Canonical/Vercel production QA on 2026-09-22 confirmed commit `abcc39a` byte parity, exact helper copy, `aria-describedby`, two-line desktop/mobile wrapping, aligned tablet-grid controls, and unchanged fresh/valid/invalid artifact behavior. | Complete in production; do not reopen unless a later route change regresses the helper, accessibility association, layout, or date artifacts. |
 
 ### Completed Bounded Task
 
@@ -211,7 +209,7 @@ Evidence:
 
 ### Completed Target-Date Helper Implementation
 
-`SV2-DATE-004` is locally complete.
+`SV2-DATE-004` is complete in production.
 
 Binding scope:
 
@@ -229,6 +227,8 @@ Implementation evidence:
 - At 390 × 844 the 317 px helper occupied two lines with zero overflow, no broken images, and a clean console.
 - Fresh `2026-11-03`, valid `2026-08-15`, and impossible `2026-99-99` cases preserved visible, share, and email date consistency; the share action reached its success state.
 - No homepage, recommendation, artifact-generation, asset, service, dependency, analytics, tracking, auth, database, or credential behavior changed.
+- `npm run verify:production -- --token=abcc39a` passed canonical/Vercel status, byte parity, route-purity/static-only, and JSON checks. Pilot SHA-256 was `5b8b38549d87c12554008878e86d3e6402c2a54a83adbd7cb9825d4a86bb19f3`.
+- Production browser QA repeated the 1440 × 960, 1024 × 900, and 390 × 844 helper/layout checks plus fresh, valid, impossible, share, and email date checks with no regressions.
 
 ## Static V2 Calendar-Date Guard Local Verification
 
@@ -297,7 +297,7 @@ Verified facts:
 - Browser QA at 1440 × 960 and 390 × 844 passed across both production surfaces. Fresh visits selected `2026-09-09`; explicit `date=2026-08-15` restored unchanged.
 - Email bodies contained the matching `Target date` and a share URL carrying the same date. `Copy share link` reported `Share link copied.`
 - No broken images, horizontal overflow, or browser console warnings/errors were found.
-- At the 2026-07-29 production checkpoint, `date=2026-99-99` cleared the target-date input and produced a blank date in the email artifact. `SV2-DATE-002` resolves this locally; production verification remains pending deployment.
+- At the 2026-07-29 production checkpoint, `date=2026-99-99` cleared the target-date input and produced a blank date in the email artifact. `SV2-DATE-002` later resolved this in production at commit `1e34f3e`.
 - No product code, homepage content, approved asset, brand source, route image, backend, API, form, analytics, tracking, external service, auth, database, or credential behavior changed during this reconciliation.
 
 ## Static V2 Validation-Handoff Iteration Local Verification
@@ -408,7 +408,7 @@ Production verification notes:
 
 ## Verification Commands
 
-Historical evidence notice: this section preserves commands and outcomes for earlier commits. Any statement that SR007 pilot context was once approved is `SUPERSEDED`; current `/` and `/pilot` policy is pure Vibelytics, as verified from commit `27b202e` through the current `1e34f3e` checkpoint.
+Historical evidence notice: this section preserves commands and outcomes for earlier commits. Any statement that SR007 pilot context was once approved is `SUPERSEDED`; current `/` and `/pilot` policy is pure Vibelytics, as verified from commit `27b202e` through the current `abcc39a` checkpoint.
 
 Commands run for the 2026-07-03 branding pass:
 
@@ -684,4 +684,4 @@ Live-site discovery and verification notes:
 
 ## Next Action For Future Codex Thread
 
-No implementation item is selected. After `SV2-DATE-004` is committed, pushed, and deployed, verify canonical/Vercel parity and repeat responsive helper/date-artifact checks before updating production monitoring.
+No implementation item is selected. Audit the strict queue against production-verified commit `abcc39a` before selecting further work; do not invent or implement an item without repository evidence.
