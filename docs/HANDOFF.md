@@ -1,11 +1,9 @@
 # Vibelytics Post-Signoff Handoff
 
-Last updated: 2026-08-31
+Last updated: 2026-09-21
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
-Current status: Static V2 future-relative target-date change passed current production monitoring for commit `a3c0a36`.
-
-Local implementation status: `SV2-DATE-002` passed local QA on 2026-08-31 but is not yet represented by the production checkpoint above.
+Current status: `SV2-DATE-002` passed canonical and Vercel production monitoring for commit `1e34f3e`.
 
 ## Production Status
 
@@ -19,12 +17,12 @@ Local implementation status: `SV2-DATE-002` passed local QA on 2026-08-31 but is
 - `https://www.vibelytics.ai` currently resolves through Vercel and matches the Vercel deployment URL.
 - No Hostinger website ID, Horizons edit URL, or Hostinger deployment config is present in this repo. If Hostinger is intended to be a separate live surface, obtain the Hostinger website ID/edit URL before updating it.
 - Production brand signoff passed for the current static public scope.
-- Current production monitoring passed on 2026-07-29 for commit `a3c0a36`; this is the only entry meant by “current monitoring.”
+- Current production monitoring passed on 2026-09-21 for commit `1e34f3e`; this is the only entry meant by “current monitoring.”
 - Growth/conversion production monitoring passed after commit `93dd793`.
 - Qualification production monitoring passed after commit `4c15836`.
 - Trust/decision-clarity production monitoring passed on 2026-07-13 for commit `368b265`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
 - Validation-handoff production monitoring passed on 2026-07-27 for commit `91142e0`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte.
-- Future-relative target-date production monitoring passed on 2026-07-29 for commit `a3c0a36`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte, fresh visits selected `2026-09-09`, and explicit `date=2026-08-15` restored unchanged at desktop and mobile sizes.
+- Calendar-date guard production monitoring passed on 2026-09-21 for commit `1e34f3e`; canonical and Vercel `/` and `/pilot` matched the committed route files byte-for-byte, fresh visits selected `2026-11-02`, valid dates restored unchanged, and impossible dates preserved the computed default at desktop and mobile sizes.
 - Live route HTML matched local `index.html` and `pilot/index.html` during monitoring.
 - Favicon, app icon, OG image, and Twitter image URLs resolved on production.
 - No backend, API route, external service, runtime credential, or tracking behavior is approved.
@@ -114,4 +112,4 @@ If the temp Playwright script is unavailable, recreate the same checks from `doc
 
 Status boundaries are defined in `docs/design/roadmap.md`. Historical or locally completed `VERIFIED` work is not pending; `CANDIDATE` work is not authorized or ordered; a bounded implementation run may start only when exactly one task is `SELECTED`.
 
-No next implementation task is selected. `SV2-DATE-002` is locally verified: impossible calendar dates preserve the six-week default, valid explicit dates restore unchanged, and visible/email/share artifacts agree. Commit, push, deploy, and repeat production parity/browser checks before promoting this local result to current production monitoring. Do not start either roadmap candidate without explicit selection.
+Selected next task: `SV2-MON-001`. Add one dependency-free, repo-owned, read-only production verification helper for canonical/Vercel status and byte parity, route-purity/static-only scans, and JSON validation. Add one package script and replace the temporary-script-oriented handoff command block with the repo-owned command. Keep browser behavior as a separate manual check; do not implement `SV2-DATE-003`.

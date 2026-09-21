@@ -1,11 +1,11 @@
 {
-  "version": 4,
-  "date": "2026-07-29",
-  "status": "pass_static_v2_future_relative_date_production_monitoring_current",
-  "lastMonitoringPass": "2026-07-29",
-  "verifiedCommit": "a3c0a36",
+  "version": 5,
+  "date": "2026-09-21",
+  "status": "pass_static_v2_calendar_date_guard_production_monitoring_current",
+  "lastMonitoringPass": "2026-09-21",
+  "verifiedCommit": "1e34f3e",
   "productionUrl": "https://vibelytics-landing.vercel.app",
-  "decision": "Current production monitoring passed for the Vibelytics Static V2 future-relative target-date change at shipped commit a3c0a36. Canonical and Vercel / and /pilot matched the committed route files byte-for-byte. Fresh pilot visits on 2026-07-29 selected 2026-09-09, valid explicit date=2026-08-15 restored unchanged, and the selected date remained consistent in generated email and share-link artifacts at desktop and mobile sizes. This monitoring pass is not a new global brand signoff.",
+  "decision": "Current production monitoring passed for the Vibelytics Static V2 calendar-date guard at shipped commit 1e34f3e. Canonical and Vercel / and /pilot matched the committed route files byte-for-byte. Fresh pilot visits on 2026-09-21 selected 2026-11-02, valid explicit and leap-day dates restored unchanged, impossible dates preserved the computed default, and visible, email, and embedded share-link dates remained consistent at desktop and mobile sizes. This monitoring pass is not a new global brand signoff.",
   "scope": [
     "/",
     "/pilot",
@@ -52,8 +52,9 @@
     "validExplicitDateRestoration": "pass",
     "shareEmailDateConsistency": "pass",
     "canonicalVercelByteParity": "pass",
-    "invalidCalendarDateFallback": "pass_local_pending_production",
-    "calendarDateGuardLocalQa": "pass"
+    "invalidCalendarDateFallback": "pass",
+    "calendarDateGuardLocalQa": "pass",
+    "calendarDateGuardProductionMonitoring": "pass"
   },
   "monitoringSemantics": {
     "current": "The newest exact date and commit entry is the sole current production-monitoring checkpoint.",
@@ -61,6 +62,26 @@
     "superseded": "The SR007 pilot-context allowances recorded for 9532f2c and b8bcd50 are historical and superseded by the pure Vibelytics route policy established after 27b202e."
   },
   "monitoringHistory": [
+    {
+      "date": "2026-09-21",
+      "status": "pass",
+      "productionCommit": "1e34f3e",
+      "summary": "Static V2 calendar-date guard production monitoring passed. Canonical and Vercel / and /pilot matched commit 1e34f3e byte-for-byte. Fresh visits selected 2026-11-02; valid explicit and leap-day dates restored unchanged; impossible and non-leap dates preserved the computed default; visible, email, and embedded share-link dates agreed; and desktop/mobile browser checks found no broken images, overflow, or console warnings/errors.",
+      "checks": {
+        "routeStatus": "pass",
+        "routeContentMatchesCommit": "pass",
+        "canonicalVercelByteParity": "pass",
+        "freshDateExactly42DaysAhead": "pass",
+        "validExplicitDateRestoration": "pass",
+        "invalidCalendarDateFallback": "pass",
+        "leapYearBoundary": "pass",
+        "shareEmailDateConsistency": "pass",
+        "desktopMobileQa": "pass",
+        "assetResolution": "pass",
+        "console": "pass",
+        "productionMonitoring": "pass"
+      }
+    },
     {
       "date": "2026-07-29",
       "status": "pass",
@@ -80,10 +101,10 @@
       },
       "followUp": {
         "id": "SV2-DATE-002",
-        "status": "verified_local_pending_production",
+        "status": "resolved_by_1e34f3e",
         "severity": "P2",
         "evidence": "At the 2026-07-29 production checkpoint, a shape-valid but impossible query date such as 2026-99-99 cleared the native date field and produced a blank target date in the email artifact.",
-        "acceptance": "Passed locally on 2026-08-31. Production verification remains pending deployment."
+        "acceptance": "Passed locally on 2026-08-31 and in production at commit 1e34f3e on 2026-09-21."
       }
     },
     {
@@ -235,21 +256,27 @@
   "queue": {
     "completed": {
       "id": "SV2-DATE-002",
-      "status": "verified_local_pending_production",
+      "status": "verified_production",
       "scope": "Guard date query restoration with real calendar-date validity only.",
       "acceptance": [
-        "An impossible but shape-valid query date preserves the computed six-week default.",
-        "A valid explicit date restores unchanged.",
-        "Visible, copied share URL, and encoded email body dates agree.",
+        "An impossible but shape-valid query date preserves the computed six-week default. Passed in production.",
+        "A valid explicit date restores unchanged. Passed in production.",
+        "Visible, copied share URL, and encoded email body dates agree. Passed in production.",
         "Pure Vibelytics routes, approved assets, homepage qualification and launch-brief guidance, scenario-confidence boundaries, recommendation-specific validation, email conversion, query restoration, and static-only behavior remain intact."
       ]
     },
+    "selected": {
+      "id": "SV2-MON-001",
+      "status": "selected",
+      "scope": "Add a dependency-free repo-owned read-only production verification helper and one package script.",
+      "acceptance": [
+        "Canonical and Vercel / and /pilot responses must succeed and match the corresponding committed route files byte-for-byte.",
+        "Forbidden route terms, static-only violations, and malformed production/provenance JSON must fail the command.",
+        "The helper prints concise evidence, exits nonzero on failure, and performs no writes to production or external services.",
+        "The handoff uses the repo-owned command; browser interaction remains a separate manual check."
+      ]
+    },
     "candidates": [
-      {
-        "id": "SV2-MON-001",
-        "status": "candidate",
-        "summary": "Add a dependency-free repo-owned read-only production parity helper; keep browser behavior as separately recorded evidence."
-      },
       {
         "id": "SV2-DATE-003",
         "status": "candidate",
@@ -257,5 +284,5 @@
       }
     ]
   },
-  "nextAction": "After SV2-DATE-002 is committed, pushed, and deployed, verify canonical/Vercel byte parity and repeat fresh, valid, invalid, share, and email date checks before updating production monitoring. No implementation item is currently selected."
+  "nextAction": "Implement exactly SV2-MON-001. Keep browser behavior separate and do not implement SV2-DATE-003."
 }
