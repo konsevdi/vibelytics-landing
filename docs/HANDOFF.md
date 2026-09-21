@@ -90,26 +90,13 @@ For Static V2 pilot QA, also check:
 For production monitoring, also re-run:
 
 ```bash
-curl -sS -D /tmp/vibelytics-canonical-home.headers https://www.vibelytics.ai/ -o /tmp/vibelytics-canonical-home.html
-curl -sS -D /tmp/vibelytics-canonical-pilot.headers https://www.vibelytics.ai/pilot/ -o /tmp/vibelytics-canonical-pilot.html
-curl -sS -D /tmp/vibelytics-vercel-home.headers https://vibelytics-landing.vercel.app/ -o /tmp/vibelytics-vercel-home.html
-curl -sS -D /tmp/vibelytics-vercel-pilot.headers https://vibelytics-landing.vercel.app/pilot -o /tmp/vibelytics-vercel-pilot.html
-shasum -a 256 index.html pilot/index.html /tmp/vibelytics-canonical-home.html /tmp/vibelytics-canonical-pilot.html /tmp/vibelytics-vercel-home.html /tmp/vibelytics-vercel-pilot.html
-cmp -s index.html /tmp/vibelytics-canonical-home.html
-cmp -s pilot/index.html /tmp/vibelytics-canonical-pilot.html
-curl -sS -I https://vibelytics-landing.vercel.app/favicon.png
-curl -sS -I https://vibelytics-landing.vercel.app/apple-touch-icon.png
-curl -sS -I https://vibelytics-landing.vercel.app/og-image.png
-curl -sS -I https://vibelytics-landing.vercel.app/twitter-image.png
-curl -sS -I https://www.vibelytics.ai/og-image.png
-curl -sS -I https://www.vibelytics.ai/twitter-image.png
-node /private/tmp/vibelytics-brand-signoff-qa.mjs
+npm run verify:production -- --token=COMMIT_OR_RUN_ID
 ```
 
-If the temp Playwright script is unavailable, recreate the same checks from `docs/design/roadmap.md`: desktop/mobile `/` and `/pilot`, no broken images, no console warnings/errors, no unexpected third-party requests, no horizontal overflow, and the Mira K / London / 2,000-3,000 cap hall / Fashion pilot smoke test.
+The repo-owned helper checks route status, byte parity, route-purity/static-only boundaries, and production/provenance JSON. Browser behavior remains a separate manual check: desktop/mobile `/` and `/pilot`, no broken images, no console warnings/errors, no unexpected third-party requests, no horizontal overflow, and the focused pilot scenario/date/artifact smoke tests recorded in `docs/design/roadmap.md`.
 
 ## Queue Handoff
 
 Status boundaries are defined in `docs/design/roadmap.md`. Historical or locally completed `VERIFIED` work is not pending; `CANDIDATE` work is not authorized or ordered; a bounded implementation run may start only when exactly one task is `SELECTED`.
 
-Selected next task: `SV2-MON-001`. Add one dependency-free, repo-owned, read-only production verification helper for canonical/Vercel status and byte parity, route-purity/static-only scans, and JSON validation. Add one package script and replace the temporary-script-oriented handoff command block with the repo-owned command. Keep browser behavior as a separate manual check; do not implement `SV2-DATE-003`.
+No next implementation task is selected. `SV2-MON-001` is verified: the dependency-free repo-owned command checks canonical/Vercel status and byte parity, route-purity/static-only boundaries, and JSON validity. Browser behavior remains a separate manual check. `SV2-DATE-003` remains a candidate and must not be implemented without supporting usability evidence and explicit selection.

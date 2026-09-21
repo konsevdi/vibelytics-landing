@@ -54,7 +54,8 @@
     "canonicalVercelByteParity": "pass",
     "invalidCalendarDateFallback": "pass",
     "calendarDateGuardLocalQa": "pass",
-    "calendarDateGuardProductionMonitoring": "pass"
+    "calendarDateGuardProductionMonitoring": "pass",
+    "productionVerificationHelper": "pass"
   },
   "monitoringSemantics": {
     "current": "The newest exact date and commit entry is the sole current production-monitoring checkpoint.",
@@ -265,9 +266,9 @@
         "Pure Vibelytics routes, approved assets, homepage qualification and launch-brief guidance, scenario-confidence boundaries, recommendation-specific validation, email conversion, query restoration, and static-only behavior remain intact."
       ]
     },
-    "selected": {
+    "verifiedMonitoringHelper": {
       "id": "SV2-MON-001",
-      "status": "selected",
+      "status": "verified",
       "scope": "Add a dependency-free repo-owned read-only production verification helper and one package script.",
       "acceptance": [
         "Canonical and Vercel / and /pilot responses must succeed and match the corresponding committed route files byte-for-byte.",
@@ -284,5 +285,5 @@
       }
     ]
   },
-  "nextAction": "Implement exactly SV2-MON-001. Keep browser behavior separate and do not implement SV2-DATE-003."
+  "nextAction": "No implementation item is selected. Keep browser behavior separate; require usability evidence before selecting SV2-DATE-003."
 }

@@ -154,7 +154,7 @@ Only `SELECTED` and `READY` participate in queue order. A bounded implementation
 | ID | Status | Evidence | Bounded follow-up |
 | --- | --- | --- | --- |
 | `SV2-DATE-002` | `VERIFIED` | Canonical and Vercel production QA on 2026-09-21 confirmed commit `1e34f3e` byte parity, impossible-date fallback, valid-date restoration, and visible/email/share consistency. | Complete; do not reopen unless a later route change regresses parity or browser behavior. |
-| `SV2-MON-001` | `SELECTED` | Production evidence repeats long curl/hash blocks, `scripts/` has no monitoring helper, and handoff still references `/private/tmp/vibelytics-brand-signoff-qa.mjs`. | Add one dependency-free, repo-owned, read-only Node helper for canonical/Vercel route status and byte parity, route-purity/static-only scans, and JSON validation. Add one package script and replace the handoff shell block with the helper command. Browser behavior remains separately verified. |
+| `SV2-MON-001` | `VERIFIED` | `npm run verify:production -- --token=1e34f3e-helper` passed end to end on 2026-09-21: both JSON artifacts parsed and canonical/Vercel `/` and `/pilot` matched local route bytes with purity/static-only scans clean. | Complete locally; keep browser behavior as a separate manual production check. |
 | `SV2-DATE-003` | `CANDIDATE` | The runtime-relative default is behaviorally verified but the field label does not explain that fresh visits start six weeks ahead. | Evaluate one concise static helper line near Target date explaining the six-week default and query/share preservation; implement only if it improves comprehension without crowding the launch brief. |
 
 ### Completed Bounded Task
@@ -163,9 +163,9 @@ Only `SELECTED` and `READY` participate in queue order. A bounded implementation
 
 Roadmap audit on 2026-09-21 selected `SV2-MON-001` next. The repo has no production-monitoring helper, while durable docs repeat curl/hash commands and depend on temporary scripts. `SV2-DATE-003` remains a candidate because no usability evidence currently shows that helper copy is needed.
 
-### Formally Selected Next Task
+### Completed Monitoring Helper Task
 
-`SV2-MON-001` is the only selected task. Implement a dependency-free `scripts/verify-production.mjs` and a single package script that:
+`SV2-MON-001` is complete. `scripts/verify-production.mjs` and `npm run verify:production` now:
 
 - fetch canonical and Vercel `/` and `/pilot` with a cache-busting verification token;
 - fail unless all four responses are successful and byte-identical to `index.html` or `pilot/index.html` as appropriate;
@@ -174,7 +174,17 @@ Roadmap audit on 2026-09-21 selected `SV2-MON-001` next. The repo has no product
 - print concise pass/fail evidence and exit nonzero on failure;
 - remain read-only and avoid dependencies, services, analytics, credentials, or browser automation.
 
-Update `docs/HANDOFF.md` to use the repo-owned command. Browser interaction, responsive QA, and artifact behavior remain separate manual checks.
+`docs/HANDOFF.md` now uses the repo-owned command. Browser interaction, responsive QA, and artifact behavior remain separate manual checks. No next implementation item is selected; `SV2-DATE-003` remains a candidate without usability evidence.
+
+Verification run on 2026-09-21:
+
+```bash
+node --check scripts/verify-production.mjs
+npm run build
+npm run verify:production -- --token=1e34f3e-helper
+```
+
+The command validated both JSON artifacts and printed matching SHA-256 evidence for canonical and Vercel `/` and `/pilot`. It is dependency-free, read-only, and exits nonzero on request, status, parity, purity, static-only, or JSON failure.
 
 ## Static V2 Calendar-Date Guard Local Verification
 
@@ -630,4 +640,4 @@ Live-site discovery and verification notes:
 
 ## Next Action For Future Codex Thread
 
-Implement exactly the one `SELECTED` item: `SV2-MON-001`. Keep it dependency-free, read-only, and limited to deterministic production parity, purity, static-only, and JSON checks; do not absorb browser behavior or implement `SV2-DATE-003`.
+No implementation item is currently selected. `SV2-DATE-003` remains a candidate, not queued work; require evidence that helper copy improves target-date comprehension before selecting it.

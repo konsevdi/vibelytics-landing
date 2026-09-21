@@ -5,7 +5,8 @@
   "description": "Static Vibelytics landing page and launch decision pilot.",
   "scripts": {
     "build": "rm -rf dist && mkdir -p dist && cp index.html robots.txt sitemap.xml llms.txt humans.txt favicon.png apple-touch-icon.png og-image.png twitter-image.png dist/ && cp -R assets brand styles pilot privacy terms .well-known dist/",
-    "start": "python -m http.server 3000"
+    "start": "python -m http.server 3000",
+    "verify:production": "node scripts/verify-production.mjs"
   },
   "dependencies": {},
   "devDependencies": {}
