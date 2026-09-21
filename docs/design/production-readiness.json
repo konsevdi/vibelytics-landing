@@ -52,7 +52,8 @@
     "validExplicitDateRestoration": "pass",
     "shareEmailDateConsistency": "pass",
     "canonicalVercelByteParity": "pass",
-    "invalidCalendarDateFallback": "p2_selected_follow_up"
+    "invalidCalendarDateFallback": "pass_local_pending_production",
+    "calendarDateGuardLocalQa": "pass"
   },
   "monitoringSemantics": {
     "current": "The newest exact date and commit entry is the sole current production-monitoring checkpoint.",
@@ -79,10 +80,10 @@
       },
       "followUp": {
         "id": "SV2-DATE-002",
-        "status": "selected",
+        "status": "verified_local_pending_production",
         "severity": "P2",
-        "evidence": "A shape-valid but impossible query date such as 2026-99-99 clears the native date field and produces a blank target date in the email artifact.",
-        "acceptance": "Invalid calendar dates preserve the computed six-week default; valid explicit dates restore unchanged; visible, share, and email dates agree."
+        "evidence": "At the 2026-07-29 production checkpoint, a shape-valid but impossible query date such as 2026-99-99 cleared the native date field and produced a blank target date in the email artifact.",
+        "acceptance": "Passed locally on 2026-08-31. Production verification remains pending deployment."
       }
     },
     {
@@ -232,9 +233,9 @@
     }
   ],
   "queue": {
-    "selected": {
+    "completed": {
       "id": "SV2-DATE-002",
-      "status": "selected",
+      "status": "verified_local_pending_production",
       "scope": "Guard date query restoration with real calendar-date validity only.",
       "acceptance": [
         "An impossible but shape-valid query date preserves the computed six-week default.",
@@ -256,5 +257,5 @@
       }
     ]
   },
-  "nextAction": "Implement exactly SV2-DATE-002. Do not start candidate work or broaden scope."
+  "nextAction": "After SV2-DATE-002 is committed, pushed, and deployed, verify canonical/Vercel byte parity and repeat fresh, valid, invalid, share, and email date checks before updating production monitoring. No implementation item is currently selected."
 }

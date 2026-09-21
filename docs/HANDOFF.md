@@ -1,9 +1,11 @@
 # Vibelytics Post-Signoff Handoff
 
-Last updated: 2026-07-29
+Last updated: 2026-08-31
 Canonical production: `https://www.vibelytics.ai`
 Vercel deployment URL: `https://vibelytics-landing.vercel.app`
 Current status: Static V2 future-relative target-date change passed current production monitoring for commit `a3c0a36`.
+
+Local implementation status: `SV2-DATE-002` passed local QA on 2026-08-31 but is not yet represented by the production checkpoint above.
 
 ## Production Status
 
@@ -85,7 +87,7 @@ For Static V2 pilot QA, also check:
 - a fresh visit defaults exactly 42 calendar days ahead
 - a valid explicit query date restores unchanged
 - the visible date, copied share URL, and encoded email body agree
-- an impossible but shape-valid query date does not clear the field once `SV2-DATE-002` is complete
+- an impossible but shape-valid query date preserves the computed six-week default
 
 For production monitoring, also re-run:
 
@@ -110,6 +112,6 @@ If the temp Playwright script is unavailable, recreate the same checks from `doc
 
 ## Queue Handoff
 
-Status boundaries are defined in `docs/design/roadmap.md`. Historical `VERIFIED` work is not pending; `CANDIDATE` work is not authorized or ordered; only one task may be `SELECTED`.
+Status boundaries are defined in `docs/design/roadmap.md`. Historical or locally completed `VERIFIED` work is not pending; `CANDIDATE` work is not authorized or ordered; a bounded implementation run may start only when exactly one task is `SELECTED`.
 
-Selected next task: `SV2-DATE-002`. Guard query restoration with real calendar-date validity so an impossible value such as `2026-99-99` preserves the computed six-week default, while valid explicit dates continue to restore unchanged and remain consistent in visible, share, and email artifacts. Do not broaden the task or disturb pure Vibelytics routes, homepage qualification and launch-brief guidance, scenario-confidence boundaries, recommendation-specific validation, email conversion, approved assets, or static-only constraints.
+No next implementation task is selected. `SV2-DATE-002` is locally verified: impossible calendar dates preserve the six-week default, valid explicit dates restore unchanged, and visible/email/share artifacts agree. Commit, push, deploy, and repeat production parity/browser checks before promoting this local result to current production monitoring. Do not start either roadmap candidate without explicit selection.

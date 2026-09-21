@@ -1,6 +1,6 @@
 # Vibelytics Design Roadmap
 
-Last updated: 2026-07-29
+Last updated: 2026-08-31
 
 ## Current State
 
@@ -9,6 +9,8 @@ Vibelytics has a static public landing page and clickable pilot for an AI launch
 The repo now includes a durable design roadmap, an approved strategy brand kit, a focused asset-source pass, first-party route imagery, and canonical identity exports. This roadmap is the coordination point for future design-to-code passes.
 
 Current production monitoring passed on 2026-07-29 for shipped commit `a3c0a36`. Canonical `https://www.vibelytics.ai` and `https://vibelytics-landing.vercel.app` returned route HTML for `/` and `/pilot` that matched the committed files byte-for-byte. At 1440 × 960 and 390 × 844, fresh pilot visits selected `2026-09-09`, exactly 42 calendar days after the 2026-07-29 verification date; an explicit `date=2026-08-15` query restored unchanged; the selected date appeared in the generated scenario, encoded email body, and the share URL embedded in that body; `Copy share link` reached its success state; no broken images, horizontal overflow, or browser console warnings/errors were found. This is the current production-monitoring checkpoint, not a new global brand signoff.
+
+`SV2-DATE-002` passed local implementation QA on 2026-08-31. Query restoration now validates real Gregorian calendar dates before replacing the computed six-week default. Fresh visits selected `2026-10-12`; impossible `2026-99-99` and non-leap `2027-02-29` preserved that default; valid `2026-08-15` and leap day `2028-02-29` restored exactly; visible, email, and embedded share-link dates agreed; and browser console, image, and overflow checks passed. Production success is not claimed for this unshipped change.
 
 Production deployment verification passed on 2026-07-04 for commit `bccf62c` at `https://vibelytics-landing.vercel.app`. Live `/` and `/pilot` matched local `main`, production assets resolved, desktop/mobile browser QA passed, and the pilot interaction smoke test passed. This is deployment verification evidence, not production brand signoff by itself.
 
@@ -149,17 +151,37 @@ Queue states are intentionally narrow:
 - `BLOCKED`: cannot start until its named dependency is resolved.
 - `SUPERSEDED`: historical guidance retained for provenance but forbidden as current direction.
 
-Only `SELECTED` and `READY` participate in queue order. There must be exactly one `SELECTED` task. `CANDIDATE` items must not be treated as queued work.
+Only `SELECTED` and `READY` participate in queue order. A bounded implementation run must begin with exactly one `SELECTED` task. After that item is verified, the queue may have no `SELECTED` item until a later handoff explicitly chooses one. `CANDIDATE` items must not be treated as queued work.
 
 | ID | Status | Evidence | Bounded follow-up |
 | --- | --- | --- | --- |
-| `SV2-DATE-002` | `SELECTED` | Live canonical browser QA on 2026-07-29 showed that `date=2026-99-99` passes the shape-only regex, clears the native date input, and yields a blank target date in the email artifact. | Guard query restoration with real calendar-date validity. Preserve the +42-day default when the query date is impossible; continue restoring valid explicit dates unchanged; recheck visible, share, and email date consistency. |
+| `SV2-DATE-002` | `VERIFIED` | Local browser QA on 2026-08-31 confirmed that impossible calendar dates preserve the +42-day default, valid dates restore exactly, and visible/email/share dates agree. Production verification remains pending deployment. | Completed locally in `pilot/index.html`; do not reopen unless production parity or browser behavior fails after deployment. |
 | `SV2-MON-001` | `CANDIDATE` | Production evidence currently repeats long curl/hash command blocks and references temporary browser scripts. | Add a dependency-free, repo-owned read-only parity helper for canonical/Vercel route status, hashes, purity scans, and JSON validation. Browser behavior remains a separately recorded check. |
 | `SV2-DATE-003` | `CANDIDATE` | The runtime-relative default is behaviorally verified but the field label does not explain that fresh visits start six weeks ahead. | Evaluate one concise static helper line near Target date explaining the six-week default and query/share preservation; implement only if it improves comprehension without crowding the launch brief. |
 
-### Formally Selected Next Task
+### Completed Bounded Task
 
-`SV2-DATE-002` is the only selected task. Change only the date-query restoration guard and directly related tests/evidence. Acceptance requires: an impossible but shape-valid date leaves the computed six-week default intact; `date=2026-08-15` restores exactly; the visible target date, copied share URL, and encoded email body agree; canonical route purity, homepage qualification and launch-brief guidance, scenario-confidence boundaries, recommendation-specific validation, email conversion, approved assets, and static-only constraints remain unchanged.
+`SV2-DATE-002` is locally complete. The implementation changed only the date-query restoration guard and directly related evidence. No next implementation item is selected; `SV2-MON-001` and `SV2-DATE-003` remain unordered candidates.
+
+## Static V2 Calendar-Date Guard Local Verification
+
+Checks run on 2026-08-31 against the built static route:
+
+```bash
+npm run build
+python3 -m http.server 4191 --bind 127.0.0.1 --directory dist
+git diff --check
+```
+
+Verified facts:
+
+- A fresh visit selected `2026-10-12`, exactly 42 calendar days after the verification date.
+- `date=2026-99-99` and `date=2027-02-29` preserved the computed default.
+- `date=2026-08-15` and valid leap day `date=2028-02-29` restored unchanged.
+- The visible selected date, encoded email `Target date`, and embedded share-link date agreed.
+- `Copy share link` reached `Share link copied.` The in-app browser clipboard readback was unavailable, so consistency was additionally verified through the shared URL generator embedded in the encoded email artifact.
+- No browser console warnings/errors, broken images, horizontal overflow, forbidden route terms, or static-only violations were found.
+- Production parity was not checked because the change has not been deployed; current production evidence remains tied to `a3c0a36`.
 
 ## Static V2 Future-Relative Target-Date Verification
 
@@ -186,7 +208,7 @@ Verified facts:
 - Browser QA at 1440 × 960 and 390 × 844 passed across both production surfaces. Fresh visits selected `2026-09-09`; explicit `date=2026-08-15` restored unchanged.
 - Email bodies contained the matching `Target date` and a share URL carrying the same date. `Copy share link` reported `Share link copied.`
 - No broken images, horizontal overflow, or browser console warnings/errors were found.
-- The selected follow-up is based on a separate verified edge: `date=2026-99-99` currently clears the target-date input and produces a blank date in the email artifact. This does not invalidate the valid-date production pass.
+- At the 2026-07-29 production checkpoint, `date=2026-99-99` cleared the target-date input and produced a blank date in the email artifact. `SV2-DATE-002` resolves this locally; production verification remains pending deployment.
 - No product code, homepage content, approved asset, brand source, route image, backend, API, form, analytics, tracking, external service, auth, database, or credential behavior changed during this reconciliation.
 
 ## Static V2 Validation-Handoff Iteration Local Verification
@@ -573,6 +595,4 @@ Live-site discovery and verification notes:
 
 ## Next Action For Future Codex Thread
 
-Implement exactly the one `SELECTED` queue item: `SV2-DATE-002`.
-
-Guard date-query restoration with real calendar-date validity. An impossible but shape-valid date must preserve the computed six-week default; a valid explicit date must restore unchanged; visible, share, and email dates must agree. Do not implement either `CANDIDATE`, and do not disturb pure Vibelytics routes, approved assets, homepage qualification and launch-brief guidance, scenario-confidence boundaries, recommendation-specific validation, email conversion, query restoration, or static-only constraints.
+No implementation item is currently selected. After `SV2-DATE-002` is committed, pushed, and deployed, verify canonical/Vercel byte parity and repeat fresh, valid, invalid, share, and email date checks before updating production monitoring. Do not claim production success from local evidence and do not implement either `CANDIDATE` without a later explicit selection.
