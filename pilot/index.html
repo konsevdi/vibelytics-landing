@@ -463,6 +463,13 @@
       text-transform: uppercase;
     }
 
+    .field-help {
+      margin: -1px 0 6px;
+      color: var(--soft);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
     select,
     input {
       width: 100%;
@@ -1240,7 +1247,8 @@
           </div>
           <div class="field">
             <label for="target-date">Target date</label>
-            <input id="target-date" type="date" />
+            <p class="field-help" id="target-date-help">Fresh briefs start six weeks ahead; shared links keep the selected date.</p>
+            <input id="target-date" type="date" aria-describedby="target-date-help" />
           </div>
           <div class="field">
             <label for="timeline">Launch timeline</label>

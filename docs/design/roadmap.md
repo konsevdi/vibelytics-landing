@@ -1,6 +1,6 @@
 # Vibelytics Design Roadmap
 
-Last updated: 2026-09-21
+Last updated: 2026-09-22
 
 ## Current State
 
@@ -9,6 +9,8 @@ Vibelytics has a static public landing page and clickable pilot for an AI launch
 The repo now includes a durable design roadmap, an approved strategy brand kit, a focused asset-source pass, first-party route imagery, and canonical identity exports. This roadmap is the coordination point for future design-to-code passes.
 
 Current production monitoring passed on 2026-09-21 for shipped commit `1e34f3e`. Canonical `https://www.vibelytics.ai` and `https://vibelytics-landing.vercel.app` returned route HTML for `/` and `/pilot` that matched the committed files byte-for-byte. At 1440 × 960 and 390 × 844, fresh pilot visits selected `2026-11-02`, exactly 42 calendar days after the verification date; explicit `date=2026-08-15` and leap day `2028-02-29` restored unchanged; impossible `2026-99-99` and non-leap `2027-02-29` preserved the computed default; visible, email, and embedded share-link dates agreed; `Copy share link` reached its success state; and no broken images, horizontal overflow, or browser console warnings/errors were found. This is the current production-monitoring checkpoint, not a new global brand signoff.
+
+`SV2-DATE-004` passed local implementation QA on 2026-09-22. The approved helper is visibly subordinate, associated with the native date input through `aria-describedby`, and preserves aligned controls at 1440 × 960, 1024 × 900, and 390 × 844. Fresh, valid, and impossible dates remained consistent in visible, share, and email artifacts. Production success is not claimed for this unshipped change.
 
 Production deployment verification passed on 2026-07-04 for commit `bccf62c` at `https://vibelytics-landing.vercel.app`. Live `/` and `/pilot` matched local `main`, production assets resolved, desktop/mobile browser QA passed, and the pilot interaction smoke test passed. This is deployment verification evidence, not production brand signoff by itself.
 
@@ -155,7 +157,8 @@ Only `SELECTED` and `READY` participate in queue order. A bounded implementation
 | --- | --- | --- | --- |
 | `SV2-DATE-002` | `VERIFIED` | Canonical and Vercel production QA on 2026-09-21 confirmed commit `1e34f3e` byte parity, impossible-date fallback, valid-date restoration, and visible/email/share consistency. | Complete; do not reopen unless a later route change regresses parity or browser behavior. |
 | `SV2-MON-001` | `VERIFIED` | `npm run verify:production -- --token=1e34f3e-helper` passed end to end on 2026-09-21: both JSON artifacts parsed and canonical/Vercel `/` and `/pilot` matched local route bytes with purity/static-only scans clean. | Complete locally; keep browser behavior as a separate manual production check. |
-| `SV2-DATE-003` | `SELECTED` | The runtime-relative default is behaviorally verified, but the field only says `Target date`; the adjacent `Six-week launch` control does not explain that fresh briefs receive a computed date while shared briefs preserve their selected date. | Evaluation only: draft one concise helper line, compare current/proposed comprehension and density at desktop and narrow mobile, verify accessible association and timeline proximity, then record a ship/no-ship decision. Do not change product code in this task. |
+| `SV2-DATE-003` | `VERIFIED` | Evaluation on 2026-09-22 found one 72-character helper candidate remains approximately two short lines at 1440 × 960 and 390 × 844, clarifies the silent default, and keeps query mechanics implicit. | `SHIP` recommendation only; no product change landed. A later implementation selection may add the described-by hint in `pilot/index.html`. |
+| `SV2-DATE-004` | `VERIFIED` | Local QA on 2026-09-22 confirmed exact helper copy, `aria-describedby`, two-line desktop/mobile wrapping, aligned tablet-grid controls, and unchanged fresh/valid/invalid artifact behavior. | Complete locally; commit, push, deploy, and repeat parity/browser checks before claiming production success. |
 
 ### Completed Bounded Task
 
@@ -186,17 +189,46 @@ npm run verify:production -- --token=1e34f3e-helper
 
 The command validated both JSON artifacts and printed matching SHA-256 evidence for canonical and Vercel `/` and `/pilot`. It is dependency-free, read-only, and exits nonzero on request, status, parity, purity, static-only, or JSON failure.
 
-### Formally Selected Next Task
+### Completed Target-Date Helper Evaluation
 
-Roadmap audit on 2026-09-21 selected `SV2-DATE-003` as an evaluation-only task. The observable ambiguity is sufficient to evaluate a clarification: fresh briefs silently receive a six-weeks-ahead date, while restored/shared briefs preserve an explicit date, but the field label does not explain that distinction. There is not yet enough evidence to ship copy.
+Roadmap audit on 2026-09-21 selected `SV2-DATE-003` as an evaluation-only task. The evaluation completed on 2026-09-22 without modifying product code.
 
-Acceptance:
+Candidate evaluated:
 
-- inspect the current target-date and launch-timeline relationship at 1440 × 960 and 390 × 844;
-- draft exactly one concise helper-line candidate;
-- assess comprehension, density, wrapping, accessible association, and whether query/share mechanics should remain implicit;
-- record an evidence-backed `SHIP` or `DO NOT SHIP` decision and the exact likely implementation files if `SHIP`;
-- do not modify `pilot/index.html`, styles, assets, or product behavior during the evaluation.
+> Fresh briefs start six weeks ahead; shared links keep the selected date.
+
+Decision: `SHIP` as a recommendation for a separately authorized implementation task.
+
+Evidence:
+
+- Current production-equivalent markup shows only `Target date`; the adjacent `Six-week launch` control does not explain that the date is prefilled or that shared links preserve it.
+- The target-date field width was 253 px at 1440 × 960 and 317 px at 390 × 844. The 72-character candidate is expected to wrap to two short lines at a 12 px helper size in both layouts.
+- The current target-date and timeline fields are vertically adjacent with no horizontal overflow. Two helper lines add modest height without creating a new component family or obscuring the timeline relationship.
+- “Shared links” explains the user-visible behavior without mentioning query parameters.
+- Accessibility requires a stable helper ID and `aria-describedby` on `#target-date`; visible proximity alone is insufficient.
+- Exact likely product file if implementation is later selected: `pilot/index.html`. Evidence files likely updated after verification: `docs/design/ux-qa.md`, `docs/design/roadmap.md`, `docs/HANDOFF.md`, and `docs/design/production-readiness.json`.
+- No product code, styles, assets, or behavior changed during this evaluation.
+
+### Completed Target-Date Helper Implementation
+
+`SV2-DATE-004` is locally complete.
+
+Binding scope:
+
+- add exactly `Fresh briefs start six weeks ahead; shared links keep the selected date.` to the target-date field;
+- give the helper a stable ID and connect it to `#target-date` with `aria-describedby`;
+- keep the helper visually subordinate and preserve the date/timeline relationship at 1440 × 960, 1024 × 900, and 390 × 844;
+- preserve the +42-day default, explicit-date restoration, share/email consistency, route purity, static-only behavior, and approved assets;
+- do not change any other copy, product logic, route, asset, service, dependency, or instrumentation.
+
+Implementation evidence:
+
+- `pilot/index.html` contains exactly the approved helper copy and connects `#target-date` to `#target-date-help` with `aria-describedby`.
+- At 1440 × 960 the 253 px helper occupied two lines with zero overflow, no broken images, and a clean console.
+- At 1024 × 900 the date, timeline, sponsor, and ticketing controls shared the same top and bottom coordinates; the helper did not break the four-column grid.
+- At 390 × 844 the 317 px helper occupied two lines with zero overflow, no broken images, and a clean console.
+- Fresh `2026-11-03`, valid `2026-08-15`, and impossible `2026-99-99` cases preserved visible, share, and email date consistency; the share action reached its success state.
+- No homepage, recommendation, artifact-generation, asset, service, dependency, analytics, tracking, auth, database, or credential behavior changed.
 
 ## Static V2 Calendar-Date Guard Local Verification
 
@@ -652,4 +684,4 @@ Live-site discovery and verification notes:
 
 ## Next Action For Future Codex Thread
 
-Execute exactly the one `SELECTED` evaluation item: `SV2-DATE-003`. Produce a ship/no-ship decision without changing product code; do not treat selection as approval to add helper copy.
+No implementation item is selected. After `SV2-DATE-004` is committed, pushed, and deployed, verify canonical/Vercel parity and repeat responsive helper/date-artifact checks before updating production monitoring.

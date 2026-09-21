@@ -1,7 +1,7 @@
 # Vibelytics Static V2 Future-Relative Target-Date UX QA
 
-Last updated: 2026-09-21
-Status: `SV2-DATE-002` passed canonical and Vercel production UX QA for shipped commit `1e34f3e`.
+Last updated: 2026-09-22
+Status: Production UX QA remains passed for commit `1e34f3e`; `SV2-DATE-004` helper implementation passed local UX QA and awaits deployment verification.
 
 ## Routes And Journey Reviewed
 
@@ -78,3 +78,39 @@ No screenshots or approved repo assets were regenerated for this logic-only reco
 - Production UX QA: pass at 1440 × 960 and 390 × 844 for the future-relative default, valid explicit query restoration, share/email date consistency, asset resolution, clean console output, and zero horizontal overflow.
 - Gate distinction: this is a production-monitoring pass for the shipped date change, not a new global aesthetic or brand signoff.
 - `SV2-DATE-002` production UX QA: pass for fresh, valid, impossible, valid-leap, and invalid-leap dates.
+
+## SV2-DATE-003 Target-Date Helper Evaluation
+
+Candidate evaluated:
+
+> Fresh briefs start six weeks ahead; shared links keep the selected date.
+
+| Viewport | Current evidence | Candidate impact | Result |
+| --- | --- | --- | --- |
+| 1440 × 960 | Target-date field width 253 px; date and timeline fields are vertically adjacent | Approximately two short 12 px lines; adds explanation without obscuring the timeline control | `SHIP` recommendation |
+| 390 × 844 | Target-date field width 317 px; zero horizontal overflow | Approximately two short 12 px lines; mobile brief is already single-column and absorbs the added height cleanly | `SHIP` recommendation |
+
+- Comprehension: names both the fresh-brief default and shared-link preservation, which the current label does not expose.
+- Density: 72 characters and approximately two lines at both required widths; no separate callout or component family is warranted.
+- Query/share boundary: keep query parameters implicit; “shared links” is user-facing and sufficient.
+- Accessibility: implementation must give the helper a stable ID and add `aria-describedby` to `#target-date`.
+- Timeline proximity: place the helper directly beneath the date control so the following `Launch timeline` field remains the next semantic and visual control.
+- Decision: `SHIP` as a recommendation only. No product code, styles, assets, or behavior changed in this evaluation.
+- Exact likely product file: `pilot/index.html`.
+
+## SV2-DATE-004 Target-Date Helper Local QA
+
+- Implemented exactly: `Fresh briefs start six weeks ahead; shared links keep the selected date.`
+- Accessibility: `#target-date` references the visible `#target-date-help` through `aria-describedby`; the native label and control semantics remain intact.
+
+| Viewport | Helper/layout evidence | Result |
+| --- | --- | --- |
+| 1440 × 960 | 253 px helper width, two lines, date and timeline remain vertically adjacent | Pass |
+| 1024 × 900 | Date, timeline, sponsor, and ticketing controls share identical top/bottom coordinates in the four-column grid | Pass |
+| 390 × 844 | 317 px helper width, two lines, zero horizontal overflow | Pass |
+
+- No broken images or browser console warnings/errors were found.
+- Fresh `2026-11-03`, valid `2026-08-15`, and impossible `2026-99-99` states preserved visible, email, and embedded share-link dates.
+- `Copy share link` reached `Share link copied.`
+- No other copy, product logic, routes, assets, services, dependencies, or instrumentation changed.
+- Local decision: pass. Production status remains pending deployment and re-verification.

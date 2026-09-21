@@ -55,7 +55,8 @@
     "invalidCalendarDateFallback": "pass",
     "calendarDateGuardLocalQa": "pass",
     "calendarDateGuardProductionMonitoring": "pass",
-    "productionVerificationHelper": "pass"
+    "productionVerificationHelper": "pass",
+    "targetDateHelperLocalQa": "pass_local_pending_production"
   },
   "monitoringSemantics": {
     "current": "The newest exact date and commit entry is the sole current production-monitoring checkpoint.",
@@ -277,18 +278,34 @@
         "The handoff uses the repo-owned command; browser interaction remains a separate manual check."
       ]
     },
-    "selected": {
+    "verifiedEvaluation": {
       "id": "SV2-DATE-003",
-      "status": "selected",
+      "status": "verified_ship_recommendation",
       "scope": "Evaluate one concise target-date helper line without modifying product code.",
+      "candidate": "Fresh briefs start six weeks ahead; shared links keep the selected date.",
+      "decision": "SHIP recommendation only; no product change landed.",
+      "evidence": [
+        "Current Target date labeling does not explain the computed six-week default or shared-link preservation.",
+        "Candidate is approximately two short lines at 253 px desktop and 317 px narrow-mobile field widths.",
+        "Shared links keeps query parameters implicit.",
+        "Implementation requires a stable helper ID and aria-describedby on target-date."
+      ],
+      "likelyProductFiles": [
+        "pilot/index.html"
+      ]
+    },
+    "verifiedHelperImplementation": {
+      "id": "SV2-DATE-004",
+      "status": "verified_local_pending_production",
+      "scope": "Implement exactly the approved target-date helper with an accessible described-by relationship.",
       "acceptance": [
-        "Inspect the current target-date and launch-timeline relationship at 1440 × 960 and 390 × 844.",
-        "Draft exactly one concise helper-line candidate.",
-        "Assess comprehension, density, wrapping, accessible association, and whether query/share mechanics should remain implicit.",
-        "Record an evidence-backed SHIP or DO NOT SHIP decision and exact likely implementation files if SHIP.",
-        "Do not modify pilot/index.html, styles, assets, or product behavior during the evaluation."
+        "Add exactly: Fresh briefs start six weeks ahead; shared links keep the selected date.",
+        "Give the helper a stable ID and add aria-describedby to target-date.",
+        "Preserve the date/timeline relationship at 1440 × 960, 1024 × 900, and 390 × 844.",
+        "Preserve date behavior, artifact consistency, pure Vibelytics routes, static-only behavior, and approved assets.",
+        "Do not change other copy, product logic, services, dependencies, or instrumentation."
       ]
     }
   },
-  "nextAction": "Execute exactly the selected SV2-DATE-003 evaluation. Do not change product code during the evaluation."
+  "nextAction": "After SV2-DATE-004 is committed, pushed, and deployed, verify canonical/Vercel parity and repeat responsive helper/date-artifact checks before updating production monitoring. No implementation item is currently selected."
 }
