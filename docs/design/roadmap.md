@@ -155,13 +155,13 @@ Only `SELECTED` and `READY` participate in queue order. A bounded implementation
 | --- | --- | --- | --- |
 | `SV2-DATE-002` | `VERIFIED` | Canonical and Vercel production QA on 2026-09-21 confirmed commit `1e34f3e` byte parity, impossible-date fallback, valid-date restoration, and visible/email/share consistency. | Complete; do not reopen unless a later route change regresses parity or browser behavior. |
 | `SV2-MON-001` | `VERIFIED` | `npm run verify:production -- --token=1e34f3e-helper` passed end to end on 2026-09-21: both JSON artifacts parsed and canonical/Vercel `/` and `/pilot` matched local route bytes with purity/static-only scans clean. | Complete locally; keep browser behavior as a separate manual production check. |
-| `SV2-DATE-003` | `CANDIDATE` | The runtime-relative default is behaviorally verified but the field label does not explain that fresh visits start six weeks ahead. | Evaluate one concise static helper line near Target date explaining the six-week default and query/share preservation; implement only if it improves comprehension without crowding the launch brief. |
+| `SV2-DATE-003` | `SELECTED` | The runtime-relative default is behaviorally verified, but the field only says `Target date`; the adjacent `Six-week launch` control does not explain that fresh briefs receive a computed date while shared briefs preserve their selected date. | Evaluation only: draft one concise helper line, compare current/proposed comprehension and density at desktop and narrow mobile, verify accessible association and timeline proximity, then record a ship/no-ship decision. Do not change product code in this task. |
 
 ### Completed Bounded Task
 
 `SV2-DATE-002` is complete in production. The implementation changed only the date-query restoration guard and directly related evidence.
 
-Roadmap audit on 2026-09-21 selected `SV2-MON-001` next. The repo has no production-monitoring helper, while durable docs repeat curl/hash commands and depend on temporary scripts. `SV2-DATE-003` remains a candidate because no usability evidence currently shows that helper copy is needed.
+The first roadmap audit on 2026-09-21 selected `SV2-MON-001` next. At that checkpoint, the repo had no production-monitoring helper, while durable docs repeated curl/hash commands and depended on temporary scripts; `SV2-DATE-003` remained a candidate because no evidence yet supported shipping copy.
 
 ### Completed Monitoring Helper Task
 
@@ -174,7 +174,7 @@ Roadmap audit on 2026-09-21 selected `SV2-MON-001` next. The repo has no product
 - print concise pass/fail evidence and exit nonzero on failure;
 - remain read-only and avoid dependencies, services, analytics, credentials, or browser automation.
 
-`docs/HANDOFF.md` now uses the repo-owned command. Browser interaction, responsive QA, and artifact behavior remain separate manual checks. No next implementation item is selected; `SV2-DATE-003` remains a candidate without usability evidence.
+`docs/HANDOFF.md` now uses the repo-owned command. Browser interaction, responsive QA, and artifact behavior remain separate manual checks. At the helper-completion checkpoint no next item was selected; the later audit below selects `SV2-DATE-003` for evaluation only, not implementation.
 
 Verification run on 2026-09-21:
 
@@ -185,6 +185,18 @@ npm run verify:production -- --token=1e34f3e-helper
 ```
 
 The command validated both JSON artifacts and printed matching SHA-256 evidence for canonical and Vercel `/` and `/pilot`. It is dependency-free, read-only, and exits nonzero on request, status, parity, purity, static-only, or JSON failure.
+
+### Formally Selected Next Task
+
+Roadmap audit on 2026-09-21 selected `SV2-DATE-003` as an evaluation-only task. The observable ambiguity is sufficient to evaluate a clarification: fresh briefs silently receive a six-weeks-ahead date, while restored/shared briefs preserve an explicit date, but the field label does not explain that distinction. There is not yet enough evidence to ship copy.
+
+Acceptance:
+
+- inspect the current target-date and launch-timeline relationship at 1440 × 960 and 390 × 844;
+- draft exactly one concise helper-line candidate;
+- assess comprehension, density, wrapping, accessible association, and whether query/share mechanics should remain implicit;
+- record an evidence-backed `SHIP` or `DO NOT SHIP` decision and the exact likely implementation files if `SHIP`;
+- do not modify `pilot/index.html`, styles, assets, or product behavior during the evaluation.
 
 ## Static V2 Calendar-Date Guard Local Verification
 
@@ -640,4 +652,4 @@ Live-site discovery and verification notes:
 
 ## Next Action For Future Codex Thread
 
-No implementation item is currently selected. `SV2-DATE-003` remains a candidate, not queued work; require evidence that helper copy improves target-date comprehension before selecting it.
+Execute exactly the one `SELECTED` evaluation item: `SV2-DATE-003`. Produce a ship/no-ship decision without changing product code; do not treat selection as approval to add helper copy.

@@ -277,13 +277,18 @@
         "The handoff uses the repo-owned command; browser interaction remains a separate manual check."
       ]
     },
-    "candidates": [
-      {
-        "id": "SV2-DATE-003",
-        "status": "candidate",
-        "summary": "Evaluate concise helper copy explaining the six-week default and query/share preservation without crowding the brief."
-      }
-    ]
+    "selected": {
+      "id": "SV2-DATE-003",
+      "status": "selected",
+      "scope": "Evaluate one concise target-date helper line without modifying product code.",
+      "acceptance": [
+        "Inspect the current target-date and launch-timeline relationship at 1440 × 960 and 390 × 844.",
+        "Draft exactly one concise helper-line candidate.",
+        "Assess comprehension, density, wrapping, accessible association, and whether query/share mechanics should remain implicit.",
+        "Record an evidence-backed SHIP or DO NOT SHIP decision and exact likely implementation files if SHIP.",
+        "Do not modify pilot/index.html, styles, assets, or product behavior during the evaluation."
+      ]
+    }
   },
-  "nextAction": "No implementation item is selected. Keep browser behavior separate; require usability evidence before selecting SV2-DATE-003."
+  "nextAction": "Execute exactly the selected SV2-DATE-003 evaluation. Do not change product code during the evaluation."
 }

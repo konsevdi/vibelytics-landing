@@ -99,4 +99,4 @@ The repo-owned helper checks route status, byte parity, route-purity/static-only
 
 Status boundaries are defined in `docs/design/roadmap.md`. Historical or locally completed `VERIFIED` work is not pending; `CANDIDATE` work is not authorized or ordered; a bounded implementation run may start only when exactly one task is `SELECTED`.
 
-No next implementation task is selected. `SV2-MON-001` is verified: the dependency-free repo-owned command checks canonical/Vercel status and byte parity, route-purity/static-only boundaries, and JSON validity. Browser behavior remains a separate manual check. `SV2-DATE-003` remains a candidate and must not be implemented without supporting usability evidence and explicit selection.
+Selected next task: `SV2-DATE-003`, evaluation only. Inspect the current target-date/timeline relationship at desktop and narrow mobile, draft exactly one concise helper-line candidate, assess comprehension, density, wrapping, accessible association, and whether query/share mechanics should remain implicit, then record `SHIP` or `DO NOT SHIP`. Do not modify product code, styles, or assets during this task.
